@@ -513,7 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroredMovement: 0
   verticalMovement: 0
-  smoothFactor: 5
+  smoothFactor: 10
   offsetRelativeToSensor: 0
 --- !u!1 &1921854046
 GameObject:
