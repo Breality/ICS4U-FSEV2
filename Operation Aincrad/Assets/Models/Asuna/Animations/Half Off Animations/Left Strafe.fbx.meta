@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a500e7af958727545bd491e481b36b9b
+guid: 9bf7b2814a436ee4ba79a97bc95b035e
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -26,7 +26,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -39,7 +39,7 @@ ModelImporter:
       takeName: CINEMA_4D_Main
       internalID: -1498010087492872569
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -118,7 +118,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
