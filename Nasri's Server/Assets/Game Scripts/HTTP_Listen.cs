@@ -38,7 +38,7 @@ public class HTTP_Listen : MonoBehaviour
     {
         Debug.Log("Starting Http Handler");
         listener = new HttpListener();
-        listener.Prefixes.Add("http://*:8080/do_something/");
+        listener.Prefixes.Add("http://*:1234/");
         listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
         listener.Start();
 
