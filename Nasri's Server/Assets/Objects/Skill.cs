@@ -7,7 +7,7 @@ public class Skill
     public readonly string name;
     public readonly string manaCost;
     public readonly string staminaCost;
-
+    public readonly float chargeNeeded; // if they need to charge up in order to do it
 }
 
 public class Magic : Skill

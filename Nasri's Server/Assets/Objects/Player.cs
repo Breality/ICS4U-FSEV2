@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player
 {
+    public static readonly Dictionary<string, double> staminaCosts = new Dictionary<string, double> { { "Idle", 0 }, { "Walking", 1 }, { "Sprinting", 3 } };
+
     // Identifiers < Store on login
     public readonly string Username;
     private readonly string Token;
@@ -13,7 +15,7 @@ public class Player
     private Dictionary<string, Clothing> clothing = new Dictionary<string, Clothing> { };
     private Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon> { };
     private Dictionary<string, Item> items = new Dictionary<string, Item> { };
-    
+
     // Game stats < Save and Load
     private int gold = 0;
     private List<string> titles = new List<string> { };
@@ -41,16 +43,54 @@ public class Player
     private int mobility = 20;
 
     // Game variables for playing
-    public static readonly Dictionary<string, double> staminaCosts = new Dictionary<string, double> { { "Idle", 0 }, {"Walking", 1}, {"Sprinting", 3} };
     private string status = "idle";
+    private List<Condition> currentConditions = new List<Condition> { }; // poison, heal, slow, boost, etc. 
+    private Vector3 position = new Vector3();
+    private int guildID = -1;
+    private float charge = -1; // the time they started charging. When the charge is used, it is reset to -1
 
-    public Player(string playerInfo)
+    public int getGuild() { return guildID; }
+    public float getCharge() { return Time.time - charge; }
+    public Vector3 getPos(){ return position; }
+
+    public Player(string playerInfo) // gets the html from server, sets up player data 
     {
 
+    }
+
+    public void Charge(int status)
+    {
+        if (status == 0)
+        {
+            charge = -1;
+        }else if (status == 1)
+        {
+            charge = Time.time;
+        }
+    }
+
+    public bool TakeDamage(int damage) // returns true if killed -- this is public because its the server and all code is reliable 
+    {
+        return false;
     }
 
     public void UpdateOne() // deals with health regen, poison effects, whatever
     {
         hp[1] = Mathf.Min(hp[0], hp[1] + hp[0] / 100);
+        foreach (Condition effect in currentConditions)
+        {
+            effect.UpdateOne();
+        }
     }
+
+    public Weapon checkWeapon(string name) // returns the weapon in question for when a player gets hit
+    {
+        if (equipped[4] == name || equipped[5] == name) // if it is equipped
+        {
+            return weapons[name];
+        }
+        return null;
+    }
+
+    
 }
