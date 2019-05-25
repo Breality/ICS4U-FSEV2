@@ -15,6 +15,7 @@ public class Clothing : Equipment
 
 public class Weapon : Equipment
 {
+    public readonly Player owner;
     public readonly double attack;
     public readonly double pierce; 
     public readonly double range;
@@ -37,7 +38,7 @@ public class Weapon : Equipment
 
     public void Attack(Player hit, Attack attackSkill, float charge) // if no attack skill, then default damage
     {
-
+        owner
     }
 
 }

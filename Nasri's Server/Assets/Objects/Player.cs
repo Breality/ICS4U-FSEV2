@@ -49,10 +49,13 @@ public class Player
     private int guildID = -1;
     private float charge = -1; // the time they started charging. When the charge is used, it is reset to -1
 
+    // public getters
     public int getGuild() { return guildID; }
     public float getCharge() { return Time.time - charge; }
     public Vector3 getPos(){ return position; }
+    public int[] getStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
 
+    // functions
     public Player(string playerInfo) // gets the html from server, sets up player data 
     {
 
@@ -77,6 +80,9 @@ public class Player
     public void UpdateOne() // deals with health regen, poison effects, whatever
     {
         hp[1] = Mathf.Min(hp[0], hp[1] + hp[0] / 100);
+        mana[1] = Mathf.Min(mana[0], mana[1] + mana[0] / 100);
+        stamina[1] = Mathf.Min(stamina[0], stamina[1] + stamina[0] / 100);
+
         foreach (Condition effect in currentConditions)
         {
             effect.UpdateOne();
@@ -92,5 +98,9 @@ public class Player
         return null;
     }
 
-    
+    public void cost(int stamina, int mana)
+    {
+        this.mana[1] -= mana;
+        this.stamina[1] -= stamina;
+    }
 }
