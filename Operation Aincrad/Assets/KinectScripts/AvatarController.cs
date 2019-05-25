@@ -25,7 +25,8 @@ public class AvatarController : MonoBehaviour
 	
 	// Whether the offset node must be repositioned to the user's coordinates, as reported by the sensor or not.
 	public bool offsetRelativeToSensor = false;
-	
+
+
 
 	// The body root node
 	protected Transform bodyRoot;
@@ -100,7 +101,7 @@ public class AvatarController : MonoBehaviour
 		// move the avatar to its Kinect position
 		MoveAvatar(UserID);
 
-		for (var boneIndex = 0; boneIndex < bones.Length; boneIndex++)
+		for (var boneIndex = 2; boneIndex < bones.Length; boneIndex++)
 		{
 			if (!bones[boneIndex]) 
 				continue;
@@ -198,7 +199,8 @@ public class AvatarController : MonoBehaviour
 		
 		// Smoothly transition to the new rotation
 		Quaternion newRotation = Kinect2AvatarRot(jointRotation, boneIndex);
-		
+        Debug.Log(jointRotation);
+        Debug.Log(boneIndex);
 		if(smoothFactor != 0f)
         	boneTransform.rotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
 		else
@@ -311,7 +313,7 @@ public class AvatarController : MonoBehaviour
 		// get bone transforms from the animator component
 		var animatorComponent = GetComponent<Animator>();
 		
-		for (int boneIndex = 1; boneIndex < bones.Length; boneIndex++)
+		for (int boneIndex = 2; boneIndex < bones.Length; boneIndex++)
 		{
 			if (!boneIndex2MecanimMap.ContainsKey(boneIndex)) 
 				continue;
@@ -339,7 +341,7 @@ public class AvatarController : MonoBehaviour
 			transform.rotation = Quaternion.identity;
 		}
 		
-		for (int i = 0; i < bones.Length; i++)
+		for (int i = 2; i < bones.Length; i++)
 		{
 			if (bones[i] != null)
 			{
@@ -450,42 +452,32 @@ public class AvatarController : MonoBehaviour
 		{11, KinectWrapper.NuiSkeletonPositionIndex.ElbowRight},
 		{12, KinectWrapper.NuiSkeletonPositionIndex.WristRight},
 		{13, KinectWrapper.NuiSkeletonPositionIndex.HandRight},
-		
-		{14, KinectWrapper.NuiSkeletonPositionIndex.HipLeft},
-		{15, KinectWrapper.NuiSkeletonPositionIndex.KneeLeft},
-		{16, KinectWrapper.NuiSkeletonPositionIndex.AnkleLeft},
-		{17, KinectWrapper.NuiSkeletonPositionIndex.FootLeft},
-		
-		{18, KinectWrapper.NuiSkeletonPositionIndex.HipRight},
-		{19, KinectWrapper.NuiSkeletonPositionIndex.KneeRight},
-		{20, KinectWrapper.NuiSkeletonPositionIndex.AnkleRight},
-		{21, KinectWrapper.NuiSkeletonPositionIndex.FootRight},
 	};
-	
-	protected readonly Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>> specIndex2JointMap = new Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>>
+    protected readonly Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex> boneIndex2MirrorJointMap = new Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex>
+    {
+
+        {1, KinectWrapper.NuiSkeletonPositionIndex.Spine},
+		{2, KinectWrapper.NuiSkeletonPositionIndex.ShoulderCenter},
+        {3, KinectWrapper.NuiSkeletonPositionIndex.Head},
+
+        {5, KinectWrapper.NuiSkeletonPositionIndex.ShoulderRight},
+        {6, KinectWrapper.NuiSkeletonPositionIndex.ElbowRight},
+        {7, KinectWrapper.NuiSkeletonPositionIndex.WristRight},
+        {8, KinectWrapper.NuiSkeletonPositionIndex.HandRight},
+
+        {10, KinectWrapper.NuiSkeletonPositionIndex.ShoulderLeft},
+        {11, KinectWrapper.NuiSkeletonPositionIndex.ElbowLeft},
+        {12, KinectWrapper.NuiSkeletonPositionIndex.WristLeft},
+        {13, KinectWrapper.NuiSkeletonPositionIndex.HandLeft},
+
+    };
+    protected readonly Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>> specIndex2JointMap = new Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>>
 	{
 		{4, new List<KinectWrapper.NuiSkeletonPositionIndex> {KinectWrapper.NuiSkeletonPositionIndex.ShoulderLeft, KinectWrapper.NuiSkeletonPositionIndex.ShoulderCenter} },
 		{9, new List<KinectWrapper.NuiSkeletonPositionIndex> {KinectWrapper.NuiSkeletonPositionIndex.ShoulderRight, KinectWrapper.NuiSkeletonPositionIndex.ShoulderCenter} },
 	};
 	
-	protected readonly Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex> boneIndex2MirrorJointMap = new Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex>
-	{
-		{0, KinectWrapper.NuiSkeletonPositionIndex.HipCenter},
-		{1, KinectWrapper.NuiSkeletonPositionIndex.Spine},
-		{2, KinectWrapper.NuiSkeletonPositionIndex.ShoulderCenter},
-		{3, KinectWrapper.NuiSkeletonPositionIndex.Head},
-		
-		{5, KinectWrapper.NuiSkeletonPositionIndex.ShoulderRight},
-		{6, KinectWrapper.NuiSkeletonPositionIndex.ElbowRight},
-		{7, KinectWrapper.NuiSkeletonPositionIndex.WristRight},
-		{8, KinectWrapper.NuiSkeletonPositionIndex.HandRight},
-		
-		{10, KinectWrapper.NuiSkeletonPositionIndex.ShoulderLeft},
-		{11, KinectWrapper.NuiSkeletonPositionIndex.ElbowLeft},
-		{12, KinectWrapper.NuiSkeletonPositionIndex.WristLeft},
-		{13, KinectWrapper.NuiSkeletonPositionIndex.HandLeft},
-		
-	};
+
 	
 	protected readonly Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>> specIndex2MirrorJointMap = new Dictionary<int, List<KinectWrapper.NuiSkeletonPositionIndex>>
 	{

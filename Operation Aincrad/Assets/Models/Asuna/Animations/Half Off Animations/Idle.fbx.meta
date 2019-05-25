@@ -56,11 +56,49 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000000000000000000001000000010000000000000000000000000000000000000001000000010000000000000000000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Hips
+        weight: 1
+      - path: Root/Hips/spine
+        weight: 1
+      - path: Root/Hips/spine/chest
+        weight: 1
+      - path: Root/Hips/spine/chest/neck
+        weight: 1
+      - path: Root/Hips/spine/chest/neck/head
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_l
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_l/arm_l
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_l/arm_l/hand_l
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_r
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_r/arm_r
+        weight: 1
+      - path: Root/Hips/spine/chest/shoulder_r/arm_r/hand_r
+        weight: 1
+      - path: Root/Hips/thigh_l
+        weight: 1
+      - path: Root/Hips/thigh_l/knee_l
+        weight: 1
+      - path: Root/Hips/thigh_l/knee_l/foot_l
+        weight: 1
+      - path: Root/Hips/thigh_r
+        weight: 1
+      - path: Root/Hips/thigh_r/knee_r
+        weight: 1
+      - path: Root/Hips/thigh_r/knee_r/foot_r
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 0

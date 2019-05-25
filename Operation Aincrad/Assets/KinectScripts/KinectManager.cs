@@ -1098,7 +1098,7 @@ public class KinectManager : MonoBehaviour
 		KinectInitialized = true;
 	}
 	
-	void Update()
+	void LateUpdate()
 	{
 		if(KinectInitialized)
 		{
