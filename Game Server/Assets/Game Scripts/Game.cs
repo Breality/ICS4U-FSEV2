@@ -13,22 +13,20 @@ public class Game : MonoBehaviour
 
     public void WeaponHit(Player user, Player hit, string weaponName, string skillName)
     {
-        Weapon weapon = user.checkWeapon(weaponName);
+        Weapon weapon = user.CheckWeapon(weaponName);
         if (weapon != null)
         {
             double range = weapon.range;
             double distance = Vector3.Distance(user.getPos(), hit.getPos());
-            Attack skill = (skillName == null) ? weapon.skills[skillName] : null;
-
-            if (distance <= range && user.getStats()[1] >= weapon.mana && user.getStats()[2] >= weapon.stamina)
+            if (weapon.isAttacking() && distance <= range)
             {
-                weapon.Attack(hit, skill, user.getCharge()); // the attack verifies cooldown and deals the attack 
+                weapon.Hit(hit); 
             }
         }
-        
     }
 
-    private void GameLoop() // every frame of the game for npc redirection, heal effects, etc. Instant things like movement are done via events 
+    // This controls the speed of the game for npc redirection, heal effects, etc. Instant things like movement are done via events 
+    private void GameLoop() 
     {
         while (true)
         {

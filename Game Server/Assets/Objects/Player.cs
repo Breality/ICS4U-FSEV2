@@ -63,16 +63,11 @@ public class Player
 
     public void Charge(int status)
     {
-        if (status == 0)
-        {
-            charge = -1;
-        }else if (status == 1)
-        {
-            charge = Time.time;
-        }
+        charge = (status == 1) ? Time.time : -1;
     }
 
-    public bool TakeDamage(int damage) // returns true if killed -- this is public because its the server and all code is reliable 
+    // Deals damage to the players, returns true if killed -- this is public because its the server and all code is reliable. 
+    public bool TakeDamage(int damage) 
     {
         return false;
     }
@@ -89,7 +84,7 @@ public class Player
         }
     }
 
-    public Weapon checkWeapon(string name) // returns the weapon in question for when a player gets hit
+    public Weapon CheckWeapon(string name) // returns the weapon in question for when a player gets hit
     {
         if (equipped[4] == name || equipped[5] == name) // if it is equipped
         {
@@ -98,9 +93,15 @@ public class Player
         return null;
     }
 
-    public void cost(int stamina, int mana)
+    public bool Cost(int stamina=0, int mana=0, int gold=0)
     {
-        this.mana[1] -= mana;
-        this.stamina[1] -= stamina;
+        if (this.mana[1] >= mana && this.stamina[1] >= stamina && this.gold >= gold)
+        {
+            this.mana[1] -= mana;
+            this.stamina[1] -= stamina;
+            this.gold -= gold;
+            return true;
+        }
+        return false;
     }
 }

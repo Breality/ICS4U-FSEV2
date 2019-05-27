@@ -18,6 +18,7 @@ public class Condition // this item is slapped onto a player and takes effect ev
         // get all info based on name and load it in
 
         // take primary effect
+
     }
 
     public void UpdateOne() // deal continous or detect when its over
