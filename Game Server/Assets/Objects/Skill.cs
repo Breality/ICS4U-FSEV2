@@ -6,8 +6,9 @@ public class Skill
 {
     // general skill variables 
     public readonly string name;
-    public readonly string manaCost; 
-    public readonly string staminaCost;
+    public readonly int manaCost; 
+    public readonly int staminaCost;
+    public readonly float duration;
 
     // if they need to charge up in order to do the special skill
     public readonly float chargeNeeded; 

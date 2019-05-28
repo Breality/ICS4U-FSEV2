@@ -54,10 +54,13 @@ public class Weapon : Equipment
         // get variables specific for this attack (changes with attack skill)
         if (Time.time >= attackEnd + cooldown)
         {
+            int staminaCost = (attackSkill == null) ? stamina : stamina + attackSkill.staminaCost;
+            int manaCost = (attackSkill == null) ? mana : mana + attackSkill.manaCost;
 
-            if (owner.Cost(stamina, mana))
+            if (!(attackSkill != null && charge < attackSkill.chargeNeeded) && owner.Cost(staminaCost, manaCost)) // Charge, stamina and mana needed
             {
-                attackEnd = Time.time + attackLength;
+                attackEnd = (attackSkill == null) ? Time.time + attackLength : Time.time + attackLength + attackSkill.duration;
+
                 slashAttack = (int)(attack * (charge * chargeEffect + 1));
                 bonusEffect = null;
 
