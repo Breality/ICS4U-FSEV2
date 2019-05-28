@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class Condition // this item is slapped onto a player and takes effect ev
         // take primary effect
 
     }
-
+    
     public void UpdateOne() // deal continous or detect when its over
     {
 

@@ -11,6 +11,11 @@ public class Game : MonoBehaviour
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
 
+    public void PlayerKilled(Player murderer, Player murdered)
+    {
+
+    }
+
     public void WeaponHit(Player user, Player hit, string weaponName, string skillName)
     {
         Weapon weapon = user.CheckWeapon(weaponName);
@@ -20,7 +25,11 @@ public class Game : MonoBehaviour
             double distance = Vector3.Distance(user.getPos(), hit.getPos());
             if (weapon.isAttacking() && distance <= range)
             {
-                weapon.Hit(hit); 
+                bool killed = hit.TakeDamage(weapon); 
+                if (killed)
+                {
+                    PlayerKilled(user, hit);
+                }
             }
         }
     }

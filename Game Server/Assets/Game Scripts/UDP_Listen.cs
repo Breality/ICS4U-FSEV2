@@ -18,7 +18,7 @@ public class UDP_Listen : MonoBehaviour
 
         try
         {
-            udpReciever.Connect("localhost", 11000);
+            udpReciever.Connect("209.182.232.50", 11000);
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0); // changed every time we get a new udp message
             Debug.Log("Waiting for UDP request");
             while (true)

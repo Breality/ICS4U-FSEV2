@@ -66,10 +66,27 @@ public class Player
         charge = (status == 1) ? Time.time : -1;
     }
 
-    // Deals damage to the players, returns true if killed -- this is public because its the server and all code is reliable. 
-    public bool TakeDamage(int damage) 
+    // Deals damage to the players, returns true if killed -- this is overloaded for a weapon attac
+    public bool TakeDamage(Weapon weapon) 
     {
+        if (weapon.isAttacking())
+        {
+            foreach (Condition cond in weapon.getEffects(this))
+            {
+                currentConditions.Add(cond); // put a copy of the condition in
+            }
+            hp[1] -= weapon.getSlash();
+            if (hp[1] <= 0)
+            {
+                return true;
+            }
+        }
+
         return false;
+    }
+    public bool TakeDamage(Magic attack)
+    {
+        return false; 
     }
 
     public void UpdateOne() // deals with health regen, poison effects, whatever
