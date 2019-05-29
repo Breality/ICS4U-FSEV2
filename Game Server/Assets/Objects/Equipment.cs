@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Equipment
 {
+    public static readonly Dictionary<string, string> equipmentInfo = new Dictionary<string, string> { }; // for constructing equipment {name : html}
+
     public readonly Player owner;
     public readonly string name;
-    private int quantity; 
+    protected int quantity; 
 
     public int HowMany() { return quantity; }
+    public void NewCount(int number)
+    {
+        quantity = number;
+    }
 }
 
 public class Clothing : Equipment
 {
+    public readonly int bonusHp;
+    public readonly int bonusMana;
+    public readonly int bonusStamina;
+
+    public readonly float resist;
+    public readonly float[] attackPower = new float[] { 0, 1 }; // {bonus, multiplier}
+    public readonly float[]  magicPower = new float[] { 0, 1 }; // {bonus, multiplier}
+
+    public readonly int bonusSpeed;
+
+    public Clothing(string name, Player owner)
+    {
+
+    }
+
     
 }
 

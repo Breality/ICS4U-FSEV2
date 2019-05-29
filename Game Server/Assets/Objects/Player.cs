@@ -29,7 +29,7 @@ public class Player
     // Special Skills < Save and Load. Magic, Attack and Ability all inherit from Skill
     private Dictionary<string, Magic> magicSpells = new Dictionary<string, Magic> { };
     private Dictionary<string, Attack> attackSkills = new Dictionary<string, Attack> { };
-    private Dictionary<string, Ability> playerAbilities = new Dictionary<string, Ability> { };
+    private Dictionary<string, Skill> playerAbilities = new Dictionary<string, Skill> { };
 
     // Combat stats < Recalculate when needed
     private int[] hp = new int[] { 100, 100 }; // {max, current}
@@ -66,7 +66,8 @@ public class Player
         charge = (status == 1) ? Time.time : -1;
     }
 
-    // Deals damage to the players, returns true if killed -- this is overloaded for a weapon attac
+    private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
+    // Deals damage to the players, returns true if killed -- this is overloaded for a weapon attack
     public bool TakeDamage(Weapon weapon) 
     {
         if (weapon.isAttacking())

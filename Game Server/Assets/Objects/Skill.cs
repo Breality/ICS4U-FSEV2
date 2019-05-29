@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill
+public class Skill  // ability spells like leap, mega jump, etc. 
 {
     // general skill variables 
     public readonly string name;
@@ -17,13 +17,10 @@ public class Skill
 
 public class Magic : Skill // magic spells like trap, heal, etc. 
 {
-
+    public readonly int baseDamage;
+    public readonly float chargeMultiplier; // base * (1 + chargeMultiplier*charge)
 }
 
-public class Ability : Skill // ability spells like leap, mega jump, etc. 
-{
-
-}
 
 public class Attack : Skill // attack skills like two sword strike, etc. 
 {
