@@ -75,6 +75,7 @@ public class Player
             {
                 currentConditions.Add(cond); // put a copy of the condition in
             }
+
             hp[1] -= weapon.getSlash();
             if (hp[1] <= 0)
             {

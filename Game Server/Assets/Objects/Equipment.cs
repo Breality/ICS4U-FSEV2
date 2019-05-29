@@ -46,7 +46,7 @@ public class Weapon : Equipment
 
     // variables dictated when they decide on something 
     private int slashAttack = -1;
-    private Condition[] bonusEffect = null;
+    private List<Condition> bonusEffect = new List<Condition> { };
 
     // activates the attack, gets it all ready for when the hit function is called. returns true if attack was activated, false if something is wrong
     public bool Attack(Attack attackSkill, float charge) 
@@ -62,7 +62,16 @@ public class Weapon : Equipment
                 attackEnd = (attackSkill == null) ? Time.time + attackLength : Time.time + attackLength + attackSkill.duration;
 
                 slashAttack = (int)(attack * (charge * chargeEffect + 1));
-                bonusEffect = null;
+                bonusEffect = new List<Condition> { };
+
+                if (attackSkill != null)
+                {
+                    foreach (Condition c in attackSkill.effects)
+                    {
+                        bonusEffect.Add(c);
+                    }
+                    slashAttack += attackSkill.bonusDamage;
+                }
 
                 // set up attack damage and buffs/debuffs
                 return true;
@@ -75,8 +84,8 @@ public class Weapon : Equipment
     public int getSlash() { return slashAttack; }
 
     public Condition[] getEffects(Player hit) {
-        Condition[] newConditions = new Condition[bonusEffect.Length];
-        for (int i = 0; i < bonusEffect.Length; i++)
+        Condition[] newConditions = new Condition[bonusEffect.Count];
+        for (int i = 0; i < bonusEffect.Count; i++)
         {
             Condition c = bonusEffect[i];
             Condition newC = new Condition(hit, owner, c.name);

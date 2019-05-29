@@ -11,7 +11,8 @@ public class Skill
     public readonly float duration;
 
     // if they need to charge up in order to do the special skill
-    public readonly float chargeNeeded; 
+    public readonly float chargeNeeded;
+    public readonly Condition[] effects; 
 }
 
 public class Magic : Skill // magic spells like trap, heal, etc. 
@@ -26,6 +27,6 @@ public class Ability : Skill // ability spells like leap, mega jump, etc.
 
 public class Attack : Skill // attack skills like two sword strike, etc. 
 {
-    public readonly float bonusDamage;
+    public readonly int bonusDamage; // not a multiplier, its fixed added damage
     
 }
