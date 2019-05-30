@@ -1,0 +1,11 @@
+- Clothing
+Default Helmet:
+Default Body Armour:
+Default Boots:
+Default Pendulum: 
+
+- Weapon
+Default Sword:
+
+- Item
+Red Health Potion:

@@ -8,12 +8,20 @@ public class Equipment
 
     public readonly Player owner;
     public readonly string name;
+    public readonly string rarity;
+
     protected int quantity; 
 
     public int HowMany() { return quantity; }
     public void NewCount(int number)
     {
         quantity = number;
+    }
+
+    public Equipment(Player owner, string name)
+    {
+        this.owner = owner;
+        this.name = name;
     }
 }
 
@@ -24,7 +32,7 @@ public class Item : Equipment
     public readonly int bonusStamina;
     public readonly Condition[] effects; // temp speed, long term heal, etc.
 
-    public Item(Player owner, string name)
+    public Item(Player owner, string name) : base(owner, name)
     {
 
     }
@@ -42,7 +50,7 @@ public class Clothing : Equipment
 
     public readonly int bonusSpeed;
 
-    public Clothing(Player owner, string name)
+    public Clothing(Player owner, string name) : base(owner, name)
     {
 
     }
@@ -71,7 +79,7 @@ public class Weapon : Equipment
     public bool isAttacking() { return (attackEnd > Time.time); }
 
     // Weapon constructor, all stored as a string from a text file, loaded in when needed to
-    public Weapon(Player owner, string name)
+    public Weapon(Player owner, string name) : base(owner, name)
     {
         
     }
@@ -104,8 +112,7 @@ public class Weapon : Equipment
                     }
                     slashAttack += attackSkill.bonusDamage;
                 }
-
-                // set up attack damage and buffs/debuffs
+                
                 return true;
             }
         }
