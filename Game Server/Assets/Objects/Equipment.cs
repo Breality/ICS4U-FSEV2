@@ -17,6 +17,19 @@ public class Equipment
     }
 }
 
+public class Item : Equipment
+{
+    public readonly int bonusHp;
+    public readonly int bonusMana;
+    public readonly int bonusStamina;
+    public readonly Condition[] effects; // temp speed, long term heal, etc.
+
+    public Item(Player owner, string name)
+    {
+
+    }
+}
+
 public class Clothing : Equipment
 {
     public readonly int bonusHp;
@@ -29,12 +42,10 @@ public class Clothing : Equipment
 
     public readonly int bonusSpeed;
 
-    public Clothing(string name, Player owner)
+    public Clothing(Player owner, string name)
     {
 
     }
-
-    
 }
 
 public class Weapon : Equipment
@@ -60,12 +71,12 @@ public class Weapon : Equipment
     public bool isAttacking() { return (attackEnd > Time.time); }
 
     // Weapon constructor, all stored as a string from a text file, loaded in when needed to
-    public Weapon(string constructor)
+    public Weapon(Player owner, string name)
     {
         
     }
 
-    // variables dictated when they decide on something 
+    // variables dictated when they decide on attacking 
     private int slashAttack = -1;
     private List<Condition> bonusEffect = new List<Condition> { };
 
@@ -116,7 +127,3 @@ public class Weapon : Equipment
     }
 }
 
-public class Item : Equipment
-{
-
-}

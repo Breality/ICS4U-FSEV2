@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-// handles game logic. Animations pass right through from client to client, position checks occur here and static game logic takes place. 
+// Handles game logic. Animations pass right through from client to client, position checks (not setters, but checkers) occur here and static game logic takes place. 
 public class Game : MonoBehaviour
 {
     private Dictionary<string, Player> players = new Dictionary<string, Player> { }; // {token, player}

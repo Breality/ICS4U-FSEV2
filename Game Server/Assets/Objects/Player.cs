@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player
 {
+    // -------------- Class variables  --------------
     public static readonly Dictionary<string, double> staminaCosts = new Dictionary<string, double> { { "Idle", 0 }, { "Walking", 1 }, { "Sprinting", 3 } };
 
     // Identifiers < Store on login
@@ -49,28 +50,24 @@ public class Player
     private int guildID = -1;
     private float charge = -1; // the time they started charging. When the charge is used, it is reset to -1
 
-    // public getters
+    // -------------- Public getters --------------
     public int getGuild() { return guildID; }
     public float getCharge() { return Time.time - charge; }
     public Vector3 getPos(){ return position; }
     public int[] getStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
 
-    // functions
+    // -------------- Class constructor --------------
     public Player(string playerInfo) // gets the html from server, sets up player data 
     {
 
     }
 
-    public void Charge(int status)
-    {
-        charge = (status == 1) ? Time.time : -1;
-    }
-
+    // -------------- These functions deal damage to the players, returns true if killed --------------
+    // This is overloaded for a weapon attack
     private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
-    // Deals damage to the players, returns true if killed -- this is overloaded for a weapon attack
     public bool TakeDamage(Weapon weapon) 
     {
-        if (weapon.isAttacking())
+        if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.25 ))
         {
             foreach (Condition cond in weapon.getEffects(this))
             {
@@ -86,12 +83,16 @@ public class Player
 
         return false;
     }
-    public bool TakeDamage(Magic attack)
+
+    // This is overloaded for a magic spell
+    public bool TakeDamage(Magic spell)
     {
         return false; 
     }
 
-    public void UpdateOne() // deals with health regen, poison effects, whatever
+    // -------------- These function is called once per game frame --------------
+    // deals with health regen, poison effects, whatever
+    public void UpdateOne() 
     {
         hp[1] = Mathf.Min(hp[0], hp[1] + hp[0] / 100);
         mana[1] = Mathf.Min(mana[0], mana[1] + mana[0] / 100);
@@ -103,6 +104,7 @@ public class Player
         }
     }
 
+    // -------------- These methods are called by other classes that donèt have acess to things --------------
     public Weapon CheckWeapon(string name) // returns the weapon in question for when a player gets hit
     {
         if (equipped[4] == name || equipped[5] == name) // if it is equipped
@@ -122,5 +124,10 @@ public class Player
             return true;
         }
         return false;
+    }
+
+    public void Charge(int status)
+    {
+        charge = (status == 1) ? Time.time : -1;
     }
 }
