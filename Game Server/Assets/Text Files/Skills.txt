@@ -1,0 +1,5 @@
+- Player Technique Name: mana, stamina, duration, charge required, conditions applied to player on activation
+
+- Attack Skill Name: mana, stamina, duration, charge required, bonus damage, attack multiplier, conditions applied to player on contact
+
+- Magic Spell Name: mana, stamina, duration, charge required, conditions applied to player hit, "End", conditions applied to caster

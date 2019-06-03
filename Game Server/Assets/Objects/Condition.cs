@@ -7,7 +7,8 @@ public class Condition // this item is slapped onto a player and takes effect ev
 {
     public readonly string name;
     public readonly Player caster;
-    public readonly Player affected; 
+    public readonly Player affected;
+    public readonly float timeStarted = Time.time;
 
     public Condition(Player affected, Player caster, string name)
     {

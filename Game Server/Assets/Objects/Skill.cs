@@ -24,6 +24,7 @@ public class Magic : Skill // magic spells like trap, heal, etc.
 {
     public readonly int baseDamage;
     public readonly float chargeMultiplier; // base * (1 + chargeMultiplier*charge)
+    public readonly Condition[] InflictedEffects; // these are the effects that affect the caster of a magic spell
 
     public Magic(string name) : base(name) // sets up the two variables for magic and the base(name) shoots the super's constructor 
     {
@@ -34,7 +35,8 @@ public class Magic : Skill // magic spells like trap, heal, etc.
 
 public class Attack : Skill // attack skills like two sword strike, etc. 
 {
-    public readonly int bonusDamage; // not a multiplier, its fixed added damage
+    public readonly int bonusDamage;
+    public readonly float attackMultiplier;
 
     public Attack(string name) : base(name)
     {

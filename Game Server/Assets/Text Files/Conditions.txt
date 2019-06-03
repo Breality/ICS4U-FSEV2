@@ -1,0 +1,1 @@
+- Condition Name: Type of condition, custom rest of line based on type

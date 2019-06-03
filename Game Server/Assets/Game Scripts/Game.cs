@@ -7,6 +7,10 @@ using UnityEngine;
 // Handles game logic. Animations pass right through from client to client, position checks (not setters, but checkers) occur here and static game logic takes place. 
 public class Game : MonoBehaviour
 {
+    public TextAsset equipmentFile;
+    public TextAsset skillFile;
+    public TextAsset conditionList;
+
     private Dictionary<string, Player> players = new Dictionary<string, Player> { }; // {token, player}
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
@@ -16,7 +20,7 @@ public class Game : MonoBehaviour
 
     }
 
-    public void WeaponHit(Player user, Player hit, string weaponName, string skillName)
+    public void WeaponHit(Player user, Player hit, string weaponName, string skillName) // the client tells us this
     {
         Weapon weapon = user.CheckWeapon(weaponName);
         if (weapon != null)
@@ -25,7 +29,7 @@ public class Game : MonoBehaviour
             double distance = Vector3.Distance(user.getPos(), hit.getPos());
             if (weapon.isAttacking() && distance <= range)
             {
-                bool killed = hit.TakeDamage(weapon); 
+                bool killed = hit.WeaponHit(weapon); 
                 if (killed)
                 {
                     PlayerKilled(user, hit);
@@ -50,6 +54,10 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // load in all the asset information into a dictionary
+
+
+        // start the eternal game loop
         (new Thread(GameLoop)).Start();
     }
 

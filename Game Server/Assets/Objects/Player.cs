@@ -65,13 +65,13 @@ public class Player
     // -------------- These functions deal damage to the players, returns true if killed --------------
     // This is overloaded for a weapon attack
     private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
-    public bool TakeDamage(Weapon weapon) 
+    public bool WeaponHit(Weapon weapon) 
     {
         if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.25 ))
         {
             foreach (Condition cond in weapon.getEffects(this))
             {
-                currentConditions.Add(cond); // put a copy of the condition in
+                currentConditions.Add(cond); // put a copy of the condition in (the function gets us newly made copies)
             }
 
             hp[1] -= weapon.getSlash();

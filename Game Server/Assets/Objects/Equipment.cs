@@ -30,6 +30,7 @@ public class Item : Equipment
     public readonly int bonusHp;
     public readonly int bonusMana;
     public readonly int bonusStamina;
+    public readonly string usageType; // "Cast on self", "Field effect", "Castable on other players"
     public readonly Condition[] effects; // temp speed, long term heal, etc.
 
     public Item(Player owner, string name) : base(owner, name)
@@ -67,7 +68,7 @@ public class Weapon : Equipment
     public readonly int stamina;
     public readonly int weaponType; // 0 = left handed, 1 = right handed, 2 = both
 
-    public readonly float cooldown;
+    public readonly float cooldown; // number of seconds between the end of an attack and the allowed start of the next attack
     public readonly float chargeEffect; // this is a multiplier for default damage. chargeEffect*charge*attack + attack
     public readonly Dictionary<string, Attack> skills;
     private readonly float attackLength = 1; // amount of seconds before the attack ends
@@ -111,6 +112,7 @@ public class Weapon : Equipment
                         bonusEffect.Add(c);
                     }
                     slashAttack += attackSkill.bonusDamage;
+                    slashAttack = (int) (slashAttack*attackSkill.attackMultiplier);
                 }
                 
                 return true;
