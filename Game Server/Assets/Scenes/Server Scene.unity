@@ -325,6 +325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33c7db05a8b97841a1cd02bec27e789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipmentFile: {fileID: 4900000, guid: b453709658f569a4e8e5ca97d1c2ee08, type: 3}
+  skillFile: {fileID: 4900000, guid: 0d8dc2fac8cb04c4e8f556db31cb3e9b, type: 3}
+  conditionList: {fileID: 4900000, guid: 28e9701834a7a1548a22fc5a3aa43dd8, type: 3}
 --- !u!114 &828499187
 MonoBehaviour:
   m_ObjectHideFlags: 0
