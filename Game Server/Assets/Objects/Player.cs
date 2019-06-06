@@ -45,10 +45,13 @@ public class Player
 
     // Game variables for playing
     private string status = "idle";
-    private List<Condition> currentConditions = new List<Condition> { }; // poison, heal, slow, boost, etc. 
     private Vector3 position = new Vector3();
     private int guildID = -1;
     private float charge = -1; // the time they started charging. When the charge is used, it is reset to -1
+
+    private List<Condition> currentConditions = new List<Condition> { }; // poison, heal, slow, boost, etc. 
+    Dictionary<string, float> conditionStats = new Dictionary<string, float> { { "Speed", 0 }, { "Hp Regen", 0 }, { "Mana Regen", 0 }, { "Stamina Regen", 0 }, { "Damage Multiplier", 0 } };
+
 
     // -------------- Public getters --------------
     public int getGuild() { return guildID; }
@@ -104,7 +107,22 @@ public class Player
         }
     }
 
-    // -------------- These methods are called by other classes that donèt have acess to things --------------
+    // -------------- These methods are called by other classes that don't have acess to things --------------
+    public void updateConditions() // goes through the conditions and reconstructs the stat changes from the conditions placed on you
+    {
+        Dictionary<string, float>  temp = new Dictionary<string, float> { { "Speed", 0 }, { "Hp Regen", 0 }, { "Mana Regen", 0 }, { "Stamina Regen", 0 }, { "Damage Multiplier", 0 } };
+
+        foreach (Condition c in currentConditions)
+        {
+            foreach (KeyValuePair<string, float> stat in c.statChanges)
+            {
+                temp[stat.Key] += stat.Value;
+            }
+        }
+
+        conditionStats = temp;
+    }
+
     public Weapon CheckWeapon(string name) // returns the weapon in question for when a player gets hit
     {
         if (equipped[4] == name || equipped[5] == name) // if it is equipped
