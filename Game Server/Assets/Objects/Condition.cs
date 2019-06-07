@@ -6,6 +6,8 @@ using UnityEngine;
 public class Condition // this item is slapped onto a player and takes effect every turn or does something at ths start
 {
     public readonly string name;
+    public readonly bool isHelpful;
+
     public readonly Player caster;
     public readonly Player affected;
     public readonly float lifespan;
@@ -31,14 +33,16 @@ public class Condition // this item is slapped onto a player and takes effect ev
         {
             if (type.Equals("Remove Conditions")) 
             {
-
+                affected.removeConditions(name.Equals("Remove Help")); // remove good/bad conditions based on which one the effect wants
+                
             }else if (type.Equals(""))
             {
-
+                Debug.Log("Fill in more stuff");
             }
         }
     }
-    
+
+    public int damage; // set to something for player case to read from
     public bool UpdateOne() // deal any lasting effects and returns true if the condition is no longer effective 
     {
         // check if it needs to update again or not
@@ -48,6 +52,14 @@ public class Condition // this item is slapped onto a player and takes effect ev
         }
 
         // if statements of similar names lumped together and effects taking place 
+        if (this.type.Equals("Poison"))
+        {
+            damage = (int)infoNeeded;
+            if (affected.TakeDamage(this)) // take damage
+            { // player got killed because of this
+                Debug.Log("Do something here, condition kill is unaccounted for");
+            }
+        }
 
         return false;
     }

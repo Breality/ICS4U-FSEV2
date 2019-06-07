@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
             double distance = Vector3.Distance(user.getPos(), hit.getPos());
             if (weapon.isAttacking() && distance <= range)
             {
-                bool killed = hit.WeaponHit(weapon); 
+                bool killed = hit.TakeDamage(weapon); 
                 if (killed)
                 {
                     PlayerKilled(user, hit);

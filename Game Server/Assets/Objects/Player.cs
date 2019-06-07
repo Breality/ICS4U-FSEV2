@@ -66,9 +66,21 @@ public class Player
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------
-    // This is overloaded for a weapon attack
     private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
-    public bool WeaponHit(Weapon weapon) 
+
+    // private overload called by all the public overloads
+    // This is overloaded for a weapon attack
+    private bool TakeDamage(int damage) // takes normal damage, applies any conditional bonuses 
+    {
+        hp[1] -= (int) (damage* conditionStats["Damage Multiplier"]);
+        if (hp[1] <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool TakeDamage(Weapon weapon) 
     {
         if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.25 ))
         {
@@ -77,13 +89,8 @@ public class Player
                 currentConditions.Add(cond); // put a copy of the condition in (the function gets us newly made copies)
             }
 
-            hp[1] -= weapon.getSlash();
-            if (hp[1] <= 0)
-            {
-                return true;
-            }
+            return TakeDamage(weapon.getSlash());
         }
-
         return false;
     }
 
@@ -92,6 +99,9 @@ public class Player
     {
         return false; 
     }
+
+    // This is overloaded for a curse/heal effect 
+    public bool TakeDamage(Condition cond) { return TakeDamage(cond.damage); }
 
     // -------------- These function is called once per game frame --------------
     // deals with health regen, poison effects, whatever
@@ -108,6 +118,21 @@ public class Player
     }
 
     // -------------- These methods are called by other classes that don't have acess to things --------------
+    public void removeConditions(bool RemoveKind)
+    {
+        List<Condition> newConditions = new List<Condition> { };
+
+        foreach (Condition c in currentConditions)
+        {
+            if (c.isHelpful != RemoveKind)
+            {
+                newConditions.Add(c);
+            }
+        }
+
+        currentConditions = newConditions;
+    }
+
     public void updateConditions() // goes through the conditions and reconstructs the stat changes from the conditions placed on you
     {
         Dictionary<string, float>  temp = new Dictionary<string, float> { { "Speed", 0 }, { "Hp Regen", 0 }, { "Mana Regen", 0 }, { "Stamina Regen", 0 }, { "Damage Multiplier", 0 } };
