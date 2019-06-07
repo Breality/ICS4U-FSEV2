@@ -37,8 +37,20 @@ public class Item : Equipment
     public readonly Condition[] effects; // temp speed, long term heal, etc.
 
     public Item(Player owner, string name, string info) : base(owner, name, info)
-    { // Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
+    {
+        string[] items = info.Split(','); // Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
 
+        bonusHp = int.Parse(items[1]);
+        bonusMana = int.Parse(items[2]);
+        bonusStamina = int.Parse(items[3]);
+
+        usageType = items[4];
+
+        effects = new Condition[items.Length - 6];
+        for (int i = 5; i < items.Length - 1; i++) // loop through all the skill names and add them
+        {
+            effects[i - 5] = new Condition(owner, owner, items[i]);
+        }
     }
 }
 
