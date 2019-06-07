@@ -37,7 +37,7 @@ public class Item : Equipment
     public readonly Condition[] effects; // temp speed, long term heal, etc.
 
     public Item(Player owner, string name, string info) : base(owner, name, info)
-    {
+    { // Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
 
     }
 }
@@ -56,12 +56,15 @@ public class Clothing : Equipment
 
     public Clothing(Player owner, string name, string info) : base(owner, name, info)
     {
-        string[] items = info.Split(',');
+        string[] items = info.Split(','); // Rarity, hp, mana, stamina, resist, attack Bonus, attack multiplier, magic bonus, magic multiplier, speed
 
         bonusHp = int.Parse(items[1]);
         bonusMana = int.Parse(items[2]);
-
-        //mana, stamina, resist, attack Bonus, attack multiplier, magic bonus, magic multiplier, speed
+        bonusStamina = int.Parse(items[3]);
+        resist = float.Parse(items[4]);
+        attackPower = new float[] { float.Parse(items[5]), float.Parse(items[6]) } ;
+        magicPower = new float[] { float.Parse(items[7]), float.Parse(items[8]) };
+        bonusSpeed = int.Parse(items[9]);
     }
 }
 
@@ -78,7 +81,7 @@ public class Weapon : Equipment
 
     public readonly float cooldown; // number of seconds between the end of an attack and the allowed start of the next attack
     public readonly float chargeEffect; // this is a multiplier for default damage. chargeEffect*charge*attack + attack
-    public readonly Dictionary<string, Attack> skills;
+    public readonly Dictionary<string, Attack> skills = new Dictionary<string, Attack> { };
     private readonly float attackLength = 1; // amount of seconds before the attack ends
 
     // private variables used for keeping track of the weapon
@@ -90,7 +93,22 @@ public class Weapon : Equipment
     // Weapon constructor, all stored as a string from a text file, loaded in when needed to
     public Weapon(Player owner, string name, string info) : base(owner, name, info)
     {
-        
+        string[] items = info.Split(','); //  Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma
+
+        attack = double.Parse(items[1]);
+        pierce = double.Parse(items[2]);
+        range = double.Parse(items[3]);
+        mana = int.Parse(items[4]);
+        stamina = int.Parse(items[5]);
+        weaponType = int.Parse(items[6]);
+        cooldown = float.Parse(items[7]);
+        chargeEffect = float.Parse(items[8]);
+        attackLength = float.Parse(items[9]);
+
+        for (int i=10; i<items.Length-1; i++) // loop through all the skill names and add them
+        {
+            skills[items[i]] = new Attack(items[i]);
+        }
     }
 
     // variables dictated when they decide on attacking 

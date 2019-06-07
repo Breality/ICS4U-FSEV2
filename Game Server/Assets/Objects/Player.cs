@@ -69,7 +69,6 @@ public class Player
     private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
 
     // private overload called by all the public overloads
-    // This is overloaded for a weapon attack
     private bool TakeDamage(int damage) // takes normal damage, applies any conditional bonuses 
     {
         hp[1] -= (int) (damage* conditionStats["Damage Multiplier"]);
@@ -80,6 +79,7 @@ public class Player
         return false;
     }
 
+    // This is overloaded for a weapon attack
     public bool TakeDamage(Weapon weapon) 
     {
         if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.25 ))
@@ -102,8 +102,6 @@ public class Player
 
     // This is overloaded for a curse/heal effect 
     public bool TakeDamage(Condition cond) { return TakeDamage(cond.damage); }
-
-    // -------------- These function is called once per game frame --------------
     // deals with health regen, poison effects, whatever
     public void UpdateOne() 
     {
