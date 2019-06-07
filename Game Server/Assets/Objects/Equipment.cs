@@ -18,10 +18,13 @@ public class Equipment
         quantity = number;
     }
 
-    public Equipment(Player owner, string name)
+    public Equipment(Player owner, string name, string info)
     {
         this.owner = owner;
         this.name = name;
+
+        string[] items = info.Split(',');
+        rarity = items[0];
     }
 }
 
@@ -33,7 +36,7 @@ public class Item : Equipment
     public readonly string usageType; // "Cast on self", "Field effect", "Castable on other players"
     public readonly Condition[] effects; // temp speed, long term heal, etc.
 
-    public Item(Player owner, string name) : base(owner, name)
+    public Item(Player owner, string name, string info) : base(owner, name, info)
     {
 
     }
@@ -51,9 +54,14 @@ public class Clothing : Equipment
 
     public readonly int bonusSpeed;
 
-    public Clothing(Player owner, string name) : base(owner, name)
+    public Clothing(Player owner, string name, string info) : base(owner, name, info)
     {
+        string[] items = info.Split(',');
 
+        bonusHp = int.Parse(items[1]);
+        bonusMana = int.Parse(items[2]);
+
+        //mana, stamina, resist, attack Bonus, attack multiplier, magic bonus, magic multiplier, speed
     }
 }
 
@@ -80,7 +88,7 @@ public class Weapon : Equipment
     public bool isAttacking() { return (attackEnd > Time.time); }
 
     // Weapon constructor, all stored as a string from a text file, loaded in when needed to
-    public Weapon(Player owner, string name) : base(owner, name)
+    public Weapon(Player owner, string name, string info) : base(owner, name, info)
     {
         
     }
