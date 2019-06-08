@@ -1,0 +1,91 @@
+{
+    "format": {
+        "version": "1.0"
+    },
+    "shaders": {
+        "Main shader": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.75,
+                    "emissive_intensity": 1,
+                    "horizonFade": 1.2999999523162842,
+                    "nbSamples": 16
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 1,
+                    "usePOM": false
+                },
+                "Subsurface Scattering Parameters": {
+                    "sssColor": [
+                        0.7009999752044678,
+                        0.3009999990463257,
+                        0.3050000071525574
+                    ],
+                    "sssEnabled": true,
+                    "sssScale": 0.5,
+                    "sssType": 1
+                }
+            },
+            "shader": "pbr-spec-gloss",
+            "shaderInstance": "Main shader"
+        }
+    },
+    "texturesets": {
+        "Blade": {
+            "shader": "Main shader"
+        },
+        "Grip": {
+            "shader": "Main shader"
+        },
+        "Grip_bottom": {
+            "shader": "Main shader"
+        },
+        "Guard_Left_detail": {
+            "shader": "Main shader"
+        },
+        "Guard_base": {
+            "shader": "Main shader"
+        },
+        "Guard_base_outter": {
+            "shader": "Main shader"
+        },
+        "Guard_dark": {
+            "shader": "Main shader"
+        },
+        "Guard_topmost": {
+            "shader": "Main shader"
+        },
+        "Sphere_Bright": {
+            "shader": "Main shader"
+        },
+        "Sphere_Bright_ring": {
+            "shader": "Main shader"
+        },
+        "Sphere_Red": {
+            "shader": "Main shader"
+        },
+        "Sphere_dark": {
+            "shader": "Main shader"
+        },
+        "Sphere_dark_ring": {
+            "shader": "Main shader"
+        },
+        "Sphere_red_block": {
+            "shader": "Main shader"
+        },
+        "Sphere_red_ring": {
+            "shader": "Main shader"
+        },
+        "Spike_base": {
+            "shader": "Main shader"
+        },
+        "Spikes": {
+            "shader": "Main shader"
+        },
+        "Tangle": {
+            "shader": "Main shader"
+        }
+    }
+}
