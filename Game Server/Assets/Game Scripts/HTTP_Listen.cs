@@ -16,8 +16,10 @@ public class HTTP_Listen : MonoBehaviour
         Debug.Log("HTTP recieved");
         HttpListener listener = (HttpListener)result.AsyncState;
         HttpListenerContext context = listener.EndGetContext(result);
-        // do stuff
 
+        // do stuff
+        HttpListenerRequest request = context.Request;
+        Debug.Log(request.ToString());
 
         // Construct a response.
         HttpListenerResponse response = context.Response;
