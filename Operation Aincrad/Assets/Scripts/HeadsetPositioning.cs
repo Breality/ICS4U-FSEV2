@@ -1,26 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
-public class HeadsetPositioning : MonoBehaviour
+public class HeadSetPositioning : MonoBehaviour
 {
-    // Start is called before the first frame update
-    Vector3 prevCamPos;
-    public CharacterMovement player;
-    void Start()
-    {
-        prevCamPos = this.transform.localPosition;
-    }
 
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (prevCamPos != this.transform.localPosition)
-        {
-            player.setRelativeCamPos(this.transform.localPosition - prevCamPos);
-            prevCamPos = this.transform.localPosition;
-        }
-
-
+        InputTracking.disablePositionalTracking = true;
     }
 }
