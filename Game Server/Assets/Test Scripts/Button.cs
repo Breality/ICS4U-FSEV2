@@ -8,7 +8,7 @@ public class Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Register("noobmaster69", "saoiii"));
+        StartCoroutine(Login("noobmaster69", "saoiii"));
     }
 
     // Update is called once per frame
@@ -37,5 +37,26 @@ public class Button : MonoBehaviour
             Debug.Log(text);
         }
 
+    }
+
+    IEnumerator Login(string username, string pass)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("password", pass);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/login.php", form);
+        yield return www.SendWebRequest();
+
+        string text = www.downloadHandler.text.Substring(1);
+
+        if (text[0] == '0')
+        {
+            Debug.Log("User logged in");
+        }
+        else
+        {
+            Debug.Log(text);
+        }
     }
 }
