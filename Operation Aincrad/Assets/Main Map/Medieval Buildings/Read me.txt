@@ -1,0 +1,25 @@
+This pack is ideal for creating your own village. 
+Materials contain diffuse map, normal map, height map and occlusion map in high quality. 
+Resolution are 512x512, 1024x1024, 2048x2048 it depends on object. 
+The collection includes: 13 building prefabs, 8 props prefabs. 
+Several tiled textures (bricks and wood).
+Packege include only 3D models and textures.
+
+Prefabs:
+- Barrel
+- Boat
+- Cabin
+- Gallows
+- Molo
+- Pail
+- Shelter
+- Table 
+- Wagon
+- Well
+- Lamp
+- Pile of wood
+- House prefabs with wood in the window and with glass in window (only first floor). 
+
+In FBX folder are original 3D models.
+
+If you have question you can contact me on : boborlukas@gmail.com
