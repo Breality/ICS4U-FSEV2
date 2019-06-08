@@ -218,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521241248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.56, y: -1, z: -1.59}
+  m_LocalPosition: {x: -0.56, y: -8.64, z: -1.59}
   m_LocalScale: {x: 9.94, y: 1, z: 56.89}
   m_Children: []
   m_Father: {fileID: 0}
@@ -249,13 +249,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705471945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: -0, y: 0.057, z: 0.018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3141901206115467062}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: -90}
 --- !u!114 &705471947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,14 +588,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7199902334581970528}
-  m_LocalRotation: {x: 0.5020423, y: 0.5027193, z: -0.49723926, w: -0.497976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.028283555, y: 0.01988633, z: -0.09825838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 705471946}
   m_Father: {fileID: 8393964567099458145}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3382679866673084107
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,10 +888,10 @@ Animator:
   m_GameObject: {fileID: 794971965665324852}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b199198cc199ba647ad07990e26afc9c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13d4da941320712478dbf163a8a54988, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroredMovement: 0
   verticalMovement: 0
-  smoothFactor: 5
+  smoothFactor: 0
   offsetRelativeToSensor: 0
 --- !u!136 &8658631924386854424
 CapsuleCollider:

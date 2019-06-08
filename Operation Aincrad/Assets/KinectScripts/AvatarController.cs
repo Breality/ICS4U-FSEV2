@@ -199,8 +199,7 @@ public class AvatarController : MonoBehaviour
 		
 		// Smoothly transition to the new rotation
 		Quaternion newRotation = Kinect2AvatarRot(jointRotation, boneIndex);
-        Debug.Log(jointRotation);
-        Debug.Log(boneIndex);
+
 		if(smoothFactor != 0f)
         	boneTransform.rotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
 		else
