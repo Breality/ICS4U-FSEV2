@@ -11,15 +11,31 @@ public class HTTP_Listen : MonoBehaviour
     private HttpListener listener;
     private Thread listenerThread;
 
+    private string GetRequestPostData(HttpListenerRequest request)
+    {
+        if (!request.HasEntityBody)
+        {
+            return null;
+        }
+        using (System.IO.Stream body = request.InputStream) // here we have data
+        {
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(body, request.ContentEncoding))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+    }
+
+    int c = 0;
     private void HTTPRecieved(IAsyncResult result) // callback function for when we get an http request
     {
-        Debug.Log("HTTP recieved");
+        Debug.Log("HTTP recieved: " + c);
         HttpListener listener = (HttpListener)result.AsyncState;
         HttpListenerContext context = listener.EndGetContext(result);
 
         // do stuff
-        HttpListenerRequest request = context.Request;
-        Debug.Log(request.ToString());
+        string data = GetRequestPostData(context.Request);
+        Debug.Log(data);
 
         // Construct a response.
         HttpListenerResponse response = context.Response;
@@ -33,6 +49,7 @@ public class HTTP_Listen : MonoBehaviour
 
         output.Close();
         Debug.Log("We sent a response back");
+        c++;
     }
 
 
