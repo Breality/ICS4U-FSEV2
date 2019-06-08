@@ -9,6 +9,8 @@ public class Button : MonoBehaviour
     void Start()
     {
         StartCoroutine(Login("noobmaster69", "saoiii"));
+        StartCoroutine(Register("noobmaster69", "saoiii"));
+        StartCoroutine(Change("noobmaster69", 20));           //"noobmaster69", "saoiii"));
     }
 
     // Update is called once per frame
@@ -53,6 +55,27 @@ public class Button : MonoBehaviour
         if (text[0] == '0')
         {
             Debug.Log("User logged in");
+        }
+        else
+        {
+            Debug.Log(text);
+        }
+    }
+
+    IEnumerator Change(string username, int coins)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("coins", coins);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/Change.php", form);
+        yield return www.SendWebRequest();
+
+        string text = www.downloadHandler.text.Substring(1);
+
+        if (text[0] == '0')
+        {
+            Debug.Log("Stat changed");
         }
         else
         {
