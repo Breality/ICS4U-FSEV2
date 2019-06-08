@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a43ff8c7b21ef4abd21b58b897b26f, type: 3}
+  m_Name: Body T-pose
+  m_EditorClassIdentifier: 
+  bonePoses:
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 1
+      _sideBoneId: 0
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 2.333987e-10, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 7
+      _sideBoneId: 0
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 12
+      _sideBoneId: 5
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: -0.6467809, y: -0.09569061, z: 0.015764892}
+    rotation: {x: 2.3283064e-10, y: 0, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 40
+      _sideBoneId: 5
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0.65204, y: -0.09483445, z: 0.015242219}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 34
+      _sideBoneId: 27
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 62
+      _sideBoneId: 27
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    scale: {x: 0, y: 0, z: 0}

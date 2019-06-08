@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a43ff8c7b21ef4abd21b58b897b26f, type: 3}
+  m_Name: Body Sit
+  m_EditorClassIdentifier: 
+  bonePoses:
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 1
+      _sideBoneId: 0
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: -0.4106223, z: 0}
+    rotation: {x: 0, y: 2.332854e-10, z: -0, w: 1}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 7
+      _sideBoneId: 0
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: -0.00000007235212, y: -0.41062236, z: 0.00000015646219}
+    rotation: {x: 2.138692e-19, y: -6.980372e-10, z: 9.1677066e-10, w: 1.0000001}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 12
+      _sideBoneId: 5
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: -0.28309324, y: -0.49971843, z: 0.039168745}
+    rotation: {x: 0.00000002993613, y: -6.529149e-10, z: 0.57357657, w: 0.81915206}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 40
+      _sideBoneId: 5
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0.28000042, y: -0.5024111, z: 0.039168753}
+    rotation: {x: -0.00000002993613, y: 0.000000014131831, z: -0.5735762, w: 0.8191524}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 34
+      _sideBoneId: 27
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: -0.00044578314, z: 0.41803014}
+    rotation: {x: 0.000000007450581, y: -9.01764e-10, z: -0.0000000031486707, w: 1.0000001}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 62
+      _sideBoneId: 27
+    referenceBoneRef:
+      type: 0
+      side: 0
+      _boneId: 0
+      _sideBoneId: 0
+    setTranslation: 1
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: -0.00000014901161, z: 0.39403233}
+    rotation: {x: -7.665768e-19, y: 2.1145752e-10, z: -0.0000000032860044, w: 1}
+    scale: {x: 0, y: 0, z: 0}

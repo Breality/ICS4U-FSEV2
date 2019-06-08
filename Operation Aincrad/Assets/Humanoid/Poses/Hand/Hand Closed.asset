@@ -1,0 +1,236 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a43ff8c7b21ef4abd21b58b897b26f, type: 3}
+  m_Name: Hand Closed
+  m_EditorClassIdentifier: 
+  bonePoses:
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 6
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 5
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: -0.08715573, w: 0.9961947}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 10
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 5
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.57357645, w: 0.81915206}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 11
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 10
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.81915206, w: 0.57357645}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 12
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 11
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 14
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 5
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.57357645, w: 0.81915206}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 15
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 14
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.81915206, w: 0.57357645}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 16
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 11
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 18
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 5
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 19
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 18
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.86602545, w: 0.49999997}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 0
+      side: 0
+      _boneId: 55
+      _sideBoneId: 20
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 19
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.53729963, w: 0.8433914}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 22
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 5
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.6427876, w: 0.76604444}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 23
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 22
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.9063078, w: 0.42261824}
+    scale: {x: 0, y: 0, z: 0}
+  - boneType: 0
+    boneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 24
+    referenceBoneRef:
+      type: 2
+      side: 0
+      _boneId: 0
+      _sideBoneId: 23
+    setTranslation: 0
+    setRotation: 1
+    setScale: 0
+    translation: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
+    scale: {x: 0, y: 0, z: 0}

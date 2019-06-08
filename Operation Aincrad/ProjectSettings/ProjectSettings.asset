@@ -545,7 +545,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: hWINDOWSMR;hNW_UNET
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1

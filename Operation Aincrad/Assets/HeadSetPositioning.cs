@@ -7,8 +7,8 @@ public class HeadSetPositioning : MonoBehaviour
 {
 
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        this.transform.localPosition = -InputTracking.GetLocalPosition(XRNode.CenterEye);
+        InputTracking.disablePositionalTracking = true;
     }
 }

@@ -10,7 +10,7 @@ public class HSPositioning : MonoBehaviour
     void Start()
     {
 
-        UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+        
         
     }
 }
