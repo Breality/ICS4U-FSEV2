@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("request", request);
-        form.AddField("token", "randomize this");
+        form.AddField("token", "sdaaimfs22748FLTG");
 
         UnityWebRequest www = UnityWebRequest.Post("http://209.182.232.50:1234/", form);
         yield return www.SendWebRequest();
