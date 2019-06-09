@@ -29,10 +29,8 @@ public class RayCast : MonoBehaviour
         line.material.color = Color.cyan;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void rayCalc()
     {
-
         var interactionSourceStates = InteractionManager.GetCurrentReading();
         foreach (var interactState in interactionSourceStates)
         {
@@ -47,6 +45,13 @@ public class RayCast : MonoBehaviour
                 DrawRay(sourceGripPos, sourceGripRot, interactState.source.handedness);
             }
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        rayCalc();
+        
     }
     private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
     {
