@@ -7,6 +7,7 @@ public class Player
 {
     // -------------- Class variables  --------------
     public static readonly Dictionary<string, double> staminaCosts = new Dictionary<string, double> { { "Idle", 0 }, { "Walking", 1 }, { "Sprinting", 3 } };
+    public static Game game = GameObject.Find("Game Handler").GetComponent<Game>();
 
     // Identifiers < Store on login
     public readonly string Username;
@@ -69,15 +70,27 @@ public class Player
 
         // -------- load all the info into the private fields, DBPlayer loses referance and dies afterwards --------
         // Equipment
-        foreach (string name in player.clothing)
-        {
-            //clothing[name] = new Clothing(this, name, equi)
-        }
-        //weapons = player.weapons;
-        //items = player.items;
+        foreach (string name in player.clothing) { clothing[name] = new Clothing(this, name, game.equipments["Clothing"][name]); }
+        foreach (string name in player.weapons) { weapons[name] = new Weapon(this, name, game.equipments["Weapons"][name]); }
+        foreach (string name in player.items) { items[name] = new Item(this, name, game.equipments["Items"][name]); }
+        equipped = player.equipped;
 
+        // stats
+        gold = player.gold;
+        score = player.score;
+        chosenTitle = player.chosenTitle;
+        titles = new List<string>(player.titles);
 
+        // quests
+        mainProgress = player.questProg;
+        for (int i=0; i<player.optionalQuests.Length; i++) { optionalQuests[player.optionalQuests[i]] = player.optionalProg[i]; }
 
+        // skills
+        foreach (string name in player.magicSpells) { magicSpells[name] = new Magic(name); }
+        foreach (string name in player.attackSkills) { attackSkills[name] = new Attack(name); }
+        foreach (string name in player.playerAbilities) { playerAbilities[name] = new Skill(name); }
+
+        ReCalculate(); // get new stats and all
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------
@@ -185,5 +198,10 @@ public class Player
     public void Charge(int status)
     {
         charge = (status == 1) ? Time.time : -1;
+    }
+
+    public void ReCalculate()
+    {
+
     }
 }

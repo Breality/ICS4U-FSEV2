@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Equipment
 {
-    public static readonly Dictionary<string, string> equipmentInfo = new Dictionary<string, string> { }; // for constructing equipment {name : html}
-
     public readonly Player owner;
     public readonly string name;
     public readonly string rarity;
