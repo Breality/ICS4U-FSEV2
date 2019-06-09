@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Button : MonoBehaviour
+public class Buttonsa : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Tester()
     {
         StartCoroutine(Login("noobmaster69", "saoiii"));
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(Register("noobmaster69", "saoiii"));
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(Change("noobmaster69", 20));           //"noobmaster69", "saoiii"));
+    }
+
+    void Start()
+    {
+        StartCoroutine(Tester());
     }
 
     // Update is called once per frame
@@ -25,19 +32,29 @@ public class Button : MonoBehaviour
         form.AddField("username", username);
         form.AddField("password", pass);
         
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/register.php", form);
+        UnityWebRequest www = UnityWebRequest.Post("http://home/nooriscool/sqlconnect/register.php", form);
         yield return www.SendWebRequest();
 
-        string text = www.downloadHandler.text.Substring(1);
-
-        if (text.Equals("0"))
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log("User created");
+            Debug.Log(www.error);
         }
         else
         {
-            Debug.Log(text);
+            Debug.Log("Form upload complete!");
+            string text = www.downloadHandler.text.Substring(1);
+
+            if (text.Equals("0"))
+            {
+                Debug.Log("User created");
+            }
+            else
+            {
+                Debug.Log(text);
+            }
         }
+
+        
 
     }
 
@@ -47,18 +64,27 @@ public class Button : MonoBehaviour
         form.AddField("username", username);
         form.AddField("password", pass);
 
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/login.php", form);
+        UnityWebRequest www = UnityWebRequest.Post("http://sqlconnect/login.php", form); //http://localhost/sqlconnect/login.php
         yield return www.SendWebRequest();
 
-        string text = www.downloadHandler.text.Substring(1);
-
-        if (text[0] == '0')
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log("User logged in");
+            Debug.Log(www.error);
         }
         else
         {
-            Debug.Log(text);
+            Debug.Log("Form upload complete!");
+            string text = www.downloadHandler.text.Substring(1);
+
+
+            if (text[0] == '0')
+            {
+                Debug.Log("User logged in");
+            }
+            else
+            {
+                Debug.Log(text);
+            }
         }
     }
 
@@ -68,18 +94,27 @@ public class Button : MonoBehaviour
         form.AddField("username", username);
         form.AddField("coins", coins);
 
-        UnityWebRequest www = UnityWebRequest.Post("http://localhost/sqlconnect/Change.php", form);
+
+        UnityWebRequest www = UnityWebRequest.Post("http://localhost/nooriscool/sqlconnect/change.php", form); 
         yield return www.SendWebRequest();
 
-        string text = www.downloadHandler.text.Substring(1);
-
-        if (text[0] == '0')
+        if (www.isNetworkError || www.isHttpError)
         {
-            Debug.Log("Stat changed");
+            Debug.Log(www.error);
         }
         else
         {
-            Debug.Log(text);
+            Debug.Log("Form upload complete!");
+            string text = www.downloadHandler.text.Substring(1);
+
+            if (text[0] == '0')
+            {
+                Debug.Log("Stat changed");
+            }
+            else
+            {
+                Debug.Log(text);
+            }
         }
     }
 }
