@@ -82,7 +82,7 @@ public class Player
     // This is overloaded for a weapon attack
     public bool TakeDamage(Weapon weapon) 
     {
-        if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.25 ))
+        if (weapon.isAttacking())
         {
             foreach (Condition cond in weapon.getEffects(this))
             {
