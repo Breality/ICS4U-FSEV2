@@ -564,11 +564,12 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template3D
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\AggarwalRazor\Documents\GitHub\ICS4U-FSEV2\Operation
+    Aincrad\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 00557bc6fd3dd601
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: Operation Aincrad

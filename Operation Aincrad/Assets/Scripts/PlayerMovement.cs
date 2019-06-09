@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Joystick " + stick);
         }*/
-        Debug.Log(Input.GetButton("Fire1"));
+        //Debug.Log(Input.GetButton("Fire1"));
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;
 
