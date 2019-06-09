@@ -10,6 +10,6 @@ public class HeadSetPositioning : MonoBehaviour
     private void Start()
     {
         InputTracking.disablePositionalTracking = true;
-        this.transform.position = new Vector3(0, 1.54f, 0);
+        this.transform.localPosition = new Vector3(0, 1.54f, 0.1f);
     }
 }
