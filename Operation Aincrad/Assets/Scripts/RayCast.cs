@@ -7,15 +7,26 @@ public class RayCast : MonoBehaviour
 {
     // Start is called before the first frame update
     private float rayLen = 1.5f;
-    private LineRenderer rightLine;
+    private LineRenderer rightLine, leftLine;
+    [SerializeField]
+    private Transform rightL, leftL;
+    [SerializeField]
+    private float lineThickness;
     void Start()
     {
-        rightLine = this.transform.GetComponent<LineRenderer>();
+        rightLine = rightL.transform.GetComponent<LineRenderer>();
+        leftLine = leftL.transform.GetComponent<LineRenderer>();
+        initLine(rightLine);
+        initLine(leftLine);
+
+    }
+
+    void initLine(LineRenderer line)
+    {
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-        rightLine.SetPositions(initLaserPositions);
-        rightLine.endWidth = 0;
-        rightLine.startWidth = 0.1f;
-        rightLine.startColor = Color.black;
+        line.SetPositions(initLaserPositions);
+        line.startWidth = line.endWidth = lineThickness;
+        line.material.color = Color.cyan;
     }
 
     // Update is called once per frame
@@ -44,12 +55,24 @@ public class RayCast : MonoBehaviour
             rightLine.SetPosition(0, pos);
             rightLine.SetPosition(1, pos + forw * rayLen);
             rightLine.enabled = true;
+            RaycastHit hit;
+            if(Physics.Raycast(pos,forw,out hit))
+            {
+                Debug.Log(hit.transform.name);
+            }
         }
-        
-
-
-
-
+        if (handedness == InteractionSourceHandedness.Left)
+        {
+            leftLine.SetPosition(0, pos);
+            leftLine.SetPosition(1, pos + forw * rayLen);
+            leftLine.enabled = true;
+            RaycastHit hit;
+            if (Physics.Raycast(pos, forw, out hit))
+            {
+                Debug.Log(hit.transform.name);
+            }
+        }
     }
+
 
 }
