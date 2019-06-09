@@ -1,11 +1,12 @@
 - Clothing Name: Rarity, hp, mana, stamina, resist, attack Bonus, attack multiplier, magic bonus, magic multiplier, speed  
 Default Helmet: Common, 10, 0, 0, 3, 0, 0, 0, 0, 0
-Default Body Armour: Common, 30, 0, 0, 5, 0, 0, 0, 0, 0, 0
+Default Armour: Common, 30, 0, 0, 5, 0, 0, 0, 0, 0, 0
 Default Boots: Common, 0, 0, 10, 0, 0, 0, 0, 0, 0, 16
-Default Pendulum: Common, 5, 10, 5, 0, 0, 0, 0, 5, 0.01, 1
+Default Pendant: Common, 5, 10, 5, 0, 0, 0, 5, 0.01, 1
 
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
 Default Sword: Common, 20, 0, 4, 0, 15, 1, 2, 0.03, 1.5, End
 
 - Item Name: Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
-Common Health Potion: Common, 15, 0, 0, Self Cast, Weak Heal, End
+Red Potion: Common, 25, 0, 0, Self Cast, Weak Heal, End
+Blue Potion: Common, 0, 25, 0, Self Cast, Weak Mana, End

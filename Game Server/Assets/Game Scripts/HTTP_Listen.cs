@@ -7,14 +7,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using Random = System.Random;
 
 public class HTTP_Listen : MonoBehaviour
 {
     public Game game;
     private HttpListener listener;
     private Thread listenerThread;
-
-    
+    private Dictionary<string, Player> playerDB = new Dictionary<string, Player> { };
+    private Dictionary<string, string> playerHash = new Dictionary<string, string> { };
 
     private string GetRequestPostData(HttpListenerRequest request)
     {
@@ -48,7 +49,7 @@ public class HTTP_Listen : MonoBehaviour
 
     private void HTTPRecieved(IAsyncResult result) // callback function for when we get an http request
     {
-        Debug.Log("HTTP recieved" );
+        Debug.Log("HTTP recieved");
         HttpListener listener = (HttpListener)result.AsyncState;
         HttpListenerContext context = listener.EndGetContext(result);
 
@@ -59,24 +60,28 @@ public class HTTP_Listen : MonoBehaviour
         string[] dataSent = startData.Split('&');
         Debug.Log(dataSent.Length);
 
-        Dictionary<string, string> data = new Dictionary<string, string> { } ;
+        Dictionary<string, string> data = new Dictionary<string, string> { };
 
         foreach (string d in dataSent)
         {
             string[] cell = d.Split('=');
             data[cell[0]] = cell[1];
-            Debug.Log(cell[0] +":"+ cell[1]);
+            Debug.Log(cell[0] + ":" + cell[1]);
         }
 
         // handling the differant kinds of requests they want
         if (data["request"].Equals("register"))
         {
             StartCoroutine(Register(context, data["username"], data["password"]));
-        }else if (data["request"].Equals("login"))
+        }
+        else if (data["request"].Equals("login"))
         {
             StartCoroutine(LogIn(context, data["username"], data["password"]));
         }
-        
+        else if (data["request"].Equals("logout"))
+        {
+            StartCoroutine(Logout(context, data["token"]));
+        }
     }
 
     private void HttpHandler()
@@ -100,9 +105,6 @@ public class HTTP_Listen : MonoBehaviour
     {
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
-
-        Debug.Log("Going to test");
-        StartCoroutine(LogIn(null, "Fairnight", "verySecure123"));
     }
 
     void OnApplicationQuit()
@@ -130,6 +132,51 @@ public class HTTP_Listen : MonoBehaviour
         return sBuilder.ToString();
     }
 
+    private int RandomNumber(int min, int max)
+    {
+        Random random = new Random();
+        return random.Next(min, max);
+    }
+
+    private string RandomString(int size, bool lowerCase)
+    {
+        StringBuilder builder = new StringBuilder();
+        Random random = new Random();
+        char ch;
+        for (int i = 0; i < size; i++)
+        {
+            ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+            builder.Append(ch);
+        }
+        if (lowerCase)
+            return builder.ToString().ToLower();
+        return builder.ToString();
+    }
+
+    private string RandomToken()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.Append(RandomString(8, new Random().Next(1)==0));
+        builder.Append(RandomNumber(1000, 99999));
+        builder.Append(RandomString(4, false));
+        return builder.ToString();
+    }
+
+
+    public IEnumerator Logout(HttpListenerContext sender, string token)
+    {
+        Player player = playerDB[token];
+        DBPlayer saveDava = new DBPlayer(player, playerHash[token]);
+        RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + saveDava.username + ".json", saveDava);
+
+        if (sender != null) // sender is null during testing
+        {
+            ConstructResponse(sender, "You have been logged out");
+        }
+
+        yield return 0;
+    }
+
     public IEnumerator Register(HttpListenerContext sender, string username, string password)
     {
         Debug.Log("Registration starting");
@@ -149,7 +196,10 @@ public class HTTP_Listen : MonoBehaviour
                 // return the http response now
                 string randToken = "randomize this";
                 Player newPlayer = new Player(player, randToken);
-                game.NewPlayer(newPlayer, randToken);
+
+                playerHash[randToken] = player.hash;
+                playerDB[randToken] = newPlayer;
+                game.PlayerEnter(newPlayer, randToken);
 
                 if (sender != null) // sender is null during testing
                 {
@@ -180,17 +230,25 @@ public class HTTP_Listen : MonoBehaviour
                 Debug.Log("Login sucess");
 
                 // return the http response now
-                string randToken = "randomize this";
-                Player newPlayer = new Player(response, randToken);
-                Debug.Log(response.weapons.Length);
-                Debug.Log(response.score);
-
-                game.NewPlayer(newPlayer, randToken);
-
-                if (sender != null) // sender is null during testing
+                try
                 {
-                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + response.ToString());
+                    string randToken = "randomize this";
+                    Player newPlayer = new Player(response, randToken);
+
+                    playerHash[randToken] = response.hash;
+                    playerDB[randToken] = newPlayer;
+                    game.PlayerEnter(newPlayer, randToken);
+
+                    if (sender != null) // sender is null during testing
+                    {
+                        ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + response.ToString());
+                    }
                 }
+                catch (Exception e)
+                {
+                    Debug.Log(e.ToString());
+                }
+                
             }
         });
 
