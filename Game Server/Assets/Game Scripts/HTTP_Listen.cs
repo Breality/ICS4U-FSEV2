@@ -69,18 +69,33 @@ public class HTTP_Listen : MonoBehaviour
             Debug.Log(cell[0] + ":" + cell[1]);
         }
 
+        if (!data.ContainsKey("request"))
+        {
+            ConstructResponse(context, "Request not included");
+            return;
+        }else if (data.ContainsKey("token") && !playerDB.ContainsKey(data["token"]))
+        {
+            ConstructResponse(context, "Token does not exist");
+            return;
+        }
+
         // handling the differant kinds of requests they want
-        if (data["request"].Equals("register"))
+        if (data["request"].Equals("register") && data.ContainsKey("username") && data.ContainsKey("password"))
         {
             StartCoroutine(Register(context, data["username"], data["password"]));
         }
-        else if (data["request"].Equals("login"))
+        else if (data["request"].Equals("login") && data.ContainsKey("username") && data.ContainsKey("password"))
         {
             StartCoroutine(LogIn(context, data["username"], data["password"]));
         }
-        else if (data["request"].Equals("logout"))
+        else if (data["request"].Equals("logout") && data.ContainsKey("token"))
         {
             StartCoroutine(Logout(context, data["token"]));
+            
+        }
+        else // they did not match it
+        {
+            ConstructResponse(context, "Invalid arguements");
         }
     }
 
@@ -194,7 +209,7 @@ public class HTTP_Listen : MonoBehaviour
                 Debug.Log("Account made");
 
                 // return the http response now
-                string randToken = "randomize this";
+                string randToken = RandomToken();
                 Player newPlayer = new Player(player, randToken);
 
                 playerHash[randToken] = player.hash;
@@ -232,7 +247,7 @@ public class HTTP_Listen : MonoBehaviour
                 // return the http response now
                 try
                 {
-                    string randToken = "randomize this";
+                    string randToken = RandomToken();
                     Player newPlayer = new Player(response, randToken);
 
                     playerHash[randToken] = response.hash;
@@ -241,7 +256,7 @@ public class HTTP_Listen : MonoBehaviour
 
                     if (sender != null) // sender is null during testing
                     {
-                        ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + response.ToString());
+                        ConstructResponse(sender, "Login success, token:" + randToken + ", data" + response.ToString());
                     }
                 }
                 catch (Exception e)
