@@ -27,21 +27,12 @@ public class HTTP_Listen : MonoBehaviour
             }
         }
     }
-
-    int c = 0;
-    private void HTTPRecieved(IAsyncResult result) // callback function for when we get an http request
+    
+    private void ConstructResponse(HttpListenerContext context, string message)
     {
-        Debug.Log("HTTP recieved: " + c);
-        HttpListener listener = (HttpListener)result.AsyncState;
-        HttpListenerContext context = listener.EndGetContext(result);
-
-        // do stuff
-        string data = GetRequestPostData(context.Request);
-        Debug.Log(data);
-
         // Construct a response.
         HttpListenerResponse response = context.Response;
-        string responseString = "<HTML><BODY> Hello world!</BODY></HTML>";
+        string responseString = message;
         byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
 
         // Get a response stream and write the response to it.
@@ -50,8 +41,39 @@ public class HTTP_Listen : MonoBehaviour
         output.Write(buffer, 0, buffer.Length);
 
         output.Close();
-        Debug.Log("We sent a response back");
-        c++;
+    }
+
+    private void HTTPRecieved(IAsyncResult result) // callback function for when we get an http request
+    {
+        Debug.Log("HTTP recieved" );
+        HttpListener listener = (HttpListener)result.AsyncState;
+        HttpListenerContext context = listener.EndGetContext(result);
+
+        // do stuff
+        string startData = GetRequestPostData(context.Request);
+        Debug.Log(startData);
+
+        string[] dataSent = startData.Split('&');
+        Debug.Log(dataSent.Length);
+
+        Dictionary<string, string> data = new Dictionary<string, string> { } ;
+
+        foreach (string d in dataSent)
+        {
+            string[] cell = d.Split('=');
+            data[cell[0]] = cell[1];
+            Debug.Log(cell[0] +":"+ cell[1]);
+        }
+
+        // handling the differant kinds of requests they want
+        if (data["request"].Equals("register"))
+        {
+            StartCoroutine(Register(context, data["username"], data["password"]));
+        }else if (data["request"].Equals("login"))
+        {
+            StartCoroutine(LogIn(context, data["username"], data["password"]));
+        }
+        
     }
 
     private void HttpHandler()
@@ -102,13 +124,15 @@ public class HTTP_Listen : MonoBehaviour
         return sBuilder.ToString();
     }
 
-    public IEnumerator MakePlayer(string username, string password)
+    public IEnumerator Register(HttpListenerContext sender, string username, string password)
     {
+        Debug.Log("Registration starting");
         RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
         {
             if (response != null)
             {
                 Debug.Log("Username taken");
+                ConstructResponse(sender, "Username taken");
             }
             else
             {
@@ -118,23 +142,26 @@ public class HTTP_Listen : MonoBehaviour
 
                 // return the http response now
                 Player newPlayer = new Player(player);
+                ConstructResponse(sender, "Creation success");
             }
         });
 
         yield return 0;
     }
 
-    public IEnumerator LogIn(string username, string password)
+    public IEnumerator LogIn(HttpListenerContext sender, string username, string password)
     {
         RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
         {
             if (response == null)
             {
                 Debug.Log("Username does not exist");
+                ConstructResponse(sender, "Username and password do not match");
             }
             else if (response.hash != Hash(password))
             {
                 Debug.Log("Incorrect password");
+                ConstructResponse(sender, "Username and password do not match");
             }
             else
             {
@@ -143,6 +170,7 @@ public class HTTP_Listen : MonoBehaviour
 
                 // return the http response now
                 Player newPlayer = new Player(player);
+                ConstructResponse(sender, "Success, Token=blob, data=" + player.info);
             }
         });
 

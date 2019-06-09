@@ -67,7 +67,7 @@ public class Player
         Username = player.username;
         Token = "uioldwqjio"; // randomize tokens
 
-        if (!player.info.Equals("Default")) // they logged in, load this string appropriately 
+        if (!player.info.Equals("default")) // they logged in, load this string appropriately 
         {
 
         }

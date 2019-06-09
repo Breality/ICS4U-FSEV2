@@ -8,13 +8,13 @@ public class Client : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Upload("register", "iamnoamesa", "supercool"));
+        StartCoroutine(Upload("register", "anishSUCKS", "supercool"));
     }
 
     IEnumerator Upload(string request, string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("request", "register");
+        form.AddField("request", request);
         form.AddField("username", username);
         form.AddField("password", password);
 
@@ -27,7 +27,7 @@ public class Client : MonoBehaviour
         }
         else
         {
-            Debug.Log("Form upload complete!");
+            Debug.Log(www.downloadHandler.text);
         }
     }
 
