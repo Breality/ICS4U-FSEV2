@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/AsunaV2.unity
+    guid: a6b188566af487444a0a354c1d29426f
   m_configObjects: {}
