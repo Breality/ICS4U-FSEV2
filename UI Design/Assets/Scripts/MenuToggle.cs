@@ -8,7 +8,7 @@ public class MenuToggle : MonoBehaviour
     //For the displaying things
     //public Scroll show;
     public Transform display;
-
+    public RayCast ray;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,9 +53,10 @@ public class MenuToggle : MonoBehaviour
             string oldName = order[cur];
             cur += dir;
             string newName = order[cur];
-            float startPos = options.position.y;
+            float startPos = options.localPosition.y;
             float translation = dir * transitionConstant;
-            float startingoffset = options.parent.position.y;
+            float startingoffset = 0;
+                //options.parent.position.y;
 
             ButtonMode(options.Find(oldName), false); // unmark button and remove old menu
 
@@ -64,12 +65,12 @@ public class MenuToggle : MonoBehaviour
             while (Time.realtimeSinceStartup < startTime + transitionTime)
             {
                 // this changes the object's position in world space, should be based on camera
-                options.position = new Vector3(options.position.x,
-                    startPos + translation * (Time.realtimeSinceStartup - startTime) / transitionTime + (options.parent.position.y - startingoffset),
-                    options.position.z);
+                options.localPosition = new Vector3(options.localPosition.x,
+                    startPos + translation * (Time.realtimeSinceStartup - startTime) / transitionTime  - startingoffset,
+                    options.localPosition.z);
                 yield return new WaitForSeconds(0.001f);
             }
-            options.position = new Vector3(options.position.x, startPos + translation + (options.parent.position.y - startingoffset), options.position.z);
+            options.localPosition = new Vector3(options.localPosition.x, startPos + translation - startingoffset, options.localPosition.z);
 
             ButtonMode(options.Find(newName), true); // show new menu
             inTranslation = false; // allow translation again
@@ -140,6 +141,8 @@ public class MenuToggle : MonoBehaviour
         {
             StartCoroutine(Toggle(1));
         }
+
+        Debug.Log(ray.rayCalc());
         
     }
 }
