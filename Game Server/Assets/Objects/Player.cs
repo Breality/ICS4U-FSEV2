@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player
@@ -48,7 +49,7 @@ public class Player
 
     // Game variables for playing
     private string status = "idle";
-    private Vector3 position = new Vector3();
+    private Vector3 position = new Vector3(); // add starting position
     private int guildID = -1;
     private float charge = -1; // the time they started charging. When the charge is used, it is reset to -1
 
@@ -57,10 +58,45 @@ public class Player
 
 
     // -------------- Public getters --------------
-    public int getGuild() { return guildID; }
-    public float getCharge() { return Time.time - charge; }
-    public Vector3 getPos(){ return position; }
-    public int[] getStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
+    public int GetGuild() { return guildID; }
+    public float GetCharge() { return Time.time - charge; }
+    public Vector3 GetPos(){ return position; }
+    public int[] GetStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
+
+    public int GetGold() { return gold; }
+    public int GetScore() { return score; }
+    public string GetTitle() { return chosenTitle; }
+    public int GetProg() { return mainProgress; }
+    public string[] GetEquipped() { return (string[])equipped.Clone(); }
+
+    // -------------- Save getters --------------
+    public string[] GetClothing() // converting the private clothing to the format we store it in DBPlayer
+    {
+        List<string> items = new List<string> { };
+        foreach (KeyValuePair<string, Clothing> item in clothing) { for (int i=0; i < item.Value.HowMany(); i++) { items.Add(item.Key); } }
+        return items.ToArray();
+    }
+
+    public string[] GetWeapons() // converting the private weapons to the format we store it in DBPlayer
+    {
+        List<string> items = new List<string> { };
+        foreach (KeyValuePair<string, Weapon> item in weapons) { for (int i = 0; i < item.Value.HowMany(); i++) { items.Add(item.Key); } }
+        return items.ToArray();
+    }
+
+    public string[] GetItems() // converting the private items to the format we store it in DBPlayer
+    {
+        List<string> items = new List<string> { };
+        foreach (KeyValuePair<string, Item> item in this.items) { for (int i = 0; i < item.Value.HowMany(); i++) { items.Add(item.Key); } }
+        return items.ToArray();
+    }
+
+    public string[] GetTitles() { return titles.ToArray(); }
+    public Dictionary<string, int> GetQuests() { return optionalQuests; } // sent as it is to be split into string[] and int[]
+
+    public string[] GetMagic() { return magicSpells.Keys.ToArray(); }
+    public string[] GetAttacks() { return attackSkills.Keys.ToArray(); }
+    public string[] GetAbilities() { return playerAbilities.Keys.ToArray(); }
 
     // -------------- Class constructor --------------
     public Player(DBPlayer player, string token) // gets the html from server, sets up player data 
@@ -70,10 +106,21 @@ public class Player
 
         // -------- load all the info into the private fields, DBPlayer loses referance and dies afterwards --------
         // Equipment
-        foreach (string name in player.clothing) { clothing[name] = new Clothing(this, name, game.equipments["Clothing"][name]); }
-        foreach (string name in player.weapons) { weapons[name] = new Weapon(this, name, game.equipments["Weapons"][name]); }
-        foreach (string name in player.items) { items[name] = new Item(this, name, game.equipments["Items"][name]); }
         equipped = player.equipped;
+        foreach (string name in player.clothing) { // Clothing
+            if (clothing.ContainsKey(name)) { clothing[name].NewCount(clothing[name].HowMany() + 1); } 
+            else { clothing[name] = new Clothing(this, name, game.equipments["Clothing"][name]); }
+        }
+
+        foreach (string name in player.weapons) { // Weapons
+            if (weapons.ContainsKey(name)) { weapons[name].NewCount(weapons[name].HowMany() + 1); }
+            else { weapons[name] = new Weapon(this, name, game.equipments["Weapons"][name]); }
+        }
+
+        foreach (string name in player.items) { // Items
+            if (items.ContainsKey(name)) { items[name].NewCount(items[name].HowMany() + 1); }
+            else { items[name] = new Item(this, name, game.equipments["Items"][name]); }
+        }
 
         // stats
         gold = player.gold;
@@ -90,7 +137,7 @@ public class Player
         foreach (string name in player.attackSkills) { attackSkills[name] = new Attack(name); }
         foreach (string name in player.playerAbilities) { playerAbilities[name] = new Skill(name); }
 
-        ReCalculate(); // get new stats and all
+        ReCalculate(); // get new stats and all for player before slapping them into the game
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -14,7 +15,6 @@ public class DBPlayer
     public string[] clothing;
     public string[] weapons;
     public string[] items;
-
     public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Default Sword", "None" }; 
 
     // stat info
@@ -51,12 +51,33 @@ public class DBPlayer
         magicSpells = new string[] { "Default Teleport" };
         attackSkills = new string[] { "Double Slash" };
         playerAbilities = new string[] { "Sprint" };
-        
     }
     
-    // construct appropriately for saving player data
-    public void Copy(Player player)
+    // construct for saving player data
+    public DBPlayer(Player player)
     {
+        clothing = player.GetClothing();
+        weapons = player.GetWeapons();
+        items = player.GetItems();
+        equipped = player.GetEquipped();
 
+        gold = player.GetGold();
+        score = player.GetScore();
+        titles = player.GetTitles();
+        chosenTitle = player.GetTitle();
+
+        questProg = player.GetProg();
+
+        Dictionary<string, int> quests = player.GetQuests();
+        optionalQuests = quests.Keys.ToArray();
+        optionalProg = new int[optionalQuests.Length];
+        for (int i = 0; i < optionalQuests.Length; i++)
+        {
+            optionalProg[i] = quests[optionalQuests[i]];
+        }
+
+        magicSpells = player.GetMagic();
+        attackSkills = player.GetAttacks();
+        playerAbilities = player.GetAbilities();
     }
 }

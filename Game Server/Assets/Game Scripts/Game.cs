@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
         if (weapon != null)
         {
             double range = weapon.range;
-            double distance = Vector3.Distance(user.getPos(), hit.getPos());
+            double distance = Vector3.Distance(user.GetPos(), hit.GetPos());
             if (weapon.isAttacking() && distance <= range)
             {
                 bool killed = hit.TakeDamage(weapon); 

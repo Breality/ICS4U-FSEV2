@@ -14,8 +14,6 @@ public class HTTP_Listen : MonoBehaviour
     private HttpListener listener;
     private Thread listenerThread;
 
-    
-
     private string GetRequestPostData(HttpListenerRequest request)
     {
         if (!request.HasEntityBody)
