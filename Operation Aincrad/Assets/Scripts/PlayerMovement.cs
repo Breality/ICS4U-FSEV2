@@ -32,7 +32,18 @@ public class PlayerMovement : MonoBehaviour
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;
 
-        rot_y =Mathf.Abs(Input.GetAxis("L_Horizontal")) >= deadZone ? Input.GetAxis("L_Horizontal") : 0;
+        rot_y = Mathf.Abs(Input.GetAxis("L_Horizontal")) >= deadZone ? Input.GetAxis("L_Horizontal") : 0;
+
+        if (Input.GetButton("Sprint"))
+        {
+            vx *= 2;
+            vy *= 2;
+        }
+        if (Input.GetButton("FastRotation"))
+        {
+            rot_y *= 2;
+        }
+
         this.transform.Rotate(0, rot_y*rotation_Speed, 0);
         
 
