@@ -7,20 +7,38 @@ using UnityEngine;
 // Handles game logic. Animations pass right through from client to client, position checks (not setters, but checkers) occur here and static game logic takes place. 
 public class Game : MonoBehaviour
 {
+    // -------------- Game variables --------------
     public TextAsset equipmentFile;
     public TextAsset skillFile;
     public TextAsset conditionList;
 
-    private Dictionary<string, Player> players = new Dictionary<string, Player> { }; // {token, player}
+    private Dictionary<string, Player> players = new Dictionary<string, Player> { };
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
 
+    public Dictionary<string, Dictionary<string, string>> equipments = new Dictionary<string, Dictionary<string, string>> { };
+    public Dictionary<string, Dictionary<string, string>> skills = new Dictionary<string, Dictionary<string, string>> { };
+    public Dictionary<string, Dictionary<string, string>> conditions = new Dictionary<string, Dictionary<string, string>> { };
+
+    // -------------- Player decisions sent by HTTP --------------
+    public void PlayerEnter(Player player, string token) { players[token] = player; }
+
+    public void PlayerLeave(string token) { players.Remove(token); }
+
+    public void Purchase(string token, string type, string name)
+    {
+
+    }
+
+
+    // -------------- Player interactions --------------
     public void PlayerKilled(Player murderer, Player murdered)
     {
 
     }
 
-    public void WeaponHit(Player user, Player hit, string weaponName, string skillName) // the client tells us this
+    
+    public void WeaponHit(Player user, Player hit, string weaponName, string skillName) // the client tells us when it hits another client
     {
         Weapon weapon = user.CheckWeapon(weaponName);
         if (weapon != null)
@@ -38,33 +56,11 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void NewPlayer(Player player, string token) 
+    // -------------- Private functions --------------
+    private void LoadIn(Dictionary<string, Dictionary<string, string>> reference, string[] placements, string text)
     {
-
-    }
-
-
-    // This controls the speed of the game for npc redirection, heal effects, etc. Instant things like movement are done via events 
-    private void GameLoop() 
-    {
-        while (true)
-        {
-            foreach (KeyValuePair<string, Player> player in players)
-            {
-                player.Value.UpdateOne();
-            }
-            Thread.Sleep(100);
-        }
-    }
-
-    // Start is called before the first frame update
-    public Dictionary<string, Dictionary<string, string>> equipments = new Dictionary<string, Dictionary<string, string>> { }; // {weapons : {name: text}, clothing: {}}
-    public Dictionary<string, Dictionary<string, string>> skills = new Dictionary<string, Dictionary<string, string>> { };
-    public Dictionary<string, Dictionary<string, string>> conditions = new Dictionary<string, Dictionary<string, string>> { };
-
-    private void LoadIn(Dictionary<string, Dictionary<string, string>> reference, string[] placements, string text) {
         int currentIndex = 0;
-      
+
         for (int i = 0; i < placements.Length; i++)
         {
             reference[placements[i]] = new Dictionary<string, string> { };
@@ -90,7 +86,8 @@ public class Game : MonoBehaviour
             }
         }
     }
-
+    
+    // -------------- Server Start --------------
     void Start()
     {
         // load in all the asset information into a dictionary
@@ -102,9 +99,16 @@ public class Game : MonoBehaviour
         (new Thread(GameLoop)).Start();
     }
 
-    // Update is called once per frame
-    void Update()
+    // -------------- Server Loop --------------
+    private void GameLoop() 
     {
-        
+        while (true)
+        {
+            foreach (KeyValuePair<string, Player> player in players)
+            {
+                player.Value.UpdateOne();
+            }
+            Thread.Sleep(100);
+        }
     }
 }
