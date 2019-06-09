@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         this.transform.GetComponent<Rigidbody>().position += this.transform.right * playerMovSpeed*vx;
         this.transform.GetComponent<Rigidbody>().position += this.transform.forward * playerMovSpeed * vy;
-
+        Debug.Log(rot_y);
         Debug.Log(vx + " " + vy);
         charAnim.SetFloat("Vx", vx);
         charAnim.SetFloat("Vy", vy);
