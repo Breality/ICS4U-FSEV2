@@ -10,8 +10,11 @@ using UnityEngine;
 
 public class HTTP_Listen : MonoBehaviour
 {
+    public Game game;
     private HttpListener listener;
     private Thread listenerThread;
+
+    
 
     private string GetRequestPostData(HttpListenerRequest request)
     {
@@ -97,6 +100,9 @@ public class HTTP_Listen : MonoBehaviour
     {
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
+
+        Debug.Log("Going to test");
+        StartCoroutine(LogIn(null, "Fairnight", "verySecure123"));
     }
 
     void OnApplicationQuit()
@@ -136,13 +142,19 @@ public class HTTP_Listen : MonoBehaviour
             }
             else
             {
-                DBPlayer player = new DBPlayer(username, Hash(password), null);
+                DBPlayer player = new DBPlayer(username, Hash(password));
                 RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + username + ".json", player);
                 Debug.Log("Account made");
 
                 // return the http response now
-                Player newPlayer = new Player(player);
-                ConstructResponse(sender, "Creation success");
+                string randToken = "randomize this";
+                Player newPlayer = new Player(player, randToken);
+                game.NewPlayer(newPlayer, randToken);
+
+                if (sender != null) // sender is null during testing
+                {
+                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + player.ToString());
+                }
             }
         });
 
@@ -165,12 +177,20 @@ public class HTTP_Listen : MonoBehaviour
             }
             else
             {
-                DBPlayer player = new DBPlayer(username, Hash(password), null);
                 Debug.Log("Login sucess");
 
                 // return the http response now
-                Player newPlayer = new Player(player);
-                ConstructResponse(sender, "Success, Token=blob, data=" + player.info);
+                string randToken = "randomize this";
+                Player newPlayer = new Player(response, randToken);
+                Debug.Log(response.weapons.Length);
+                Debug.Log(response.score);
+
+                game.NewPlayer(newPlayer, randToken);
+
+                if (sender != null) // sender is null during testing
+                {
+                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + response.ToString());
+                }
             }
         });
 

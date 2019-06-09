@@ -62,15 +62,22 @@ public class Player
     public int[] getStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
 
     // -------------- Class constructor --------------
-    public Player(DBPlayer player) // gets the html from server, sets up player data 
+    public Player(DBPlayer player, string token) // gets the html from server, sets up player data 
     {
         Username = player.username;
-        Token = "uioldwqjio"; // randomize tokens
+        Token = token;
 
-        if (!player.info.Equals("default")) // they logged in, load this string appropriately 
+        // -------- load all the info into the private fields, DBPlayer loses referance and dies afterwards --------
+        // Equipment
+        foreach (string name in player.clothing)
         {
-
+            //clothing[name] = new Clothing(this, name, equi)
         }
+        //weapons = player.weapons;
+        //items = player.items;
+
+
+
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------

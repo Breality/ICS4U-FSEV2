@@ -38,6 +38,12 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void NewPlayer(Player player, string token) 
+    {
+
+    }
+
+
     // This controls the speed of the game for npc redirection, heal effects, etc. Instant things like movement are done via events 
     private void GameLoop() 
     {
