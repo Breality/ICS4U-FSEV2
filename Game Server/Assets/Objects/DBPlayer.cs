@@ -4,19 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class DBPlayer  // ability spells like leap, mega jump, etc. 
+public class DBPlayer 
 {
     public string username;
-    //public string hash;
-    //public string salt;
-    public string password;
-    public int score;
+    public string hash;
+    public string info;
 
-    public DBPlayer(string user, string pass, int score)
+    public DBPlayer(string username, string hash, string info)
     {
-        username = user;
-        password = pass;
-        this.score = score;
-
+        this.username = username;
+        this.hash = hash;
+        this.info = info ?? "default";
     }
 }

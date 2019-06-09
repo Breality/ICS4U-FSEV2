@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Proyecto26;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using UnityEngine;
-//using MongoDB.Driver;
 
 public class HTTP_Listen : MonoBehaviour
 {
@@ -52,7 +54,6 @@ public class HTTP_Listen : MonoBehaviour
         c++;
     }
 
-
     private void HttpHandler()
     {
         Debug.Log("Starting Http Handler");
@@ -84,4 +85,67 @@ public class HTTP_Listen : MonoBehaviour
     }
 
 
+    // Database handle
+    private string Hash(string word)
+    {
+        MD5 hashed = MD5.Create();
+        byte[] data = hashed.ComputeHash(Encoding.UTF8.GetBytes(word));
+
+        StringBuilder sBuilder = new StringBuilder();
+
+        // Loop through each byte of the hashed data and format each one as a hexadecimal string.
+        for (int i = 0; i < data.Length; i++)
+        {
+            sBuilder.Append(data[i].ToString("x2"));
+        }
+
+        return sBuilder.ToString();
+    }
+
+    public IEnumerator MakePlayer(string username, string password)
+    {
+        RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
+        {
+            if (response != null)
+            {
+                Debug.Log("Username taken");
+            }
+            else
+            {
+                DBPlayer player = new DBPlayer(username, Hash(password), null);
+                RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + username + ".json", player);
+                Debug.Log("Account made");
+
+                // return the http response now
+                Player newPlayer = new Player(player);
+            }
+        });
+
+        yield return 0;
+    }
+
+    public IEnumerator LogIn(string username, string password)
+    {
+        RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
+        {
+            if (response == null)
+            {
+                Debug.Log("Username does not exist");
+            }
+            else if (response.hash != Hash(password))
+            {
+                Debug.Log("Incorrect password");
+            }
+            else
+            {
+                DBPlayer player = new DBPlayer(username, Hash(password), null);
+                Debug.Log("Login sucess");
+
+                // return the http response now
+                Player newPlayer = new Player(player);
+            }
+        });
+
+        yield return 0;
+    }
 }

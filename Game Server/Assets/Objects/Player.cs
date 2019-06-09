@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Player
 
     // Identifiers < Store on login
     public readonly string Username;
+    private readonly string Password;
     private readonly string Token;
 
     // Player's inventory < Save and Load. Clothing, Weapon, and Item all inherit from Equipment.
@@ -60,9 +62,15 @@ public class Player
     public int[] getStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
 
     // -------------- Class constructor --------------
-    public Player(string playerInfo) // gets the html from server, sets up player data 
+    public Player(DBPlayer player) // gets the html from server, sets up player data 
     {
+        Username = player.username;
+        Token = "uioldwqjio"; // randomize tokens
 
+        if (!player.info.Equals("Default")) // they logged in, load this string appropriately 
+        {
+
+        }
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------

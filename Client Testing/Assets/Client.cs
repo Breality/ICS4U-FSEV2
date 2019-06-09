@@ -8,15 +8,15 @@ public class Client : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Upload());
+        StartCoroutine(Upload("register", "iamnoamesa", "supercool"));
     }
 
-    IEnumerator Upload()
+    IEnumerator Upload(string request, string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("myField", "myData");
-        form.AddField("hi", "bro");
-        form.AddField("maybe", 2);
+        form.AddField("request", "register");
+        form.AddField("username", username);
+        form.AddField("password", password);
 
         UnityWebRequest www = UnityWebRequest.Post("http://209.182.232.50:1234/", form);
         yield return www.SendWebRequest();

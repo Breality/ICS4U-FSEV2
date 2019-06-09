@@ -1,4 +1,4 @@
-﻿using Proyecto26;
+﻿/*using Proyecto26;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +16,8 @@ public class Register : MonoBehaviour
     void Start()
     {
         clicker.onClick.AddListener(ButtonClicked);
+        StartCoroutine(create("PlayerTest", "secure123"));
+
     }
 
     // Update is called once per frame
@@ -34,16 +36,23 @@ public class Register : MonoBehaviour
 
     private IEnumerator create(string user, string pass)
     {
-        RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + user + ".json").Then(response =>
+        RestClient.Get<Player>("https://ics4u-748c2.firebaseio.com/" + user + ".json").Then(response =>
         {
             if (response != null)
             {
-                infoGiver.text = "Username taken";
+                Debug.Log("Username taken");
             }
             else
             {
-                RestClient.Put("https://ics4u-748c2.firebaseio.com/" + user + ".json", new DBPlayer(user, pass, 0));
-                infoGiver.text = "Account made";
+                RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + user + ".json", new Player(user, pass)).Then(response2 =>
+                {
+                    Debug.Log("Account creation status " + response2.StatusCode);
+                    
+                }).Catch(error =>
+                {
+                    Debug.Log("Error " + error.ToString());
+                });
+                
             }
         });
 
@@ -51,3 +60,4 @@ public class Register : MonoBehaviour
 
     }
 }
+*/

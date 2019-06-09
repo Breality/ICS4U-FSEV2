@@ -1,10 +1,10 @@
-﻿using Proyecto26;
+﻿/*using Proyecto26;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Register : MonoBehaviour
+public class Login : MonoBehaviour
 {
     public InputField username;
     public InputField password;
@@ -16,6 +16,8 @@ public class Register : MonoBehaviour
     void Start()
     {
         clicker.onClick.AddListener(ButtonClicked);
+        StartCoroutine(join("noorio", "he"));
+
     }
 
     // Update is called once per frame
@@ -24,26 +26,29 @@ public class Register : MonoBehaviour
         
     }
 
-    void ButtonClicked() // register
+    void ButtonClicked() // login
     {
         string user = username.text;
         string pass = password.text;
-        StartCoroutine(create(user, pass));
+        StartCoroutine(join(user, pass));
         
     }
 
-    private IEnumerator create(string user, string pass)
+    private IEnumerator join(string user, string pass)
     {
         RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + user + ".json").Then(response =>
         {
-            if (response != null)
+            if (response == null)
             {
-                infoGiver.text = "Username taken";
+                infoGiver.text = "Username does not exist";
+            }
+            else if (!response.password.Equals(pass))
+            {
+                infoGiver.text = "Password is incorrect";
             }
             else
             {
-                RestClient.Put("https://ics4u-748c2.firebaseio.com/" + user + ".json", new DBPlayer(user, pass, 0));
-                infoGiver.text = "Account made";
+                Debug.Log(user + " has a score of " + response.score);
             }
         });
 
@@ -51,3 +56,4 @@ public class Register : MonoBehaviour
 
     }
 }
+*/

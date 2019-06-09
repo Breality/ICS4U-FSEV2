@@ -1,4 +1,4 @@
-﻿using Proyecto26;
+﻿/*using Proyecto26;
 using RSG;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,10 +32,10 @@ public class Firebase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(printScore("nooriscool123"));
+        //StartCoroutine(printScore("nooriscool123"));
         //PostToDatabase(new DBPlayer("nooriscool123", 150));
         //StartCoroutine(printScore("hello"));
-        Debug.Log("Started routines");
+        //Debug.Log("Started routines");
     }
 
     // Update is called once per frame
@@ -44,3 +44,4 @@ public class Firebase : MonoBehaviour
         
     }
 }
+*/
