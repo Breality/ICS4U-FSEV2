@@ -56,6 +56,9 @@ public class DBPlayer
     // construct for saving player data
     public DBPlayer(Player player, string hash)
     {
+        username = player.Username;
+        this.hash = hash;
+
         clothing = player.GetClothing();
         weapons = player.GetWeapons();
         items = player.GetItems();

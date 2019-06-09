@@ -8,7 +8,7 @@ public class Player
 {
     // -------------- Class variables  --------------
     public static readonly Dictionary<string, double> staminaCosts = new Dictionary<string, double> { { "Idle", 0 }, { "Walking", 1 }, { "Sprinting", 3 } };
-    public static Game game = GameObject.Find("Game Handler").GetComponent<Game>();
+    public static Game game = GameObject.Find("Game Manager").GetComponent<Game>();
 
     // Identifiers < Store on login
     public readonly string Username;
@@ -138,6 +138,7 @@ public class Player
         foreach (string name in player.playerAbilities) { playerAbilities[name] = new Skill(name); }
 
         ReCalculate(); // get new stats and all for player before slapping them into the game
+        
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------

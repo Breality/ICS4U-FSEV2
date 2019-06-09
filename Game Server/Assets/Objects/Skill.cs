@@ -5,7 +5,7 @@ using UnityEngine;
 public class Skill  // ability spells like leap, mega jump, etc. 
 {
     // info for constructor
-    public static Dictionary<string, Dictionary<string, string>> SkillInfo = GameObject.Find("Game Handler").GetComponent<Game>().skills;
+    public static Dictionary<string, Dictionary<string, string>> SkillInfo = GameObject.Find("Game Manager").GetComponent<Game>().skills;
 
     // general skill variables 
     public readonly string name;

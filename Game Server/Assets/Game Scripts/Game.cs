@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
     public Dictionary<string, Dictionary<string, string>> conditions = new Dictionary<string, Dictionary<string, string>> { };
 
     // -------------- Player decisions sent by HTTP --------------
-    public void PlayerEnter(Player player, string token) { players[token] = player; }
+    public void PlayerEnter(Player player, string token) { players[token] = player; Debug.Log("Player added to server"); }
 
     public void PlayerLeave(string token) { players.Remove(token); }
 
@@ -73,13 +73,11 @@ public class Game : MonoBehaviour
 
                 string info = text.Substring(currentIndex, text.Substring(currentIndex).IndexOf("\n"));
                 currentIndex += info.Length + 1;
-
-                Debug.Log(placements[i] + ", " + name + " is " + info);
-                equipments[placements[i]][name] = info;
+                
+                reference[placements[i]][name] = info;
 
                 if (currentIndex + 3 >= text.Length || text.Substring(currentIndex + 2, 1).Equals("-")) // went through all the lines
                 {
-                    Debug.Log("Done");
                     currentIndex += 3;
                     break;
                 }

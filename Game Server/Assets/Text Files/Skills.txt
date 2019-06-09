@@ -1,5 +1,9 @@
 - Player Technique Name: mana, stamina, duration, charge required, conditions applied to player on activation
+Sprint: 0, 10, 5, 0, Sprint, End
 
 - Attack Skill Name: mana, stamina, duration, charge required, bonus damage, attack multiplier, conditions applied to player on contact
+Double Slash: 10, 25, 1, 0, End
 
 - Magic Spell Name: mana, stamina, duration, charge required, conditions applied to player hit, "End", conditions applied to caster
+Default Teleport: 25, 0, 0, 8, End
+
