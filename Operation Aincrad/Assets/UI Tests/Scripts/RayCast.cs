@@ -6,7 +6,7 @@ using UnityEngine.XR;
 public class RayCast : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float rayLen = 3f;
+    private float rayLen = 5f;
     private LineRenderer rightLine, leftLine;
     [SerializeField]
     private Transform rightL, leftL;
@@ -42,7 +42,18 @@ public class RayCast : MonoBehaviour
     void Update()
     {
         //Debug.Log(rayCalc());
-        
+        rayCalc();
+        if (Input.GetButton("L_Trigger"))
+        {
+            RaycastHit[] collided = GetColliders("left");
+            CheckCollided(collided);
+        }
+        if (Input.GetButton("R_Trigger"))
+        {
+            RaycastHit[] collided = GetColliders("right");
+            CheckCollided(collided);
+        }
+
     }
     private void DrawRay(Vector3 toPos, Vector3 fromPos, string handedness)
     {
@@ -74,6 +85,17 @@ public class RayCast : MonoBehaviour
             return lHandCol;
         }
     }
-
+    void CheckCollided(RaycastHit[] collisions)
+    {
+        foreach (RaycastHit collide in collisions)
+        {
+            Debug.Log(collide.transform.name);
+            if (collide.transform.gameObject.layer == 5)
+            {
+                Debug.Log(collide.collider.name);
+            }
+            
+        }
+    }
 
 }
