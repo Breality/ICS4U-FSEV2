@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class HeadSetPositioning : MonoBehaviour
+public class HeadsetPositioning : MonoBehaviour
 {
 
     // Update is called once per frame

@@ -84,7 +84,7 @@ public class DBPlayer
         playerAbilities = player.GetAbilities();
     }
 
-    // constructor for xml
+    // constructor for xml (is never used)
     public DBPlayer()
     {
         username = "not set";

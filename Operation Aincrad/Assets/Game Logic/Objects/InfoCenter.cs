@@ -102,4 +102,10 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
     }
+
+    private string token;
+    public IEnumerator Request(string request, string specification)
+    {
+        yield return 0;
+    }
 }
