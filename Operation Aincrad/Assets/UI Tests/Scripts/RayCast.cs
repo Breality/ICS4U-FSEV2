@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.WSA.Input;
 using UnityEngine.XR;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 public class RayCast : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,6 +17,7 @@ public class RayCast : MonoBehaviour
     private float lineThickness;
     [SerializeField]
     private Transform lHand, rHand;
+    GameObject lHover = null, rHover = null;
     private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
@@ -43,15 +47,34 @@ public class RayCast : MonoBehaviour
     {
         //Debug.Log(rayCalc());
         rayCalc();
-        if (Input.GetButton("L_Trigger"))
+        if (lHover != null)
         {
-            RaycastHit[] collided = GetColliders("left");
-            CheckCollided(collided);
+            Color c = lHover.GetComponent<Image>().color;
+            c.a = 1f;
+            lHover.GetComponent<Image>().color = c;
         }
-        if (Input.GetButton("R_Trigger"))
+        if (rHover != null)
         {
-            RaycastHit[] collided = GetColliders("right");
-            CheckCollided(collided);
+            Color c = rHover.GetComponent<Image>().color;
+            c.a = 1f;
+            rHover.GetComponent<Image>().color = c;
+
+        }
+        RaycastHit[] collided = GetColliders("right");
+        rHover = CheckCollided(collided);
+        collided = GetColliders("left");
+        lHover = CheckCollided(collided);
+        Debug.Log(Input.GetButton("R_Trigger"));
+        Debug.Log(rHover);
+        if (Input.GetButton("L_Trigger") && lHover != null)
+        {
+            EventSystem.current.SetSelectedGameObject(lHover);
+            Debug.Log(lHover.name + " SELECTED");
+        }
+        else if (Input.GetButton("R_Trigger") && rHover != null)
+        {
+            EventSystem.current.SetSelectedGameObject(rHover);
+            Debug.Log(rHover.name + " SELECTED");
         }
 
     }
@@ -85,17 +108,20 @@ public class RayCast : MonoBehaviour
             return lHandCol;
         }
     }
-    void CheckCollided(RaycastHit[] collisions)
+    GameObject CheckCollided(RaycastHit[] collisions)
     {
         foreach (RaycastHit collide in collisions)
         {
-            Debug.Log(collide.transform.name);
-            if (collide.transform.gameObject.layer == 5)
+            if(collide.collider.tag == "Button")
             {
-                Debug.Log(collide.collider.name);
+                Color c = collide.collider.GetComponent<Image>().color;
+                c.a = 0.5f;
+                collide.collider.GetComponent<Image>().color = c;
+                return collide.collider.gameObject;
             }
             
         }
+        return null;
     }
 
 }
