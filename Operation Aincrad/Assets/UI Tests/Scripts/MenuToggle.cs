@@ -142,23 +142,18 @@ public class MenuToggle : MonoBehaviour
         {
             StartCoroutine(Toggle(1));
         }
-        string[] collision = ray.rayCalc();
-        if (Input.GetButton("L_Trigger") && button.Contains(collision[1]))
+
+        if (Input.GetButton("R_Trigger"))
         {
-            Debug.Log("Left click");
+            RaycastHit[] collided = ray.GetColliders("Right");
         }
-
-        if (Input.GetButton("R_Trigger") && button.Contains(collision[0]))
+        ray.rayCalc();
+        if (Input.GetButton("L_Trigger"))
         {
-            Debug.Log("Right click");
-        }
-
-
-
-
-        
-        Debug.Log("righy" + collision[0]);
-        Debug.Log("left" + collision[1]);
+            RaycastHit[] collided = ray.GetColliders("Left");
+        }        
+        //Debug.Log("righy" + collision[0]);
+        //Debug.Log("left" + collision[1]);
         
     }
 }

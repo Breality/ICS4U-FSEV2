@@ -12,6 +12,9 @@ public class RayCast : MonoBehaviour
     private Transform rightL, leftL;
     [SerializeField]
     private float lineThickness;
+    [SerializeField]
+    private Transform lHand, rHand;
+    private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
         rightLine = rightL.transform.GetComponent<LineRenderer>();
@@ -29,33 +32,28 @@ public class RayCast : MonoBehaviour
         line.material.color = Color.red;
     }
 
-    public string[] rayCalc()
+    public void rayCalc()
     {
-        string[] collision = { "", "" };
         var interactionSourceStates = InteractionManager.GetCurrentReading();
         foreach (var interactState in interactionSourceStates)
         {
 
             var sourcePose = interactState.sourcePose;
-            Vector3 sourceGripPos;
             Vector3 sourceGripRot;
-            if (sourcePose.TryGetPosition(out sourceGripPos, InteractionSourceNode.Pointer) && sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
+            if (sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
             {
-                Debug.DrawRay(sourceGripPos, sourceGripRot);
                 Debug.Log(interactState.source.handedness);
                 if (interactState.source.handedness == InteractionSourceHandedness.Right)
                 {
-                    collision[0] = DrawRay(sourceGripPos, sourceGripRot, interactState.source.handedness);
+                    DrawRay(rHand.position, sourceGripRot, interactState.source.handedness);
 
                 }
                 if (interactState.source.handedness == InteractionSourceHandedness.Left)
                 {
-                    collision[1] = DrawRay(sourceGripPos, sourceGripRot, interactState.source.handedness);
-
+                    DrawRay(lHand.position, sourceGripRot, interactState.source.handedness);
                 }
             }
         }
-        return collision;
     }
 
     // Update is called once per frame
@@ -64,34 +62,36 @@ public class RayCast : MonoBehaviour
         //Debug.Log(rayCalc());
         
     }
-    private string DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
+    private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
     {
-        string collision = "";
         if (handedness == InteractionSourceHandedness.Right)
         {
             rightLine.SetPosition(0, pos);
             rightLine.SetPosition(1, pos + forw * rayLen);
             rightLine.enabled = true;
             RaycastHit hit;
-            if(Physics.Raycast(pos,forw,out hit))
-            {
-                Debug.Log(hit.transform.name);
-                collision = (hit.transform.name);
-            }
+            Ray ray = new Ray(pos, forw);
+            RaycastHit[] rHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
         }
         if (handedness == InteractionSourceHandedness.Left)
         {
             leftLine.SetPosition(0, pos);
             leftLine.SetPosition(1, pos + forw * rayLen);
             leftLine.enabled = true;
-            RaycastHit hit;
-            if (Physics.Raycast(pos, forw, out hit))
-            {
-                Debug.Log(hit.transform.name);
-                collision = ( hit.transform.name);
-            }
+            Ray ray = new Ray(pos, forw);
+            RaycastHit[] lHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
         }
-        return collision;
+    }
+    public RaycastHit[] GetColliders(string hand)
+    {
+        if(hand == "right")
+        {
+            return rHandCol;
+        }
+        else
+        {
+            return lHandCol;
+        }
     }
 
 
