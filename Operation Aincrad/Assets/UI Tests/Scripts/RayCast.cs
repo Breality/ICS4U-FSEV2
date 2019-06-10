@@ -112,6 +112,7 @@ public class RayCast : MonoBehaviour
     {
         foreach (RaycastHit collide in collisions)
         {
+            Debug.Log(collide.collider.tag);
             if(collide.collider.tag == "Button")
             {
                 Color c = collide.collider.GetComponent<Image>().color;
