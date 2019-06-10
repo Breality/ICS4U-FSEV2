@@ -20,7 +20,8 @@ public class Inventory : MonoBehaviour
         //Show it with 4 every row.
         foreach(string section in itemType)
         {
-            private List<string> items = getInfo[section];
+            List<string> items;
+            getInfo.TryGetValue(section,out items);
 
         }
 
