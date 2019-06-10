@@ -9,7 +9,7 @@ public class MenuToggle : MonoBehaviour
     //public Scroll show;
     public Transform display;
     [SerializeField]
-    private CharacterContact cc;
+    private RayCast ray;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +41,7 @@ public class MenuToggle : MonoBehaviour
     private List<string> button = new List<string> { "Inventory", "Stats", "Equip", "Chat", "View Friends", "Send Request", "Map", "Sound", "Sensitivity", "Voice Chat" };
     private int curSecondaryMenu = -1; 
     float transitionConstant = 0.06f;
+
 
     public IEnumerator Toggle(int dir) // scrolls through the menu options
     {
@@ -133,6 +134,8 @@ public class MenuToggle : MonoBehaviour
     void Update()
     {
 
+        ray.rayCalc();
+
         if (Input.GetKey(KeyCode.K)) // up
         {
             Debug.Log("K value being presed");
@@ -142,17 +145,32 @@ public class MenuToggle : MonoBehaviour
         {
             StartCoroutine(Toggle(1));
         }
-        List<GameObject> curCol = cc.GetCurCollisions();
-        Debug.Log(curCol);
-        foreach(GameObject GO in curCol)
+        if (Input.GetButton("L_Trigger"))
         {
-            if (button.Contains((GO.transform.name)))
+            RaycastHit[] collided = ray.GetColliders("left");
+            CheckCollided(collided);
+        }
+        if (Input.GetButton("R_Trigger"))
+        {
+            RaycastHit[] collided = ray.GetColliders("right");
+            CheckCollided(collided);
+        }
+        //Debug.Log("righy" + collision[0]);
+        //Debug.Log("left" + collision[1]);
+
+    }
+    void CheckCollided(RaycastHit[] collisions)
+    {
+        foreach(RaycastHit collide in collisions)
+        {
+            Debug.Log(collide.collider.name);
+            Debug.Log(button.Contains(collide.collider.name));
+            Debug.Log(button.IndexOf(collide.collider.name));
+            if (button.Contains(collide.collider.name))
             {
-                Debug.Log("Hit " + GO.transform.name);
+                curSecondaryMenu = button.IndexOf(collide.collider.name);
                 break;
             }
         }
-
-        
     }
 }
