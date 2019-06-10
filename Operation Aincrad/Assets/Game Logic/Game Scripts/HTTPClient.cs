@@ -11,6 +11,7 @@ using System.IO;
 
 public class HTTPClient : MonoBehaviour
 {
+    public InfoCenter infoCenter; // just insert this line of code into any class and it will have client data
     public GameObject Menu;
     public GameObject VRCamera;
 
@@ -74,9 +75,7 @@ public class HTTPClient : MonoBehaviour
                 StringReader open_string = new StringReader(xmlString);
                 DBPlayer loadInfo = (DBPlayer)serilize_object.Deserialize(open_string);
 
-                Debug.Log(loadInfo.clothing.Length);
-                Debug.Log(loadInfo.gold);
-
+                infoCenter.LogIn(loadInfo);
                 Menu.SetActive(false);
                 VRCamera.SetActive(true);
             }

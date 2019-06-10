@@ -234,10 +234,10 @@ public class HTTP_Listen : MonoBehaviour
                 playerDB[randToken] = newPlayer;
                 game.PlayerEnter(newPlayer, randToken);
 
+                string xmlString = Encode_XML(player, typeof(DBPlayer));
+
                 if (sender != null) // sender is null during testing
                 {
-                    string xmlString = Encode_XML(response, typeof(DBPlayer));
-                    Debug.Log(xmlString);
                     ConstructResponse(sender, "Creation success, token:" + randToken + ", data:" + xmlString);
                 }
             }
@@ -275,11 +275,9 @@ public class HTTP_Listen : MonoBehaviour
                     game.PlayerEnter(newPlayer, randToken);
 
                     string xmlString = Encode_XML(response, typeof(DBPlayer));
-                    Debug.Log(xmlString);
 
                     if (sender != null) // sender is null during testing
                     {
-                        
                         ConstructResponse(sender, "Login success, token:" + randToken + ", data:" + xmlString);
                     }
                 }
