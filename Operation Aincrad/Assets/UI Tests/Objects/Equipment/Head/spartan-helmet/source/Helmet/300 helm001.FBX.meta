@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 465b8df28d320fa48a8a516d4f3b1ce1
+guid: 424d2e32b6d331047bc4a6019562c255
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair
+    second: {fileID: 2100000, guid: 7f4dceafd7571764db76f7ca57cf73ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Helmet
+    second: {fileID: 2100000, guid: 0a736cf3797a78a4ba61324dabfc8fdc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

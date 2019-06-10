@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 4dea8cb2f3e30de43864dc1564e413a7
+guid: aedfcee76d8711d42a298f468224e91e
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Sword_Kusanagi_no_Tsurugi
+    second: {fileID: 2100000, guid: b38ff4b93f44ee14bb5f478a1ee1fd4e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

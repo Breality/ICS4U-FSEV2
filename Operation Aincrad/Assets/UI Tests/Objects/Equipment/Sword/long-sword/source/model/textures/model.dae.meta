@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 49fb2b0ff42784848ac007267d5321c1
+guid: 6585a5bcb0abad944b48cda36303595d
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_LongSword
+    second: {fileID: 2100000, guid: 49c3c5555cb575940959b40e3d201a03, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

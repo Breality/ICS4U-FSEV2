@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: b106f5128d1ff0247a9b60a8e59bd19f
+guid: fe09b020842c6754ab8a75a9257baccc
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MeguminHatMat
+    second: {fileID: 2100000, guid: 73e5e04d23d84614faed0320c6668955, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

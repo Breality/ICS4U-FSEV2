@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 61f5b83ae514b2a438eeac01b3ceb4dc
+guid: b4e669294be192648af6c0b27991ae6f
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Saw_bidenhander_MAT
+    second: {fileID: 2100000, guid: 0cee660ce8f70fc44a7dc001c7247cab, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

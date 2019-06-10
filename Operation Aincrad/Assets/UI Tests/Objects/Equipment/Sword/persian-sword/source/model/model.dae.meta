@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 059480fa4055402458ec9c2fa663dfc7
+guid: 617469a66f0c52448b521eaaf185e8b9
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blade
+    second: {fileID: 2100000, guid: 4352c3045019f224a971745f96ddccd5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle
+    second: {fileID: 2100000, guid: 32c8281036ae9f84ab915401fa45967f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hilt
+    second: {fileID: 2100000, guid: 2d9af7a4a1d63524581abcc2d03aed61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pummel
+    second: {fileID: 2100000, guid: 1a1501303efe5eb4686d6668b3d61de0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

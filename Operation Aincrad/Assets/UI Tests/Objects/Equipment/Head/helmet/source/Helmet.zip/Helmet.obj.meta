@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1a944a2c30ff5f4fbaff4ec23ac986f
+guid: 03fced2b7e7e14748aa8dc3abefab2df
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BTK
-    second: {fileID: 2100000, guid: 43908533692184e409fd842dbeb253f5, type: 2}
+    second: {fileID: 2100000, guid: ad0987029fbdf5d408f55652db0c2f94, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

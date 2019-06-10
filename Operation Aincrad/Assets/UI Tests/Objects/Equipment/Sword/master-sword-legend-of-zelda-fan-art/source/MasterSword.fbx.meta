@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: a8c3ba939ac7a684baa403e57327b416
+guid: 164dd9da9a90c7e4a8feb715ca698d85
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MasterSword
+    second: {fileID: 2100000, guid: 11d7af3f96d73b94fa3344e2df144b03, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
