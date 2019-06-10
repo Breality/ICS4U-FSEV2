@@ -5,10 +5,49 @@ using UnityEngine.XR.WSA.Input;
 using UnityEngine.XR;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class RayCast : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Image image;
+    public TMP_Text cost;
+    public Button purchase;
+    public InfoCenter info;
+
+    private string isDisplayed = null;
+    private bool canBuy = true; // debounce for when they dont have enough money and buy again
+    
+    private void Display(Image orig, string name)
+    {
+        image.sprite = orig.sprite;
+        cost.text = name + " $" + info.goldShop[name].ToString();
+        isDisplayed = name;
+    }
+    
+
+    private IEnumerator Buy()
+    {
+        if (isDisplayed != null && canBuy)
+        {
+            canBuy = false;
+            bool success = info.gold >= info.goldShop[isDisplayed];
+            if (success)
+            {
+                StartCoroutine(info.Request("Purchase", isDisplayed));
+            }
+
+            Color oldColor = purchase.GetComponent<Image>().color;
+            purchase.GetComponent<Image>().color = success ? new Color(0, 255, 0) : new Color(255, 0, 0);
+            purchase.GetComponentInChildren<TMP_Text>().text = success ? "Purchased" : "Insufficient Funds";
+
+            yield return new WaitForSeconds(1.5f);
+            purchase.GetComponentInChildren<TMP_Text>().text = "Purchase";
+            purchase.GetComponent<Image>().color = oldColor;
+            canBuy = true;
+        }
+    }
+
     private float rayLen = 5f;
     private LineRenderer rightLine, leftLine;
     [SerializeField]
@@ -60,24 +99,32 @@ public class RayCast : MonoBehaviour
             rHover.GetComponent<Image>().color = c;
 
         }
+
         RaycastHit[] collided = GetColliders("right");
         rHover = CheckCollided(collided);
         collided = GetColliders("left");
         lHover = CheckCollided(collided);
         Debug.Log(Input.GetButton("R_Trigger"));
         Debug.Log(rHover);
-        if (Input.GetButton("L_Trigger") && lHover != null)
+        if (Input.GetButton("L_Trigger") && lHover != null &&lHover.name.Equals("Purchase")) {
+            Buy();
+        }
+        else if (Input.GetButton("R_Trigger") && rHover != null && rHover.name.Equals("Purchase"))
+        {
+            Buy();
+        }
+        else if (Input.GetButton("L_Trigger") && lHover != null )
         {
             EventSystem.current.SetSelectedGameObject(lHover);
-            Debug.Log(lHover.name + " SELECTED");
+            Display(lHover.GetComponent<Image>(), lHover.name);
         }
         else if (Input.GetButton("R_Trigger") && rHover != null)
         {
             EventSystem.current.SetSelectedGameObject(rHover);
-            Debug.Log(rHover.name + " SELECTED");
+            Display(rHover.GetComponent<Image>(), rHover.name);
         }
-
     }
+
     private void DrawRay(Vector3 toPos, Vector3 fromPos, string handedness)
     {
         if (handedness == "right")
@@ -97,6 +144,8 @@ public class RayCast : MonoBehaviour
             lHandCol = Physics.RaycastAll(ray, Mathf.Infinity);
         }
     }
+
+
     public RaycastHit[] GetColliders(string hand)
     {
         if(hand == "right")
@@ -108,6 +157,7 @@ public class RayCast : MonoBehaviour
             return lHandCol;
         }
     }
+
     GameObject CheckCollided(RaycastHit[] collisions)
     {
         foreach (RaycastHit collide in collisions)
