@@ -810,7 +810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &147754801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3934,6 +3934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049cc65bc42909e4daa2064886ea8f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swords: {fileID: 0}
+  hats: {fileID: 0}
+  boots: {fileID: 0}
+  body: {fileID: 0}
+  pendant: {fileID: 0}
+  other: {fileID: 0}
 --- !u!21 &1146913774
 Material:
   serializedVersion: 6
@@ -8032,7 +8038,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116722617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.966}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1216829366}

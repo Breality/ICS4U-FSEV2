@@ -38,9 +38,16 @@ public class MenuToggle : MonoBehaviour
     public Transform options;
     public Transform extensions;
     private string[] order = new string[] { "Start", "Profile", "Friends", "Map", "Settings" };
-    private List<string> button = new List<string> { "Inventory", "Stats", "Equip", "Chat", "View Friends", "Send Request", "Map", "Sound", "Sensitivity", "Voice Chat" };
+
+    private string[][] buttons = new string[][] {
+        new string[] { "Inventory", "Stats", "Equip" },
+        new string[] { "Chat", "View Friends", "Send Request" },
+        new string[] { "Map"},
+        new string[] { "Sound", "Sensitivity", "Voice Chat"},
+    };
+    
     private int curSecondaryMenu = -1; 
-    float transitionConstant = 0.06f;
+    float transitionConstant = 0.09f;
 
 
     public IEnumerator Toggle(int dir) // scrolls through the menu options
@@ -79,7 +86,7 @@ public class MenuToggle : MonoBehaviour
         yield return null;
 
     }
-    // Update is called once per frame
+    
     public void Activate(bool value)
     {
         print(value);
@@ -144,11 +151,14 @@ public class MenuToggle : MonoBehaviour
         if (Input.GetKey(KeyCode.M)) // down
         {
             StartCoroutine(Toggle(1));
+        } if (Input.GetKey(KeyCode.O)) // open/close
+        {
+            switchSeen();
         }
 
-        //Debug.Log("righy" + collision[0]);
-        //Debug.Log("left" + collision[1]);
+            //Debug.Log("righy" + collision[0]);
+            //Debug.Log("left" + collision[1]);
 
-    }
+        }
 
 }
