@@ -10,6 +10,10 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public TextMesh MoneyText;
     public TMP_Text NameText;
 
+    // universal info
+    public Dictionary<string, int> goldShop = new Dictionary<string, int> {
+        {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 }, {"Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
+    };
 
     // basic info
     public string username;
