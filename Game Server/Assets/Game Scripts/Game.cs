@@ -20,6 +20,8 @@ public class Game : MonoBehaviour
     public Dictionary<string, Dictionary<string, string>> skills = new Dictionary<string, Dictionary<string, string>> { };
     public Dictionary<string, Dictionary<string, string>> conditions = new Dictionary<string, Dictionary<string, string>> { };
 
+    public Dictionary<string, int> coinShop = new Dictionary<string, int> { };
+
     // -------------- Player decisions sent by HTTP --------------
     public void PlayerEnter(Player player, string token) { players[token] = player; Debug.Log("Player added to server"); }
 
