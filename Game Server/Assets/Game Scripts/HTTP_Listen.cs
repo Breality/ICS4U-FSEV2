@@ -1,12 +1,16 @@
-﻿using Proyecto26;
+﻿using Newtonsoft.Json;
+using Proyecto26;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using System.Xml.Serialization;
 using UnityEngine;
+
 using Random = System.Random;
 
 public class HTTP_Listen : MonoBehaviour
@@ -16,6 +20,8 @@ public class HTTP_Listen : MonoBehaviour
     private Thread listenerThread;
     private Dictionary<string, Player> playerDB = new Dictionary<string, Player> { };
     private Dictionary<string, string> playerHash = new Dictionary<string, string> { };
+    private string firebaseExtension = "hidden";
+
 
     private string GetRequestPostData(HttpListenerRequest request)
     {
@@ -118,6 +124,7 @@ public class HTTP_Listen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //StartCoroutine(LogIn(null, "PassIs123", "123"));
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
     }
@@ -146,6 +153,17 @@ public class HTTP_Listen : MonoBehaviour
 
         return sBuilder.ToString();
     }
+    public static string Encode_XML(object obj_tohide, Type required_type)
+    { // Given an object that can be serilized and the type it is
+        XmlSerializer serializer = new XmlSerializer(required_type);
+        StringWriter sw = new StringWriter();
+        XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+        serializer.Serialize(sw, obj_tohide, ns);
+        string converted_string = sw.ToString();
+
+        return converted_string;
+    }
+
 
     private int RandomNumber(int min, int max)
     {
@@ -182,7 +200,7 @@ public class HTTP_Listen : MonoBehaviour
     {
         Player player = playerDB[token];
         DBPlayer saveDava = new DBPlayer(player, playerHash[token]);
-        RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + saveDava.username + ".json", saveDava);
+        RestClient.Put<ResponseHelper>("https://" + firebaseExtension + ".firebaseio.com/" + saveDava.username + ".json", saveDava);
 
         if (sender != null) // sender is null during testing
         {
@@ -195,7 +213,7 @@ public class HTTP_Listen : MonoBehaviour
     public IEnumerator Register(HttpListenerContext sender, string username, string password)
     {
         Debug.Log("Registration starting");
-        RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
+        RestClient.Get<DBPlayer>("https://" + firebaseExtension + ".firebaseio.com/" + username + ".json").Then(response =>
         {
             if (response != null)
             {
@@ -205,7 +223,7 @@ public class HTTP_Listen : MonoBehaviour
             else
             {
                 DBPlayer player = new DBPlayer(username, Hash(password));
-                RestClient.Put<ResponseHelper>("https://ics4u-748c2.firebaseio.com/" + username + ".json", player);
+                RestClient.Put<ResponseHelper>("https://" + firebaseExtension + ".firebaseio.com/" + username + ".json", player);
                 Debug.Log("Account made");
 
                 // return the http response now
@@ -218,7 +236,9 @@ public class HTTP_Listen : MonoBehaviour
 
                 if (sender != null) // sender is null during testing
                 {
-                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data" + player.ToString());
+                    string xmlString = Encode_XML(response, typeof(DBPlayer));
+                    Debug.Log(xmlString);
+                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data:" + xmlString);
                 }
             }
         });
@@ -228,7 +248,7 @@ public class HTTP_Listen : MonoBehaviour
 
     public IEnumerator LogIn(HttpListenerContext sender, string username, string password)
     {
-        RestClient.Get<DBPlayer>("https://ics4u-748c2.firebaseio.com/" + username + ".json").Then(response =>
+        RestClient.Get<DBPlayer>("https://" + firebaseExtension + ".firebaseio.com/" + username + ".json").Then(response =>
         {
             if (response == null)
             {
@@ -254,9 +274,13 @@ public class HTTP_Listen : MonoBehaviour
                     playerDB[randToken] = newPlayer;
                     game.PlayerEnter(newPlayer, randToken);
 
+                    string xmlString = Encode_XML(response, typeof(DBPlayer));
+                    Debug.Log(xmlString);
+
                     if (sender != null) // sender is null during testing
                     {
-                        ConstructResponse(sender, "Login success, token:" + randToken + ", data" + response.ToString());
+                        
+                        ConstructResponse(sender, "Login success, token:" + randToken + ", data:" + xmlString);
                     }
                 }
                 catch (Exception e)

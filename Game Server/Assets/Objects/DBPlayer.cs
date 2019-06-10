@@ -83,4 +83,23 @@ public class DBPlayer
         attackSkills = player.GetAttacks();
         playerAbilities = player.GetAbilities();
     }
+
+    // constructor for xml
+    public DBPlayer()
+    {
+        username = "not set";
+        hash = "not set";
+
+        clothing = new string[] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant" };
+        weapons = new string[] { "Default Sword" };
+        items = new string[] { "Red Potion", "Red Potion", "Red Potion", "Blue Potion" };
+
+        titles = new string[] { "Rookie", "Newbie" };
+        optionalQuests = new string[] { "Hidden" };
+        optionalProg = new int[] { 0 };
+
+        magicSpells = new string[] { "Default Teleport" };
+        attackSkills = new string[] { "Double Slash" };
+        playerAbilities = new string[] { "Sprint" };
+    }
 }
