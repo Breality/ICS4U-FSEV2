@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.WSA.Input;
 using UnityEngine.XR;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 public class RayCast : MonoBehaviour
 {
     // Start is called before the first frame update
-    private float rayLen = 2f;
+    private float rayLen = 5f;
     private LineRenderer rightLine, leftLine;
     [SerializeField]
     private Transform rightL, leftL;
@@ -14,6 +17,7 @@ public class RayCast : MonoBehaviour
     private float lineThickness;
     [SerializeField]
     private Transform lHand, rHand;
+    GameObject lHover = null, rHover = null;
     private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
@@ -29,57 +33,68 @@ public class RayCast : MonoBehaviour
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
         line.SetPositions(initLaserPositions);
         line.startWidth = line.endWidth = lineThickness;
-        line.material.color = Color.red;
+        line.material.color = Color.cyan;
     }
 
     public void rayCalc()
     {
-        var interactionSourceStates = InteractionManager.GetCurrentReading();
-        foreach (var interactState in interactionSourceStates)
-        {
-
-            var sourcePose = interactState.sourcePose;
-            Vector3 sourceGripRot;
-            if (sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
-            {
-                Debug.Log(interactState.source.handedness);
-                if (interactState.source.handedness == InteractionSourceHandedness.Right)
-                {
-                    DrawRay(rHand.position, sourceGripRot, interactState.source.handedness);
-
-                }
-                if (interactState.source.handedness == InteractionSourceHandedness.Left)
-                {
-                    DrawRay(lHand.position, sourceGripRot, interactState.source.handedness);
-                }
-            }
-        }
+        DrawRay(rHand.position, rHand.parent.position, "right");
+        DrawRay(lHand.position, lHand.parent.position, "left");
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(rayCalc());
-        
-    }
-    private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
-    {
-        if (handedness == InteractionSourceHandedness.Right)
+        rayCalc();
+        if (lHover != null)
         {
-            rightLine.SetPosition(0, pos);
-            rightLine.SetPosition(1, pos + forw * rayLen);
-            rightLine.enabled = true;
-            RaycastHit hit;
-            Ray ray = new Ray(pos, forw);
-            rHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
+            Color c = lHover.GetComponent<Image>().color;
+            c.a = 1f;
+            lHover.GetComponent<Image>().color = c;
         }
-        if (handedness == InteractionSourceHandedness.Left)
+        if (rHover != null)
         {
-            leftLine.SetPosition(0, pos);
-            leftLine.SetPosition(1, pos + forw * rayLen);
+            Color c = rHover.GetComponent<Image>().color;
+            c.a = 1f;
+            rHover.GetComponent<Image>().color = c;
+
+        }
+        RaycastHit[] collided = GetColliders("right");
+        rHover = CheckCollided(collided);
+        collided = GetColliders("left");
+        lHover = CheckCollided(collided);
+        Debug.Log(Input.GetButton("R_Trigger"));
+        Debug.Log(rHover);
+        if (Input.GetButton("L_Trigger") && lHover != null)
+        {
+            EventSystem.current.SetSelectedGameObject(lHover);
+            Debug.Log(lHover.name + " SELECTED");
+        }
+        else if (Input.GetButton("R_Trigger") && rHover != null)
+        {
+            EventSystem.current.SetSelectedGameObject(rHover);
+            Debug.Log(rHover.name + " SELECTED");
+        }
+
+    }
+    private void DrawRay(Vector3 toPos, Vector3 fromPos, string handedness)
+    {
+        if (handedness == "right")
+        {
+            rightLine.SetPosition(0, toPos);
+            rightLine.SetPosition(1, (toPos-fromPos)*rayLen+toPos);
+            rightLine.enabled = true;
+            Ray ray = new Ray(fromPos, toPos - fromPos);
+            rHandCol = Physics.RaycastAll(ray, Mathf.Infinity);
+        }
+        if (handedness == "left")
+        {
+            leftLine.SetPosition(0, toPos);
+            leftLine.SetPosition(1, (toPos - fromPos) * rayLen + toPos);
             leftLine.enabled = true;
-            Ray ray = new Ray(pos, forw);
-            lHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
+            Ray ray = new Ray(fromPos, toPos-fromPos);
+            lHandCol = Physics.RaycastAll(ray, Mathf.Infinity);
         }
     }
     public RaycastHit[] GetColliders(string hand)
@@ -93,6 +108,20 @@ public class RayCast : MonoBehaviour
             return lHandCol;
         }
     }
-
+    GameObject CheckCollided(RaycastHit[] collisions)
+    {
+        foreach (RaycastHit collide in collisions)
+        {
+            if(collide.collider.tag == "Button")
+            {
+                Color c = collide.collider.GetComponent<Image>().color;
+                c.a = 0.5f;
+                collide.collider.GetComponent<Image>().color = c;
+                return collide.collider.gameObject;
+            }
+            
+        }
+        return null;
+    }
 
 }

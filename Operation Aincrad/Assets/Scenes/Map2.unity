@@ -2682,7 +2682,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
-  m_Loop: 0
+  m_Loop: 1
 --- !u!4 &797468334
 Transform:
   m_ObjectHideFlags: 0
@@ -3934,6 +3934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049cc65bc42909e4daa2064886ea8f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swords: {fileID: 0}
+  hats: {fileID: 0}
+  boots: {fileID: 0}
+  body: {fileID: 0}
+  pendant: {fileID: 0}
+  other: {fileID: 0}
 --- !u!21 &1146913774
 Material:
   serializedVersion: 6
@@ -8120,7 +8126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightL: {fileID: 1083910746}
   leftL: {fileID: 797468334}
-  lineThickness: 0.01
+  lineThickness: 0.001
   lHand: {fileID: 7984268874280491503}
   rHand: {fileID: 7023712777465669691}
 --- !u!21 &2121756271
@@ -9608,6 +9614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.3076954
+      objectReference: {fileID: 0}
+    - target: {fileID: 725713116293447135, guid: 93d3bcaf3ccbd9546a73a39cc32953e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93d3bcaf3ccbd9546a73a39cc32953e1, type: 3}

@@ -38,14 +38,21 @@ public class MenuToggle : MonoBehaviour
     public Transform options;
     public Transform extensions;
     private string[] order = new string[] { "Start", "Profile", "Friends", "Map", "Settings" };
-    private List<string> button = new List<string> { "Inventory", "Stats", "Equip", "Chat", "View Friends", "Send Request", "Map", "Sound", "Sensitivity", "Voice Chat" };
+
+    private string[][] buttons = new string[][] {
+        new string[] { "Inventory", "Stats", "Equip" },
+        new string[] { "Chat", "View Friends", "Send Request" },
+        new string[] { "Map"},
+        new string[] { "Sound", "Sensitivity", "Voice Chat"},
+    };
+    
     private int curSecondaryMenu = -1; 
     float transitionConstant = 0.09f;
+
 
     public IEnumerator Toggle(int dir) // scrolls through the menu options
     {
         float transitionTime = 0.5f * Mathf.Abs(dir);
-        Debug.Log("Hello");
         if (!inTranslation && cur + dir > 0 && cur + dir < order.Length) // only toggle if we're not already toggling and if we have room
         {
             inTranslation = true;
@@ -79,7 +86,7 @@ public class MenuToggle : MonoBehaviour
         yield return null;
 
     }
-    // Update is called once per frame
+    
     public void Activate(bool value)
     {
         print(value);
@@ -133,6 +140,7 @@ public class MenuToggle : MonoBehaviour
 
     void Update()
     {
+
         ray.rayCalc();
 
         if (Input.GetKey(KeyCode.K)) // up
@@ -143,36 +151,14 @@ public class MenuToggle : MonoBehaviour
         if (Input.GetKey(KeyCode.M)) // down
         {
             StartCoroutine(Toggle(1));
+        } if (Input.GetKey(KeyCode.O)) // open/close
+        {
+            switchSeen();
         }
 
-        if (Input.GetButton("R_Trigger"))
-        {
-            RaycastHit[] collided = ray.GetColliders("right");
-            Debug.Log(collided);
-            CheckCollided(collided);
+            //Debug.Log("righy" + collision[0]);
+            //Debug.Log("left" + collision[1]);
+
         }
-        if (Input.GetButton("L_Trigger"))
-        {
-            RaycastHit[] collided = ray.GetColliders("left");
-            Debug.Log(collided.Length);
-            CheckCollided(collided);
-        }        
-        //Debug.Log("righy" + collision[0]);
-        //Debug.Log("left" + collision[1]);
-        
-    }
-    void CheckCollided(RaycastHit[] collisions)
-    {
-        foreach(RaycastHit collide in collisions)
-        {
-            Debug.Log(collide.collider.name);
-            Debug.Log(button.Contains(collide.collider.name));
-            Debug.Log(button.IndexOf(collide.collider.name));
-            if (button.Contains(collide.collider.name))
-            {
-                curSecondaryMenu = button.IndexOf(collide.collider.name);
-                break;
-            }
-        }
-    }
+
 }
