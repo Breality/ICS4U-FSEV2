@@ -71,7 +71,7 @@ public class RayCast : MonoBehaviour
             rightLine.enabled = true;
             RaycastHit hit;
             Ray ray = new Ray(pos, forw);
-            rHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
+            RaycastHit[] rHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
         }
         if (handedness == InteractionSourceHandedness.Left)
         {
@@ -79,7 +79,7 @@ public class RayCast : MonoBehaviour
             leftLine.SetPosition(1, pos + forw * rayLen);
             leftLine.enabled = true;
             Ray ray = new Ray(pos, forw);
-            lHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
+            RaycastHit[] lHandCol = Physics.RaycastAll(pos, forw, Mathf.Infinity);
         }
     }
     public RaycastHit[] GetColliders(string hand)
