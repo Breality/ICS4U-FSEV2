@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca52a2d0c310fc4ca4d26b3c6ed943a, type: 3}
+  m_Name: Warrior Pants
+  m_EditorClassIdentifier: 
+  category: EquipmentLegs
+  maxStack: 1
+  buyPrice: 10
+  sellPrice: 5
+  itemMallPrice: 0
+  minLevel: 1
+  sellable: 1
+  tradable: 1
+  destroyable: 1
+  toolTip: '<b>{NAME}</b>
+
+    Strong pants for Warriors.
+
+
+    {EQUIPDEFENSEBONUS} Defense
+
+    {EQUIPHEALTHBONUS} Health
+
+    {EQUIPBLOCKCHANCEBONUS} Block
+
+    Destroyable: {DESTROYABLE}
+
+    Sellable: {SELLABLE}
+
+    Tradable: {TRADABLE}
+
+    Required Level: {MINLEVEL}
+
+
+    Amount: {AMOUNT}
+
+    Price: {BUYPRICE} Gold
+
+    <i>Sells for: {SELLPRICE} Gold</i>'
+  image: {fileID: 21300000, guid: 8491b9590cc2940219517b1b0d87529c, type: 3}
+  usageDestroy: 0
+  usageHealth: 0
+  usageMana: 0
+  usageExperience: 0
+  equipHealthBonus: 0
+  equipManaBonus: 0
+  equipDamageBonus: 0
+  equipDefenseBonus: 1
+  equipBlockChanceBonus: 0
+  equipCriticalChanceBonus: 0
+  modelPrefab: {fileID: 1368792768511332, guid: 2c1f84257b39648c088731e398bd25d2,
+    type: 2}

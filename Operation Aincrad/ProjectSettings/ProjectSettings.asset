@@ -547,6 +547,7 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: hWINDOWSMR;hNW_UNET
+    14: MIRROR;MIRROR_1726_OR_NEWER;MIRROR_3_0_OR_NEWER
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1
