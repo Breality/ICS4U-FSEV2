@@ -21,7 +21,7 @@ public class MenuToggle : MonoBehaviour
     private int cur = 0;
 
     private List<GameObject> ButtonParents = new List<GameObject> { }; // buttons we care about depending on what is being displayed, parents are used to allow dynamic changes to allowed buttons
-    
+
     private string[] order = new string[] { "Start", "Profile", "Friends", "Map", "Settings" };
     private string[][] buttons = new string[][] {
         new string[] { },
@@ -30,8 +30,11 @@ public class MenuToggle : MonoBehaviour
         new string[] { "Maps"}, // later
         new string[] { "Music"}, // later
     };
-    
-    
+
+    private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> {
+        { "Equipment", new Equipment() }
+    };
+
     private int curSecondaryMenu = -1;
     float transitionConstant = 0.09f;
 
@@ -136,7 +139,7 @@ public class MenuToggle : MonoBehaviour
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 0, 0, 111);
         }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
         {
-
+            ScriptReferences[CurrentDisplay].UnHover(item);
         }
     }
 
@@ -151,7 +154,7 @@ public class MenuToggle : MonoBehaviour
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 255, 236, 111);
         }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
         {
-
+            ScriptReferences[CurrentDisplay].Hover(item);
         }
 
     }
@@ -167,11 +170,13 @@ public class MenuToggle : MonoBehaviour
         else if (item.transform.IsChildOf(extensions))
         {
             CurrentDisplay = item.name;
-            display.Find(item.name).gameObject.SetActive(true);
+            display.Find(CurrentDisplay).gameObject.SetActive(true);
+            ButtonParents = ScriptReferences[CurrentDisplay].Activated();
             extensions.DetachChildren(); // remove the options and display what is wanted
-        }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
-        { 
-
+        }
+        else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
+        {
+            ScriptReferences[CurrentDisplay].Clicked(item);
         }
     }
 
