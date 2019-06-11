@@ -17,6 +17,7 @@ public class RayCast2 : MonoBehaviour
 
     private string isDisplayed = null;
     private bool canBuy = true; // debounce for when they dont have enough money and buy again
+    private GameObject selected = null;
     
     private void Display(Image orig, string name)
     {
@@ -28,6 +29,7 @@ public class RayCast2 : MonoBehaviour
 
     private IEnumerator Buy()
     {
+        Debug.Log("Fun purchase time");
         if (isDisplayed != null && canBuy)
         {
             canBuy = false;
@@ -36,14 +38,12 @@ public class RayCast2 : MonoBehaviour
             {
                 StartCoroutine(info.Request("Purchase", isDisplayed));
             }
-
-            Color oldColor = purchase.GetComponent<Image>().color;
-            purchase.GetComponent<Image>().color = success ? new Color(0, 255, 0) : new Color(255, 0, 0);
+            
+            purchase.GetComponent<Image>().color = success ? new Color(0, 255, 0) : new Color(255, 0, 0); // will be for a milisecond, then go back to onhover
             purchase.GetComponentInChildren<TMP_Text>().text = success ? "Purchased" : "Insufficient Funds";
 
             yield return new WaitForSeconds(1.5f);
             purchase.GetComponentInChildren<TMP_Text>().text = "Purchase";
-            purchase.GetComponent<Image>().color = oldColor;
             canBuy = true;
         }
     }
@@ -64,7 +64,6 @@ public class RayCast2 : MonoBehaviour
         leftLine = leftL.transform.GetComponent<LineRenderer>();
         initLine(rightLine);
         initLine(leftLine);
-
     }
 
     void initLine(LineRenderer line)
@@ -82,7 +81,6 @@ public class RayCast2 : MonoBehaviour
         var interactionSourceStates = InteractionManager.GetCurrentReading();
         foreach (var interactState in interactionSourceStates)
         {
-
             var sourcePose = interactState.sourcePose;
             Vector3 sourceGripRot;
             if (sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
@@ -105,46 +103,63 @@ public class RayCast2 : MonoBehaviour
     }
 
     // Update is called once per frame
+    void unHover(GameObject item)
+    {
+        // sword transparency
+        if (item.name.Equals("Purchase")){
+            item.GetComponent<Image>().color = new Color32(255, 255, 255, 193);
+        }
+        else
+        {
+            item.GetComponent<Image>().color = new Color32(255, 255, 255, 115);
+            item.transform.Find("Panel ").GetComponent<Image>().color = new Color32(147, 142, 142, 155);
+        }
+       
+    }
+
+
     void Update()
     {
-        //Debug.Log(rayCalc());
         rayCalc();
-        if (lHover != null)
-        {
-            Color c = lHover.GetComponent<Image>().color;
-            c.a = 1f;
-            lHover.GetComponent<Image>().color = c;
-        }
-        if (rHover != null)
-        {
-            Color c = rHover.GetComponent<Image>().color;
-            c.a = 1f;
-            rHover.GetComponent<Image>().color = c;
-
-        }
+        if (lHover != null) { unHover(lHover); }
+        if (rHover != null) { unHover(rHover); }
 
         RaycastHit[] collided = GetColliders("right");
         rHover = CheckCollided(collided);
         collided = GetColliders("left");
         lHover = CheckCollided(collided);
-        Debug.Log(Input.GetButton("R_Trigger"));
-        Debug.Log(rHover);
-        if (Input.GetButton("L_Trigger") && lHover != null &&lHover.name.Equals("Purchase")) {
-            Buy();
+
+        if (Input.GetButton("L_Trigger") && lHover != null && lHover.name.Equals("Purchase")) {
+            StartCoroutine(Buy());
         }
         else if (Input.GetButton("R_Trigger") && rHover != null && rHover.name.Equals("Purchase"))
         {
-            Buy();
+            StartCoroutine(Buy());
         }
         else if (Input.GetButton("L_Trigger") && lHover != null )
         {
             EventSystem.current.SetSelectedGameObject(lHover);
             Display(lHover.GetComponent<Image>(), lHover.name);
+
+            if (selected != null) { unHover(selected); }
+
+            selected = lHover;
         }
         else if (Input.GetButton("R_Trigger") && rHover != null)
         {
-            EventSystem.current.SetSelectedGameObject(rHover);
+            Debug.Log(rHover.name);
+            Debug.Log(rHover.GetComponent<Image>()); ;
             Display(rHover.GetComponent<Image>(), rHover.name);
+
+            if (selected != null) { unHover(selected); }
+
+            selected = rHover;
+        }
+
+
+        if (selected != null)
+        {
+            selected.transform.Find("Panel ").GetComponent<Image>().color = new Color32(0, 255, 255, 100);
         }
     }
 
@@ -185,17 +200,26 @@ public class RayCast2 : MonoBehaviour
     {
         foreach (RaycastHit collide in collisions)
         {
-            Debug.Log(collide.collider.tag);
             if(collide.collider.tag == "Button")
             {
-                Color c = collide.collider.GetComponent<Image>().color;
-                c.a = 0.5f;
-                collide.collider.GetComponent<Image>().color = c;
-                return collide.collider.gameObject;
+                GameObject item = collide.collider.gameObject;
+                if (item.name.Equals("Purchase"))
+                {
+                    item.GetComponent<Image>().color = new Color32(0, 226, 255, 128);
+                }
+                else
+                {
+                    item.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                    item.transform.Find("Panel ").GetComponent<Image>().color = new Color32(147, 142, 142, 21);
+                }
+                
+                
+
+                return item;
             }
-            
         }
         return null;
     }
+
 
 }
