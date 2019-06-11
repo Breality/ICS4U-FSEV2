@@ -38,9 +38,5 @@ public class CamMove : MonoBehaviour
         {
             transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.O))
-        {
-            menu.switchSeen();
-        }
     }
 }
