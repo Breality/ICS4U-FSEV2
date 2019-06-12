@@ -279,8 +279,8 @@ MonoBehaviour:
   rightL: {fileID: 6327897037081396639}
   leftL: {fileID: 8670561860254715192}
   lineThickness: 0.005
-  lHand: {fileID: 0}
-  rHand: {fileID: 0}
+  lHand: {fileID: 5483193100708821430}
+  rHand: {fileID: 4876510683092207714}
 --- !u!1 &812675088933026759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,7 +3551,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2969440989
+  m_SceneId: 1171224854
 --- !u!114 &1248905865486629790
 MonoBehaviour:
   m_ObjectHideFlags: 0
