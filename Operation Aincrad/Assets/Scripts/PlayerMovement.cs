@@ -20,6 +20,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
+            Destroy(this.GetComponent("AvatarController"));
         }
 
     }
