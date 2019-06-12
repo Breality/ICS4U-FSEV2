@@ -10,6 +10,7 @@ public class Equipment : DisplayObject
     private static Transform main;
     public GameObject Arrows;
     public GameObject Equipments;
+    public GameObject Template;
     
     public TMP_Text Title;
 
@@ -26,7 +27,8 @@ public class Equipment : DisplayObject
         int i = 0;
         foreach(string item in itemsOwned)
         {
-            
+            GameObject newItem = UnityEngine.Object.Instantiate(Template);
+            newItem.transform.parent = Equipments.transform;
 
             i++;
         }
