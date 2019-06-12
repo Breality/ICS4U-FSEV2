@@ -3535,7 +3535,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3435142129395523539
 MonoBehaviour:
@@ -3551,7 +3551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 371aa9704ad93fe40ade526659a77812
+  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
   m_SceneId: 0
 --- !u!114 &1248905865486629790
 MonoBehaviour:
@@ -6235,6 +6235,7 @@ GameObject:
   - component: {fileID: 3220391342017842823}
   - component: {fileID: 1377652629560102521}
   - component: {fileID: 6756092681447217398}
+  - component: {fileID: 1519627100697992974}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -6314,6 +6315,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64736edcdf787a44a2f53ab0bb877e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1519627100697992974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967400828018712192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TwoUsers: 0
+  ComputeUserMap: 0
+  ComputeColorMap: 0
+  DisplayUserMap: 1
+  DisplayColorMap: 1
+  DisplaySkeletonLines: 1
+  DisplayMapsWidthPercent: 20
+  SensorHeight: 1
+  SensorAngle: 0
+  MinUserDistance: 1
+  MaxUserDistance: 0
+  DetectClosestUser: 0
+  IgnoreInferredJoints: 1
+  smoothing: 1
+  UseBoneOrientationsFilter: 0
+  UseClippedLegsFilter: 0
+  UseBoneOrientationsConstraint: 1
+  UseSelfIntersectionConstraint: 0
+  Player1Avatars: []
+  Player2Avatars: []
+  Player1CalibrationPose: 0
+  Player2CalibrationPose: 0
+  Player1Gestures: 
+  Player2Gestures: 
+  MinTimeBetweenGestures: 0.7
+  GestureListeners: []
+  CalibrationText: {fileID: 0}
+  HandCursor1: {fileID: 0}
+  HandCursor2: {fileID: 0}
+  ControlMouseCursor: 0
+  GesturesDebugText: {fileID: 0}
 --- !u!1 &7102471355248833109
 GameObject:
   m_ObjectHideFlags: 0
@@ -8331,15 +8375,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
---- !u!1 &8558333964314296028 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362,
-    type: 3}
-  m_PrefabInstance: {fileID: 8558333964314261608}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8558333964314125052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400020, guid: 56a3eae89ee905b4ca6bb013219c6362,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558333964314261608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8558333964314296028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362,
     type: 3}
   m_PrefabInstance: {fileID: 8558333964314261608}
   m_PrefabAsset: {fileID: 0}
