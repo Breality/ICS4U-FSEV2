@@ -33,7 +33,8 @@ public class MenuToggle : MonoBehaviour
     };
 
 
-    private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> { }; // set at start
+    //private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> { }; // set at start
+    private Dictionary<string, Equipment> ScriptReferences = new Dictionary<string, Equipment> { };
 
     private int curSecondaryMenu = -1;
     float transitionConstant = 0.09f;
@@ -132,6 +133,8 @@ public class MenuToggle : MonoBehaviour
     // ------------- connecting the menu and the raycasting -------------
     private void UnHover(GameObject item)
     {
+        Transform par = item.transform.parent;
+
         if (item.transform.IsChildOf(MenuOptions.transform)) // the 4 menus
         {
             Image image = item.GetComponent<Image>();
@@ -139,7 +142,7 @@ public class MenuToggle : MonoBehaviour
         }else if (item.transform.IsChildOf(extensions)) // the buttons we create
         {
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 0, 0, 111);
-        }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
+        }else if (par != null && ButtonParents.Contains(par.gameObject)) // specific display script should know about this
         {
             ScriptReferences[CurrentDisplay].UnHover(item);
         }
@@ -168,6 +171,7 @@ public class MenuToggle : MonoBehaviour
         if (item.transform.IsChildOf(MenuOptions.transform)) // the 4 menus
         {
             StartCoroutine(Toggle(item.name));
+            
         }
         else if (item.transform.IsChildOf(extensions))
         {
@@ -207,7 +211,7 @@ public class MenuToggle : MonoBehaviour
     private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
-        ScriptReferences = new Dictionary<string, DisplayObject> {
+        ScriptReferences = new Dictionary<string, Equipment> {
             { "Equipment", new Equipment(Camera) }
         };
 

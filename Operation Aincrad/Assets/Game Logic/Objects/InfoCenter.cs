@@ -13,7 +13,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     // universal info
     public Dictionary<string, int> goldShop = new Dictionary<string, int> {
         {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 }, {"Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
-    }; //Ogre Sword
+    }; 
 
     // basic info
     public string username;
@@ -21,6 +21,14 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public int score = 0;
 
     // equipment in {name : count}
+    public Dictionary<string, List<string>> inventory = new Dictionary<string, List<string>> {
+        {"Weapons", new List<string> { "Ancient Sword", "Silver Rapier", "Sword of the Abyss" } },
+        {"Helmets", new List<string> { } },
+        {"Armour", new List<string> { } },
+        {"Boots", new List<string> { } },
+        {"Pendants", new List<string> { } }
+    };
+
     public Dictionary<string, int> clothing = new Dictionary<string, int> { };
     public Dictionary<string, int>  weapons = new Dictionary<string, int> { };
     public Dictionary<string, int>  items = new Dictionary<string, int> { };
