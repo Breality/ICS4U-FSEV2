@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
+using Mirror;
+public class PlayerMovement : NetworkBehaviour
 {
     // Start is called before the first frame update
     private Animator charAnim;
@@ -29,10 +29,15 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Joystick " + stick);
         }*/
         //Debug.Log(Input.GetButton("Fire1"));
+        if (!isLocalPlayer)
+            return;
+
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;
 
         rot_y = Mathf.Abs(Input.GetAxis("L_Horizontal")) >= deadZone ? Input.GetAxis("L_Horizontal") : 0;
+        
+
 
         if (Input.GetButton("Sprint"))
         {
@@ -53,6 +58,12 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(vx + " " + vy);
         charAnim.SetFloat("Vx", vx);
         charAnim.SetFloat("Vy", vy);
+
+
+        //Debug.Log(Input.GetButton("Forward"));
+
+
+
 
     }
 
