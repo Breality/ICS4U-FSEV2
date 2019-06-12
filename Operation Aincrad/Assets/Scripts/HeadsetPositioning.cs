@@ -13,7 +13,7 @@ public class HeadsetPositioning : NetworkBehaviour
         this.transform.localPosition = new Vector3(0, 1.54f, 0.1f);
         if (!isLocalPlayer)
         {
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }
