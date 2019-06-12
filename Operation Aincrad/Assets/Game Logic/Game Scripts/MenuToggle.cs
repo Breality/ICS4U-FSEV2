@@ -15,6 +15,7 @@ public class MenuToggle : MonoBehaviour
     public Transform display;
     public Transform extensions;
     public GameObject option;
+    public GameObject Camera;
 
     bool inTranslation = false;
     bool isOpen = false;
@@ -31,9 +32,8 @@ public class MenuToggle : MonoBehaviour
         new string[] { "Music"}, // later
     };
 
-    private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> {
-        { "Equipment", new Equipment() }
-    };
+
+    private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> { }; // set at start
 
     private int curSecondaryMenu = -1;
     float transitionConstant = 0.09f;
@@ -50,7 +50,9 @@ public class MenuToggle : MonoBehaviour
                     GameObject newOption = Instantiate(option);
                     newOption.transform.SetParent(extensions);
 
-                    newOption.transform.localPosition = new Vector3(newOption.transform.localPosition.x, -0.05f * i, newOption.transform.localPosition.z);
+                    newOption.transform.localPosition = new Vector3(option.transform.localPosition.x, -0.05f * i, option.transform.localPosition.z);
+                    newOption.transform.rotation = option.transform.rotation;
+
                     newOption.name = buttons[cur][i];
                     newOption.transform.Find("Text").GetComponent<TMP_Text>().text = buttons[cur][i];
 
@@ -173,9 +175,11 @@ public class MenuToggle : MonoBehaviour
             display.Find(CurrentDisplay).gameObject.SetActive(true);
             ButtonParents = ScriptReferences[CurrentDisplay].Activated();
             extensions.DetachChildren(); // remove the options and display what is wanted
+            Debug.Log(ButtonParents.Count);
         }
         else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
         {
+            Debug.Log("Calling their clicked function");
             ScriptReferences[CurrentDisplay].Clicked(item);
         }
     }
@@ -203,6 +207,10 @@ public class MenuToggle : MonoBehaviour
     private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
+        ScriptReferences = new Dictionary<string, DisplayObject> {
+            { "Equipment", new Equipment(Camera) }
+        };
+
         rightLine = rightL.transform.GetComponent<LineRenderer>();
         leftLine = leftL.transform.GetComponent<LineRenderer>();
         initLine(rightLine);
@@ -262,9 +270,7 @@ public class MenuToggle : MonoBehaviour
         {
             Click(rHover);
         }
-
-
-        // draw any affects for selected items right over here
+        
     }
 
     private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)

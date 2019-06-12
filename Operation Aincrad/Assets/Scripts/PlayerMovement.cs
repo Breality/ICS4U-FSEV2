@@ -29,8 +29,8 @@ public class PlayerMovement : NetworkBehaviour
             Debug.Log("Joystick " + stick);
         }*/
         //Debug.Log(Input.GetButton("Fire1"));
-        if (!isLocalPlayer)
-            return;
+        //if (!isLocalPlayer)
+        //    return;
 
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;

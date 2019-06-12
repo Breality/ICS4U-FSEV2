@@ -5,16 +5,16 @@ using UnityEngine;
 public class Equipment : DisplayObject
 {
     // ------------- variables -------------
+    private static Transform main;
     public GameObject Arrows;
     public GameObject Equipments;
-    public GameObject EquipParent;
     public InfoCenter Info;    
 
     // ------------- functions that are called by the MenuToggle raycasting -------------
     public new List<GameObject> Activated()  // returns parents of buttons to look for
     {
         Debug.Log("Equipment Being activated");
-        return null;
+        return new List<GameObject> { Arrows, Equipments };
     }
 
     public new void Hover(GameObject item)
@@ -32,8 +32,11 @@ public class Equipment : DisplayObject
         Debug.Log("Being told clicked on " + item.name);
     }
 
-    public Equipment()
+    public Equipment(GameObject camera)
     {
-
-    }
+        main = camera.transform.Find("Activated UI").transform.Find("Display").transform.Find("Equipment");
+        Arrows = main.Find("Arrows").gameObject;
+        Equipments = main.Find("Equipments").gameObject;
+        Debug.Log("ready for activate");
+}
 }
