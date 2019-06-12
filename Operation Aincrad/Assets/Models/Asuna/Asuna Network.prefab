@@ -3477,6 +3477,7 @@ GameObject:
   - component: {fileID: 5315584925140674943}
   - component: {fileID: 4397773385018539043}
   - component: {fileID: -6305932705484613849}
+  - component: {fileID: 4876004074487305444}
   m_Layer: 0
   m_Name: Asuna Network
   m_TagString: Untagged
@@ -3551,8 +3552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 339008098
+  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
+  m_SceneId: 0
 --- !u!114 &1248905865486629790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3613,6 +3614,21 @@ MonoBehaviour:
   verticalMovement: 0
   smoothFactor: 0
   offsetRelativeToSensor: 0
+--- !u!114 &4876004074487305444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167208316327287239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.1
+  compressRotation: 1
+  target: {fileID: 2757273223285878452}
 --- !u!1 &4239878776698395913
 GameObject:
   m_ObjectHideFlags: 0
