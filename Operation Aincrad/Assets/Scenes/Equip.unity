@@ -3784,6 +3784,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Loki Helmet
       objectReference: {fileID: 0}
+    - target: {fileID: 1906011066985719565, guid: 39a73dfebc1153d44ade3a2de262be62,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3182034133361841438, guid: 39a73dfebc1153d44ade3a2de262be62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21828,6 +21833,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sorcery Hat
       objectReference: {fileID: 0}
+    - target: {fileID: 7728939243819229253, guid: e5ae7a1f73206cc4d91b395997b3aa33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6708653231922025046, guid: e5ae7a1f73206cc4d91b395997b3aa33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24587,6 +24597,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Helmet
       objectReference: {fileID: 0}
+    - target: {fileID: 2308565666070808508, guid: 76f0dcd63d3b3a442924f4ae0f13b84a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1608618381312177583, guid: 76f0dcd63d3b3a442924f4ae0f13b84a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26341,6 +26356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spartan Helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406306516964233873, guid: d3877d573da894a438becc2c66342b9f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 827819790196449410, guid: d3877d573da894a438becc2c66342b9f,
         type: 3}
@@ -29503,6 +29523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Templar Helmet
       objectReference: {fileID: 0}
+    - target: {fileID: 2792922125573429837, guid: ac3b5f56d26ee714796f68bd35cf160f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1196033599333525598, guid: ac3b5f56d26ee714796f68bd35cf160f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31203,6 +31228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Aviator's Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823906321015676418, guid: f050f86e8874a3f4fbe776507a2f997a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7388702924317944849, guid: f050f86e8874a3f4fbe776507a2f997a,
         type: 3}
@@ -116737,6 +116767,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Viking Helmet
       objectReference: {fileID: 0}
+    - target: {fileID: 7327842081101240251, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6046892104194729384, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -117687,6 +117722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136204608719555328, guid: 001e472c2f67f7141bc8b55a6c9258c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5094348684090865939, guid: 001e472c2f67f7141bc8b55a6c9258c3,
         type: 3}
@@ -120293,12 +120333,12 @@ PrefabInstance:
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.427
+      value: 2.7320223
       objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.78
+      value: -8.576221
       objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
@@ -120339,6 +120379,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6112638561062482052, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636694890153089834, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9023c9c9a7c28bb4aa602cb933b38cc6, type: 3}
@@ -130167,6 +130217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Top Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030168881403241366, guid: b3d4fc7197a635f4f970bc06cf7db6c4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2041831936043602309, guid: b3d4fc7197a635f4f970bc06cf7db6c4,
         type: 3}
