@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-
+using Mirror;
 public class HeadsetPositioning : MonoBehaviour
 {
 
@@ -11,5 +11,6 @@ public class HeadsetPositioning : MonoBehaviour
     {
         InputTracking.disablePositionalTracking = true;
         this.transform.localPosition = new Vector3(0, 1.54f, 0.1f);
+
     }
 }

@@ -12,10 +12,16 @@ public class PlayerMovement : NetworkBehaviour
     private float rotation_Speed = 1f;
     [SerializeField]
     private float playerMovSpeed = 0.2f;
-
+    [SerializeField]
+    private GameObject cam;
     void Start()
     {
         charAnim = this.gameObject.GetComponent<Animator>();
+        if (!isLocalPlayer)
+        {
+            cam.SetActive(false);
+            Destroy(this.GetComponent("AvatarController"));
+        }
 
     }
 
@@ -55,7 +61,7 @@ public class PlayerMovement : NetworkBehaviour
         this.transform.GetComponent<Rigidbody>().position += this.transform.right * playerMovSpeed*vx;
         this.transform.GetComponent<Rigidbody>().position += this.transform.forward * playerMovSpeed * vy;
         //Debug.Log(rot_y);
-        //Debug.Log(vx + " " + vy);
+        Debug.Log(vx + " " + vy);
         charAnim.SetFloat("Vx", vx);
         charAnim.SetFloat("Vy", vy);
 
