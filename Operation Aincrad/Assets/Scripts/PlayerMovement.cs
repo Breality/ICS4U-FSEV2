@@ -12,10 +12,15 @@ public class PlayerMovement : NetworkBehaviour
     private float rotation_Speed = 1f;
     [SerializeField]
     private float playerMovSpeed = 0.2f;
-
+    [SerializeField]
+    private GameObject cam;
     void Start()
     {
         charAnim = this.gameObject.GetComponent<Animator>();
+        if (!isLocalPlayer)
+        {
+            cam.SetActive(false);
+        }
 
     }
 

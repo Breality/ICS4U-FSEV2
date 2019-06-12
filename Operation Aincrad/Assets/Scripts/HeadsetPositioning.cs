@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Mirror;
-public class HeadsetPositioning : NetworkBehaviour
+public class HeadsetPositioning : MonoBehaviour
 {
 
     // Update is called once per frame
@@ -11,9 +11,6 @@ public class HeadsetPositioning : NetworkBehaviour
     {
         InputTracking.disablePositionalTracking = true;
         this.transform.localPosition = new Vector3(0, 1.54f, 0.1f);
-        if (!isLocalPlayer)
-        {
-            this.gameObject.SetActive(false);
-        }
+
     }
 }
