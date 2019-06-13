@@ -7,7 +7,7 @@ public class AnimateKinect : NetworkBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform upperBodyRoot;
     private const int NUM_UPPERBODYROOT = 10;
-    public void LateUpdate()
+    public void Update()
     {
         if (isLocalPlayer)
         {
