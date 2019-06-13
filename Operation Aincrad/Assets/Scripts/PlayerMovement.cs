@@ -43,9 +43,8 @@ public class PlayerMovement : NetworkBehaviour
 
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;
-
         rot_y = Mathf.Abs(Input.GetAxis("L_Horizontal")) >= deadZone ? Input.GetAxis("L_Horizontal") : 0;
-        
+
 
 
         if (Input.GetButton("Sprint"))
@@ -53,14 +52,12 @@ public class PlayerMovement : NetworkBehaviour
             vx *= 2;
             vy *= 2;
         }
+
         if (Input.GetButton("FastRotation"))
         {
             rot_y *= 2;
         }
-
         this.transform.Rotate(0, rot_y*rotation_Speed, 0);
-        
-
         this.transform.GetComponent<Rigidbody>().position += this.transform.right * playerMovSpeed*vx;
         this.transform.GetComponent<Rigidbody>().position += this.transform.forward * playerMovSpeed * vy;
         //Debug.Log(rot_y);
