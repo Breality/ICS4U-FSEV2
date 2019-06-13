@@ -113,10 +113,12 @@ public class Equipment : DisplayObject
                 if (newWeapon.weaponType == 0) { // left hand
                     if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
                     Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[4] = selectedItem;
                 } 
-                else if (newWeapon.weaponType == 1 && Info.equipped[5] != "None") { // right hand
-                    if (Info.equipped[5] != "None") { Info.WeaponsL.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
+                else if (newWeapon.weaponType == 1) { // right hand
+                    if (Info.equipped[5] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
                     Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[5] = selectedItem;
                 } 
                 else if (newWeapon.weaponType == 2)
                 {

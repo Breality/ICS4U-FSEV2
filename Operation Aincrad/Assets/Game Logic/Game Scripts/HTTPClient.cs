@@ -173,4 +173,9 @@ public class HTTPClient : MonoBehaviour
     {
         StartCoroutine(SendMessage(parameters));
     }
+
+    void OnApplicationQuit()
+    {
+        AskServer(new Dictionary<string, string> { { "Request", "logout"} });
+    }
 }
