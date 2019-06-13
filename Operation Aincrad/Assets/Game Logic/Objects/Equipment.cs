@@ -125,7 +125,7 @@ public class Equipment : DisplayObject
                     Debug.Log("Not sure what to do here");
                 }
 
-                HTTP.AskServer(new Dictionary<string, string> { {"Request",  "Equip" },
+                HTTP.AskServer(new Dictionary<string, string> { {"request",  "Equip" },
                     {"Equipment Type",  "Weapon" }, {"Equipment Name", selectedItem} });
             }
         }

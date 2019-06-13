@@ -176,6 +176,6 @@ public class HTTPClient : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        AskServer(new Dictionary<string, string> { { "Request", "logout"} });
+        AskServer(new Dictionary<string, string> { { "request", "logout"} });
     }
 }
