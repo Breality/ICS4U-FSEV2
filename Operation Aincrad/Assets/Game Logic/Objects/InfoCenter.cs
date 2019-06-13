@@ -37,7 +37,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public Dictionary<string, Item> items = new Dictionary<string, Item> { };
     
     // items owned that are currently equiped
-    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
+    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "None", "Rusty Sword" };
 
     // titles
     public List<string> titles = new List<string> { };
@@ -105,8 +105,8 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         }
         // putting on their correct equipment
         equipped = player.equipped;
-        if (equipped[4] != null)  { WeaponsR.transform.Find(equipped[4]).gameObject.SetActive(true); }
-        if (equipped[5] != null) { WeaponsR.transform.Find(equipped[4]).gameObject.SetActive(false); }
+        if (equipped[4] != "None")  { WeaponsL.transform.Find(equipped[4]).gameObject.SetActive(true); }
+        if (equipped[5] != "None") { WeaponsR.transform.Find(equipped[5]).gameObject.SetActive(true); }
 
         // titles
         chosenTitle = player.chosenTitle;
