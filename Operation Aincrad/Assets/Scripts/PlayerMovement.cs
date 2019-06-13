@@ -14,7 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     private float playerMovSpeed = 0.2f;
     [SerializeField]
     private GameObject cam;
-    void Start()
+    void Awake()
     {
         charAnim = this.gameObject.GetComponent<Animator>();
         if (!isLocalPlayer)
@@ -22,12 +22,9 @@ public class PlayerMovement : NetworkBehaviour
             cam.SetActive(false);
             Destroy(this.GetComponent("AvatarController"));
             Destroy(this.GetComponent<Animator>());
+            Destroy(cam.GetComponent("KinectManager"));
         }
-        if (isLocalPlayer)
-        {
-            cam.AddComponent<KinectManager>();
-        }
-        
+                
     }
 
     // Update is called once per frame

@@ -858,7 +858,7 @@ public class KinectManager : MonoBehaviour
 	
 	//----------------------------------- end of public functions --------------------------------------//
 
-	void Awake()
+	void Start()
 	{
 		//CalibrationText = GameObject.Find("CalibrationText");
 		int hr = 0;
