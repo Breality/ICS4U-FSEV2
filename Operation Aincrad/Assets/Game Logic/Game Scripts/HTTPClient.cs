@@ -23,6 +23,7 @@ public class HTTPClient : MonoBehaviour
     public Button Login;
 
     private bool debounce = true;
+    private string token;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,14 +69,26 @@ public class HTTPClient : MonoBehaviour
             Debug.Log(response);
             if (response.Contains("success, token"))
             {
+                Debug.Log(response);
                 // insert data, store token, and start VR world
-                string xmlString = response.Substring(response.IndexOf(", data:") + ", data:".Length);
+                int startToken = response.IndexOf("token:") + "token:".Length;
+                int startEquip = response.IndexOf(", Equipment Data:");// + ", Equipment Data:".Length;
+                int startData = response.IndexOf(", Player Data:"); //+ ", Equipment Data:".Length;
 
-                XmlSerializer serilize_object = new XmlSerializer(typeof(DBPlayer));
-                StringReader open_string = new StringReader(xmlString);
-                DBPlayer loadInfo = (DBPlayer)serilize_object.Deserialize(open_string);
+                token = response.Substring(startToken, startEquip - startToken);
+                startEquip += ", Equipment Data:".Length;
+                string EquipString = response.Substring(startEquip, startData-startEquip);
+                string DataString = response.Substring(startData + ", Equipment Data:".Length);
 
-                infoCenter.LogIn(loadInfo);
+                XmlSerializer serilize_object = new XmlSerializer(typeof(Dictionary<string, Dictionary<string, string>>));
+                StringReader open_string = new StringReader(EquipString);
+                Dictionary<string, Dictionary<string, string>> loadedEquip = (Dictionary<string, Dictionary<string, string>>)serilize_object.Deserialize(open_string);
+
+                serilize_object = new XmlSerializer(typeof(DBPlayer));
+                open_string = new StringReader(DataString);
+                DBPlayer loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
+
+                infoCenter.LogIn(loadedData, loadedEquip);
                 Menu.SetActive(false);
                 VRCamera.SetActive(true);
             }

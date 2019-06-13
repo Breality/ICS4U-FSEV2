@@ -17,7 +17,9 @@ public class Equipment : DisplayObject
 
     public GameObject weaponSpecs;
     public GameObject clothingSpecs;
-    public GameObject weaponGroup;
+
+    public GameObject weaponGroupR;
+    public GameObject weaponGroupL;
 
     private string[] options = new string[] { "Weapons", "Helmets", "Pendants" , "Armour", "Boots" };
     private int view = 0;
@@ -27,29 +29,33 @@ public class Equipment : DisplayObject
     {
         Title.text = options[view];
         foreach (Transform child in Equipments.transform) { Object.Destroy(child.gameObject); }
+        
+        List<string> itemsOwned;
+        if (view == 0) // weapons
+        {
+            itemsOwned = new List<string>(Info.weapons.Keys);
+        } else {
+            itemsOwned = new List<string>(Info.clothing[options[view]].Keys);
+        }
 
-        Debug.Log("Info: " + Info);
-        List<string> itemsOwned = Info.inventory[options[view]];
         int i = 0;
         foreach(string item in itemsOwned)
         {
-            if (!item.Equals(currentWeapon))
-            {
-                // new item
-                GameObject newItem = UnityEngine.Object.Instantiate(Template);
-                newItem.name = item;
+            // new item
+            GameObject newItem = UnityEngine.Object.Instantiate(Template);
+            newItem.name = item;
 
-                // new positions
-                newItem.transform.parent = Equipments.transform;
-                newItem.transform.rotation = Template.transform.rotation;
-                newItem.transform.localScale = new Vector3(0.002f, 0.004f, 1);
-                newItem.transform.localPosition = new Vector3(0.35f * (i % 3 - 1), (i >= 3) ? -0.35f : 0.35f, Template.transform.localPosition.z);
+            // new positions
+            newItem.transform.parent = Equipments.transform;
+            newItem.transform.rotation = Template.transform.rotation;
+            newItem.transform.localScale = new Vector3(0.002f, 0.004f, 1);
+            newItem.transform.localPosition = new Vector3(0.35f * (i % 3 - 1), (i >= 3) ? -0.35f : 0.35f, Template.transform.localPosition.z);
 
-                // show product with correct image
-                newItem.SetActive(true);
-                i++;
-            }
-            
+            // show product
+            Sprite image = Resources.Load<Sprite>("Equipment Images/" + options[view] + " Dealer/" + item);
+            newItem.GetComponent<Image>().sprite = image;
+            newItem.SetActive(true);
+            i++;
         }
     }
     
@@ -71,20 +77,16 @@ public class Equipment : DisplayObject
             
         } else if(item.transform.parent.name == "Equipments") // weapons
         {
-            // getting the information
-            selectedItem = item.name;
-            float[] specs = Info.itemSpecifications[item.name];
-            Sprite image = Resources.Load<Sprite>("Equipment Images/" + options[view] + " Dealer/" + item.name);
-
-            // displaying the information
-            weaponSpecs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + specs[0];
-            weaponSpecs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + specs[1];
-            weaponSpecs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + specs[2];
-            weaponSpecs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[(int)(specs[3])];
-
+            // display the new hovered item's info
             weaponSpecs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
-            weaponSpecs.transform.Find("Selected Image").GetComponent<Image>().sprite = image;
-
+            weaponSpecs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
+            
+            // displaying the weapon specs
+            Weapon weapon = Info.weapons[item.name];
+            weaponSpecs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + weapon.attack;
+            weaponSpecs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + weapon.pierce;
+            weaponSpecs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
+            weaponSpecs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
         }
     }
 
@@ -94,7 +96,7 @@ public class Equipment : DisplayObject
     }
 
     private float lastClick = 0; // debounce system
-    private string currentWeapon = "Rusty Sword";
+
     public new void Clicked(GameObject item)
     {
         if (Time.time - lastClick < 0.5f){ return; }
@@ -106,9 +108,24 @@ public class Equipment : DisplayObject
             ReloadMenu();
         }else if (selectedItem != null) // they want to equip new item
         {
-            weaponGroup.transform.Find(currentWeapon).gameObject.SetActive(false);
-            weaponGroup.transform.Find(selectedItem).gameObject.SetActive(true);
-            currentWeapon = item.name;
+            if (view == 0) // changing weapons
+            {
+                Weapon newWeapon = Info.weapons[selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
+                if (newWeapon.weaponType == 0) { // left hand
+                    if (Info.equipped[4] != "None") { weaponGroupL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
+                    weaponGroupL.transform.Find(selectedItem).gameObject.SetActive(true);
+                } 
+                else if (newWeapon.weaponType == 1 && Info.equipped[5] != "None") { // right hand
+                    weaponGroupR.transform.Find(Info.equipped[5]).gameObject.SetActive(false);
+                    weaponGroupR.transform.Find(selectedItem).gameObject.SetActive(true);
+                } 
+                else if (newWeapon.weaponType == 2)
+                {
+                    Debug.Log("Not sure what to do here");
+                }
+
+                
+            }
             ReloadMenu();
         }
     }

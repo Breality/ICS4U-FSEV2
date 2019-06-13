@@ -190,7 +190,7 @@ public class HTTP_Listen : MonoBehaviour
     {
         StringBuilder builder = new StringBuilder();
         builder.Append(RandomString(8, new Random().Next(1)==0));
-        builder.Append(RandomNumber(1000, 99999));
+        builder.Append(RandomNumber(1000, 99999999));
         builder.Append(RandomString(4, false));
         return builder.ToString();
     }
@@ -235,10 +235,11 @@ public class HTTP_Listen : MonoBehaviour
                 game.PlayerEnter(newPlayer, randToken);
 
                 string xmlString = Encode_XML(player, typeof(DBPlayer));
+                string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
 
                 if (sender != null) // sender is null during testing
                 {
-                    ConstructResponse(sender, "Creation success, token:" + randToken + ", data:" + xmlString);
+                    ConstructResponse(sender, "Creation success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
                 }
             }
         });
@@ -275,10 +276,11 @@ public class HTTP_Listen : MonoBehaviour
                     game.PlayerEnter(newPlayer, randToken);
 
                     string xmlString = Encode_XML(response, typeof(DBPlayer));
+                    string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
 
                     if (sender != null) // sender is null during testing
                     {
-                        ConstructResponse(sender, "Login success, token:" + randToken + ", data:" + xmlString);
+                        ConstructResponse(sender, "Login success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
                     }
                 }
                 catch (Exception e)

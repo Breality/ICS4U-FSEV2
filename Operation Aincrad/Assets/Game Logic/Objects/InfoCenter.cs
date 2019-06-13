@@ -11,25 +11,9 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public TMP_Text NameText;
 
     // universal info
-    public Dictionary<string, int> goldShop = new Dictionary<string, int> {
+    public Dictionary<string, int> goldShop = new Dictionary<string, int> { // the cost of everything
         {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 },
         { "Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
-    };
-
-
-    public Dictionary<string, float[]> itemSpecifications = new Dictionary<string, float[]> { // weapon: attack, pierce and range, hand positioning
-        { "Ancient Sword", new float[] { 10f, 5f, 1f, 0 } },
-        { "Orochimaru", new float[] { 10f, 5f, 1f, 1 } },
-        { "Ogre Sword", new float[] { 10f, 5f, 1f, 1 } },
-        { "Silver Rapier", new float[] { 30f, 5f, 10f, 0 } },
-        { "Sword of the Abyss", new float[] { 40f, 51f, 0.75f, 0 } },
-        { "Templar Sword", new float[] { 10f, 5f, 1f, 0 } },
-        { "Curved Sword", new float[] { 10f, 5f, 1f, 0 } },
-        { "Dark Sword", new float[] { 10f, 5f, 1f, 0 } },
-        { "Dothraki Sword", new float[] { 10f, 5f, 1f, 1 } },
-        { "Elucidator", new float[] { 10f, 5f, 1f, 1 } },
-        { "Long Sword", new float[] { 10f, 5f, 1f, 2 } },
-        { "Shark Staff", new float[] { 100f, 50f, 1.5f, 1 } }
     };
 
     // basic info
@@ -37,19 +21,21 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public int gold = 0;
     public int score = 0;
 
-    // equipment in {name : count}
-    public Dictionary<string, List<string>> inventory = new Dictionary<string, List<string>> {
-        {"Weapons", new List<string> { "Ancient Sword", "Silver Rapier", "Sword of the Abyss", "Rusty Sword" } },
-        {"Helmets", new List<string> { } },
-        {"Armour", new List<string> { } },
-        {"Boots", new List<string> { } },
-        {"Pendants", new List<string> { } }
-    };
+    // equipment constructor
+    public Dictionary<string, Dictionary<string, string>> equipmentConstructor;
 
-    public Dictionary<string, int> clothing = new Dictionary<string, int> { };
-    public Dictionary<string, int>  weapons = new Dictionary<string, int> { };
-    public Dictionary<string, int>  items = new Dictionary<string, int> { };
-    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Default Sword", "None" };
+    // constructed equipments that are owned
+    public Dictionary<string, Dictionary<string, Clothing>> clothing = new Dictionary<string, Dictionary<string, Clothing>> {
+        {"Helmets", new Dictionary<string, Clothing>{ } },
+        {"Armour", new Dictionary<string, Clothing> { } },
+        {"Boots", new Dictionary<string, Clothing> { } },
+        {"Pendants", new Dictionary<string, Clothing>{ } },
+    };
+    public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon> { };
+    public Dictionary<string, Item> items = new Dictionary<string, Item> { };
+    
+    // items owned that are currently equiped
+    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
 
     // titles
     public List<string> titles = new List<string> { };
@@ -85,8 +71,11 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     }
 
-    public void LogIn(DBPlayer player)
+    public void LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments)
     {
+        // equipment info from the server's text file
+        equipmentConstructor = equipments;
+
         // main data
         username = player.username;
         NameText.text = username;
@@ -97,21 +86,21 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         // Equipment
         equipped = player.equipped;
         foreach (string name in player.clothing)
-        { // Clothing
-            if (clothing.ContainsKey(name)) { clothing[name]++; }
-            else { clothing[name] = 1; }
+        { 
+            Clothing item = new Clothing(name, equipments["Clothing"][name]);
+            clothing[item.clothingType][item.name] = item;
         }
 
         foreach (string name in player.weapons)
         { // Weapons
-            if (weapons.ContainsKey(name)) { weapons[name]++; }
-            else { weapons[name] = 1; }
+            Weapon item = new Weapon(name, equipments["Weapons"][name]);
+            weapons[item.name] = item;
         }
 
         foreach (string name in player.items)
         { // Items
-            if (items.ContainsKey(name)) { items[name]++; }
-            else { items[name] = 1; }
+            Item item = new Item(name, equipments["Items"][name]);
+            items[item.name] = item;
         }
 
         // titles

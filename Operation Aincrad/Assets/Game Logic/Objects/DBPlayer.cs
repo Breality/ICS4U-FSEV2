@@ -33,7 +33,6 @@ public class DBPlayer
     public string[] attackSkills;
     public string[] playerAbilities;
 
-
     // constructor for xml (is never used)
     public DBPlayer()
     {

@@ -17,8 +17,6 @@ public class PlayerMovementMerge : MonoBehaviour
     void Start()
     {
         charAnim = this.gameObject.GetComponent<Animator>();
-       
-
 
     }
 
