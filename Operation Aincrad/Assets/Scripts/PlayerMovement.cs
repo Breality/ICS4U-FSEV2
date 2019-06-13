@@ -14,11 +14,13 @@ public class PlayerMovement : NetworkBehaviour
     private float playerMovSpeed = 0.2f;
     [SerializeField]
     private GameObject cam;
-    void Awake()
+    void Start()
     {
-        charAnim = this.gameObject.GetComponent<Animator>();
         if (!isLocalPlayer)
         {
+
+            charAnim = this.gameObject.GetComponent<Animator>();
+
             cam.SetActive(false);
             Destroy(this.GetComponent("AvatarController"));
             Destroy(this.GetComponent<Animator>());
