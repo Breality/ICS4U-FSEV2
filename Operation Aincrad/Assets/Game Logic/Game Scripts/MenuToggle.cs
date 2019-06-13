@@ -69,7 +69,8 @@ public class MenuToggle : MonoBehaviour
         else
         {
             button.GetComponent<Image>().color = new Color32(255, 255, 255, 121);
-            extensions.DetachChildren();
+            foreach (Transform child in extensions) { Destroy(child.gameObject); }
+
             if (CurrentDisplay != null) // there was a display, turn that off
             {
                 display.Find(CurrentDisplay).gameObject.SetActive(false); 
@@ -178,7 +179,7 @@ public class MenuToggle : MonoBehaviour
             CurrentDisplay = item.name;
             display.Find(CurrentDisplay).gameObject.SetActive(true);
             ButtonParents = ScriptReferences[CurrentDisplay].Activated();
-            extensions.DetachChildren(); // remove the options and display what is wanted
+            foreach (Transform child in extensions) { Destroy(child.gameObject); } // remove the options and display what is wanted
             Debug.Log(ButtonParents.Count);
         }
         else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
@@ -209,6 +210,7 @@ public class MenuToggle : MonoBehaviour
     private Transform lHand, rHand;
     GameObject lHover = null, rHover = null;
     private RaycastHit[] rHandCol, lHandCol;
+
     void Start()
     {
         ScriptReferences = new Dictionary<string, Equipment> {
@@ -217,8 +219,10 @@ public class MenuToggle : MonoBehaviour
 
         rightLine = rightL.transform.GetComponent<LineRenderer>();
         leftLine = leftL.transform.GetComponent<LineRenderer>();
+        Debug.Log("Started with " + rightLine + " and " + leftLine);
         initLine(rightLine);
         initLine(leftLine);
+        Debug.Log("Stuff started");
     }
 
     void initLine(LineRenderer line)
@@ -289,6 +293,7 @@ public class MenuToggle : MonoBehaviour
         }
         if (handedness == InteractionSourceHandedness.Left)
         {
+            Debug.Log(leftLine);
             leftLine.SetPosition(0, pos);
             leftLine.SetPosition(1, pos + forw * rayLen);
             leftLine.enabled = true;
