@@ -21,7 +21,6 @@ public class PlayerMovement : NetworkBehaviour
         {
             cam.SetActive(false);
             Destroy(this.GetComponent("AvatarController"));
-            Destroy(cam.GetComponent("KinectManager"));
         }
 
         
