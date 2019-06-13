@@ -612,8 +612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 1794898300
 --- !u!1 &1225491715193278053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,8 +2128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 380644435
 --- !u!1 &3414279033581845380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,8 +2496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2038799943
 --- !u!1 &3653082426056383141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3527,6 +3527,7 @@ GameObject:
   - component: {fileID: 1248905865486629790}
   - component: {fileID: 4397773385018539043}
   - component: {fileID: 1223822437515573833}
+  - component: {fileID: 3226417198015247875}
   m_Layer: 0
   m_Name: Asuna Network
   m_TagString: Untagged
@@ -3601,8 +3602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 3400781301
 --- !u!114 &1248905865486629790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3647,8 +3648,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroredMovement: 0
   verticalMovement: 0
-  smoothFactor: 5
+  smoothFactor: 0
   offsetRelativeToSensor: 0
+--- !u!114 &3226417198015247875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167208316327287239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ae73780f3470146b927a51930ee6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.1
+  upperBodyRoot: {fileID: 2127490944348933465}
 --- !u!1 &4239878776698395913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,13 +4056,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5986372614316761468}
-    characterCount: 10
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -4644,8 +4659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2909209452
 --- !u!1 &5003697176919081857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5682,8 +5697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 3218471848
 --- !u!1 &6101669691300605290
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,13 +7211,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1327684952120044208}
-    characterCount: 5
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -7686,8 +7701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 475363615
 --- !u!114 &1666098324366211362
 MonoBehaviour:
   m_ObjectHideFlags: 0
