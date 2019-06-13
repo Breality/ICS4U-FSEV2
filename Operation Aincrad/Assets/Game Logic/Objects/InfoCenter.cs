@@ -9,6 +9,8 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     // non info items
     public TextMesh MoneyText;
     public TMP_Text NameText;
+    public GameObject WeaponsL;
+    public GameObject WeaponsR;
 
     // universal info
     public Dictionary<string, int> goldShop = new Dictionary<string, int> { // the cost of everything
@@ -84,9 +86,8 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         score = player.score;
 
         // Equipment
-        equipped = player.equipped;
         foreach (string name in player.clothing)
-        { 
+        {  // Clothing
             Clothing item = new Clothing(name, equipments["Clothing"][name]);
             clothing[item.clothingType][item.name] = item;
         }
@@ -102,6 +103,10 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
             Item item = new Item(name, equipments["Items"][name]);
             items[item.name] = item;
         }
+        // putting on their correct equipment
+        equipped = player.equipped;
+        if (equipped[4] != null)  { WeaponsR.transform.Find(equipped[4]).gameObject.SetActive(true); }
+        if (equipped[5] != null) { WeaponsR.transform.Find(equipped[4]).gameObject.SetActive(false); }
 
         // titles
         chosenTitle = player.chosenTitle;
@@ -116,10 +121,5 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
     }
-
-    private string token;
-    public IEnumerator Request(string request, string specification)
-    {
-        yield return 0;
-    }
+    
 }

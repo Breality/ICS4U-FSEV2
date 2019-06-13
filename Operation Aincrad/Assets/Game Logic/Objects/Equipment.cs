@@ -18,9 +18,6 @@ public class Equipment : DisplayObject
     public GameObject weaponSpecs;
     public GameObject clothingSpecs;
 
-    public GameObject weaponGroupR;
-    public GameObject weaponGroupL;
-
     private string[] options = new string[] { "Weapons", "Helmets", "Pendants" , "Armour", "Boots" };
     private int view = 0;
 
@@ -112,19 +109,20 @@ public class Equipment : DisplayObject
             {
                 Weapon newWeapon = Info.weapons[selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
                 if (newWeapon.weaponType == 0) { // left hand
-                    if (Info.equipped[4] != "None") { weaponGroupL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
-                    weaponGroupL.transform.Find(selectedItem).gameObject.SetActive(true);
+                    if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
+                    Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
                 } 
                 else if (newWeapon.weaponType == 1 && Info.equipped[5] != "None") { // right hand
-                    weaponGroupR.transform.Find(Info.equipped[5]).gameObject.SetActive(false);
-                    weaponGroupR.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false);
+                    Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
                 } 
                 else if (newWeapon.weaponType == 2)
                 {
                     Debug.Log("Not sure what to do here");
                 }
 
-                
+                HTTP.AskServer(new Dictionary<string, string> { {"Request",  "Equip" },
+                    {"Equipment Type",  "Weapon" }, {"Equipment Name", selectedItem} });
             }
             ReloadMenu();
         }
@@ -138,7 +136,7 @@ public class Equipment : DisplayObject
         Title = main.Find("Title").gameObject.GetComponent<TMP_Text>();
         Template = main.Find("Fake Equip").Find("Template Image").gameObject;
         weaponSpecs = main.Find("Weapon Display").gameObject;
-        weaponGroup = camera.transform.parent.Find("Root").Find("Hips").Find("spine").Find("chest").Find("shoulder_r").Find("arm_r").Find("hand_r").Find("Swords").gameObject;
+
         Debug.Log("ready for activate");
 }
 }

@@ -11,6 +11,7 @@ using System;
 public class ShopToggle : MonoBehaviour
 {
     // ------------- menu toggling -------------
+    public HTTPClient HTTP;
     public Image image;
     public TMP_Text cost;
     public Button purchase;
@@ -38,7 +39,7 @@ public class ShopToggle : MonoBehaviour
             bool success = info.gold >= info.goldShop[isDisplayed];
             if (success)
             {
-                StartCoroutine(info.Request("Purchase", isDisplayed));
+                HTTP.AskServer(new Dictionary<string, string> { { "Request" , "Purchase"}, {"Item name", isDisplayed } });
             }
 
             purchase.GetComponent<Image>().color = success ? new Color(0, 255, 0) : new Color(255, 0, 0); // will be for a milisecond, then go back to onhover

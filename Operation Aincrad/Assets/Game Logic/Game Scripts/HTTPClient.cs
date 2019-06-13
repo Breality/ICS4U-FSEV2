@@ -8,10 +8,12 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
+using System;
 
 public class HTTPClient : MonoBehaviour
 {
-    public InfoCenter infoCenter; // just insert this line of code into any class and it will have client data
+    // Variables
+    public InfoCenter infoCenter; 
     public GameObject Menu;
     public GameObject VRCamera;
 
@@ -24,19 +26,15 @@ public class HTTPClient : MonoBehaviour
 
     private bool debounce = true;
     private string token;
-    // Start is called before the first frame update
+
+    // Listen for buttons
     void Start()
     {
         Register.onClick.AddListener(delegate { ButtonClicked("register"); });
         Login.onClick.AddListener(delegate { ButtonClicked("login"); });
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
+    // handle button clicks
     void ButtonClicked(string request)
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -48,6 +46,7 @@ public class HTTPClient : MonoBehaviour
         }
     }
 
+    // handle sign in and register
     IEnumerator Upload(string request, string username, string password)
     {
         WWWForm form = new WWWForm();
@@ -66,31 +65,66 @@ public class HTTPClient : MonoBehaviour
         else
         {
             string response = www.downloadHandler.text;
-            Debug.Log(response);
+            Debug.Log("We got a response");
+
             if (response.Contains("success, token"))
             {
-                Debug.Log(response);
-                // insert data, store token, and start VR world
-                int startToken = response.IndexOf("token:") + "token:".Length;
-                int startEquip = response.IndexOf(", Equipment Data:");// + ", Equipment Data:".Length;
-                int startData = response.IndexOf(", Player Data:"); //+ ", Equipment Data:".Length;
+                try
+                {
+                    //"Login success, token:" + randToken + ", Equipment Keys:" + EquipmentXML1 + 
+                    //", Equipment Values:" + EquipmentXML2 + ", Player Data:" + xmlString);
 
-                token = response.Substring(startToken, startEquip - startToken);
-                startEquip += ", Equipment Data:".Length;
-                string EquipString = response.Substring(startEquip, startData-startEquip);
-                string DataString = response.Substring(startData + ", Equipment Data:".Length);
+                    // insert data, store token, and start VR world
+                    int startToken = response.IndexOf("token:") + "token:".Length;
+                    int startEquip = response.IndexOf(", Equipment Keys:");// + ", Equipment Data:".Length;
+                    token = response.Substring(startToken, startEquip - startToken);
 
-                XmlSerializer serilize_object = new XmlSerializer(typeof(Dictionary<string, Dictionary<string, string>>));
-                StringReader open_string = new StringReader(EquipString);
-                Dictionary<string, Dictionary<string, string>> loadedEquip = (Dictionary<string, Dictionary<string, string>>)serilize_object.Deserialize(open_string);
+                    startEquip += ", Equipment Keys:".Length;
+                    int EndKeys = response.IndexOf(", Equipment Values:");
+                    string equipKeys = response.Substring(startEquip, EndKeys - startEquip);
 
-                serilize_object = new XmlSerializer(typeof(DBPlayer));
-                open_string = new StringReader(DataString);
-                DBPlayer loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
+                    startEquip += ", Equipment Values:".Length;
+                    int startData = response.IndexOf(", Player Data:");
+                    string equipVals = response.Substring(startEquip, startData - startEquip);
+                    string DataString = response.Substring(startData + ", Player Data:".Length);
 
-                infoCenter.LogIn(loadedData, loadedEquip);
-                Menu.SetActive(false);
-                VRCamera.SetActive(true);
+                    Debug.Log(equipKeys);
+                    Debug.Log(equipVals);
+                    Debug.Log(DataString);
+
+                    XmlSerializer serilize_object = new XmlSerializer(typeof(string[][]));
+                    StringReader open_string = new StringReader(equipKeys);
+                    string[][] loadedKeys = (string[][])serilize_object.Deserialize(open_string);
+
+                    open_string = new StringReader(equipVals);
+                    string[][] loadedVals = (string[][])serilize_object.Deserialize(open_string);
+
+                    serilize_object = new XmlSerializer(typeof(DBPlayer));
+                    open_string = new StringReader(DataString);
+                    DBPlayer loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
+
+                    Dictionary<string, Dictionary<string, string>> loadedEquip = new Dictionary<string, Dictionary<string, string>> {
+                        {"Weapons", new Dictionary<string, string> { } },
+                        {"Items", new Dictionary<string, string> { } },
+                        {"Clothing", new Dictionary<string, string> { } },
+                    };
+                    for (int a=0; a<3; a++)
+                    {
+                        for (int i = 0; i < loadedKeys[0].Length; i++)
+                        {
+                            loadedEquip[new string[] { "Clothing", "Weapons", "Items" }[i]][loadedKeys[0][i]] = loadedVals[0][i];
+                        }
+                    }
+                    
+
+                    infoCenter.LogIn(loadedData, loadedEquip);
+                    Menu.SetActive(false);
+                    VRCamera.SetActive(true);
+                }catch (Exception e)
+                {
+                    Debug.Log(e.ToString());
+                }
+                
             }
             else
             {
@@ -105,7 +139,37 @@ public class HTTPClient : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private IEnumerator SendMessage(Dictionary<string, string> parameters)
+    {
+        // filling out the form appropriately
+        WWWForm form = new WWWForm();
+        form.AddField("token", token);
+        foreach (KeyValuePair<string, string> parameter in parameters)
+        {
+            form.AddField(parameter.Key, parameter.Value);
+        }
 
-        
+        // sending the server the form
+        UnityWebRequest www = UnityWebRequest.Post("http://209.182.232.50:1234/", form);
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            string response = www.downloadHandler.text;
+
+            // figure out what to do next or what to ping
+
+        }
+    }
+
+    public void AskServer(Dictionary<string, string> parameters)
+    {
+        StartCoroutine(SendMessage(parameters));
     }
 }

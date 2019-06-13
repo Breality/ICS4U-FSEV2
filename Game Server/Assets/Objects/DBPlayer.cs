@@ -15,7 +15,7 @@ public class DBPlayer
     public string[] clothing;
     public string[] weapons;
     public string[] items;
-    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Default Sword", "None" }; 
+    public string[] equipped = new string[6] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "None", "Rusty Sword" }; 
 
     // stat info
     public int gold = 0;
@@ -41,7 +41,7 @@ public class DBPlayer
 
         // setting all the primative arrays to default items
         clothing = new string[] { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant"};
-        weapons = new string[] { "Default Sword" };
+        weapons = new string[] { "Rusty Sword" };
         items = new string[] { "Red Potion", "Red Potion", "Red Potion", "Blue Potion" };
 
         titles = new string[] { "Rookie", "Newbie" };

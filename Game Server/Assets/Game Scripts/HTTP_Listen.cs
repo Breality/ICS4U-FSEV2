@@ -124,7 +124,7 @@ public class HTTP_Listen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(LogIn(null, "PassIs123", "123"));
+        //StartCoroutine(LogIn(null, "Test123", "123"));
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
     }
@@ -222,25 +222,32 @@ public class HTTP_Listen : MonoBehaviour
             }
             else
             {
-                DBPlayer player = new DBPlayer(username, Hash(password));
-                RestClient.Put<ResponseHelper>("https://" + firebaseExtension + ".firebaseio.com/" + username + ".json", player);
-                Debug.Log("Account made");
-
-                // return the http response now
-                string randToken = RandomToken();
-                Player newPlayer = new Player(player, randToken);
-
-                playerHash[randToken] = player.hash;
-                playerDB[randToken] = newPlayer;
-                game.PlayerEnter(newPlayer, randToken);
-
-                string xmlString = Encode_XML(player, typeof(DBPlayer));
-                string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
-
-                if (sender != null) // sender is null during testing
+                try
                 {
-                    ConstructResponse(sender, "Creation success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
+                    DBPlayer player = new DBPlayer(username, Hash(password));
+                    RestClient.Put<ResponseHelper>("https://" + firebaseExtension + ".firebaseio.com/" + username + ".json", player);
+                    Debug.Log("Account made");
+
+                    // return the http response now
+                    string randToken = RandomToken();
+                    Player newPlayer = new Player(player, randToken);
+
+                    playerHash[randToken] = player.hash;
+                    playerDB[randToken] = newPlayer;
+                    game.PlayerEnter(newPlayer, randToken);
+
+                    string xmlString = Encode_XML(player, typeof(DBPlayer));
+                    string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
+
+                    if (sender != null) // sender is null during testing
+                    {
+                        ConstructResponse(sender, "Creation success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
+                    }
+                }catch (Exception e)
+                {
+                    Debug.Log(e);
                 }
+                
             }
         });
 
@@ -275,12 +282,25 @@ public class HTTP_Listen : MonoBehaviour
                     playerDB[randToken] = newPlayer;
                     game.PlayerEnter(newPlayer, randToken);
 
+                    // game.equipments is Dictionary<string, Dictionary<string, string>> which will be formatted as two seperate string[][]
                     string xmlString = Encode_XML(response, typeof(DBPlayer));
-                    string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
+                    string[][] equipKeys = new string[3][] {
+                        (new List<string>(game.equipments["Clothing"].Keys)).ToArray(),
+                        (new List<string>(game.equipments["Weapons"].Keys)).ToArray(),
+                        (new List<string>(game.equipments["Items"].Keys)).ToArray() };
+
+                    string[][] equipVals = new string[3][] {
+                        (new List<string>(game.equipments["Clothing"].Values)).ToArray(),
+                        (new List<string>(game.equipments["Weapons"].Values)).ToArray(),
+                        (new List<string>(game.equipments["Items"].Values)).ToArray() };
+
+                    string EquipmentXML1 = Encode_XML(equipKeys, typeof(string[][]));
+                    string EquipmentXML2 = Encode_XML(equipVals, typeof(string[][]));
 
                     if (sender != null) // sender is null during testing
                     {
-                        ConstructResponse(sender, "Login success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
+                        ConstructResponse(sender, "Login success, token:" + randToken + ", Equipment Keys:" + EquipmentXML1 + 
+                            ", Equipment Values:"+ EquipmentXML2 + ", Player Data:" + xmlString);
                     }
                 }
                 catch (Exception e)
