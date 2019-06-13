@@ -21,8 +21,7 @@ public class HTTP_Listen : MonoBehaviour
     private Dictionary<string, Player> playerDB = new Dictionary<string, Player> { };
     private Dictionary<string, string> playerHash = new Dictionary<string, string> { };
     private string firebaseExtension = "hidden";
-
-
+    
     private string GetRequestPostData(HttpListenerRequest request)
     {
         if (!request.HasEntityBody)
@@ -71,7 +70,7 @@ public class HTTP_Listen : MonoBehaviour
         foreach (string d in dataSent)
         {
             string[] cell = d.Split('=');
-            data[cell[0]] = cell[1];
+            data[cell[0]] =  cell[1].Replace("%20", " ");
             Debug.Log(cell[0] + ":" + cell[1]);
         }
 
@@ -86,6 +85,7 @@ public class HTTP_Listen : MonoBehaviour
         }
 
         // handling the differant kinds of requests they want
+        // login/register/logout
         if (data["request"].Equals("register") && data.ContainsKey("username") && data.ContainsKey("password"))
         {
             StartCoroutine(Register(context, data["username"], data["password"]));
@@ -97,9 +97,27 @@ public class HTTP_Listen : MonoBehaviour
         else if (data["request"].Equals("logout") && data.ContainsKey("token"))
         {
             StartCoroutine(Logout(context, data["token"]));
-            
         }
-        else // they did not match it
+        // purchasing stuff
+        else if (data["request"].Equals("") && data.ContainsKey("token"))
+        {
+            StartCoroutine(Logout(context, data["token"]));
+        }
+
+        // equipment changes
+        else if (data["request"].Equals("Equip") && data.ContainsKey("Equipment Type") && data.ContainsKey("Equipment Name"))
+        {
+            if (data["Equipment Type"].Equals("Weapon"))
+            {
+
+            }
+            else
+            {
+                int correspondingIndex = (new Dictionary<string, int> { })[data["Equipment Type"]];
+            }
+        }
+
+        else // they did not match any of the criteria
         {
             ConstructResponse(context, "Invalid arguements");
         }
@@ -125,6 +143,8 @@ public class HTTP_Listen : MonoBehaviour
     void Start()
     {
         //StartCoroutine(LogIn(null, "Test123", "123"));
+        //StartCoroutine(Register(null, "boiNew", "123"));
+
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
     }
@@ -237,11 +257,23 @@ public class HTTP_Listen : MonoBehaviour
                     game.PlayerEnter(newPlayer, randToken);
 
                     string xmlString = Encode_XML(player, typeof(DBPlayer));
-                    string EquipmentXML = Encode_XML(game.equipments, typeof(Dictionary<string, Dictionary<string, string>>));
+                    string[][] equipKeys = new string[3][] {
+                        (new List<string>(game.equipments["Clothing"].Keys)).ToArray(),
+                        (new List<string>(game.equipments["Weapons"].Keys)).ToArray(),
+                        (new List<string>(game.equipments["Items"].Keys)).ToArray() };
+
+                    string[][] equipVals = new string[3][] {
+                        (new List<string>(game.equipments["Clothing"].Values)).ToArray(),
+                        (new List<string>(game.equipments["Weapons"].Values)).ToArray(),
+                        (new List<string>(game.equipments["Items"].Values)).ToArray() };
+
+                    string EquipmentXML1 = Encode_XML(equipKeys, typeof(string[][]));
+                    string EquipmentXML2 = Encode_XML(equipVals, typeof(string[][]));
 
                     if (sender != null) // sender is null during testing
                     {
-                        ConstructResponse(sender, "Creation success, token:" + randToken + ", Equipment Data:" + EquipmentXML + ", Player Data:" + xmlString);
+                        ConstructResponse(sender, "Creation success, token:" + randToken + ", Equipment Keys:" + EquipmentXML1 +
+                            ", Equipment Values:" + EquipmentXML2 + ", Player Data:" + xmlString);
                     }
                 }catch (Exception e)
                 {

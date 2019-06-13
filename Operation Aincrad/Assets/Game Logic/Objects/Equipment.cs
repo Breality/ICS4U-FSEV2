@@ -75,6 +75,7 @@ public class Equipment : DisplayObject
         } else if(item.transform.parent.name == "Equipments") // weapons
         {
             // display the new hovered item's info
+            selectedItem = item.name;
             weaponSpecs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
             weaponSpecs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
             
@@ -96,6 +97,7 @@ public class Equipment : DisplayObject
 
     public new void Clicked(GameObject item)
     {
+        Debug.Log(selectedItem + " has been clicked, time to switcharoo!");
         if (Time.time - lastClick < 0.5f){ return; }
         lastClick = Time.time;
 
@@ -111,20 +113,21 @@ public class Equipment : DisplayObject
                 if (newWeapon.weaponType == 0) { // left hand
                     if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
                     Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[4] = selectedItem;
                 } 
-                else if (newWeapon.weaponType == 1 && Info.equipped[5] != "None") { // right hand
-                    Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false);
+                else if (newWeapon.weaponType == 1) { // right hand
+                    if (Info.equipped[5] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
                     Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[5] = selectedItem;
                 } 
                 else if (newWeapon.weaponType == 2)
                 {
                     Debug.Log("Not sure what to do here");
                 }
 
-                HTTP.AskServer(new Dictionary<string, string> { {"Request",  "Equip" },
+                HTTP.AskServer(new Dictionary<string, string> { {"request",  "Equip" },
                     {"Equipment Type",  "Weapon" }, {"Equipment Name", selectedItem} });
             }
-            ReloadMenu();
         }
     }
 
