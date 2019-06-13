@@ -200,18 +200,14 @@ public class AvatarController : MonoBehaviour
 		// Smoothly transition to the new rotation
 		Quaternion newRotation = Kinect2AvatarRot(jointRotation, boneIndex);
 
-        var animatorComponent = GetComponent<Animator>();
-
-        if (smoothFactor != 0f)
+		if(smoothFactor != 0f)
         	boneTransform.rotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
-        else
+		else
 			boneTransform.rotation = newRotation;
-        animatorComponent.SetBoneLocalRotation(boneIndex2MecanimMap[boneIndex], boneTransform.rotation);
-
-    }
-
-    // Apply the rotations tracked by kinect to a special joint
-    protected void TransformSpecialBone(uint userId, KinectWrapper.NuiSkeletonPositionIndex joint, KinectWrapper.NuiSkeletonPositionIndex jointParent, int boneIndex, Vector3 baseDir, bool flip)
+	}
+	
+	// Apply the rotations tracked by kinect to a special joint
+	protected void TransformSpecialBone(uint userId, KinectWrapper.NuiSkeletonPositionIndex joint, KinectWrapper.NuiSkeletonPositionIndex jointParent, int boneIndex, Vector3 baseDir, bool flip)
 	{
 		Transform boneTransform = bones[boneIndex];
 		if(boneTransform == null || kinectManager == null)
@@ -428,7 +424,15 @@ public class AvatarController : MonoBehaviour
 		{12, HumanBodyBones.RightHand},
 		{13, HumanBodyBones.RightIndexProximal},
 
-
+		{14, HumanBodyBones.LeftUpperLeg},
+		{15, HumanBodyBones.LeftLowerLeg},
+		{16, HumanBodyBones.LeftFoot},
+		{17, HumanBodyBones.LeftToes},
+		
+		{18, HumanBodyBones.RightUpperLeg},
+		{19, HumanBodyBones.RightLowerLeg},
+		{20, HumanBodyBones.RightFoot},
+		{21, HumanBodyBones.RightToes},
 	};
 	
 	protected readonly Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex> boneIndex2JointMap = new Dictionary<int, KinectWrapper.NuiSkeletonPositionIndex>
