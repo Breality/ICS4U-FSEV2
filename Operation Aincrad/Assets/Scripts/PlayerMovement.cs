@@ -16,11 +16,10 @@ public class PlayerMovement : NetworkBehaviour
     private GameObject cam;
     void Start()
     {
+        charAnim = this.gameObject.GetComponent<Animator>();
+
         if (!isLocalPlayer)
         {
-
-            charAnim = this.gameObject.GetComponent<Animator>();
-
             cam.SetActive(false);
             Destroy(this.GetComponent("AvatarController"));
             Destroy(this.GetComponent<Animator>());
