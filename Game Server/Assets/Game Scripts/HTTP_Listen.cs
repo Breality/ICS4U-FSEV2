@@ -21,8 +21,7 @@ public class HTTP_Listen : MonoBehaviour
     private Dictionary<string, Player> playerDB = new Dictionary<string, Player> { };
     private Dictionary<string, string> playerHash = new Dictionary<string, string> { };
     private string firebaseExtension = "hidden";
-
-
+    
     private string GetRequestPostData(HttpListenerRequest request)
     {
         if (!request.HasEntityBody)

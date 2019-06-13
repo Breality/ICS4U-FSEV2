@@ -75,6 +75,7 @@ public class Equipment : DisplayObject
         } else if(item.transform.parent.name == "Equipments") // weapons
         {
             // display the new hovered item's info
+            selectedItem = item.name;
             weaponSpecs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
             weaponSpecs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
             
@@ -96,6 +97,7 @@ public class Equipment : DisplayObject
 
     public new void Clicked(GameObject item)
     {
+        Debug.Log(selectedItem + " has been clicked, time to switcharoo!");
         if (Time.time - lastClick < 0.5f){ return; }
         lastClick = Time.time;
 
@@ -113,7 +115,7 @@ public class Equipment : DisplayObject
                     Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
                 } 
                 else if (newWeapon.weaponType == 1 && Info.equipped[5] != "None") { // right hand
-                    Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false);
+                    if (Info.equipped[5] != "None") { Info.WeaponsL.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
                     Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
                 } 
                 else if (newWeapon.weaponType == 2)
@@ -124,7 +126,6 @@ public class Equipment : DisplayObject
                 HTTP.AskServer(new Dictionary<string, string> { {"Request",  "Equip" },
                     {"Equipment Type",  "Weapon" }, {"Equipment Name", selectedItem} });
             }
-            ReloadMenu();
         }
     }
 

@@ -83,9 +83,9 @@ public class HTTPClient : MonoBehaviour
                     int EndKeys = response.IndexOf(", Equipment Values:");
                     string equipKeys = response.Substring(startEquip, EndKeys - startEquip);
 
-                    startEquip += ", Equipment Values:".Length;
+                    EndKeys += ", Equipment Values:".Length;
                     int startData = response.IndexOf(", Player Data:");
-                    string equipVals = response.Substring(startEquip, startData - startEquip);
+                    string equipVals = response.Substring(EndKeys, startData - EndKeys);
                     string DataString = response.Substring(startData + ", Player Data:".Length);
 
                     Debug.Log(equipKeys);
@@ -108,11 +108,12 @@ public class HTTPClient : MonoBehaviour
                         {"Items", new Dictionary<string, string> { } },
                         {"Clothing", new Dictionary<string, string> { } },
                     };
+
                     for (int a=0; a<3; a++)
                     {
-                        for (int i = 0; i < loadedKeys[0].Length; i++)
+                        for (int i = 0; i < loadedKeys[a].Length; i++)
                         {
-                            loadedEquip[new string[] { "Clothing", "Weapons", "Items" }[i]][loadedKeys[0][i]] = loadedVals[0][i];
+                            loadedEquip[new string[] { "Clothing", "Weapons", "Items" }[a]][loadedKeys[a][i]] = loadedVals[a][i];
                         }
                     }
                     
