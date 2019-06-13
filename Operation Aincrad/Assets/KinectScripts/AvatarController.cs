@@ -133,11 +133,11 @@ public class AvatarController : MonoBehaviour
 		
 		if(offsetNode != null)
 		{
-			offsetNode.transform.rotation = Quaternion.identity;
+			offsetNode.transform.localRotation = Quaternion.identity;
 		}
 		else
 		{
-			transform.rotation = Quaternion.identity;
+			transform.localRotation = Quaternion.identity;
 		}
 		
 		// For each bone that was defined, reset to initial position.
@@ -145,7 +145,7 @@ public class AvatarController : MonoBehaviour
 		{
 			if (bones[i] != null)
 			{
-				bones[i].rotation = initialRotations[i];
+				bones[i].localRotation = initialRotations[i];
 			}
 		}
 		
@@ -158,13 +158,13 @@ public class AvatarController : MonoBehaviour
 		// Restore the offset's position and rotation
 		if(offsetNode != null)
 		{
-			offsetNode.transform.position = initialPosition;
-			offsetNode.transform.rotation = initialRotation;
+			offsetNode.transform.localPosition = initialPosition;
+			offsetNode.transform.localRotation = initialRotation;
 		}
 		else
 		{
-			transform.position = initialPosition;
-			transform.rotation = initialRotation;
+			transform.localPosition = initialPosition;
+			transform.localRotation = initialRotation;
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class AvatarController : MonoBehaviour
 		// reset the models position
 		if(offsetNode != null)
 		{
-			offsetNode.transform.rotation = initialRotation;
+			offsetNode.transform.localRotation = initialRotation;
 		}
 		
 		// re-calibrate the position offset
@@ -201,9 +201,9 @@ public class AvatarController : MonoBehaviour
 		Quaternion newRotation = Kinect2AvatarRot(jointRotation, boneIndex);
 
 		if(smoothFactor != 0f)
-        	boneTransform.rotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
+        	boneTransform.localRotation = Quaternion.Slerp(boneTransform.localRotation, newRotation, smoothFactor * Time.deltaTime);
 		else
-			boneTransform.rotation = newRotation;
+			boneTransform.localRotation = newRotation;
 	}
 	
 	// Apply the rotations tracked by kinect to a special joint
@@ -237,9 +237,9 @@ public class AvatarController : MonoBehaviour
 			Quaternion newRotation = Kinect2AvatarRot(jointRotation, boneIndex);
 			
 			if(smoothFactor != 0f)
-				boneTransform.rotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
+				boneTransform.localRotation = Quaternion.Slerp(boneTransform.rotation, newRotation, smoothFactor * Time.deltaTime);
 			else
-				boneTransform.rotation = newRotation;
+				boneTransform.localRotation = newRotation;
 		}
 		
 	}
@@ -267,19 +267,19 @@ public class AvatarController : MonoBehaviour
 			
 			if(offsetRelativeToSensor)
 			{
-				Vector3 cameraPos = Camera.main.transform.position;
+				Vector3 cameraPos = Camera.main.transform.localPosition;
 				
-				float yRelToAvatar = (offsetNode != null ? offsetNode.transform.position.y : transform.position.y) - cameraPos.y;
+				float yRelToAvatar = (offsetNode != null ? offsetNode.transform.localPosition.y : transform.localPosition.y) - cameraPos.y;
 				Vector3 relativePos = new Vector3(trans.x * moveRate, yRelToAvatar, trans.z * moveRate);
 				Vector3 offsetPos = cameraPos + relativePos;
 				
 				if(offsetNode != null)
 				{
-					offsetNode.transform.position = offsetPos;
+					offsetNode.transform.localPosition = offsetPos;
 				}
 				else
 				{
-					transform.position = offsetPos;
+					transform.localPosition = offsetPos;
 				}
 			}
 		}
@@ -298,8 +298,8 @@ public class AvatarController : MonoBehaviour
 	{
 		// make OffsetNode as a parent of model transform.
 		offsetNode = new GameObject(name + "Ctrl") { layer = transform.gameObject.layer, tag = transform.gameObject.tag };
-		offsetNode.transform.position = transform.position;
-		offsetNode.transform.rotation = transform.rotation;
+		offsetNode.transform.localPosition = transform.localPosition;
+		offsetNode.transform.localRotation = transform.localRotation;
 		offsetNode.transform.parent = transform.parent;
 		
 		transform.parent = offsetNode.transform;
@@ -327,24 +327,24 @@ public class AvatarController : MonoBehaviour
 		// save the initial rotation
 		if(offsetNode != null)
 		{
-			initialPosition = offsetNode.transform.position;
-			initialRotation = offsetNode.transform.rotation;
+			initialPosition = offsetNode.transform.localPosition;
+			initialRotation = offsetNode.transform.localRotation;
 			
-			offsetNode.transform.rotation = Quaternion.identity;
+			offsetNode.transform.localRotation = Quaternion.identity;
 		}
 		else
 		{
-			initialPosition = transform.position;
-			initialRotation = transform.rotation;
+			initialPosition = transform.localPosition;
+			initialRotation = transform.localRotation;
 			
-			transform.rotation = Quaternion.identity;
+			transform.localRotation = Quaternion.identity;
 		}
 		
 		for (int i = 2; i < bones.Length; i++)
 		{
 			if (bones[i] != null)
 			{
-				initialRotations[i] = bones[i].rotation; // * Quaternion.Inverse(initialRotation);
+				initialRotations[i] = bones[i].localRotation; // * Quaternion.Inverse(initialRotation);
 				initialLocalRotations[i] = bones[i].localRotation;
 			}
 		}
@@ -352,11 +352,11 @@ public class AvatarController : MonoBehaviour
 		// Restore the initial rotation
 		if(offsetNode != null)
 		{
-			offsetNode.transform.rotation = initialRotation;
+			offsetNode.transform.localRotation = initialRotation;
 		}
 		else
 		{
-			transform.rotation = initialRotation;
+			transform.localRotation = initialRotation;
 		}
 	}
 	
@@ -371,7 +371,7 @@ public class AvatarController : MonoBehaviour
 		if (offsetNode != null)
 		{
 			// Grab the total rotation by adding the Euler and offset's Euler.
-			Vector3 totalRotation = newRotation.eulerAngles + offsetNode.transform.rotation.eulerAngles;
+			Vector3 totalRotation = newRotation.eulerAngles + offsetNode.transform.localRotation.eulerAngles;
 			// Grab our new rotation.
 			newRotation = Quaternion.Euler(totalRotation);
 		}
