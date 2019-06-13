@@ -12,8 +12,25 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     // universal info
     public Dictionary<string, int> goldShop = new Dictionary<string, int> {
-        {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 }, {"Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
-    }; 
+        {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 },
+        { "Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
+    };
+
+
+    public Dictionary<string, float[]> itemSpecifications = new Dictionary<string, float[]> { // weapon: attack, pierce and range, hand positioning
+        { "Ancient Sword", new float[] { 10f, 5f, 1f, 0 } },
+        { "Orochimaru", new float[] { 10f, 5f, 1f, 1 } },
+        { "Ogre Sword", new float[] { 10f, 5f, 1f, 1 } },
+        { "Silver Rapier", new float[] { 30f, 5f, 10f, 0 } },
+        { "Sword of the Abyss", new float[] { 40f, 51f, 0.75f, 0 } },
+        { "Templar Sword", new float[] { 10f, 5f, 1f, 0 } },
+        { "Curved Sword", new float[] { 10f, 5f, 1f, 0 } },
+        { "Dark Sword", new float[] { 10f, 5f, 1f, 0 } },
+        { "Dothraki Sword", new float[] { 10f, 5f, 1f, 1 } },
+        { "Elucidator", new float[] { 10f, 5f, 1f, 1 } },
+        { "Long Sword", new float[] { 10f, 5f, 1f, 2 } },
+        { "Shark Staff", new float[] { 100f, 50f, 1.5f, 1 } }
+    };
 
     // basic info
     public string username;
@@ -22,7 +39,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     // equipment in {name : count}
     public Dictionary<string, List<string>> inventory = new Dictionary<string, List<string>> {
-        {"Weapons", new List<string> { "Ancient Sword", "Silver Rapier", "Sword of the Abyss" } },
+        {"Weapons", new List<string> { "Ancient Sword", "Silver Rapier", "Sword of the Abyss", "Rusty Sword" } },
         {"Helmets", new List<string> { } },
         {"Armour", new List<string> { } },
         {"Boots", new List<string> { } },
