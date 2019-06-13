@@ -612,8 +612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 1794898300
 --- !u!1 &1225491715193278053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,8 +2128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 380644435
 --- !u!1 &3414279033581845380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,8 +2496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2038799943
 --- !u!1 &3653082426056383141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,8 +3602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 3400781301
 --- !u!114 &1248905865486629790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3648,7 +3648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroredMovement: 0
   verticalMovement: 0
-  smoothFactor: 5
+  smoothFactor: 0
   offsetRelativeToSensor: 0
 --- !u!114 &3226417198015247875
 MonoBehaviour:
@@ -4659,8 +4659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 2909209452
 --- !u!1 &5003697176919081857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,8 +5697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 3218471848
 --- !u!1 &6101669691300605290
 GameObject:
   m_ObjectHideFlags: 0
@@ -7701,8 +7701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 1880ac2c839a35d43aa3e9b12ed9eece
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 475363615
 --- !u!114 &1666098324366211362
 MonoBehaviour:
   m_ObjectHideFlags: 0
