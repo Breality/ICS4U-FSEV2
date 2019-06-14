@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -67,29 +70,66 @@ public class Starter : MonoBehaviour // the client version: Listens to messages 
     }
     */
 
-    void Test()
+    public async Task TimeoutAfter(Task task, int millisecondsTimeout)
     {
-        Debug.Log("Starting");
-        IPEndPoint ep = new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005);
+        if (task == await Task.WhenAny(task, Task.Delay(millisecondsTimeout)))
+            await task;
+        else
+            throw new TimeoutException();
+    }
 
-        string i = "Helllooo";
-        UdpClient client = new UdpClient();
-
-        client.Connect(new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005));
-
+    UdpClient client;
+    IPEndPoint ep = new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005);
+    void SendMessage()
+    {
         //Byte[] buffer = null;
-        byte[] buffer = Encoding.ASCII.GetBytes(i);
+        string message = Encode_XML(new string[] {"no responses" }, typeof(string[]));
+        byte[] buffer = Encoding.ASCII.GetBytes(message);
         client.Send(buffer, buffer.Length); //, ep);
 
-        Debug.Log("Message sent>?");
-        byte[] b2 = client.Receive(ref ep);
-        string str2 = System.Text.Encoding.ASCII.GetString(b2, 0, b2.Length);
-        Debug.Log("Recieved: " + str2);
+        Debug.Log("Message: " + message +  " has been sent");
+
+        
+        // if you are expecting a message, include this: 
+        //byte[] b2 = client.Receive(ref ep);
+        //string str2 = System.Text.Encoding.ASCII.GetString(b2, 0, b2.Length);
+        //Debug.Log("Recieved: " + str2);
     }
 
     private void Start()
     {
-        Thread thread = new Thread(Test);
-        thread.Start();
+        client = new UdpClient();
+        client.Connect(new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005));
+        Debug.Log("Setup is done");
+    }
+    
+
+    float lastClick = 0;
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.T) && Time.time - lastClick > 0.5f)
+        {
+            lastClick = Time.time;
+            Debug.Log("You have clicked T");
+
+            for (int i=0; i<100; i++)
+            {
+                Thread newThread = new Thread(SendMessage);
+                newThread.Start();
+            }
+            
+
+        }
+    }
+
+    public static string Encode_XML(object obj_tohide, Type required_type)
+    { // Given an object that can be serilized and the type it is
+        XmlSerializer serializer = new XmlSerializer(required_type);
+        StringWriter sw = new StringWriter();
+        XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+        serializer.Serialize(sw, obj_tohide, ns);
+        string converted_string = sw.ToString();
+
+        return converted_string;
     }
 }

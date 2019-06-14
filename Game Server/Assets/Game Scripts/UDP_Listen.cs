@@ -15,7 +15,7 @@ public class UDP_Listen : MonoBehaviour
 
     private void StartListener() // server version, listens to messages and replies if needed to
     {
-        Debug.Log("Work is starting");
+        Debug.Log("UDP is starting");
         UdpClient listener = new UdpClient(listenPort);
         IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
 
@@ -56,7 +56,7 @@ public class UDP_Listen : MonoBehaviour
         }
         catch (SocketException e)
         {
-            Console.WriteLine(e);
+            Debug.Log(e);
         }
         finally
         {
@@ -64,7 +64,7 @@ public class UDP_Listen : MonoBehaviour
         }
     }
 
-    void start()
+    void Start()
     {
         Debug.Log("Starting");
         Thread thread = new Thread(StartListener);
