@@ -171,10 +171,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 2
 =======
       value: 0
 >>>>>>> 9edbef873ecfed8b008e1f4af28489795fda7e66
+=======
+      value: 0
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
       objectReference: {fileID: 0}
     - target: {fileID: 860824094756720048, guid: e7fea6ebbd025a946baf9b22b9908042,
         type: 3}
@@ -193,6 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7fea6ebbd025a946baf9b22b9908042, type: 3}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &1824624139
 PrefabInstance:
@@ -265,6 +270,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 7660f1139f181994c9d3633333422155, type: 3}
 =======
 >>>>>>> 9edbef873ecfed8b008e1f4af28489795fda7e66
+=======
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
 --- !u!1001 &1970525730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,10 +323,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 3
 =======
       value: 1
 >>>>>>> 9edbef873ecfed8b008e1f4af28489795fda7e66
+=======
+      value: 1
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
       objectReference: {fileID: 0}
     - target: {fileID: 2170396427796653878, guid: b943972feccf99f47a0c1b8297ec5907,
         type: 3}
@@ -338,6 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b943972feccf99f47a0c1b8297ec5907, type: 3}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &2080440207
 PrefabInstance:
@@ -414,6 +426,8 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ed9879f074045244b82af418867fa89, type: 3}
 =======
+=======
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
 --- !u!4 &2138117688242475756
 Transform:
   m_ObjectHideFlags: 0
@@ -685,6 +699,10 @@ GameObject:
   - component: {fileID: 8102771004440558358}
   - component: {fileID: 8102771004440558359}
   - component: {fileID: 8102771004440558356}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 8102771004440558360}
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -726,11 +744,33 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: 
   transport: {fileID: 8102771004440558356}
+<<<<<<< HEAD
   networkAddress: 209.182.232.50
+=======
+  networkAddress: 192.168.2.30
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   maxConnections: 4
   playerPrefab: {fileID: 7638702965854887741, guid: 115f4ae8b1bb08b4c877924724ddb91f,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
+<<<<<<< HEAD
 >>>>>>> 9edbef873ecfed8b008e1f4af28489795fda7e66
+=======
+--- !u!114 &8102771004440558360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102771004440558357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb

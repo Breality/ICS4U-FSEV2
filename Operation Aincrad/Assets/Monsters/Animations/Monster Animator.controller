@@ -17,7 +17,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
+<<<<<<< HEAD
   m_TransitionDuration: 0.25
+=======
+  m_TransitionDuration: 0.11366561
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   m_TransitionOffset: 0
   m_ExitTime: 0.9032258
   m_HasExitTime: 1
@@ -73,13 +77,21 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
+=======
+    m_Controller: {fileID: 0}
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
+=======
+    m_Controller: {fileID: 0}
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -134,9 +146,15 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
+<<<<<<< HEAD
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.8846154
+=======
+  m_TransitionDuration: 0.11066449
+  m_TransitionOffset: 0
+  m_ExitTime: 0.88461536
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
