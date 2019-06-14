@@ -8,6 +8,15 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Menu Toggle Class
+ * Description: A class that allows the user to navigate the UI menu.
+ */
+
+
 public class MenuToggle : MonoBehaviour
 {
     // ------------- menu toggling -------------
@@ -17,28 +26,34 @@ public class MenuToggle : MonoBehaviour
     public GameObject option;
     public GameObject Camera;
 
+    //When the buttons are animating
     bool inTranslation = false;
+
+    //If an option is open
     bool isOpen = false;
+
+    //For the current menu option the user is on
     private int cur = 0;
-
-    private List<GameObject> ButtonParents = new List<GameObject> { }; // buttons we care about depending on what is being displayed, parents are used to allow dynamic changes to allowed buttons
-
-    private string[] order = new string[] { "Start", "Profile", "Friends", "Map", "Settings" };
-    private string[][] buttons = new string[][] {
-        new string[] { },
-        new string[] { "Stats", "Equipment", "Items", "Titles" }, // finish all these menus today (Tuesday)
-        new string[] { "Create Party", "Join Party" , "Friends", "Messages"}, // finish all these menus after battle basics are done
-        new string[] { "Maps"}, // later
-        new string[] { "Music"}, // later
-    };
-
-
-    //private Dictionary<string, DisplayObject> ScriptReferences = new Dictionary<string, DisplayObject> { }; // set at start
-    private Dictionary<string, Equipment> ScriptReferences = new Dictionary<string, Equipment> { };
-
     private int curSecondaryMenu = -1;
     float transitionConstant = 0.09f;
 
+    private List<GameObject> ButtonParents = new List<GameObject> { }; // buttons we care about depending on what is being displayed, parents are used to allow dynamic changes to allowed buttons
+
+    //Menu Buttons
+    private string[] order = new string[] { "Start", "Profile", "Friends", "Map", "Settings" };
+    private string[][] buttons = new string[][] {
+        new string[] { },
+        new string[] { "Stats", "Equipment", "Items", "Titles" }, 
+        new string[] { "Create Party", "Join Party" , "Friends", "Messages"}, 
+        new string[] { "Maps"}, 
+        new string[] { "Music"}, 
+    };
+
+    //To point at each separate scripts
+    private Dictionary<string, Equipment> ScriptReferences = new Dictionary<string, Equipment> { };
+
+    
+    //Shows the correct menu options
     private void ButtonMode(Transform button, bool mode)
     {
         if (mode)
@@ -82,7 +97,9 @@ public class MenuToggle : MonoBehaviour
 
 
 
-    public IEnumerator Toggle(string menuName) // scrolls through the menu options
+
+    //Scrolls through through animations
+    public IEnumerator Toggle(string menuName) 
     {
         int dir = Array.IndexOf(order, menuName) - cur; 
         float transitionTime = 0.5f * Mathf.Abs(dir);
