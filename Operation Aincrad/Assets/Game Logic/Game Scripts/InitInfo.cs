@@ -16,6 +16,7 @@ public class InitInfo : NetworkBehaviour
     private ShopToggle stMan1, stMan2;
     private InfoCenter inCen;
     private HTTPClient handlerMan;
+    string userName;
     void Awake()
     {
         inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
@@ -39,11 +40,15 @@ public class InitInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             Debug.Log("HHHHEHEHEHHEHE");
-            string userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-            this.transform.parent.name = userName;
-            Debug.Log(userName);
-            CmdSendState(userName);
+            userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+
         }
+    }
+    private void Update()
+    {
+        this.transform.parent.name = userName;
+        Debug.Log(userName);
+        CmdSendState(userName);
     }
     [Command]
     public void CmdSendState(string userName)
