@@ -53,7 +53,8 @@ public class InitInfo : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveState(string userName)
     {
-        this.transform.parent.name = userName;
+        if(!isLocalPlayer)
+            this.transform.parent.name = userName;
         
     }
 
