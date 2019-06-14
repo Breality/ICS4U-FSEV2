@@ -48,7 +48,7 @@ public class InitInfo : NetworkBehaviour
     public void CmdSendName(string username)
     {
         RpcReceiveName(username);
-        this.transform.parent = username;
+        this.transform.parent.name = username;
     }
     [ClientRpc]
     public void RpcReceiveName(string username)
