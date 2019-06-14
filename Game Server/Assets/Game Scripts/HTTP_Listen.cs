@@ -100,42 +100,49 @@ public class HTTP_Listen : MonoBehaviour
         }
 
         // debugging purposes
-        else if (data["request"].Equals("Time compare"))
+        else if (data["request"].Equals("time compare"))
         {
             Debug.Log(Time.time - float.Parse(data["timer"]));
         }
 
         // purchasing stuff
-        else if (data["request"].Equals("purchase") && data.ContainsKey("Item Type") && data.ContainsKey("Item Name"))
+        else if (data["request"].Equals("purchase") && data.ContainsKey("item type") && data.ContainsKey("item name"))
         {
-            game.Purchase(data["token"], data["Item type"], data["Item Name"]);
+            game.Purchase(data["token"], data["item type"], data["item name"]);
         }
 
         // equipment changes
-        else if (data["request"].Equals("Equip") && data.ContainsKey("Equipment Type") && data.ContainsKey("Equipment Name"))
+        else if (data["request"].Equals("equip") && data.ContainsKey("equipment type") && data.ContainsKey("equipment name"))
         {
-            Player player = playerDB[data["Token"]];
-            if (!Array.Exists(player.GetWeapons(), element => element == data["Equipment Name"])){ // check if they own the item
+            Player player = playerDB[data["token"]];
+            if (!Array.Exists(player.GetWeapons(), element => element == data["equipment name"])){ // check if they own the item
                 ConstructResponse(context, "You do not own this item");
                 return;
             }
        
-            if (data["Equipment Type"].Equals("Weapon"))
+            if (data["equipment type"].Equals("Weapon"))
             {
                 Weapon item = new Weapon(null, "Not important", game.equipments["Weapons"][data["Equipment Name"]]);
                 if (item.weaponType == 0)
                 {
-                    player.ChangeEquipped(4, data["Equipment Name"]);
+                    player.ChangeEquipped(4, data["equipment name"]);
                 }
                 else if (item.weaponType == 1)
                 {
-                    player.ChangeEquipped(5, data["Equipment Name"]);
+                    player.ChangeEquipped(5, data["equipment name"]);
                 }
             }
             else
             {
-                int correspondingIndex = (new Dictionary<string, int> { })[data["Equipment Type"]];
+                int correspondingIndex = (new Dictionary<string, int> { })[data["equipment type"]];
             }
+        }
+
+        // asking for stats
+        else if (data["request"].Equals("stats")){ // overall max stats
+            DBPlayer fakeDB = new DBPlayer(playerDB[data["token"]], "unimportant hash");
+            string xmlString = Encode_XML(fakeDB, typeof(DBPlayer));
+            ConstructResponse(context, xmlString);
         }
 
         else // they did not match any of the criteria
@@ -194,12 +201,12 @@ public class HTTP_Listen : MonoBehaviour
 
         return sBuilder.ToString();
     }
-    public static string Encode_XML(object obj_tohide, Type required_type)
+    public static string Encode_XML(object obj, Type required_type)
     { // Given an object that can be serilized and the type it is
         XmlSerializer serializer = new XmlSerializer(required_type);
         StringWriter sw = new StringWriter();
         XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-        serializer.Serialize(sw, obj_tohide, ns);
+        serializer.Serialize(sw, obj, ns);
         string converted_string = sw.ToString();
 
         return converted_string;

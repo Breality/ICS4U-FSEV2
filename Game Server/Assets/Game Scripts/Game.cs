@@ -13,6 +13,8 @@ public class Game : MonoBehaviour
     public TextAsset conditionList;
 
     private Dictionary<string, Player> players = new Dictionary<string, Player> { };
+    private Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
+
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
 
@@ -33,11 +35,24 @@ public class Game : MonoBehaviour
     {
 
     }
-
+    
+    public int[] BattleStats(string token) // returns the player [health, mana, stamina, 0 or 1], last parameter is 1 if they should send a request for player stats which would rebuild max hp, money, etc
+    {
+        Player player = players[token];
+        if (player == null)
+        {
+            return new int[] { -1, -1, -1, -1 };
+        }
+        int[] battleStats = player.GetStats();
+        int[] returnData = new int[4] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0 };
+        updatePlayer[player] = false;
+        return returnData;
+    }
 
     // -------------- Player interactions --------------
     public void PlayerKilled(Player murderer, Player murdered)
     {
+        // give murderer mulah
 
     }
 
@@ -47,19 +62,22 @@ public class Game : MonoBehaviour
         Weapon weapon = user.CheckWeapon(weaponName);
         if (weapon != null)
         {
-            if (!weapon.isAttacking())
+            if (!weapon.isAttacking()) // treat this as a new slash and take stamina/mana  
             {
                 weapon.Attack(null, user.GetCharge());
             }
 
-            bool killed = hit.TakeDamage(weapon);
-            if (killed)
+            if (weapon.isAttacking()) // this is only false if their attack ran out but the cooldown is still on 
             {
-                PlayerKilled(user, hit);
-                return "You killed them!";
+                bool killed = hit.TakeDamage(weapon);
+                if (killed)
+                {
+                    PlayerKilled(user, hit);
+                    return "You killed them!";
+                }
+                return "Damage dealt";
             }
-
-            return "Damage dealt";
+            return "Cooldown is in effect";
         }
         return "Weapon did not exist";
     }

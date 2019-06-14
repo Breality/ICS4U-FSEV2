@@ -10,15 +10,13 @@ using UnityEngine;
 public class UDP_Listen : MonoBehaviour
 {
     public Game game;
-
+    
     private const int listenPort = 3005;
-
     private void StartListener() // server version, listens to messages and replies if needed to
     {
         Debug.Log("UDP is starting");
         UdpClient listener = new UdpClient(listenPort);
         IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
-
         try
         {
             while (true)
@@ -33,17 +31,18 @@ public class UDP_Listen : MonoBehaviour
                 StringReader open_string = new StringReader(message);
                 string[] parameters = (string[])serilize_object.Deserialize(open_string);
 
-                string returnString = null;
+                string returnString = null; // the string that we want to return if that is ever the case
                 if (parameters.Length >= 2)
                 {
                     if (parameters[1].Equals("Player Hit") && parameters.Length == 4) // token, "Player Hit", player name, left hand or right hand (0 or 1)
                     {
                         game.WeaponHit(parameters[0], parameters[2], parameters[3]);
                     }
-                }
-                else if (parameters.Length == 1 && parameters[0] == "testing this thing")
-                {
-                    returnString = "there ya go";
+                    else if (parameters[1] == "Stat Update") // client asking for their health, mana and stamina every .25 seconds
+                    {
+                        int[] stats = game.BattleStats(parameters[0]);
+                        returnString = HTTP_Listen.Encode_XML(stats, typeof(int[]));
+                    }
                 }
 
                 if (returnString != null)

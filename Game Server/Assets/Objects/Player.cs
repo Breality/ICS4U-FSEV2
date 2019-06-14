@@ -144,12 +144,12 @@ public class Player
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------
-    private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
-
     // private overload called by all the public overloads
     private bool TakeDamage(int damage) // takes normal damage, applies any conditional bonuses 
     {
-        hp[1] -= (int) (damage* conditionStats["Damage Multiplier"]);
+        int dam = (int)(damage * conditionStats["Damage Multiplier"]);
+        hp[1] -= dam;
+        Debug.Log(Username + " just took " + dam + " damage and has " + hp[1] + " health left");
         if (hp[1] <= 0)
         {
             return true;
@@ -158,10 +158,12 @@ public class Player
     }
 
     // This is overloaded for a weapon attack
+    private Dictionary<Weapon, float> lastHit = new Dictionary<Weapon, float> { };
     public bool TakeDamage(Weapon weapon) 
     {
-        if (weapon.isAttacking())
+        if (weapon.isAttacking() && (!lastHit.ContainsKey(weapon) || Time.time - lastHit[weapon] > 0.2f))
         {
+            lastHit[weapon] = Time.time;
             foreach (Condition cond in weapon.getEffects(this))
             {
                 currentConditions.Add(cond); // put a copy of the condition in (the function gets us newly made copies)
