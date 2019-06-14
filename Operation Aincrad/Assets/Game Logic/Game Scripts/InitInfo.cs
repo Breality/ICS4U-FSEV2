@@ -42,12 +42,17 @@ public class InitInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-            //CmdSendName(this.transform.parent.name);
+            CmdSendName(userName);
         }
     }
     private void Update()
     {
         this.transform.parent.name = userName;
+    }
+    [Command]
+    void CmdSendName(string user)
+    {
+        userName = user;
     }
 
 }
