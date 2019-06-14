@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class InitInfo : MonoBehaviour
+using Mirror;
+public class InitInfo : NetworkBehaviour
 {
     [SerializeField]
     private GameObject WeaponsLeft, WeaponsRight;
@@ -26,8 +27,11 @@ public class InitInfo : MonoBehaviour
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
         jsL.sellers = GameObject.Find("Sellers");
 
+        HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         stMan1.info = stMan2.info = inCen;
-        stMan1.HTTP = stMan2.HTTP = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
+        stMan1.HTTP = stMan2.HTTP = handlerMan;
+        inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip(),this.transform);
 
     }
+
 }

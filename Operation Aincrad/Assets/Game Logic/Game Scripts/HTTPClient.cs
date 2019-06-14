@@ -27,6 +27,8 @@ public class HTTPClient : MonoBehaviour
 
     private bool debounce = true;
     private string token;
+    private DBPlayer loadedData;
+    private Dictionary<string, Dictionary<string, string>> loadedEquip;
     [SerializeField]
     private Mirror.NetworkManager netManager;
     // Listen for buttons
@@ -103,9 +105,9 @@ public class HTTPClient : MonoBehaviour
 
                     serilize_object = new XmlSerializer(typeof(DBPlayer));
                     open_string = new StringReader(DataString);
-                    DBPlayer loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
+                    loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
 
-                    Dictionary<string, Dictionary<string, string>> loadedEquip = new Dictionary<string, Dictionary<string, string>> {
+                    loadedEquip = new Dictionary<string, Dictionary<string, string>> {
                         {"Weapons", new Dictionary<string, string> { } },
                         {"Items", new Dictionary<string, string> { } },
                         {"Clothing", new Dictionary<string, string> { } },
@@ -120,7 +122,6 @@ public class HTTPClient : MonoBehaviour
                     }
                     Menu.SetActive(false);
                     netManager.StartClient();
-                    infoCenter.LogIn(loadedData, loadedEquip);
                 }catch (Exception e)
                 {
                     Debug.Log(e.ToString());
@@ -177,5 +178,13 @@ public class HTTPClient : MonoBehaviour
     void OnApplicationQuit()
     {
         AskServer(new Dictionary<string, string> { { "request", "logout"} });
+    }
+    public DBPlayer GetLoadedD()
+    {
+        return loadedData;
+    }
+    public Dictionary<string, Dictionary<string, string>> GetLoadedEquip()
+    {
+        return loadedEquip;
     }
 }

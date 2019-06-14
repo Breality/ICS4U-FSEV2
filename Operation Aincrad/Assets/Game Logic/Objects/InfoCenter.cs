@@ -73,17 +73,16 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     }
 
-    public void LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments)
+    public void LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments, Transform character)
     {
         // equipment info from the server's text file
         equipmentConstructor = equipments;
 
         // main data
         username = player.username;
+        character.name = username;
 
-        Transform cur_User = GameObject.Find("AsunaFinal-WithCam").transform;
-        cur_User.name = username;
-
+        Debug.Log(NameText);
         NameText.text = username;
 
         gold = player.gold;
