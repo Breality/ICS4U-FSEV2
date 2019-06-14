@@ -53,6 +53,7 @@ public class InitInfo : NetworkBehaviour
     void CmdSendName(string user)
     {
         userName = user;
+        this.transform.parent.name = user;
     }
 
 }

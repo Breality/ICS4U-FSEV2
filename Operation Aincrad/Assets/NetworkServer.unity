@@ -120,6 +120,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &589605996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 84798562775099294, guid: 1f4b5a346dbd8ae40b32c0787391634c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1446599811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &589605997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589605996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
 --- !u!1001 &846974009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,6 +291,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 84798562775099292, guid: 1f4b5a346dbd8ae40b32c0787391634c,
+        type: 3}
+      propertyPath: networkAddress
+      value: 192.182.2.30
+      objectReference: {fileID: 0}
+    - target: {fileID: 84798562775099292, guid: 1f4b5a346dbd8ae40b32c0787391634c,
+        type: 3}
+      propertyPath: playerSpawnMethod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 84798562775099293, guid: 1f4b5a346dbd8ae40b32c0787391634c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,16 +355,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 84798562775099292, guid: 1f4b5a346dbd8ae40b32c0787391634c,
-        type: 3}
-      propertyPath: networkAddress
-      value: 209.182.232.50
-      objectReference: {fileID: 0}
-    - target: {fileID: 84798562775099292, guid: 1f4b5a346dbd8ae40b32c0787391634c,
-        type: 3}
-      propertyPath: playerSpawnMethod
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4b5a346dbd8ae40b32c0787391634c, type: 3}
