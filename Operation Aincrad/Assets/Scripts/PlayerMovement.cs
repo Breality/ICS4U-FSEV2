@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * PlayerMovement
+ * Description: Takes in joystick movement so the character can move
+ */
 public class PlayerMovement : NetworkBehaviour
 {
     // Start is called before the first frame update
@@ -16,10 +23,13 @@ public class PlayerMovement : NetworkBehaviour
     private GameObject cam;
     void Start()
     {
+        //This plays the player animations like running or walking or idle
         charAnim = this.gameObject.GetComponent<Animator>();
-
+        
+        //If the new spawned object is not local (someone else on multiplayer), these scrips are useless
         if (!isLocalPlayer)
         {
+            //Destroy these scripts so they don't interfere with the current player playing
             cam.SetActive(false);
             Destroy(this.GetComponent("AvatarController"));
             Destroy(this.GetComponent<Animator>());
@@ -31,22 +41,17 @@ public class PlayerMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*string[] names = Input.GetJoystickNames();
-        Debug.Log("Connected Joysticks:");
-        foreach (string stick in names)
-        {
-            Debug.Log("Joystick " + stick);
-        }*/
-        //Debug.Log(Input.GetButton("Fire1"));
+
         if (!isLocalPlayer)
             return;
 
+        //Gets the joystick input
         vx = Mathf.Abs(Input.GetAxis("R_Horizontal"))>= deadZone ? Input.GetAxis("R_Horizontal"):0;
         vy = Mathf.Abs(Input.GetAxis("R_Vertical")) >= deadZone ? Input.GetAxis("R_Vertical") : 0;
         rot_y = Mathf.Abs(Input.GetAxis("L_Horizontal")) >= deadZone ? Input.GetAxis("L_Horizontal") : 0;
 
 
-
+        //If the player wants to move faster
         if (Input.GetButton("Sprint"))
         {
             vx *= 2;
@@ -57,16 +62,18 @@ public class PlayerMovement : NetworkBehaviour
         {
             rot_y *= 2;
         }
+
+        //Moves the player and updates their rotation
         this.transform.Rotate(0, rot_y*rotation_Speed, 0);
         this.transform.GetComponent<Rigidbody>().position += this.transform.right * playerMovSpeed*vx;
         this.transform.GetComponent<Rigidbody>().position += this.transform.forward * playerMovSpeed * vy;
-        //Debug.Log(rot_y);
-        //Debug.Log(vx + " " + vy);
+        
+        //Set the animations for the player
         charAnim.SetFloat("Vx", vx);
         charAnim.SetFloat("Vy", vy);
 
 
-        //Debug.Log(Input.GetButton("Forward"));
+        
 
 
 
