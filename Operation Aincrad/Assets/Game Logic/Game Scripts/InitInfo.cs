@@ -10,8 +10,11 @@ public class InitInfo : MonoBehaviour
     private TMP_Text nameText;
     [SerializeField]
     private TextMesh moneyText;
+<<<<<<< HEAD
     [SerializeField]
     private ShopToggle stMan1, stMan2;
+=======
+>>>>>>> parent of e48984f... Conflict
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,6 +23,7 @@ public class InitInfo : MonoBehaviour
         inCen.WeaponsL = WeaponsLeft;
         inCen.WeaponsR = WeaponsRight;
         inCen.NameText = nameText;
+<<<<<<< HEAD
 
 
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
@@ -27,5 +31,7 @@ public class InitInfo : MonoBehaviour
 
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
+=======
+>>>>>>> parent of e48984f... Conflict
     }
 }
