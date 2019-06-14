@@ -61,6 +61,7 @@ public class DBPlayer
 
         clothing = player.GetClothing();
         weapons = player.GetWeapons();
+        Debug.Log("Weapons initiated with:" + weapons.Length);
         items = player.GetItems();
         equipped = player.GetEquipped();
 

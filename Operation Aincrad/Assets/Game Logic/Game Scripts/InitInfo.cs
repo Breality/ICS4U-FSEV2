@@ -21,6 +21,7 @@ public class InitInfo : MonoBehaviour
         inCen.WeaponsR = WeaponsRight;
         inCen.NameText = nameText;
 
+
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
         jsL.sellers = GameObject.Find("Sellers");
 

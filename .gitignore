@@ -34,3 +34,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Operation Aincrad/Assets/Game Logic/Game Scripts/InitInfo.cs
+Operation Aincrad/Assets/Monsters/Animations/Monster Animator.controller
+Operation Aincrad/Assets/Monsters/Monster.cs
+Operation Aincrad/Assets/Scenes/Monster.unity
+Operation Aincrad/Assets/Scenes/NetworkServer.unity
