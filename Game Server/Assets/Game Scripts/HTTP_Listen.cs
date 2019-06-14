@@ -97,15 +97,18 @@ public class HTTP_Listen : MonoBehaviour
         else if (data["request"].Equals("logout") && data.ContainsKey("token"))
         {
             StartCoroutine(Logout(context, data["token"]));
-        }else if (data["request"].Equals("Time compare"))
+        }
+
+        // debugging purposes
+        else if (data["request"].Equals("Time compare"))
         {
             Debug.Log(Time.time - float.Parse(data["timer"]));
         }
 
         // purchasing stuff
-        else if (data["request"].Equals("") && data.ContainsKey("token"))
+        else if (data["request"].Equals("purchase") && data.ContainsKey("Item Type") && data.ContainsKey("Item Name"))
         {
-            StartCoroutine(Logout(context, data["token"]));
+            game.Purchase(data["token"], data["Item type"], data["Item Name"]);
         }
 
         // equipment changes
