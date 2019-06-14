@@ -254,11 +254,102 @@ public class Player
 
     public void ReCalculate()
     {
+        int baseHp = 100;
+        int baseMana = 100;
+        int baseStamina = 100;
+        float baseResist = 0f;
+        float[] baseAttack = new float[] { 0, 1 }; // {bonus, multiplier}
+        float[] baseMagic = new float[] { 0, 1 }; // {bonus, multiplier}
+        int baseSpeed = 10;
+        
+        for (int i=0; i < 4; i++)
+        {
+            string owned = equipped[i];
+            Clothing item = clothing[owned];
 
+            baseHp += item.bonusHp;
+            baseMana += item.bonusMana;
+            baseStamina += item.bonusStamina;
+            baseResist += item.resist;
+            baseSpeed += item.bonusSpeed;
+
+            baseAttack[0] += item.attackPower[0];
+            baseAttack[1] += item.attackPower[1];
+
+            baseMagic[0] += item.magicPower[0];
+            baseMagic[1] += item.magicPower[1];
+        }
+
+        this.hp[0] = baseHp;
+        this.mana[0] = baseMana;
+        this.stamina[0] = baseStamina;
+        this.resist = baseResist;
+        this.mobility = baseSpeed;
+        this.attackPower = baseAttack;
+        this.magicPower = baseMagic;
     }
 
     public void ChangeEquipped(int index, string newItem)
     {
         equipped[index] = newItem;
+    }
+
+    public bool Purchase(string itemType, string item, int cost)
+    {
+        if (cost >= gold)
+        {
+            gold -= cost;
+
+            if (itemType.Equals("weapon"))
+            {
+                if (weapons.ContainsKey(item)) // bought the same weapon again
+                {
+                    weapons[item].NewCount(weapons[item].HowMany() + 1);
+                }
+                else
+                {
+                    weapons[item] = new Weapon(this, item, game.equipments["Weapons"][item]);
+                }
+            }
+            else
+            {
+                if (weapons.ContainsKey(item)) // bought the same weapon again
+                {
+                    weapons[item].NewCount(weapons[item].HowMany() + 1);
+                }
+                else
+                {
+                    weapons[item] = new Weapon(this, item, game.equipments["Weapons"][item]);
+                }
+            }
+            
+            return true;
+        }
+        return false;
+    }
+
+    
+
+    public void Kill(Player poorLad) // we killed someone, lets get some gold
+    {
+        int moneyMade = poorLad.Killed();
+        if (moneyMade == -1) // player wasn't killed, this function was called by an exploit 
+        {
+            return;
+        }
+
+        gold += Math.Max(10, moneyMade); // get at least 10 gold for killing someone
+    }
+
+    private int Killed() // we got killed, 
+    {
+        if (hp[1] > 0)
+        {
+            return -1; // no, we are not dead.
+        }
+
+        int chunkLost = Math.Min((int) (gold * 0.1), 150); // lose 10% of your gold but not more than 150
+        gold -= chunkLost;
+        return chunkLost;
     }
 }
