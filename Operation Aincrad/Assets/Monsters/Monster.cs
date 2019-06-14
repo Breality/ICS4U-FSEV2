@@ -95,7 +95,7 @@ public class Monster : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+        Debug.Log("Take 0.001 damage!");
     }
 
 
