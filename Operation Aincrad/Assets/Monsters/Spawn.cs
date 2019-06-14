@@ -20,9 +20,9 @@ public class Spawn : MonoBehaviour
         if(level == 0)
         {
             //Copy and instantiate new monster
-            for(int i = 0; i< 1; i++)
+            for(int i = 0; i< 2; i++)
             {
-                GameObject m = Instantiate(monsters[0], parent);
+                GameObject m = Instantiate(monsters[i], parent);
                 m.transform.position = new Vector3(i, 0, 0);
                 m.SetActive(true);
             }
