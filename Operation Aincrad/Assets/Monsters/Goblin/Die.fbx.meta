@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 183aa83f730292e4380a6d9310040394
+guid: 7fb50d07e78f14b4aa14ae6c22d8c599
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Goblin Attack
+    second: Goblin Die
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Goblin Attack
+      name: Goblin Die
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 157
+      lastFrame: 234
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
