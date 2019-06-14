@@ -23805,7 +23805,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 13d4da941320712478dbf163a8a54988, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -23857,8 +23857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 115f4ae8b1bb08b4c877924724ddb91f
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 1497735038
 --- !u!114 &799176593073920707
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class InitInfo : NetworkBehaviour
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
         inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-
+        NetworkServer.Spawn(this.gameObject);
     }
 
 
