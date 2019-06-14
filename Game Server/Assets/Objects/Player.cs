@@ -265,19 +265,22 @@ public class Player
         for (int i=0; i < 4; i++)
         {
             string owned = equipped[i];
-            Clothing item = clothing[owned];
+            if (owned != "None")
+            {
+                Clothing item = clothing[owned];
 
-            baseHp += item.bonusHp;
-            baseMana += item.bonusMana;
-            baseStamina += item.bonusStamina;
-            baseResist += item.resist;
-            baseSpeed += item.bonusSpeed;
+                baseHp += item.bonusHp;
+                baseMana += item.bonusMana;
+                baseStamina += item.bonusStamina;
+                baseResist += item.resist;
+                baseSpeed += item.bonusSpeed;
 
-            baseAttack[0] += item.attackPower[0];
-            baseAttack[1] += item.attackPower[1];
+                baseAttack[0] += item.attackPower[0];
+                baseAttack[1] += item.attackPower[1];
 
-            baseMagic[0] += item.magicPower[0];
-            baseMagic[1] += item.magicPower[1];
+                baseMagic[0] += item.magicPower[0];
+                baseMagic[1] += item.magicPower[1];
+            }
         }
 
         this.hp[0] = baseHp;

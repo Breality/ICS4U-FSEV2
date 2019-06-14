@@ -26,6 +26,16 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public int gold = 0;
     public int score = 0;
 
+    // calculated info
+    public int maxHp = 100;
+    public int maxMana = 100;
+    public int maxStamina = 100;
+
+    // updated info
+    public int Hp = 100;
+    public int Mana = 100;
+    public int Stamina = 100;
+
     // equipment constructor
     public Dictionary<string, Dictionary<string, string>> equipmentConstructor;
 
@@ -54,34 +64,13 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     // quests
     public int questProg = 0; // main storyline
     public Dictionary<string, int> optionalQuests = new Dictionary<string, int> { };
+    
 
-    // game info
-    Dictionary<string, Vector3> position = new Dictionary<string, Vector3> { }; // we'll burn that bridge when we get there
-
-    // game stats; updated from server when needed to
-
-    // Update is called once per frame
-    int lastGold = -1;
-    void Update() // checks if money has changed
-    {
-        if (lastGold != gold)
-        {
-            lastGold = gold;
-            MoneyText.text = "$"+gold.ToString();
-        }
-    }
-
-    public void Recalculate() // gets game stats from server
-    {
-
-    }
-
+    // ----------- player has been logged in --------------------
     public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments)
     {
         // equipment info from the server's text file
         equipmentConstructor = equipments;
-
-        // main data
         username = player.username;
 
         Debug.Log(NameText);
@@ -125,8 +114,21 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         magicSpells = new List<string>(player.magicSpells);
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
+        
 
         return username;
     }
+
+    public void NewStats(DBPlayer player)
+    {
+        // loads in new stats and redraws anything important
+
+    }
     
+    public void ReDraw() 
+    {
+        // update gold, hp, mana, stamina
+        MoneyText.text = "$" + gold.ToString();
+
+    }
 }
