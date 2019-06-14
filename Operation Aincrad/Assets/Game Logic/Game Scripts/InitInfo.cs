@@ -12,8 +12,7 @@ public class InitInfo : NetworkBehaviour
     [SerializeField]
     private TextMesh moneyText;
 
-    [SerializeField]
-    private ShopToggle stMan1, stMan2;
+
     private InfoCenter inCen;
     private HTTPClient handlerMan;
     [SyncVar]
@@ -31,8 +30,7 @@ public class InitInfo : NetworkBehaviour
         jsL.sellers = GameObject.Find("Sellers");
 
         handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
-        stMan1.info = stMan2.info = inCen;
-        stMan1.HTTP = stMan2.HTTP = handlerMan;
+
         //NetworkServer.Spawn(this.gameObject)
 
 
