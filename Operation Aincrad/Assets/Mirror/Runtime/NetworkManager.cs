@@ -37,8 +37,9 @@ namespace Mirror
         [Header("Network Info")]
         // transport layer
         [SerializeField] protected Transport transport;
-        [FormerlySerializedAs("m_NetworkAddress")] public string networkAddress = "localhost";
+        [FormerlySerializedAs("m_NetworkAddress")] public string networkAddress = "192.168.2.30";
         [FormerlySerializedAs("m_MaxConnections")] public int maxConnections = 4;
+
 
         [Header("Spawn Info")]
         [FormerlySerializedAs("m_PlayerPrefab")] public GameObject playerPrefab;

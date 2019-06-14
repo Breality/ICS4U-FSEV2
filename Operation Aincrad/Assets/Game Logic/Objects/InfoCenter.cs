@@ -80,6 +80,10 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
         // main data
         username = player.username;
+
+        Transform cur_User = GameObject.Find("AsunaFinal-WithCam").transform;
+        cur_User.name = username;
+
         NameText.text = username;
 
         gold = player.gold;

@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System.IO;
 using System;
+using Mirror;
 
 public class HTTPClient : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class HTTPClient : MonoBehaviour
 
     private bool debounce = true;
     private string token;
-
+    [SerializeField]
+    private Mirror.NetworkManager netManager;
     // Listen for buttons
     void Start()
     {
@@ -116,11 +118,9 @@ public class HTTPClient : MonoBehaviour
                             loadedEquip[new string[] { "Clothing", "Weapons", "Items" }[a]][loadedKeys[a][i]] = loadedVals[a][i];
                         }
                     }
-                    
-
-                    infoCenter.LogIn(loadedData, loadedEquip);
                     Menu.SetActive(false);
-                    VRCamera.SetActive(true);
+                    netManager.StartClient();
+                    infoCenter.LogIn(loadedData, loadedEquip);
                 }catch (Exception e)
                 {
                     Debug.Log(e.ToString());

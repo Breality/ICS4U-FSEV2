@@ -80,7 +80,8 @@ public class Player
     public string[] GetWeapons() // converting the private weapons to the format we store it in DBPlayer
     {
         List<string> items = new List<string> { };
-        foreach (KeyValuePair<string, Weapon> item in weapons) { for (int i = 0; i < item.Value.HowMany(); i++) { items.Add(item.Key); } }
+        foreach (KeyValuePair<string, Weapon> item in weapons) {for (int i = 0; i < item.Value.HowMany(); i++) { items.Add(item.Key); } }
+
         return items.ToArray();
     }
 
@@ -106,6 +107,7 @@ public class Player
 
         // -------- load all the info into the private fields, DBPlayer loses referance and dies afterwards --------
         // Equipment
+        Debug.Log("Right hand: " + player.equipped[5]);
         equipped = player.equipped;
         foreach (string name in player.clothing) { // Clothing
             if (clothing.ContainsKey(name)) { clothing[name].NewCount(clothing[name].HowMany() + 1); } 
@@ -251,5 +253,10 @@ public class Player
     public void ReCalculate()
     {
 
+    }
+
+    public void ChangeEquipped(int index, string newItem)
+    {
+        equipped[index] = newItem;
     }
 }
