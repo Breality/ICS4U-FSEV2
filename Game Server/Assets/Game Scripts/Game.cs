@@ -42,22 +42,48 @@ public class Game : MonoBehaviour
     }
 
     
-    public void WeaponHit(Player user, Player hit, string weaponName, string skillName) // the client tells us when it hits another client
+    public string WeaponHit(Player user, Player hit, string weaponName, string skillName) // the client tells us when it hits another client
     {
         Weapon weapon = user.CheckWeapon(weaponName);
         if (weapon != null)
         {
-            double range = weapon.range;
-            double distance = Vector3.Distance(user.GetPos(), hit.GetPos());
-            if (weapon.isAttacking() && distance <= range)
+            if (!weapon.isAttacking())
             {
-                bool killed = hit.TakeDamage(weapon); 
-                if (killed)
-                {
-                    PlayerKilled(user, hit);
-                }
+                weapon.Attack(null, user.GetCharge());
+            }
+
+            bool killed = hit.TakeDamage(weapon);
+            if (killed)
+            {
+                PlayerKilled(user, hit);
+                return "You killed them!";
+            }
+
+            return "Damage dealt";
+        }
+        return "Weapon did not exist";
+    }
+
+    public string WeaponHit(string token, string hit, string handPos)
+    {
+        Player user = players[token];
+        if (user == null) {return "Invalid token"; }
+
+        Player attacked = null;
+        foreach (Player player in players.Values)
+        {
+            if (player.Username.Equals(hit))
+            {
+                attacked = player;
             }
         }
+
+        if (attacked == null) { return "Invalid player"; }
+
+        int index = int.Parse(handPos);
+        if (index > 1) { return "Invalid weapon"; }
+        
+        return WeaponHit(user, attacked, user.GetEquipped()[4+index], null);
     }
 
     // -------------- Private functions --------------

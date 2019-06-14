@@ -77,9 +77,10 @@ public class Starter : MonoBehaviour // the client version: Listens to messages 
 
         client.Connect(new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005));
 
-        Byte[] buffer = null;
-        buffer = Encoding.Unicode.GetBytes(i.ToString());
+        //Byte[] buffer = null;
+        byte[] buffer = Encoding.ASCII.GetBytes(i);
         client.Send(buffer, buffer.Length); //, ep);
+
         Debug.Log("Message sent>?");
         byte[] b2 = client.Receive(ref ep);
         string str2 = System.Text.Encoding.ASCII.GetString(b2, 0, b2.Length);
