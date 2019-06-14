@@ -32,6 +32,7 @@ public class InitInfo : NetworkBehaviour
         handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
+        NetworkServer.Spawn(this.gameObject);
 
     }
     private void Start()
@@ -39,16 +40,10 @@ public class InitInfo : NetworkBehaviour
         Debug.Log(isLocalPlayer);
         if (isLocalPlayer)
         {
-            Debug.Log("HHHHEHEHEHHEHE");
             userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-
+            this.transform.parent.name = userName;
+            CmdSendState(userName);
         }
-    }
-    private void Update()
-    {
-        this.transform.parent.name = userName;
-        Debug.Log(userName);
-        CmdSendState(userName);
     }
     [Command]
     public void CmdSendState(string userName)
@@ -58,9 +53,10 @@ public class InitInfo : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveState(string userName)
     {
-        if(!isLocalPlayer)
+        if (!isLocalPlayer)
             this.transform.parent.name = userName;
-        
+
     }
+
 
 }
