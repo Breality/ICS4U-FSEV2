@@ -328,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 84798562775099292, guid: 1f4b5a346dbd8ae40b32c0787391634c,
         type: 3}
       propertyPath: networkAddress
-      value: 192.168.2.30
+      value: 209.182.232.50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4b5a346dbd8ae40b32c0787391634c, type: 3}
