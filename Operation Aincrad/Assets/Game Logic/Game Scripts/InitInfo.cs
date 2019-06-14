@@ -41,21 +41,37 @@ public class InitInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             this.transform.parent.name = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+            this.transform.parent.parent = GameObject.Find("Players").transform;
+
             CmdSendName(this.transform.parent.name);
         }
     }
     [Command]
     public void CmdSendName(string username)
     {
-        RpcReceiveName(username);
+        Transform playerHolder = GameObject.Find("Players").transform;
         this.transform.parent.name = username;
+        this.transform.parent.parent = playerHolder;
+
+        List<Vector3> playerPositions = new List<Vector3>();
+        List<string> usernames = new List<string>();
+        foreach(Transform child in playerHolder)
+        {
+            usernames.Add(child.name);
+            playerPositions.Add(child.position);
+        }
+        RpcReceiveNames(usernames, playerPositions);
     }
     [ClientRpc]
-    public void RpcReceiveName(string username)
+    public void RpcReceiveNames(List<string> users, List<Vector3> positions)
     {
-        if (!isLocalPlayer)
+        Transform playerHolder = GameObject.Find("Players").transform;
+        for(int i = 0; i<playerHolder.childCount; i++)
         {
-            this.transform.parent.name = username;
+            if (positions.Contains(playerHolder.GetChild(i).position))
+            {
+                playerHolder.GetChild(i).name = users[positions.IndexOf(playerHolder.GetChild(i).position)];
+            }
         }
     }
 
