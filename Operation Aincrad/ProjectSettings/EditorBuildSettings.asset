@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: b154131092aa5a040a5a7bb03f49f8bd
-  - enabled: 1
+  - enabled: 0
     path: Assets/NetworkServer.unity
     guid: ffc0d9b5088ee204abd8073e6272a13f
+  - enabled: 1
+    path: Assets/Merging.unity
+    guid: f066dcabc4124534080d7051d54f7cb5
   m_configObjects: {}
