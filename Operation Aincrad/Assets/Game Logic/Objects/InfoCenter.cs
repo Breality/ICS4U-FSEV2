@@ -73,14 +73,13 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     }
 
-    public void LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments, Transform character)
+    public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments)
     {
         // equipment info from the server's text file
         equipmentConstructor = equipments;
 
         // main data
         username = player.username;
-        character.name = username;
 
         Debug.Log(NameText);
         NameText.text = username;
@@ -123,6 +122,8 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         magicSpells = new List<string>(player.magicSpells);
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
+
+        return username;
     }
     
 }

@@ -30,8 +30,25 @@ public class InitInfo : NetworkBehaviour
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
-        inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip(),this.transform);
+        if (isLocalPlayer)
+        {
 
+            string userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+        }
+
+    }
+    [Command]
+    public void CmdSendState(string userName)
+    {
+        RpcReceiveState(userName);
+    }
+    [ClientRpc]
+    public void RpcReceiveState(string userName)
+    {
+        if (!isLocalPlayer)
+        {
+            this.transform.parent.name = userName;
+        }
     }
 
 }
