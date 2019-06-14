@@ -97,7 +97,11 @@ public class HTTP_Listen : MonoBehaviour
         else if (data["request"].Equals("logout") && data.ContainsKey("token"))
         {
             StartCoroutine(Logout(context, data["token"]));
+        }else if (data["request"].Equals("Time compare"))
+        {
+            Debug.Log(Time.time - float.Parse(data["timer"]));
         }
+
         // purchasing stuff
         else if (data["request"].Equals("") && data.ContainsKey("token"))
         {
@@ -107,9 +111,23 @@ public class HTTP_Listen : MonoBehaviour
         // equipment changes
         else if (data["request"].Equals("Equip") && data.ContainsKey("Equipment Type") && data.ContainsKey("Equipment Name"))
         {
+            Player player = playerDB[data["Token"]];
+            if (!Array.Exists(player.GetWeapons(), element => element == data["Equipment Name"])){ // check if they own the item
+                ConstructResponse(context, "You do not own this item");
+                return;
+            }
+       
             if (data["Equipment Type"].Equals("Weapon"))
             {
-
+                Weapon item = new Weapon(null, "Not important", game.equipments["Weapons"][data["Equipment Name"]]);
+                if (item.weaponType == 0)
+                {
+                    player.ChangeEquipped(4, data["Equipment Name"]);
+                }
+                else if (item.weaponType == 1)
+                {
+                    player.ChangeEquipped(5, data["Equipment Name"]);
+                }
             }
             else
             {
@@ -142,8 +160,8 @@ public class HTTP_Listen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(LogIn(null, "Test123", "123"));
         //StartCoroutine(Register(null, "boiNew", "123"));
+        //StartCoroutine(LogIn(null, "boiNew", "123"));
 
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
@@ -334,6 +352,8 @@ public class HTTP_Listen : MonoBehaviour
                         ConstructResponse(sender, "Login success, token:" + randToken + ", Equipment Keys:" + EquipmentXML1 + 
                             ", Equipment Values:"+ EquipmentXML2 + ", Player Data:" + xmlString);
                     }
+
+                    // StartCoroutine(Logout(null, randToken)); // testing
                 }
                 catch (Exception e)
                 {

@@ -19875,8 +19875,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 1946630692
+  m_AssetId: 115f4ae8b1bb08b4c877924724ddb91f
+  m_SceneId: 0
 --- !u!114 &799176593073920707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19968,6 +19968,8 @@ MonoBehaviour:
   WeaponsRight: {fileID: 2427940962866857286}
   nameText: {fileID: 3234879552291588003}
   moneyText: {fileID: 3234879551322917035}
+  stMan1: {fileID: 3234879552273929009}
+  stMan2: {fileID: 3234879551126227258}
 --- !u!1 &7835726987304989878
 GameObject:
   m_ObjectHideFlags: 0

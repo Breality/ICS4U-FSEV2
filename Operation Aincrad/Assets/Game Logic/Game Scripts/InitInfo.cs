@@ -10,6 +10,8 @@ public class InitInfo : MonoBehaviour
     private TMP_Text nameText;
     [SerializeField]
     private TextMesh moneyText;
+    [SerializeField]
+    private ShopToggle stMan1, stMan2;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,5 +20,12 @@ public class InitInfo : MonoBehaviour
         inCen.WeaponsL = WeaponsLeft;
         inCen.WeaponsR = WeaponsRight;
         inCen.NameText = nameText;
+
+
+        JoyStickListen jsL = this.GetComponent<JoyStickListen>();
+        jsL.sellers = GameObject.Find("Sellers");
+
+        stMan1.info = stMan2.info = inCen;
+
     }
 }

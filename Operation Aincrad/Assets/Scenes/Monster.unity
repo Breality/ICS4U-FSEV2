@@ -1018,7 +1018,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172668190485540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
+  m_LocalPosition: {x: -1.6512451, y: -1.867794, z: -1.7071533}
+=======
   m_LocalPosition: {x: 0, y: -6.59, z: -9.86}
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1728169426271325253}
@@ -1317,6 +1321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: skeleton
+<<<<<<< HEAD
+  player: {fileID: 600508530}
+=======
   thing: {fileID: 600508530}
 --- !u!54 &8296172668190485542
 Rigidbody:
@@ -1334,6 +1341,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
 --- !u!4 &8592101925309001490
 Transform:
   m_ObjectHideFlags: 0

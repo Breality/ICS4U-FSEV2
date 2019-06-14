@@ -8,7 +8,7 @@ public class Equipment
     public readonly string name;
     public readonly string rarity;
 
-    protected int quantity; 
+    protected int quantity = 1; 
 
     public int HowMany() { return quantity; }
     public void NewCount(int number)

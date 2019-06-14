@@ -7,6 +7,15 @@ public class Monster : MonoBehaviour
     public string type;
     // Start is called before the first frame update
     private Animator charAnim;
+<<<<<<< HEAD
+    public Transform player;
+    private List<Vector3> test = new List<Vector3>();
+   
+
+    void Start()
+    {
+        test.Add(player.transform.position);
+=======
     public Transform thing;
     private List<Vector3> test = new List<Vector3>();
     private float minAttackDist = 0.7f;
@@ -16,6 +25,7 @@ public class Monster : MonoBehaviour
     void Start()
     {
         
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
         charAnim = this.gameObject.GetComponent<Animator>();
         if (type == "skeleton")
         {
@@ -44,6 +54,10 @@ public class Monster : MonoBehaviour
                 Debug.Log("works");
             }
         }
+<<<<<<< HEAD
+        
+        if (0.7 < Vector3.Distance(position, this.transform.position))
+=======
 
         //Debug.Log(Vector3.Distance(position,this.transform.position));
         Vector3 rot = transform.localEulerAngles;
@@ -51,13 +65,21 @@ public class Monster : MonoBehaviour
         rot.z = 0;
         transform.localEulerAngles = rot;
         if (minAttackDist < Vector3.Distance(position, this.transform.position))
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
         {
             
             
             //this.transform.position += diff * (0.01f); // This makes it slow down near the end but whatever
             transform.LookAt(position);
+<<<<<<< HEAD
+            Vector3 rot = transform.localEulerAngles;
+            rot.x = 0;
+            rot.z = 0;
+            transform.localEulerAngles = rot;
+=======
 
            
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
             transform.position += transform.forward*0.05f;
             
             
@@ -75,7 +97,10 @@ public class Monster : MonoBehaviour
         {
             charAnim.SetFloat("velocity", 0);
             attack();
+<<<<<<< HEAD
+=======
 
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
             
         }
         
@@ -115,6 +140,21 @@ public class Monster : MonoBehaviour
 
 
 
+    public void attack()
+    {
+        charAnim.SetTrigger("Attack");
+        
+        //check
+
+    }
+
+
+
+
+
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -128,9 +168,14 @@ public class Monster : MonoBehaviour
         */
 
 
+<<<<<<< HEAD
+        test[0] = player.transform.position;
+        chase(test);
+=======
     test = new List<Vector3>();
     test.Add(thing.position);
     chase(test);
+>>>>>>> 5471fe37d0b776fa448d4e0633b5861f00c25cdb
         
     }
 }
