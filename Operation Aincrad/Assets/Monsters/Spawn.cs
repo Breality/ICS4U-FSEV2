@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Spawn Class
+ * Description: Loads in monsters
+ */
 public class Spawn : MonoBehaviour
 {
     public Transform parent;
@@ -11,7 +17,8 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
-        Physics.IgnoreLayerCollision(9,9);
+        Physics.IgnoreLayerCollision(9,9); // Makes sure monsters don't collide with themselves
+
         foreach (Transform child in parent)
         {
             monsters.Add(child.gameObject);
