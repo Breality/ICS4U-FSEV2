@@ -7,13 +7,13 @@ public class Monster : MonoBehaviour
     public string type;
     // Start is called before the first frame update
     private Animator charAnim;
-
+    public Transform player;
     private List<Vector3> test = new List<Vector3>();
    
 
     void Start()
     {
-        test.Add(new Vector3(0, 0, -15));
+        test.Add(player.transform.position);
         charAnim = this.gameObject.GetComponent<Animator>();
         if (type == "skeleton")
         {
@@ -32,8 +32,7 @@ public class Monster : MonoBehaviour
     public void chase(List<Vector3> positions)
     {
         float distance = 99999;
-        Vector3 position = positions[0];
-        Debug.Log(position);
+        Vector3 position = transform.position;
         foreach(Vector3 p in positions)
         {
             if (Vector3.Distance(p, transform.position) < distance)
@@ -42,9 +41,8 @@ public class Monster : MonoBehaviour
                 position = p;
             }
         }
-        Debug.Log(position);
-        Vector3 diff = position - this.transform.position;
-        if (1 < Vector3.Distance(position, this.transform.position))
+        
+        if (0.7 < Vector3.Distance(position, this.transform.position))
         {
             charAnim.SetFloat("velocity", 1);
             //this.transform.position += diff * (0.01f); // This makes it slow down near the end but whatever
@@ -53,7 +51,7 @@ public class Monster : MonoBehaviour
             rot.x = 0;
             rot.z = 0;
             transform.localEulerAngles = rot;
-            transform.position += transform.forward*0.02f;
+            transform.position += transform.forward*0.05f;
             
             
             //transform.eulerAngles = new Vector3(0, transform.rotation.y, 0);
@@ -87,7 +85,7 @@ public class Monster : MonoBehaviour
     public void attack()
     {
         charAnim.SetTrigger("Attack");
-        charAnim.SetTrigger("Attack");
+        
         //check
 
     }
@@ -112,7 +110,7 @@ public class Monster : MonoBehaviour
         */
 
 
-
+        test[0] = player.transform.position;
         chase(test);
         
     }

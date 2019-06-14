@@ -38,8 +38,8 @@ ModelImporter:
       name: Monster Attack
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 39
-      lastFrame: 98
+      firstFrame: 31
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
