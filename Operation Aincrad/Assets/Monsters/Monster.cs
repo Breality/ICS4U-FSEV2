@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour
     private List<Vector3> test = new List<Vector3>();
     private float minAttackDist = 0.8f;
     private bool isDead = false;
+    private float speed = 2f;
+    public float HP = 100f;
 
 
     void Start()
@@ -19,9 +21,26 @@ public class Monster : MonoBehaviour
         charAnim = this.gameObject.GetComponent<Animator>();
         if (type == "skeleton")
         {
-            Debug.Log("move this shit");
-
+            speed = 3f;
+            HP = 20f;
         }
+        else if (type == "goblin")
+        {
+            speed = 2f;
+            HP = 50f;
+        }
+        else if (type == "demon")
+        {
+            speed = 6f;
+            HP = 80f;
+        }
+        else if (type == "boss")
+        {
+            speed = 3f;
+            HP = 200f;
+        }
+
+
 
     }
 
@@ -52,7 +71,7 @@ public class Monster : MonoBehaviour
             transform.LookAt(position);
 
 
-            transform.position += transform.forward * 2f * Time.deltaTime;
+            transform.position += transform.forward * speed * Time.deltaTime;
             
         }
         else
@@ -91,7 +110,10 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
+
+
         //Debug.Log(Vector3.Distance(position,this.transform.position));
         Vector3 rot = transform.localEulerAngles;
         rot.x = 0;
@@ -106,7 +128,6 @@ public class Monster : MonoBehaviour
             chase(test);
 
         }
-        //die();
         if(isDead && charAnim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
         {
             Destroy(gameObject);

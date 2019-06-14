@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: a4ddd7f62585e484d95366f831e5e90c,
         type: 3}
       propertyPath: m_Name
-      value: Monster
+      value: GOBLIN
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: a4ddd7f62585e484d95366f831e5e90c,
         type: 3}
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: goblin
   thing: {fileID: 600508530}
+  HP: 100
 --- !u!1 &284629663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: skeleton
   thing: {fileID: 600508530}
+  HP: 100
 --- !u!54 &8296172668190485542
 Rigidbody:
   m_ObjectHideFlags: 0
