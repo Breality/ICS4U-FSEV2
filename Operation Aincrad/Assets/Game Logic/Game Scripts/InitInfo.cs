@@ -33,8 +33,26 @@ public class InitInfo : NetworkBehaviour
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
         //NetworkServer.Spawn(this.gameObject);
-        this.transform.parent.name = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+        if (isLocalPlayer)
+        {
+            this.transform.parent.name = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+            CmdSendName(this.transform.parent.name);
+        }
 
+
+    }
+    [Command]
+    public void CmdSendName(string username)
+    {
+        RpcReceiveName(username);
+    }
+    [ClientRpc]
+    public void RpcReceiveName(string username)
+    {
+        if (!isLocalPlayer)
+        {
+            this.transform.parent.name = username;
+        }
     }
 
 }
