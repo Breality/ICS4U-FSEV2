@@ -10,7 +10,7 @@ public class Monster : MonoBehaviour
     public Transform thing;
     private List<Vector3> test = new List<Vector3>();
     private float minAttackDist = 0.8f;
-
+    private bool isDead = false;
 
 
     void Start()
@@ -58,8 +58,7 @@ public class Monster : MonoBehaviour
             transform.LookAt(position);
 
 
-            transform.position += transform.forward * 0.05f;
-
+            transform.position += transform.forward * 2f * Time.deltaTime;
 
             //transform.eulerAngles = new Vector3(0, transform.rotation.y, 0);
 
@@ -98,6 +97,13 @@ public class Monster : MonoBehaviour
         Debug.Log("Take 0.001 damage!");
     }
 
+    public void die()
+    {
+        charAnim.SetTrigger("Die");
+        isDead = true;
+        
+    }
+
 
 
     public void attack()
@@ -130,7 +136,18 @@ public class Monster : MonoBehaviour
 
         test = new List<Vector3>();
         test.Add(thing.position);
-        chase(test);
+        if (!isDead && !charAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            Debug.Log("Shouldn't be during attack");
+            chase(test);
+
+        }
+        //die();
+        if(isDead && charAnim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
+        {
+            Destroy(gameObject);
+            Debug.Log("Monster destroyed");
+        }
 
     }
 }
