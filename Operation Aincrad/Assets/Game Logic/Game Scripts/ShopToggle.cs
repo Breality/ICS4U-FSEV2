@@ -8,6 +8,14 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Shop Toggle Script
+ * Description: Deals with the shop UI among the list of commands in the UI
+ */
+
 public class ShopToggle : MonoBehaviour
 {
     // ------------- menu toggling -------------
@@ -29,10 +37,9 @@ public class ShopToggle : MonoBehaviour
         isDisplayed = name;
     }
 
-
+    //Checks logic to see if buying is possible
     private IEnumerator Buy()
     {
-        Debug.Log("Fun purchase time");
         if (isDisplayed != null && canBuy)
         {
             canBuy = false;
@@ -65,6 +72,7 @@ public class ShopToggle : MonoBehaviour
         }
     }
 
+    //Once the raycast is over the item, show to the user that it's being hovered over by changing colours of the buttons and panels
     private void Hover(GameObject item)
     {
         if (item.name.Equals("Purchase"))
@@ -79,6 +87,8 @@ public class ShopToggle : MonoBehaviour
 
     }
     
+
+    //Detect selection of the menu
     private void Click(GameObject item)
     {
         Debug.Log("Clicked on " + item.name);
@@ -99,7 +109,7 @@ public class ShopToggle : MonoBehaviour
     }
 
 
-    // ------------- ray casting-------------
+    // ------------- ray casting------------- similar to MenuToggle
     private float rayLen = 5f;
     private LineRenderer rightLine, leftLine;
     [SerializeField]
