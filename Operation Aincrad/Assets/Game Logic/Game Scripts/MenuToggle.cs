@@ -94,10 +94,6 @@ public class MenuToggle : MonoBehaviour
         }
     }
 
-
-
-
-
     //Scrolls through through animations
     public IEnumerator Toggle(string menuName) 
     {
@@ -121,7 +117,7 @@ public class MenuToggle : MonoBehaviour
             float startTime = Time.realtimeSinceStartup;
             while (Time.realtimeSinceStartup < startTime + transitionTime)
             {
-                // this changes the object's position in world space, should be based on camera
+                // this changes the object's local position based on the camera
                 MenuOptions.transform.localPosition = new Vector3(MenuOptions.transform.localPosition.x,
                     startPos + translation * (Time.realtimeSinceStartup - startTime) / transitionTime - startingoffset,
                     MenuOptions.transform.localPosition.z);
@@ -136,6 +132,7 @@ public class MenuToggle : MonoBehaviour
 
     }
 
+    //Activates the UI (it's initially hidden)
     public void Activate(bool value)
     {
         if (value && cur > 0) // reset the values
@@ -183,6 +180,8 @@ public class MenuToggle : MonoBehaviour
     }
 
     string CurrentDisplay = null;
+
+    //Decideds what happens when the option is clicked
     private void Click(GameObject item)
     {
         Debug.Log("Clicked on " + item.name);
@@ -216,7 +215,7 @@ public class MenuToggle : MonoBehaviour
         }
     }
 
-    // ------------- ray casting-------------
+    // ------------- ray casting------------- for when you select an option with the controller
     private float rayLen = 5f;
     private LineRenderer rightLine, leftLine;
     [SerializeField]
@@ -234,6 +233,7 @@ public class MenuToggle : MonoBehaviour
             { "Equipment", new Equipment(Camera) }
         };
 
+        //Created the right and left line renderers
         rightLine = rightL.transform.GetComponent<LineRenderer>();
         leftLine = leftL.transform.GetComponent<LineRenderer>();
         Debug.Log("Started with " + rightLine + " and " + leftLine);
@@ -250,6 +250,7 @@ public class MenuToggle : MonoBehaviour
         line.material.color = Color.cyan;
     }
 
+    //This draws the ray onto the screen and detects any possible collisions
     public void DrawRay()
     {
         var interactionSourceStates = InteractionManager.GetCurrentReading();
@@ -298,6 +299,7 @@ public class MenuToggle : MonoBehaviour
         
     }
 
+    //The actual ray detection
     private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
     {
         if (handedness == InteractionSourceHandedness.Right)
@@ -320,6 +322,7 @@ public class MenuToggle : MonoBehaviour
     }
 
 
+    //Returns all objects that are colliding with the ray
     public RaycastHit[] GetColliders(string hand)
     {
         if (hand == "right")

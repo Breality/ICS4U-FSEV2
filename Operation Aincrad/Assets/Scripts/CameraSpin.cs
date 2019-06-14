@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Camera Spin
+ * Description: Rotates the camera so it looks around the map - for the intro screen
+ */
 public class CameraSpin : MonoBehaviour
 {
+    
     IEnumerator spin()
     {
         while (true)
         {
+            //Rotates the camera
             transform.Rotate(new Vector3(0, 0.15f, 0));
             yield return new WaitForSeconds(0.01f);
         }
@@ -16,6 +24,7 @@ public class CameraSpin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Starts a new thread so it doesn't interrupt any other processes (e.g login)
         StartCoroutine(spin());
     }
 
