@@ -11,7 +11,8 @@ public class Spawn : MonoBehaviour
 
     void Start()
     {
-        foreach(Transform child in parent)
+        Physics.IgnoreLayerCollision(9,9);
+        foreach (Transform child in parent)
         {
             monsters.Add(child.gameObject);
         }
@@ -19,9 +20,13 @@ public class Spawn : MonoBehaviour
         if(level == 0)
         {
             //Copy and instantiate new monster
-            GameObject m = Instantiate(monsters[0],parent);
-            m.transform.localPosition = new Vector3(0, 0, 0);
-            m.SetActive(true);
+            for(int i = 0; i< 1; i++)
+            {
+                GameObject m = Instantiate(monsters[0], parent);
+                m.transform.position = new Vector3(i, 0, 0);
+                m.SetActive(true);
+            }
+            
             
 
 
