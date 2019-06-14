@@ -67,14 +67,9 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public Dictionary<string, int> optionalQuests = new Dictionary<string, int> { };
     
 
-    // ----------- player has been logged in --------------------
-    public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments)
+    // ----------- Loading data --------------------
+    private void Load(DBPlayer player)
     {
-        // equipment info from the server's text file
-        equipmentConstructor = equipments;
-        username = player.username;
-
-        Debug.Log(NameText);
         NameText.text = username;
 
         gold = player.gold;
@@ -83,24 +78,25 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         // Equipment
         foreach (string name in player.clothing)
         {  // Clothing
-            Clothing item = new Clothing(name, equipments["Clothing"][name]);
+            Clothing item = new Clothing(name, equipmentConstructor["Clothing"][name]);
             clothing[item.clothingType][item.name] = item;
         }
 
         foreach (string name in player.weapons)
         { // Weapons
-            Weapon item = new Weapon(name, equipments["Weapons"][name]);
+            Weapon item = new Weapon(name, equipmentConstructor["Weapons"][name]);
             weapons[item.name] = item;
         }
 
         foreach (string name in player.items)
         { // Items
-            Item item = new Item(name, equipments["Items"][name]);
+            Item item = new Item(name, equipmentConstructor["Items"][name]);
             items[item.name] = item;
         }
+
         // putting on their correct equipment
         equipped = player.equipped;
-        if (equipped[4] != "None")  { WeaponsL.transform.Find(equipped[4]).gameObject.SetActive(true); }
+        if (equipped[4] != "None") { WeaponsL.transform.Find(equipped[4]).gameObject.SetActive(true); }
         if (equipped[5] != "None") { WeaponsR.transform.Find(equipped[5]).gameObject.SetActive(true); }
 
         // titles
@@ -115,21 +111,37 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         magicSpells = new List<string>(player.magicSpells);
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
-        
+    }
+
+    public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments) // logging in
+    {
+        // equipment info from the server's text file
+        equipmentConstructor = equipments;
+        username = player.username;
+
+        Debug.Log(NameText);
+        Load(player);
 
         return username;
     }
 
-    public void NewStats(DBPlayer player)
+    public void NewStats(DBPlayer player) // updating player data
     {
-        // loads in new stats and redraws anything important
-
+        Load(player);
     }
-    
+
+    public Image HpFill;
+    public Image ManaFill;
+    public Image StaminaFill;
+    public TMP_Text HpText;
+
     public void ReDraw() 
     {
         // update gold, hp, mana, stamina
         MoneyText.text = "$" + gold.ToString();
-
+        HpFill.fillAmount = (float)Hp/maxHp;
+        ManaFill.fillAmount = (float)Mana / maxMana;
+        StaminaFill.fillAmount = (float)Stamina / maxStamina;
+        HpText.text = Hp + " / " + maxHp;
     }
 }
