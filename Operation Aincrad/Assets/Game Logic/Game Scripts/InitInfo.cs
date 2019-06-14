@@ -11,7 +11,7 @@ public class InitInfo : MonoBehaviour
     [SerializeField]
     private TextMesh moneyText;
     [SerializeField]
-    private ShopToggle stMan;
+    private ShopToggle stMan1, stMan2;
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,7 +24,7 @@ public class InitInfo : MonoBehaviour
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
         jsL.sellers = GameObject.Find("Sellers");
 
-        stMan.info = inCen;
+        stMan1.info = stMan2.info = inCen;
 
     }
 }
