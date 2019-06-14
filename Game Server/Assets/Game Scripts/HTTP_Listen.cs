@@ -138,7 +138,7 @@ public class HTTP_Listen : MonoBehaviour
             }
         }
 
-        // asking for stats
+        // asking for stats because the game told them to
         else if (data["request"].Equals("stats")){ // overall max stats
             DBPlayer fakeDB = new DBPlayer(playerDB[data["token"]], "unimportant hash");
             string xmlString = Encode_XML(fakeDB, typeof(DBPlayer));

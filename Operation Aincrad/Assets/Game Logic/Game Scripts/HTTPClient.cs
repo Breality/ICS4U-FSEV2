@@ -75,10 +75,6 @@ public class HTTPClient : MonoBehaviour
             {
                 try
                 {
-                    //"Login success, token:" + randToken + ", Equipment Keys:" + EquipmentXML1 + 
-                    //", Equipment Values:" + EquipmentXML2 + ", Player Data:" + xmlString);
-
-                    // insert data, store token, and start VR world
                     int startToken = response.IndexOf("token:") + "token:".Length;
                     int startEquip = response.IndexOf(", Equipment Keys:");// + ", Equipment Data:".Length;
                     token = response.Substring(startToken, startEquip - startToken);
@@ -166,7 +162,21 @@ public class HTTPClient : MonoBehaviour
             string response = www.downloadHandler.text;
 
             // figure out what to do next or what to ping
-
+            if (parameters["request"].Equals("stats")) // we asked the server for our stats because they told us to in UDP
+            {
+                try
+                {
+                    XmlSerializer serilize_object = new XmlSerializer(typeof(DBPlayer));
+                    StringReader open_string = new StringReader(response);
+                    DBPlayer newStats = (DBPlayer)serilize_object.Deserialize(open_string);
+                    infoCenter.NewStats(newStats);
+                }
+                catch(Exception e) // this will error when the request comes back but the server didn't send us the info, probably because they've already been logged out
+                {
+                    Debug.Log(e.ToString());
+                }
+                
+            }
         }
     }
 
