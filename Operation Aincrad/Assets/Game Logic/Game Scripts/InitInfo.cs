@@ -34,6 +34,7 @@ public class InitInfo : NetworkBehaviour
         {
 
             string userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+            CmdSendState(userName);
         }
 
     }
