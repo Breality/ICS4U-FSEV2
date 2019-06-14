@@ -43,8 +43,8 @@ ModelImporter:
       name: Demon Idle
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 249
+      firstFrame: 131
+      lastFrame: 156
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
