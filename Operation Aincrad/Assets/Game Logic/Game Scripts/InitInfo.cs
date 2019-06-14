@@ -14,10 +14,12 @@ public class InitInfo : NetworkBehaviour
 
     [SerializeField]
     private ShopToggle stMan1, stMan2;
-
+    private InfoCenter inCen;
+    private HTTPClient handlerMan;
+    string userName;
     void Awake()
     {
-        InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
+        inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         inCen.MoneyText = moneyText;
         inCen.WeaponsL = WeaponsLeft;
         inCen.WeaponsR = WeaponsRight;
@@ -27,16 +29,26 @@ public class InitInfo : NetworkBehaviour
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
         jsL.sellers = GameObject.Find("Sellers");
 
-        HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
+        handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
+
+    }
+    private void Start()
+    {
+        Debug.Log(isLocalPlayer);
         if (isLocalPlayer)
         {
+            Debug.Log("HHHHEHEHEHHEHE");
+            userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
 
-            string userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-            CmdSendState(userName);
         }
-
+    }
+    private void Update()
+    {
+        this.transform.parent.name = userName;
+        Debug.Log(userName);
+        CmdSendState(userName);
     }
     [Command]
     public void CmdSendState(string userName)
@@ -46,10 +58,9 @@ public class InitInfo : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveState(string userName)
     {
-        if (!isLocalPlayer)
-        {
+        if(!isLocalPlayer)
             this.transform.parent.name = userName;
-        }
+        
     }
 
 }
