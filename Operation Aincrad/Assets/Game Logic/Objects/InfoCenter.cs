@@ -16,7 +16,9 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public Dictionary<string, int> goldShop = new Dictionary<string, int> { // the cost of everything
         {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 },
         { "Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 },
-        { "Army Boots", 50 }
+        { "High Boots"  , 125}, {"White Shoes",30 }, {"Converse"      , 45 }, {"Army Boots", 55  }, {"Aviator's Hat",30 },{"Flower Hat" , 35  },
+        { "Loki Helmet" , 100}, {"Soldier Helmet", 20 }, {"Sorcery Helmet", 60 }, {"Spartan Helmet", 45 }, {"Templar Helmet", 45 },
+        { "Top Hat" , 35 }, {"Viking Helmet", 45}
     };
 
     // basic info
