@@ -8,10 +8,12 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     private Animator charAnim;
 
-    public List<Vector3> test = new List<Vector3>{ new Vector3(0, 0, -15) };
+    private List<Vector3> test = new List<Vector3>();
+   
 
     void Start()
     {
+        test.Add(new Vector3(0, 0, -15));
         charAnim = this.gameObject.GetComponent<Animator>();
         if (type == "skeleton")
         {
@@ -30,7 +32,8 @@ public class Monster : MonoBehaviour
     public void chase(List<Vector3> positions)
     {
         float distance = 99999;
-        Vector3 position = transform.position;
+        Vector3 position = positions[0];
+        Debug.Log(position);
         foreach(Vector3 p in positions)
         {
             if (Vector3.Distance(p, transform.position) < distance)
@@ -60,6 +63,8 @@ public class Monster : MonoBehaviour
         else
         {
             charAnim.SetFloat("velocity", 0);
+            attack();
+            
         }
         
     }
@@ -75,6 +80,21 @@ public class Monster : MonoBehaviour
         
     }
     */
+
+
+
+
+    public void attack()
+    {
+        charAnim.SetTrigger("Attack");
+        charAnim.SetTrigger("Attack");
+        //check
+
+    }
+
+
+
+
 
 
 

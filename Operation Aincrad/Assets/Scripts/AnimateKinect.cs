@@ -7,6 +7,7 @@ public class AnimateKinect : NetworkBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform upperBodyRoot;
     private const int NUM_UPPERBODYROOT = 18;
+    private List<string> EquipmentTypes = new List<string>() { "Swords Right", "Swords Left", "Hats", "Armor", "Right Foot", "Left Foot" };
     public void Update()
     {
         if (isLocalPlayer)
@@ -22,17 +23,19 @@ public class AnimateKinect : NetworkBehaviour
             while (curIndex < NUM_UPPERBODYROOT)
             {
                 Transform curT = que.Dequeue();
-                posState[curIndex] = curT.localPosition;
-                rotState[curIndex] = curT.localRotation;
-                curIndex += 1;
-
-
-                foreach (Transform child in curT)
+                if (!EquipmentTypes.Contains(curT.name))
                 {
-                    que.Enqueue(child);
+                    posState[curIndex] = curT.localPosition;
+                    rotState[curIndex] = curT.localRotation;
+                    curIndex += 1;
+
+
+                    foreach (Transform child in curT)
+                    {
+                        que.Enqueue(child);
+                    }
+
                 }
-
-
             }
             // collect state here
             CmdSendState(posState, rotState);
@@ -59,14 +62,17 @@ public class AnimateKinect : NetworkBehaviour
             while (curIndex < NUM_UPPERBODYROOT)
             {
                 Transform curT = que.Dequeue();
-                curT.localPosition = childPositions[curIndex];
-                curT.localRotation = childRotations[curIndex];
-                curIndex += 1;
-
-
-                foreach (Transform child in curT)
+                if (!EquipmentTypes.Contains(curT.name))
                 {
-                    que.Enqueue(child);
+                    curT.localPosition = childPositions[curIndex];
+                    curT.localRotation = childRotations[curIndex];
+                    curIndex += 1;
+
+
+                    foreach (Transform child in curT)
+                    {
+                        que.Enqueue(child);
+                    }
                 }
 
 
