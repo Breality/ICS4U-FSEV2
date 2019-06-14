@@ -103,9 +103,9 @@ public class HTTP_Listen : MonoBehaviour
         }
 
         // purchasing stuff
-        else if (data["request"].Equals("") && data.ContainsKey("token"))
+        else if (data["request"].Equals("purchase") && data.ContainsKey("token"))
         {
-            StartCoroutine(Logout(context, data["token"]));
+
         }
 
         // equipment changes

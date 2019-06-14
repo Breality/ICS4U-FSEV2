@@ -2,52 +2,44 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using UnityEngine;
 
-public class UDPSocket
+public class UDPListener
 {
-    private Socket _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-    private const int bufSize = 8 * 1024;
-    private State state = new State();
-    private EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
-    private AsyncCallback recv = null;
+    private const int listenPort = 3005;
 
-    public class State
+    private static void StartListener()
     {
-        public byte[] buffer = new byte[bufSize];
-    }
+        Debug.Log("Work is starting");
+        UdpClient listener = new UdpClient(listenPort);
+        IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
 
-    public void Server(string address, int port)
-    {
-        _socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.ReuseAddress, true);
-        _socket.Bind(new IPEndPoint(IPAddress.Parse(address), port));
-        Receive();
-    }
-
-    public void Client(string address, int port)
-    {
-        _socket.Connect(IPAddress.Parse(address), port);
-        Receive();
-    }
-
-    public void Send(string text)
-    {
-        byte[] data = Encoding.ASCII.GetBytes(text);
-        _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (ar) =>
+        try
         {
-            State so = (State)ar.AsyncState;
-            int bytes = _socket.EndSend(ar);
-            Console.WriteLine("SEND: {0}, {1}", bytes, text);
-        }, state);
+            while (true)
+            {
+                Debug.Log("Waiting for broadcast");
+                byte[] bytes = listener.Receive(ref groupEP);
+
+                Debug.Log($"Received broadcast from {groupEP} :");
+                Debug.Log($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+            }
+        }
+        catch (SocketException e)
+        {
+            Console.WriteLine(e);
+        }
+        finally
+        {
+            listener.Close();
+        }
     }
 
-    private void Receive()
+    public void Main()
     {
-        _socket.BeginReceiveFrom(state.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv = (ar) =>
-        {
-            State so = (State)ar.AsyncState;
-            int bytes = _socket.EndReceiveFrom(ar, ref epFrom);
-            _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
-            Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
-        }, state);
+        Debug.Log("Starting");
+        Thread thread = new Thread(StartListener);
+        thread.Start();
     }
 }
