@@ -31,9 +31,13 @@ public class Game : MonoBehaviour
 
     public void PlayerLeave(string token) { players.Remove(token); }
 
-    public void Purchase(string token, string type, string name)
+    public void Purchase(string token, string type, string itemName)
     {
-
+        Player player = players[token];
+        if (player == null){ return; }
+        int cost = goldShop[itemName];
+        player.Purchase(type, itemName, cost);
+        updatePlayer[player] = true; // let them know of a new equipment and a new amount of gold next time they ask
     }
     
     public int[] BattleStats(string token) // returns the player [health, mana, stamina, 0 or 1], last parameter is 1 if they should send a request for player stats which would rebuild max hp, money, etc
@@ -52,8 +56,10 @@ public class Game : MonoBehaviour
     // -------------- Player interactions --------------
     public void PlayerKilled(Player murderer, Player murdered)
     {
-        // give murderer mulah
-
+        // give murderer stolen loot
+        murderer.Kill(murdered);
+        updatePlayer[murderer] = true; // they will update to more gold next time they ask
+        updatePlayer[murdered] = true; // they will lost gold, still need to find a way to reset character
     }
 
     

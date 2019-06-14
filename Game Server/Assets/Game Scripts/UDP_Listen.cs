@@ -21,11 +21,11 @@ public class UDP_Listen : MonoBehaviour
         {
             while (true)
             {
-                Debug.Log("Waiting for client message");
+                //Debug.Log("Waiting for client message");
                 byte[] bytes = listener.Receive(ref groupEP);
 
                 string message = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
-                Debug.Log($"Received UDP client message from {groupEP} :");
+                //Debug.Log($"Received UDP client message from {groupEP} :");
 
                 XmlSerializer serilize_object = new XmlSerializer(typeof(string[]));
                 StringReader open_string = new StringReader(message);
@@ -36,6 +36,7 @@ public class UDP_Listen : MonoBehaviour
                 {
                     if (parameters[1].Equals("Player Hit") && parameters.Length == 4) // token, "Player Hit", player name, left hand or right hand (0 or 1)
                     {
+                        Debug.Log("A player got hit, or so we are told");
                         game.WeaponHit(parameters[0], parameters[2], parameters[3]);
                     }
                     else if (parameters[1] == "Stat Update") // client asking for their health, mana and stamina every .25 seconds
