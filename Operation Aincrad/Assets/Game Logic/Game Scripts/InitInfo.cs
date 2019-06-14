@@ -26,6 +26,6 @@ public class InitInfo : MonoBehaviour
         jsL.sellers = GameObject.Find("Sellers");
 
         stMan1.info = stMan2.info = inCen;
-
+        stMan1.HTTP = stMan2.HTTP = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
     }
 }
