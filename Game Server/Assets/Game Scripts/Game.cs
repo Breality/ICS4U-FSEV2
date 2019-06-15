@@ -47,11 +47,8 @@ public class Game : MonoBehaviour
         {
             return new int[] { -1, -1, -1, -1 };
         }
-
-        Debug.Log("Player " + player);
+        
         int[] battleStats = player.GetStats();
-        Debug.Log("Stats " + battleStats);
-        Debug.Log("update player is " + updatePlayer[player]);
         int[] returnData = new int[4] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0 };
         updatePlayer[player] = false;
         return returnData;
