@@ -21,16 +21,15 @@ public class UDP_Listen : MonoBehaviour
         {
             while (true)
             {
-                //Debug.Log("Waiting for client message");
                 byte[] bytes = listener.Receive(ref groupEP);
 
                 string message = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
-                Debug.Log($"Received UDP client message from {groupEP} :");
+                //Debug.Log($"Received UDP client message from {groupEP} :");
 
                 XmlSerializer serilize_object = new XmlSerializer(typeof(string[]));
                 StringReader open_string = new StringReader(message);
                 string[] parameters = (string[])serilize_object.Deserialize(open_string);
-                Debug.Log(parameters[0] +" " + parameters[1]);
+                //Debug.Log(parameters[0] + " " + parameters[1]);
 
                 string returnString = null; // the string that we want to return if that is ever the case
                 if (parameters.Length >= 2)
@@ -51,7 +50,7 @@ public class UDP_Listen : MonoBehaviour
                 {
                     byte[] sendbuf = Encoding.ASCII.GetBytes(returnString);
                     listener.Send(sendbuf, sendbuf.Length, groupEP);
-                    Debug.Log("Message sent back to the client");
+                    //Debug.Log("Message sent back to the client");
                 }
             }
         }

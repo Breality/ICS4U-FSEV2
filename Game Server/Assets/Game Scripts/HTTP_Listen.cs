@@ -70,7 +70,7 @@ public class HTTP_Listen : MonoBehaviour
         foreach (string d in dataSent)
         {
             string[] cell = d.Split('=');
-            data[cell[0]] =  cell[1].Replace("%20", " ");
+            data[cell[0].Replace("%20", " ")] =  cell[1].Replace("%20", " ");
             Debug.Log(cell[0] + ":" + cell[1]);
         }
 

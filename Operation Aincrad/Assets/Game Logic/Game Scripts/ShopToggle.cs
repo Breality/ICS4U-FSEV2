@@ -25,6 +25,7 @@ public class ShopToggle : MonoBehaviour
     public Button purchase;
     public InfoCenter info;
     public Transform SaleOptions;
+    public string itemType;
 
     private string isDisplayed = null;
     private bool canBuy = true; // debounce for when they dont have enough money and buy again
@@ -46,7 +47,7 @@ public class ShopToggle : MonoBehaviour
             bool success = info.gold >= info.goldShop[isDisplayed];
             if (success)
             {
-                HTTP.AskServer(new Dictionary<string, string> { { "request" , "Purchase"}, {"Item name", isDisplayed } });
+                HTTP.AskServer(new Dictionary<string, string> { { "request" , "purchase"}, {"item type", itemType } , {"item name", isDisplayed } });
             }
 
             purchase.GetComponent<Image>().color = success ? new Color(0, 255, 0) : new Color(255, 0, 0); // will be for a milisecond, then go back to onhover
