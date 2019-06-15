@@ -3,11 +3,12 @@ Default Helmet: Common,Helmets, 10, 0, 0, 3, 0, 0, 0, 0, 0
 Default Armour: Common,Armour, 30, 0, 0, 5, 0, 0, 0, 0, 0, 0
 Default Boots: Common,Boots, 0, 0, 10, 0, 0, 0, 0, 0, 0, 16
 Default Pendant: Common,Pendants, 5, 10, 5, 0, 0, 0, 5, 0.01, 1
+Aviator's Hat: Common,Helmets, 15, 1, 1, 1, 1, 1, 1, 1
 
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
-Rusty Sword: Common, 20, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
+Default Sword: Common, 20, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
 Ancient Sword: Uncommon, 40, 5, 1, 0, 15, 1,1.5, 0.05, 1, End
-Orochimaru: Common, 25, 10, 1, 5, 15, 0,1.5,  0.05, 1, End
+Orochimaru: Rare, 25, 10, 1, 5, 15, 0,1.5,  0.05, 1, End
 Ogre Sword: Common, 20, 5, 1, 0, 10, 1,1.5,  0.05, 1, End
 Silver Rapier: Uncommon, 30, 5, 1.5, 0, 10, 1,1.5,  0.05, 1, End
 Sword of the Abyss: Uncommon, 40, 10, 0.75, 10, 35, 1,1.5,  0.05, 1, End
