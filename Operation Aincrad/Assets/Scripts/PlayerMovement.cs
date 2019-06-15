@@ -25,7 +25,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         //This plays the player animations like running or walking or idle
         charAnim = this.gameObject.GetComponent<Animator>();
-        
+        GameObject.Find("LoginMenu").SetActive(false);
         //If the new spawned object is not local (someone else on multiplayer), these scrips are useless
         if (!isLocalPlayer)
         {

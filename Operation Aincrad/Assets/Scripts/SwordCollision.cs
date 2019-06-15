@@ -10,8 +10,7 @@ public class SwordCollision : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
-        Transform rootPCol= FindParentWithRoot(collision.collider.transform);
-        if (rootPCol != null && rootComponent != rootPCol)
+        if (collision.collider.transform.root != this.transform.root)
         {
             cur_collisions.Add(collision.collider.transform);
         }
@@ -20,18 +19,5 @@ public class SwordCollision : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         
-    }
-    public Transform FindParentWithRoot(Transform child)
-    {
-        Transform t = child;
-        while (t.parent != null)
-        {
-            if(t.parent.name == "Root")
-            {
-                return t.parent;
-            }
-            t = t.parent.transform;
-        }
-        return null;
     }
 }

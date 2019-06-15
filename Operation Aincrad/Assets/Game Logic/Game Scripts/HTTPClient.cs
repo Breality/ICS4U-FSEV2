@@ -25,7 +25,6 @@ public class HTTPClient : MonoBehaviour
 {
     // ------------ Variables ------------
     public InfoCenter infoCenter; 
-    public GameObject Menu; // The login menu
     public GameObject VRCamera; // The camera that needs to activate for VR
 
     // input fields for the user to insert information
@@ -143,7 +142,6 @@ public class HTTPClient : MonoBehaviour
                     }
 
                     // calling the functions 
-                    Menu.SetActive(false);
                     netManager.StartClient();
 
                 }catch (Exception e)
