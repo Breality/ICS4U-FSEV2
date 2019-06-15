@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordCollision : MonoBehaviour
 {
+    public UDPClient udpHandler;
     private List<Transform> cur_collisions = new List<Transform>();
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
@@ -17,6 +18,8 @@ public class SwordCollision : MonoBehaviour
                 if (isHittable(collision.collider.transform))
                 {
                     Debug.Log(handed + " " + collision.collider.transform.root.name);
+
+                    udpHandler.PlayerHit(collision.collider.transform.root.name, handed);
 
                     break;
                 }
