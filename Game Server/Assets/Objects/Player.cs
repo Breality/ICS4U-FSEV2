@@ -302,7 +302,7 @@ public class Player
 
     public bool Purchase(string itemType, string item, int cost)
     {
-        if (cost >= gold)
+        if (gold >= cost)
         {
             gold -= cost;
 

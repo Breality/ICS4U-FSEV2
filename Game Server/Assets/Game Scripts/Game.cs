@@ -33,11 +33,13 @@ public class Game : MonoBehaviour
 
     public void Purchase(string token, string type, string itemName)
     {
+        Debug.Log("We got a purchase request: " + token + ", " + type + ", " + itemName);
         Player player = players[token];
         if (player == null){ return; }
         int cost = goldShop[itemName];
         player.Purchase(type, itemName, cost);
         updatePlayer[player] = true; // let them know of a new equipment and a new amount of gold next time they ask
+        Debug.Log("Purchase complete");
     }
     
     public int[] BattleStats(string token) // returns the player [health, mana, stamina, 0 or 1], last parameter is 1 if they should send a request for player stats which would rebuild max hp, money, etc
