@@ -140,6 +140,7 @@ public class HTTP_Listen : MonoBehaviour
 
         // asking for stats because the game told them to
         else if (data["request"].Equals("stats")){ // overall max stats
+            game.updatePlayer[playerDB[data["token"]]] = false;
             DBPlayer fakeDB = new DBPlayer(playerDB[data["token"]], "unimportant hash");
             string xmlString = Encode_XML(fakeDB, typeof(DBPlayer));
             ConstructResponse(context, xmlString);
@@ -171,7 +172,7 @@ public class HTTP_Listen : MonoBehaviour
     void Start()
     {
         //StartCoroutine(Register(null, "boiNew", "123"));
-        //StartCoroutine(LogIn(null, "Pass123", "123"));
+        StartCoroutine(LogIn(null, "Pass123", "123"));
 
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();

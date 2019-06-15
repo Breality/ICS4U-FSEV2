@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
     public TextAsset conditionList;
 
     private Dictionary<string, Player> players = new Dictionary<string, Player> { };
-    private Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
+    public Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
 
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
         
         int[] battleStats = player.GetStats();
         int[] returnData = new int[4] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0 };
-        updatePlayer[player] = false;
+        
         return returnData;
     }
 

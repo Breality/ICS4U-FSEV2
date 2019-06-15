@@ -14,10 +14,6 @@ Templar Helmet: Common,Helmets, 10, 1, 1, 1, 1, 1, 1, 3
 Top Hat: Common,Helmets, 10, 1, 1, 1, 1, 1, 1, 3
 Viking Helmet: Common,Helmets, 10, 1, 1, 1, 1, 1, 1, 3
 
-
-
-
-
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
 Rusty Sword: Common, 20, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
 Ancient Sword: Uncommon, 40, 5, 1, 0, 15, 1,1.5, 0.05, 1, End
