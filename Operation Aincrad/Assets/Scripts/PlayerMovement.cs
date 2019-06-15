@@ -34,6 +34,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!isLocalPlayer)
         {
             //Destroy these scripts so they don't interfere with the current player playing
+            Destroy(this.GetComponent<SwordCollision>());
             Destroy(this.transform.GetChild(1).GetComponent("RotateBody"));
             Destroy(cam);
             Destroy(this.GetComponent("AvatarController"));

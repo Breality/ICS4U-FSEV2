@@ -7,12 +7,23 @@ public class SwordCollision : MonoBehaviour
     private List<Transform> cur_collisions = new List<Transform>();
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Sword Hit: " + collision.collider.name);
-        if (collision.collider.transform.root != this.transform.root && isHittable(collision.collider.transform)) //not same player and object is hittable
+    { 
+        foreach (ContactPoint cp in collision.contacts)
         {
-            Debug.Log("SWORD HIT :"+collision.collider.transform.root.name);
-            cur_collisions.Add(collision.collider.transform);
+            if (cp.thisCollider.name.Contains("Hull"))//SwordHit
+            {
+                int handed = cp.thisCollider.transform.parent.parent.name == "Swords Left" ? 0 : 1;
+
+                if (isHittable(collision.collider.transform))
+                {
+                    Debug.Log(handed + " " + collision.collider.transform.root.name);
+
+                    break;
+                }
+                
+
+
+            }
         }
         
     }
@@ -26,7 +37,7 @@ public class SwordCollision : MonoBehaviour
         {
             return false;
         }
-        else if(objectHit.parent!=null && objectHit.parent.parent!=null && objectHit.parent.parent.name.Contains("Swords"))//object hit was sword
+        else if(objectHit.name.Contains("Hull"))//object hit was sword
         {
             return false;
         }
