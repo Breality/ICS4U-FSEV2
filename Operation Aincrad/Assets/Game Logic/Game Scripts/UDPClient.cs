@@ -25,7 +25,7 @@ public class UDPClient : MonoBehaviour
         return converted_string;
     }
 
-    public void SendUDP(string[] parameters, bool askResponse)
+    private void SendUDP(string[] parameters, bool askResponse)
     {
         string message = Encode_XML(parameters, typeof(string[]));
         byte[] buffer = Encoding.ASCII.GetBytes(message);
@@ -71,6 +71,11 @@ public class UDPClient : MonoBehaviour
             SendUDP(new string[] { token, "Stat Update" }, true);
             yield return new WaitForSeconds(0.25f);
         }
+    }
+
+    public void PlayerHit(string hitName, int weaponUsed)
+    {
+        SendUDP(new string[] { token, "Player Hit", hitName, weaponUsed.ToString() }, false);
     }
 
     public void StartAsking() // continously asks the server for new info every .25 seconds
