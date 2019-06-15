@@ -140,7 +140,10 @@ public class Player
         foreach (string name in player.playerAbilities) { playerAbilities[name] = new Skill(name); }
 
         ReCalculate(); // get new stats and all for player before slapping them into the game
-        
+
+        hp[1] = hp[0];
+        mana[1] = mana[0];
+        stamina[1] = stamina[0];
     }
 
     // -------------- These functions deal damage to the players, returns true if killed --------------

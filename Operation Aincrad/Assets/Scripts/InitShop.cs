@@ -13,10 +13,12 @@ public class InitShop : MonoBehaviour
     private Image hFill, mFill, sFill;
     [SerializeField]
     private TMP_Text hText;
-    void Awake()
+    
+    void Start()
     {
         InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
+        UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
 
@@ -24,6 +26,9 @@ public class InitShop : MonoBehaviour
         inCen.ManaFill = mFill;
         inCen.StaminaFill = sFill;
         inCen.HpText = hText;
+
+        UDP.StartAsking();
+
     }
 
     // Update is called once per frame

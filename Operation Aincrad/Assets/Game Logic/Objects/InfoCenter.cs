@@ -27,12 +27,18 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public int gold = 0;
     public int score = 0;
 
-    // calculated info
+    // calculated stats
     public int maxHp = 100;
     public int maxMana = 100;
     public int maxStamina = 100;
 
-    // updated info
+    private int mobility = 20;
+    private float resist = 0;
+
+    private float[] attackPower = new float[] { 0, 1 }; // {bonus, multiplier}
+    private float[] magicPower = new float[] { 0, 1 }; // {bonus, multiplier}
+
+    // updated stats (every .25 seconds)
     public int Hp = 100;
     public int Mana = 100;
     public int Stamina = 100;
@@ -65,7 +71,48 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     // quests
     public int questProg = 0; // main storyline
     public Dictionary<string, int> optionalQuests = new Dictionary<string, int> { };
-    
+
+    public void ReCalculate()
+    {
+        int baseHp = 100;
+        int baseMana = 100;
+        int baseStamina = 100;
+        float baseResist = 0f;
+        float[] baseAttack = new float[] { 0, 1 }; // {bonus, multiplier}
+        float[] baseMagic = new float[] { 0, 1 }; // {bonus, multiplier}
+        int baseSpeed = 10;
+
+        for (int i = 0; i < 4; i++)
+        {
+            string owned = equipped[i];
+            if (owned != "None")
+            {
+                string index = new string[] { "Helmets", "Armour", "Boots", "Pendants" }[i];
+                Clothing item = clothing[index][owned];
+
+                baseHp += item.bonusHp;
+                baseMana += item.bonusMana;
+                baseStamina += item.bonusStamina;
+                baseResist += item.resist;
+                baseSpeed += item.bonusSpeed;
+
+                baseAttack[0] += item.attackPower[0];
+                baseAttack[1] += item.attackPower[1];
+
+                baseMagic[0] += item.magicPower[0];
+                baseMagic[1] += item.magicPower[1];
+            }
+        }
+
+        maxHp = baseHp;
+        maxMana = baseMana;
+        maxStamina = baseStamina;
+        this.resist = baseResist;
+        this.mobility = baseSpeed;
+        this.attackPower = baseAttack;
+        this.magicPower = baseMagic;
+    }
+
 
     // ----------- Loading data --------------------
     private void Load(DBPlayer player)
@@ -111,6 +158,9 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         magicSpells = new List<string>(player.magicSpells);
         attackSkills = new List<string>(player.attackSkills);
         playerAbilities = new List<string>(player.playerAbilities);
+
+        // calculate stats again
+        ReCalculate();
     }
 
     public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments) // logging in
@@ -138,6 +188,8 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public void ReDraw() 
     {
         // update gold, hp, mana, stamina
+        Debug.Log("Redrawn");
+        Debug.Log(MoneyText);
         MoneyText.text = "$" + gold.ToString();
         HpFill.fillAmount = (float)Hp/maxHp;
         ManaFill.fillAmount = (float)Mana / maxMana;
