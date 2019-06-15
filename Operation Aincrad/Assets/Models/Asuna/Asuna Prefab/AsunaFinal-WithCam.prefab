@@ -23966,6 +23966,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stMan1: {fileID: 3234879552273929009}
   stMan2: {fileID: 3234879551126227258}
+  hFill: {fileID: 3234879551982452412}
+  mFill: {fileID: 3234879551163425247}
+  sFill: {fileID: 3234879551653401978}
+  hText: {fileID: 3234879552941725908}
 --- !u!1 &7785188373846870917
 GameObject:
   m_ObjectHideFlags: 0
