@@ -21,19 +21,17 @@ public class PlayerMovement : NetworkBehaviour
     private float playerMovSpeed = 0.2f;
     [SerializeField]
     private GameObject cam;
+    
     void Start()
     {
         //This plays the player animations like running or walking or idle
         charAnim = this.gameObject.GetComponent<Animator>();
-        GameObject.Find("LoginMenu").SetActive(false);
         //If the new spawned object is not local (someone else on multiplayer), these scrips are useless
         if (!isLocalPlayer)
         {
             //Destroy these scripts so they don't interfere with the current player playing
-            cam.SetActive(false);
-            Destroy(this.GetComponent("AvatarController"));
-            Destroy(this.GetComponent<Animator>());
-            Destroy(cam.GetComponent("KinectManager"));
+            Destroy(cam);
+            Destroy(charAnim);
         }
                 
     }
