@@ -39396,7 +39396,7 @@ GameObject:
   - component: {fileID: 6180544143945695155}
   - component: {fileID: 6276661213532532991}
   m_Layer: 0
-  m_Name: Default Sword
+  m_Name: Rusty Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

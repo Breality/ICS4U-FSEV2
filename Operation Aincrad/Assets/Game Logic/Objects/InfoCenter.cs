@@ -111,6 +111,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         this.mobility = baseSpeed;
         this.attackPower = baseAttack;
         this.magicPower = baseMagic;
+        Debug.Log(maxHp + " " + maxMana + " " + maxStamina);
     }
 
 
