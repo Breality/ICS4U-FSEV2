@@ -2341,6 +2341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740563103275044171}
+  - component: {fileID: 6450928398716552851}
   m_Layer: 0
   m_Name: Dothraki Sword
   m_TagString: Untagged
@@ -2364,6 +2365,18 @@ Transform:
   m_Father: {fileID: 7247064677719252099}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6450928398716552851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747149107032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747492039008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740563102395370355}
+  - component: {fileID: 1192957059807387796}
   m_Layer: 0
   m_Name: Ancient Sword
   m_TagString: Untagged
@@ -2396,6 +2410,18 @@ Transform:
   m_Father: {fileID: 7247064677719252099}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -88.741005, y: 89.714005, z: -113.119}
+--- !u!114 &1192957059807387796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747492039008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747544721642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2434,7 @@ GameObject:
   - component: {fileID: 5670631086474825935}
   - component: {fileID: 2129826069020503094}
   - component: {fileID: 8544334118354682350}
+  - component: {fileID: 1450284308614550257}
   m_Layer: 0
   m_Name: Curved Sword
   m_TagString: Untagged
@@ -2573,6 +2600,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 42
   LargestHullFaces: 80
+--- !u!114 &1450284308614550257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747544721642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747721490631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740563102706848468}
+  - component: {fileID: 4018579931651803782}
   m_Layer: 0
   m_Name: Sword of the Abyss
   m_TagString: Untagged
@@ -2608,6 +2648,18 @@ Transform:
   m_Father: {fileID: 7247064677719252099}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -0.19900002, y: 99.45901, z: 95.604004}
+--- !u!114 &4018579931651803782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747721490631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747738610845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,6 +2672,7 @@ GameObject:
   - component: {fileID: 5670631086398117048}
   - component: {fileID: 2129826069095114817}
   - component: {fileID: 8544334118146180503}
+  - component: {fileID: 9010665386785958846}
   m_Layer: 0
   m_Name: Default Sword
   m_TagString: Untagged
@@ -2781,6 +2834,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 32
   LargestHullFaces: 60
+--- !u!114 &9010665386785958846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747738610845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747755579912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,6 +2858,7 @@ GameObject:
   - component: {fileID: 5670631086380614189}
   - component: {fileID: 2129826069078539988}
   - component: {fileID: 8544334118162764556}
+  - component: {fileID: 1895744635412898601}
   m_Layer: 0
   m_Name: Elucidator
   m_TagString: Untagged
@@ -2943,6 +3009,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 10
   LargestHullFaces: 16
+--- !u!114 &1895744635412898601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747755579912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747762958360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2955,6 +3033,7 @@ GameObject:
   - component: {fileID: 5670631086390028349}
   - component: {fileID: 2129826069071221956}
   - component: {fileID: 8544334118170016028}
+  - component: {fileID: 4222560518180506613}
   m_Layer: 0
   m_Name: Dark Sword
   m_TagString: Untagged
@@ -3168,6 +3247,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 52
   LargestHullFaces: 100
+--- !u!114 &4222560518180506613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747762958360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530747811641281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3177,6 +3268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740563102075635154}
+  - component: {fileID: 716458652541312869}
   m_Layer: 0
   m_Name: Silver Rapier
   m_TagString: Untagged
@@ -3200,6 +3292,18 @@ Transform:
   m_Father: {fileID: 7247064677719252099}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &716458652541312869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530747811641281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530748200784678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,6 +3316,7 @@ GameObject:
   - component: {fileID: 5670631086023760643}
   - component: {fileID: 2129826070582536186}
   - component: {fileID: 410530748200784679}
+  - component: {fileID: 2098306497459528723}
   m_Layer: 0
   m_Name: Long Sword
   m_TagString: Untagged
@@ -3344,6 +3449,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 50
   LargestHullFaces: 96
+--- !u!114 &2098306497459528723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530748200784678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530748469064298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,6 +3473,7 @@ GameObject:
   - component: {fileID: 5670631085751827023}
   - component: {fileID: 2129826070311831222}
   - component: {fileID: 410530748469064299}
+  - component: {fileID: 7585640860482478732}
   m_Layer: 0
   m_Name: Orochimaru
   m_TagString: Untagged
@@ -3506,6 +3624,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 64
   LargestHullFaces: 124
+--- !u!114 &7585640860482478732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530748469064298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530748742189660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,6 +3648,7 @@ GameObject:
   - component: {fileID: 5670631085264767609}
   - component: {fileID: 2129826070234756736}
   - component: {fileID: 8544334117136243536}
+  - component: {fileID: 4607848460066860206}
   m_Layer: 0
   m_Name: Templar Sword
   m_TagString: Untagged
@@ -3670,6 +3801,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 64
   LargestHullFaces: 124
+--- !u!114 &4607848460066860206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530748742189660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530748806201811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,6 +3825,7 @@ GameObject:
   - component: {fileID: 5670631085283854838}
   - component: {fileID: 2129826070246601999}
   - component: {fileID: 8544334117133048005}
+  - component: {fileID: 4403254631054037257}
   m_Layer: 0
   m_Name: Shark Staff
   m_TagString: Untagged
@@ -3910,6 +4054,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 48
   LargestHullFaces: 92
+--- !u!114 &4403254631054037257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530748806201811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410530748824973548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,6 +4078,7 @@ GameObject:
   - component: {fileID: 5670631085312030921}
   - component: {fileID: 2129826070147646512}
   - component: {fileID: 8544334117084932576}
+  - component: {fileID: 549882130966049322}
   m_Layer: 0
   m_Name: Ogre Sword
   m_TagString: Untagged
@@ -4052,6 +4209,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 32
   LargestHullFaces: 60
+--- !u!114 &549882130966049322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410530748824973548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431622403245636547
 GameObject:
   m_ObjectHideFlags: 0
@@ -6333,6 +6502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6002116865293163043}
+  - component: {fileID: 8272371276473919113}
   m_Layer: 0
   m_Name: Dothraki Sword
   m_TagString: Untagged
@@ -6356,6 +6526,18 @@ Transform:
   m_Father: {fileID: 4880542472814573959}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8272371276473919113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757190950018524346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &770687846435891792
 GameObject:
   m_ObjectHideFlags: 0
@@ -7739,6 +7921,7 @@ GameObject:
   - component: {fileID: 8243143177393525480}
   - component: {fileID: 278491428615421915}
   - component: {fileID: 5557283044551187109}
+  - component: {fileID: 3018692315358933924}
   m_Layer: 0
   m_Name: Elucidator
   m_TagString: Untagged
@@ -7889,6 +8072,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 10
   LargestHullFaces: 16
+--- !u!114 &3018692315358933924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007747004944663795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1010416868379069775
 GameObject:
   m_ObjectHideFlags: 0
@@ -8219,6 +8414,7 @@ GameObject:
   - component: {fileID: 7330199766942108247}
   - component: {fileID: 418139154572773471}
   - component: {fileID: 5422231185410107210}
+  - component: {fileID: 8097966764777960407}
   m_Layer: 0
   m_Name: Curved Sword
   m_TagString: Untagged
@@ -8384,6 +8580,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 42
   LargestHullFaces: 80
+--- !u!114 &8097966764777960407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072170910587323740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1074449853882091906
 GameObject:
   m_ObjectHideFlags: 0
@@ -8441,6 +8649,7 @@ GameObject:
   - component: {fileID: 5707025337405645961}
   - component: {fileID: 3362976394923736421}
   - component: {fileID: 5439973248332221650}
+  - component: {fileID: 4259352377470226607}
   m_Layer: 0
   m_Name: Dark Sword
   m_TagString: Untagged
@@ -8654,6 +8863,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 52
   LargestHullFaces: 100
+--- !u!114 &4259352377470226607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095006325705745298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1098661794216442911
 GameObject:
   m_ObjectHideFlags: 0
@@ -12898,6 +13119,7 @@ GameObject:
   - component: {fileID: 3619535526449268430}
   - component: {fileID: 5661014664903391777}
   - component: {fileID: 4820148223076432353}
+  - component: {fileID: 2111863260019423322}
   m_Layer: 0
   m_Name: Templar Sword
   m_TagString: Untagged
@@ -13050,6 +13272,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 64
   LargestHullFaces: 124
+--- !u!114 &2111863260019423322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888795244775812781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900551414439247616
 GameObject:
   m_ObjectHideFlags: 0
@@ -18131,6 +18365,7 @@ GameObject:
   - component: {fileID: 5583579512177054973}
   - component: {fileID: 3481276163056032240}
   - component: {fileID: 7851429978110460200}
+  - component: {fileID: 6587323336136922874}
   m_Layer: 0
   m_Name: Orochimaru
   m_TagString: Untagged
@@ -18281,6 +18516,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 64
   LargestHullFaces: 124
+--- !u!114 &6587323336136922874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2614124455350208478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2614380098578403727
 GameObject:
   m_ObjectHideFlags: 0
@@ -18381,6 +18628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6905511993898689363}
+  - component: {fileID: 439234561247042677}
   m_Layer: 0
   m_Name: Silver Rapier
   m_TagString: Untagged
@@ -18404,6 +18652,18 @@ Transform:
   m_Father: {fileID: 4880542472814573959}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &439234561247042677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622257199983381291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2636452316105544308
 GameObject:
   m_ObjectHideFlags: 0
@@ -20526,6 +20786,7 @@ GameObject:
   - component: {fileID: 1262419263868156974}
   - component: {fileID: 5580892194940932540}
   - component: {fileID: 5806792695322874048}
+  - component: {fileID: 4123878538817582485}
   m_Layer: 0
   m_Name: Shark Staff
   m_TagString: Untagged
@@ -20754,6 +21015,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 48
   LargestHullFaces: 92
+--- !u!114 &4123878538817582485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982594288094922026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2982704864497038061
 GameObject:
   m_ObjectHideFlags: 0
@@ -22491,7 +22764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3234879551049713684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39395,6 +39668,7 @@ GameObject:
   - component: {fileID: 9200936291806520342}
   - component: {fileID: 6180544143945695155}
   - component: {fileID: 6276661213532532991}
+  - component: {fileID: 8336944250441405851}
   m_Layer: 0
   m_Name: Rusty Sword
   m_TagString: Untagged
@@ -39556,6 +39830,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 32
   LargestHullFaces: 60
+--- !u!114 &8336944250441405851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473067085477727419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3476915548008635756
 GameObject:
   m_ObjectHideFlags: 0
@@ -47261,6 +47547,7 @@ GameObject:
   - component: {fileID: 2947137800114613395}
   - component: {fileID: 307924780183446899}
   - component: {fileID: 6814592921254585053}
+  - component: {fileID: 8844132425758690754}
   m_Layer: 0
   m_Name: Long Sword
   m_TagString: Untagged
@@ -47393,6 +47680,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 50
   LargestHullFaces: 96
+--- !u!114 &8844132425758690754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668543469902900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4674540304813448823
 GameObject:
   m_ObjectHideFlags: 0
@@ -52262,6 +52561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6917889728779133422}
+  - component: {fileID: 7752836156001332428}
   m_Layer: 0
   m_Name: Ancient Sword
   m_TagString: Untagged
@@ -52285,6 +52585,18 @@ Transform:
   m_Father: {fileID: 4880542472814573959}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -88.741005, y: 89.714005, z: -113.119}
+--- !u!114 &7752836156001332428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5425120264028670653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5428524764528747224
 GameObject:
   m_ObjectHideFlags: 0
@@ -52340,6 +52652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7767604816207823091}
+  - component: {fileID: 3935474356711600647}
   m_Layer: 0
   m_Name: Sword of the Abyss
   m_TagString: Untagged
@@ -52366,6 +52679,18 @@ Transform:
   m_Father: {fileID: 4880542472814573959}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -0.19900002, y: 99.45901, z: 95.604004}
+--- !u!114 &3935474356711600647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470517908847607261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5493575642985972988
 GameObject:
   m_ObjectHideFlags: 0
@@ -63731,6 +64056,7 @@ GameObject:
   - component: {fileID: 8627922374923045532}
   - component: {fileID: 5216892059800251081}
   - component: {fileID: 3751830996038695005}
+  - component: {fileID: 174751783269644690}
   m_Layer: 0
   m_Name: Ogre Sword
   m_TagString: Untagged
@@ -63861,6 +64187,18 @@ MonoBehaviour:
   LastIsTrigger: 0
   LargestHullVertices: 32
   LargestHullFaces: 60
+--- !u!114 &174751783269644690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608105931666193102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a76c5c0f8521cf4bba2d44faacbf9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7608225881544206314
 GameObject:
   m_ObjectHideFlags: 0
@@ -115473,15 +115811,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
---- !u!4 &3234879551195606744 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400020, guid: 56a3eae89ee905b4ca6bb013219c6362,
-    type: 3}
-  m_PrefabInstance: {fileID: 3234879551196001356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3234879551196099320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362,
+    type: 3}
+  m_PrefabInstance: {fileID: 3234879551196001356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3234879551195606744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400020, guid: 56a3eae89ee905b4ca6bb013219c6362,
     type: 3}
   m_PrefabInstance: {fileID: 3234879551196001356}
   m_PrefabAsset: {fileID: 0}
