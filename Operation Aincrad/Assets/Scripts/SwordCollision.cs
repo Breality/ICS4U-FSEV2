@@ -8,9 +8,10 @@ public class SwordCollision : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Sword Hit: " + collision.collider.name);
         if (collision.collider.transform.root != this.transform.root && isHittable(collision.collider.transform)) //not same player and object is hittable
         {
-            Debug.Log(collision.collider.transform.root.name);
+            Debug.Log("SWORD HIT :"+collision.collider.transform.root.name);
             cur_collisions.Add(collision.collider.transform);
         }
         
@@ -21,7 +22,7 @@ public class SwordCollision : MonoBehaviour
     }
     private bool isHittable(Transform objectHit)
     {
-        if (objectHit.root.GetChild(0).Find("Camera") == null)//not player NEED TO CHANGE FOR MONSTERS
+        if (objectHit.root.GetChild(0).Find("Asuna_def_001") == null)//not player NEED TO CHANGE FOR MONSTERS
         {
             return false;
         }

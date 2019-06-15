@@ -41566,7 +41566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3717364378071191796}
   m_LocalRotation: {x: 0.0737938, y: 0.72004354, z: -0.68567294, w: 0.07710026}
-  m_LocalPosition: {x: 1.9081958e-16, y: 0.0007452112, z: -0.29376778}
+  m_LocalPosition: {x: 0, y: 0.0007452112, z: -0.29376778}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1546717532898800232}
@@ -62804,7 +62804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247064678864519810}
   m_Layer: 0
-  m_Name: Right Boot
+  m_Name: Boots Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62839,7 +62839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247064679582081239}
   m_Layer: 0
-  m_Name: Left Boot
+  m_Name: Boots Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
