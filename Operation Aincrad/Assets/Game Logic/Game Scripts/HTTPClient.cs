@@ -25,7 +25,6 @@ public class HTTPClient : MonoBehaviour
 {
     // ------------ Variables ------------
     public InfoCenter infoCenter; 
-    public GameObject VRCamera; // The camera that needs to activate for VR
     public UDPClient UDP;
 
     // input fields for the user to insert information
