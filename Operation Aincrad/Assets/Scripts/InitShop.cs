@@ -8,7 +8,7 @@ public class InitShop : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private ShopToggle stMan1, stMan2;
+    private Transform shopHolder;
     [SerializeField]
     private Image hFill, mFill, sFill;
     [SerializeField]
@@ -21,8 +21,14 @@ public class InitShop : MonoBehaviour
         UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
 
         this.GetComponent<SwordCollision>().udpHandler = UDP;
-        stMan1.info = stMan2.info = inCen;
-        stMan1.HTTP = stMan2.HTTP = handlerMan;
+
+        foreach(Transform shop in shopHolder)
+        {
+            ShopToggle stMan = shop.Find("Shop Handler").GetComponent<ShopToggle>();
+            stMan.HTTP = handlerMan;
+            stMan.info = inCen;
+        }
+
 
         inCen.HpFill = hFill;
         inCen.ManaFill = mFill;
