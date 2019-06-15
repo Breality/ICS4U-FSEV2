@@ -5,14 +5,24 @@ Default Boots: Common,Boots, 0, 0, 10, 0, 0, 0, 0, 0, 0, 16
 Default Pendant: Common,Pendants, 5, 10, 5, 0, 0, 0, 5, 0.01, 1
 Aviator's Hat: Common,Helmets, 10, 1, 1, 1, 1, 1, 1, 1, 3
 Flower Hat: Common,Helmets, 5, 0, 0, 0, 0, 0, 0, 0, 0
-Loki Helmet: Common,Helmets, 50, 3, 3, 3, 3, 3, 3, 3, 3
-Soldier Helmet: Common,Helmets, 20, 2, 2, 2, 2, 1, 1, 1, 1
-Sorcery Hat: Common,Helmets, 20, 4, 1, 1, 1, 1, 3, 3, 0.5
-Spartan Helmet: Common,Helmets, 30, 1, 2, 1, 3, 3, 1, 1, 1
-Templar Helmet: Common,Helmets, 10, 1, 1, 1, 1, 1, 1, 1, 1
-Top Hat: Common,Helmets, 10, 2, 1, 1, 1, 1, 2, 2, 2
-Viking Helmet: Common,Helmets, 10, 1, 1, 4, 1, 1, 1, 1, 1
-Knight Armour: Common,Armour, 1000, 0, 50, 30, 20, 20, 0, 0, 1 
+Loki Helmet: Super Rare,Helmets, 50, 3, 3, 10, 1, 1, 1, 1, 3
+Soldier Helmet: Common,Helmets, 20, 2, 2, 2, 1, 0.1, 0, 0, 1
+Sorcery Hat: Super Rare,Helmets, 20, 4, 1, 1, 5, 0, 0, 0.7, 0.5
+Spartan Helmet: Rare,Helmets, 30, 1, 2, 1, 1, 0.4, 0, 0, 1
+Templar Helmet: Uncommon,Helmets, 10, 1, 1, 1, 1, 0.1, 0, 0, 1
+Top Hat: Uncommmon,Helmets, 10, 2, 1, 1, 0, 0, 2, 0.5, 2
+Viking Helmet: Common,Helmets, 10, 1, 1, 4, 1, 0.3, 0, 0, 1
+Knight Armour: Uncommon,Armour, 1000, 0, 50, 30, 3, 0.5, 0, 0, 1
+Aqua Dress: Uncommon,Armour, 100, 0, 20, 2, 0, 0, 0, 0, 1
+Black Dress: Uncommon,Armour, 200, 10, 20, 2, 0, 0, 0, 0, 1
+Purple Dress: Uncommon,Armour, 1000, 0, 50, 30, 20, 20, 0, 0, 1
+Red Dress: Rare,Armour, 10000, 20, 100, 30, 5, 5, 5, 5, 10
+White Dress: Uncommon,Armour, 100, 0, 10, 20, 0, 0, 0, 0, 1
+Red Jacket: Common,Armour, 200, 0, 10, 20, 0, 0, 0, 0, 1
+High Boots: Uncommon,Boots, 5, 0, 1, 0, 0, 0, 0, 0, 1
+White Shoes: Common,Boots, 5, 0, 1, 0, 0, 0, 0, 0, 1
+Converse: Rare,Boots, 5, 0, 3, 0, 0, 0, 0, 0, 1
+Army Boots: Uncommon,Boots, 5, 0, 5, 5, 1, 0.01, 0, 0, 5
 
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
 Rusty Sword: Common, 20, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
