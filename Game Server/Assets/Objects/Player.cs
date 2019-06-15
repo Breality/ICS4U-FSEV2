@@ -148,15 +148,16 @@ public class Player
 
     // -------------- These functions deal damage to the players, returns true if killed --------------
     // private overload called by all the public overloads
-    private bool TakeDamage(int damage) // takes normal damage, applies any conditional bonuses 
+    private bool TakeDamage(int damage) // takes normal damage, applies any conditional bonuses and resist
     {
-        int dam = (int)(damage * conditionStats["Damage Multiplier"]);
+        int dam = (int)(damage * (conditionStats["Damage Multiplier"] + 1));
         hp[1] -= dam;
         Debug.Log(Username + " just took " + dam + " damage and has " + hp[1] + " health left");
         if (hp[1] <= 0)
         {
             return true;
         }
+        
         return false;
     }
 
@@ -171,7 +172,7 @@ public class Player
             {
                 currentConditions.Add(cond); // put a copy of the condition in (the function gets us newly made copies)
             }
-
+            
             return TakeDamage(weapon.getSlash());
         }
         return false;

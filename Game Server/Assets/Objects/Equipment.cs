@@ -129,6 +129,7 @@ public class Weapon : Equipment
     // activates the attack, gets it all ready for when the hit function is called. returns true if attack was activated, false if something is wrong
     public bool Attack(Attack attackSkill, float charge) 
     {
+        Debug.Log("Boi is about to get slapped");
         // get variables specific for this attack (changes with attack skill)
         if (Time.time >= attackEnd + cooldown)
         {
@@ -151,7 +152,8 @@ public class Weapon : Equipment
                     slashAttack += attackSkill.bonusDamage;
                     slashAttack = (int) (slashAttack*attackSkill.attackMultiplier);
                 }
-                
+
+                Debug.Log("All set");
                 return true;
             }
         }
