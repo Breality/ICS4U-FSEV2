@@ -138,6 +138,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public void ReDraw() 
     {
         // update gold, hp, mana, stamina
+        Debug.Log("Redrawn");
         MoneyText.text = "$" + gold.ToString();
         HpFill.fillAmount = (float)Hp/maxHp;
         ManaFill.fillAmount = (float)Mana / maxMana;

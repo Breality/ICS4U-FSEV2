@@ -144,7 +144,7 @@ public class HTTPClient : MonoBehaviour
 
                     // calling the functions 
                     netManager.StartClient();
-                    UDP.StartAsking();
+                    UDP.StartAsking(token);
                 }
                 catch (Exception e)
                 {

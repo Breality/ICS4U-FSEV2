@@ -37,6 +37,7 @@ public class UDPClient : MonoBehaviour
         {
             byte[] b2 = client.Receive(ref ep);
             string response = System.Text.Encoding.ASCII.GetString(b2, 0, b2.Length);
+            Debug.Log(response);
 
             // act on response
             if (parameters[1] == "Stat Update")
@@ -72,13 +73,19 @@ public class UDPClient : MonoBehaviour
         }
     }
 
-    public void StartAsking() // continously asks the server for new info every .25 seconds
+    public void StartAsking(string token) // continously asks the server for new info every .25 seconds
     {
+        this.token = token;
         client = new UdpClient();
         client.Connect(new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005));
         Debug.Log("UDP Setup is done");
 
         Thread newThread = new Thread(EternalThread);
         newThread.Start();
+    }
+
+    private void Start()
+    {
+        
     }
 }
