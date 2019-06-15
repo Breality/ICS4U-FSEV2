@@ -171,7 +171,7 @@ public class HTTP_Listen : MonoBehaviour
     void Start()
     {
         //StartCoroutine(Register(null, "boiNew", "123"));
-        //StartCoroutine(LogIn(null, "boiNew", "123"));
+        //StartCoroutine(LogIn(null, "Pass123", "123"));
 
         listenerThread = new Thread(HttpHandler);
         listenerThread.Start();
