@@ -33,6 +33,7 @@ public class PlayerMovement : NetworkBehaviour
             Destroy(this.transform.GetChild(1).GetComponent("RotateBody"));
             Destroy(cam);
             Destroy(this.GetComponent("AvatarController"));
+            Destroy(this.GetComponent<NetworkAnimator>());
             Destroy(charAnim);
         }
                 
