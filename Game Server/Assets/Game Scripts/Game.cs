@@ -60,6 +60,7 @@ public class Game : MonoBehaviour
     public void PlayerKilled(Player murderer, Player murdered)
     {
         // give murderer stolen loot
+        Debug.Log("There seems to be a murder");
         murderer.Kill(murdered);
         updatePlayer[murderer] = true; // they will update to more gold next time they ask
         updatePlayer[murdered] = true; // they will lost gold, still need to find a way to reset character
