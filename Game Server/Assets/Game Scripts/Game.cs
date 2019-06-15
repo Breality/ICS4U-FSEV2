@@ -27,7 +27,7 @@ public class Game : MonoBehaviour
     };
 
     // -------------- Player decisions sent by HTTP --------------
-    public void PlayerEnter(Player player, string token) { players[token] = player; Debug.Log("Player added to server"); }
+    public void PlayerEnter(Player player, string token) { players[token] = player; updatePlayer[player] = false;  Debug.Log("Player added to server"); }
 
     public void PlayerLeave(string token) { players.Remove(token); }
 
@@ -47,7 +47,11 @@ public class Game : MonoBehaviour
         {
             return new int[] { -1, -1, -1, -1 };
         }
+
+        Debug.Log("Player " + player);
         int[] battleStats = player.GetStats();
+        Debug.Log("Stats " + battleStats);
+        Debug.Log("update player is " + updatePlayer[player]);
         int[] returnData = new int[4] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0 };
         updatePlayer[player] = false;
         return returnData;

@@ -20,7 +20,7 @@ public class HTTP_Listen : MonoBehaviour
     private Thread listenerThread;
     private Dictionary<string, Player> playerDB = new Dictionary<string, Player> { };
     private Dictionary<string, string> playerHash = new Dictionary<string, string> { };
-    private string firebaseExtension = "hidden";
+    private string firebaseExtension = "ics4u-fse8192191312";
     
     private string GetRequestPostData(HttpListenerRequest request)
     {

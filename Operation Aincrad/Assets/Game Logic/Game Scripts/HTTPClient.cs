@@ -143,8 +143,8 @@ public class HTTPClient : MonoBehaviour
                     }
 
                     // calling the functions 
+                    UDP.SetToken(token);
                     netManager.StartClient();
-                    UDP.StartAsking(token);
                 }
                 catch (Exception e)
                 {

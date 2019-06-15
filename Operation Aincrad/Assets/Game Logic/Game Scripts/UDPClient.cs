@@ -64,24 +64,27 @@ public class UDPClient : MonoBehaviour
     IPEndPoint ep = new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005);
     private string token;
     
-    private void EternalThread()
+    private IEnumerator EternalThread()
     {
         while (true) // ask for any updates
         {
             SendUDP(new string[] { token, "Stat Update" }, true);
-            System.Threading.Thread.Sleep(250);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
-    public void StartAsking(string token) // continously asks the server for new info every .25 seconds
+    public void StartAsking() // continously asks the server for new info every .25 seconds
     {
-        this.token = token;
         client = new UdpClient();
         client.Connect(new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005));
         Debug.Log("UDP Setup is done");
 
-        Thread newThread = new Thread(EternalThread);
-        newThread.Start();
+        StartCoroutine(EternalThread());
+    }
+
+    public void SetToken(string token)
+    {
+        this.token = token;
     }
 
     private void Start()
