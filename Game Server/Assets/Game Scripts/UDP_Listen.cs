@@ -25,7 +25,7 @@ public class UDP_Listen : MonoBehaviour
 
                 string message = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                 //Debug.Log($"Received UDP client message from {groupEP} :");
-
+                 
                 XmlSerializer serilize_object = new XmlSerializer(typeof(string[]));
                 StringReader open_string = new StringReader(message);
                 string[] parameters = (string[])serilize_object.Deserialize(open_string);
