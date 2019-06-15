@@ -25,6 +25,8 @@ public class HTTPClient : MonoBehaviour
 {
     // ------------ Variables ------------
     public InfoCenter infoCenter; 
+    public GameObject VRCamera; // The camera that needs to activate for VR
+    public UDPClient UDP;
 
     // input fields for the user to insert information
     public TMP_InputField Username;
@@ -142,8 +144,9 @@ public class HTTPClient : MonoBehaviour
 
                     // calling the functions 
                     netManager.StartClient();
-
-                }catch (Exception e)
+                    UDP.StartAsking();
+                }
+                catch (Exception e)
                 {
                     Debug.Log(e.ToString());
                 }
