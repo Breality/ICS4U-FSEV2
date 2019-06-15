@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: a4ddd7f62585e484d95366f831e5e90c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a4ddd7f62585e484d95366f831e5e90c,
         type: 3}
@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: goblin
-  thing: {fileID: 600508530}
   HP: 100
 --- !u!1 &22845119 stripped
 GameObject:
@@ -496,12 +495,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &600508530 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
-    type: 3}
-  m_PrefabInstance: {fileID: 684563686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &684563686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -517,7 +510,7 @@ PrefabInstance:
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.887
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
@@ -677,7 +670,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 907b75cb419ecb847acc0959d0cdb9a1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 907b75cb419ecb847acc0959d0cdb9a1,
         type: 3}
@@ -781,7 +774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: demon
-  thing: {fileID: 600508530}
   HP: 100
 --- !u!1 &1230798822 stripped
 GameObject:
@@ -1721,7 +1713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: skeleton
-  thing: {fileID: 600508530}
   HP: 100
 --- !u!54 &8296172668190485542
 Rigidbody:

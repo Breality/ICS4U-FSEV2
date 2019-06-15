@@ -55,6 +55,7 @@ public class Monster : MonoBehaviour
 
     public void chase(List<Vector3> positions)
     {
+
         //Gets the player that's closest to them
         float distance = 99999;
         Vector3 position = this.transform.position;
@@ -64,24 +65,29 @@ public class Monster : MonoBehaviour
             {
                 distance = Vector3.Distance(p, this.transform.position);
                 position = p;
-                
             }
         }
-        //Move the monster to the player position
-        if (minAttackDist < Vector3.Distance(position, this.transform.position))
+
+        if (distance < 40)
         {
-            charAnim.SetFloat("velocity", 1);
-            transform.LookAt(position);
-            transform.position += transform.forward * speed * Time.deltaTime;
-            
+            //Move the monster to the player position
+            if (minAttackDist < Vector3.Distance(position, this.transform.position))
+            {
+                charAnim.SetFloat("velocity", 1);
+                transform.LookAt(position);
+                transform.position += transform.forward * speed * Time.deltaTime;
+
+            }
+            //If the monster is in attacking range, play the attack animation
+            else if (minAttackDist >= Vector3.Distance(position, this.transform.position))
+            {
+                charAnim.SetFloat("velocity", 0);
+                attack();
+            }
         }
-        //If the monster is in attacking range, play the attack animation
         else
         {
             charAnim.SetFloat("velocity", 0);
-            attack();
-
-
         }
 
     }

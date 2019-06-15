@@ -25,20 +25,19 @@ Converse: Rare,Boots, 5, 0, 3, 0, 0, 0, 0, 0, 1
 Army Boots: Uncommon,Boots, 5, 0, 5, 5, 1, 0.01, 0, 0, 5
 
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
-Rusty Sword: Common, 20, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
-Ancient Sword: Uncommon, 40, 5, 1, 0, 15, 1,1.5, 0.05, 1, End
-Orochimaru: Rare, 25, 10, 1, 5, 15, 0,1.5,  0.05, 1, End
-Ogre Sword: Common, 20, 5, 1, 0, 10, 1,1.5,  0.05, 1, End
-Silver Rapier: Uncommon, 30, 5, 1.5, 0, 10, 1,1.5,  0.05, 1, End
-Sword of the Abyss: Uncommon, 40, 10, 0.75, 10, 35, 1,1.5,  0.05, 1, End
-Templar Sword: Uncommon, 25, 25, 1, 10, 10, 0,1.5,  0.05, 1, End
-Curved Sword: Rare, 50, 15, 0.75, 0, 20, 1,1.5,  0.05, 1, End
-Dark Sword: Rare, 55, 10, 1.5, 30, 25, 1,1.5,  0.05, 1, End
-Dothraki Sword: Uncommon, 40, 0, 1, 0, 8, 1,1.5,  0.05, 1, End
-Elucidator: Rare, 50, 50, 1.5, 10, 40, 1,1.5,  0.05, 1, End
-Sword of the Abyss: Uncommon, 40, 10, 0.75, 10, 35, 1,1.5,  0.05, 1, End
-Long Sword: Super Rare, 75, 0, 2, 0, 45, 2,1.5,  0.05, 1, End
-Shark Staff: Super Rare, 50, 50, 1, 0, 20, 0,1.5,  0.05, 1, End
+Rusty Sword: Common, 10, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
+Ancient Sword: Uncommon, 20, 5, 1, 0, 15, 1,1.5, 0.05, 1, End
+Orochimaru: Rare, 25, 5, 1, 5, 15, 0,1.5,  0.05, 1, End
+Ogre Sword: Common, 10, 5, 1, 0, 10, 1,1.5,  0.05, 1, End
+Silver Rapier: Uncommon, 10, 5, 1.5, 0, 10, 1,1.5,  0.05, 1, End
+Sword of the Abyss: Uncommon, 25, 10, 0.75, 10, 35, 1,1.5,  0.05, 1, End
+Templar Sword: Uncommon, 10, 25, 1, 10, 10, 0,1.5,  0.05, 1, End
+Curved Sword: Rare, 30, 15, 0.75, 0, 20, 1,1.5,  0.05, 1, End
+Dark Sword: Rare, 35, 10, 1.5, 30, 25, 1,1.5,  0.05, 1, End
+Dothraki Sword: Rare, 30, 0, 1, 0, 8, 1,1.5,  0.05, 1, End
+Elucidator: Rare, 40, 50, 1.5, 10, 40, 1,1.5,  0.05, 1, End
+Long Sword: Super Rare, 55, 0, 2, 0, 45, 2,1.5,  0.05, 1, End
+Shark Staff: Super Rare, 40, 50, 1, 0, 20, 0,1.5,  0.05, 1, End
 
 - Item Name: Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
 Red Potion: Common, 25, 0, 0, Self Cast, Weak Heal, End
