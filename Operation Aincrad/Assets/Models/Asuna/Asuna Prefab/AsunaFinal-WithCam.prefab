@@ -2342,7 +2342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3740563103275044171}
   m_Layer: 0
-  m_Name: Dothraki Sword
+  m_Name: Dark Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,7 +2409,7 @@ GameObject:
   - component: {fileID: 2129826069020503094}
   - component: {fileID: 8544334118354682350}
   m_Layer: 0
-  m_Name: Curved Sword
+  m_Name: Dothraki Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2583,7 +2583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3740563102706848468}
   m_Layer: 0
-  m_Name: Sword of the Abyss
+  m_Name: Curved Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2621,7 +2621,7 @@ GameObject:
   - component: {fileID: 2129826069095114817}
   - component: {fileID: 8544334118146180503}
   m_Layer: 0
-  m_Name: Default Sword
+  m_Name: Rusty Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2956,7 +2956,7 @@ GameObject:
   - component: {fileID: 2129826069071221956}
   - component: {fileID: 8544334118170016028}
   m_Layer: 0
-  m_Name: Dark Sword
+  m_Name: Sword of the Abyss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6336,7 +6336,7 @@ GameObject:
   - component: {fileID: 6002116865293163043}
   - component: {fileID: 8272371276473919113}
   m_Layer: 0
-  m_Name: Dothraki Sword
+  m_Name: Dark Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8248,7 +8248,7 @@ GameObject:
   - component: {fileID: 5422231185410107210}
   - component: {fileID: 8097966764777960407}
   m_Layer: 0
-  m_Name: Curved Sword
+  m_Name: Dothraki Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8483,7 +8483,7 @@ GameObject:
   - component: {fileID: 5439973248332221650}
   - component: {fileID: 4259352377470226607}
   m_Layer: 0
-  m_Name: Dark Sword
+  m_Name: Sword of the Abyss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52489,7 +52489,7 @@ GameObject:
   - component: {fileID: 7767604816207823091}
   - component: {fileID: 3935474356711600647}
   m_Layer: 0
-  m_Name: Sword of the Abyss
+  m_Name: Curved Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

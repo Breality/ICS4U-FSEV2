@@ -298,6 +298,7 @@ public class Player
     public void ChangeEquipped(int index, string newItem)
     {
         equipped[index] = newItem;
+        Debug.Log("Replacement complete");
     }
 
     public bool Purchase(string itemType, string item, int cost)
@@ -307,7 +308,7 @@ public class Player
             gold -= cost;
 
             if (itemType.Equals("weapon"))
-            {
+            { // purchased a weapon
                 if (weapons.ContainsKey(item)) // bought the same weapon again
                 {
                     weapons[item].NewCount(weapons[item].HowMany() + 1);
@@ -317,15 +318,15 @@ public class Player
                     weapons[item] = new Weapon(this, item, game.equipments["Weapons"][item]);
                 }
             }
-            else
-            {
-                if (weapons.ContainsKey(item)) // bought the same weapon again
+            else if (itemType.Equals("clothing"))
+            { // puchased clothing
+                if (clothing.ContainsKey(item)) // bought the same weapon again
                 {
-                    weapons[item].NewCount(weapons[item].HowMany() + 1);
+                    clothing[item].NewCount(weapons[item].HowMany() + 1);
                 }
                 else
                 {
-                    weapons[item] = new Weapon(this, item, game.equipments["Weapons"][item]);
+                    clothing[item] = new Clothing(this, item, game.equipments["Clothing"][item]);
                 }
             }
             

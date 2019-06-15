@@ -202,7 +202,10 @@ public class HTTPClient : MonoBehaviour
                 {
                     Debug.Log(e.ToString());
                 }
-                
+            }
+            else
+            {
+                Debug.Log(response);
             }
         }
     }

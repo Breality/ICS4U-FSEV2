@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
 using UnityEngine;
-
 using Random = System.Random;
 
 public class HTTP_Listen : MonoBehaviour
@@ -115,14 +114,16 @@ public class HTTP_Listen : MonoBehaviour
         else if (data["request"].Equals("equip") && data.ContainsKey("equipment type") && data.ContainsKey("equipment name"))
         {
             Player player = playerDB[data["token"]];
-            if (!Array.Exists(player.GetWeapons(), element => element == data["equipment name"])){ // check if they own the item
+            if (!(Array.Exists(player.GetWeapons(), element => element.Equals(data["equipment name"])))){ // check if they own the item
+                Debug.Log("They do not own a " + data["equipment name"]);
                 ConstructResponse(context, "You do not own this item");
                 return;
             }
-       
+
             if (data["equipment type"].Equals("Weapon"))
             {
-                Weapon item = new Weapon(null, "Not important", game.equipments["Weapons"][data["Equipment Name"]]);
+                Debug.Log("Replacing weapon to " + data["equipment name"]);
+                Weapon item = new Weapon(null, "Not important", game.equipments["Weapons"][data["equipment name"]]);
                 if (item.weaponType == 0)
                 {
                     player.ChangeEquipped(4, data["equipment name"]);
@@ -134,8 +135,11 @@ public class HTTP_Listen : MonoBehaviour
             }
             else
             {
-                int correspondingIndex = (new Dictionary<string, int> { })[data["equipment type"]];
+                int correspondingIndex = (new Dictionary<string, int> { { "Helmets", 0 },
+                    {"Armour", 1 }, { "Boots", 2 }, { "Pendants", 3 } })[data["equipment type"]];
+                player.ChangeEquipped(correspondingIndex, data["equipment name"]);
             }
+            ConstructResponse(context, "Item equipped");
         }
 
         // asking for stats because the game told them to

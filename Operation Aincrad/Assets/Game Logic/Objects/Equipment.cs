@@ -110,6 +110,7 @@ public class Equipment : DisplayObject
             if (view == 0) // changing weapons
             {
                 Weapon newWeapon = Info.weapons[selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
+                Debug.Log(newWeapon);
                 if (newWeapon.weaponType == 0) { // left hand
                     if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
                     Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
@@ -125,8 +126,10 @@ public class Equipment : DisplayObject
                     Debug.Log("Not sure what to do here");
                 }
 
-                HTTP.AskServer(new Dictionary<string, string> { {"request",  "Equip" },
-                    {"Equipment Type",  "Weapon" }, {"Equipment Name", selectedItem} });
+                HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
+                    {"equipment type",  "Weapon" }, {"equipment name", selectedItem} });
+                Debug.Log("Request sent?");
+
             }
         }
     }
