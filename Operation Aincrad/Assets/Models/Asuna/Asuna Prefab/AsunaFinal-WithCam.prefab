@@ -62804,7 +62804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247064678864519810}
   m_Layer: 0
-  m_Name: Right Boot
+  m_Name: Boots Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62839,7 +62839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247064679582081239}
   m_Layer: 0
-  m_Name: Left Boot
+  m_Name: Boots Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
