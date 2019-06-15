@@ -19,6 +19,8 @@ public class InitShop : MonoBehaviour
         InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
+
+        this.GetComponent<SwordCollision>().udpHandler = UDP;
         stMan1.info = stMan2.info = inCen;
         stMan1.HTTP = stMan2.HTTP = handlerMan;
 
