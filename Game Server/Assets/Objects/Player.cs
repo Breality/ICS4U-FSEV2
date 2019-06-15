@@ -56,10 +56,9 @@ public class Player
     private List<Condition> currentConditions = new List<Condition> { }; // poison, heal, slow, boost, etc. 
     Dictionary<string, float> conditionStats = new Dictionary<string, float> { { "Speed", 0 }, { "Hp Regen", 0 }, { "Mana Regen", 0 }, { "Stamina Regen", 0 }, { "Damage Multiplier", 0 } };
 
-
     // -------------- Public getters --------------
     public int GetGuild() { return guildID; }
-    public float GetCharge() { return Time.time - charge; }
+    public float GetCharge() { return charge ==-1 ? 0 : Time.time - charge; }
     public Vector3 GetPos(){ return position; }
     public int[] GetStats() { return new int[] { hp[1], mana[1], stamina[1] }; }
 
@@ -155,6 +154,8 @@ public class Player
         Debug.Log(Username + " just took " + dam + " damage and has " + hp[1] + " health left");
         if (hp[1] <= 0)
         {
+            Debug.Log("Yes, I just died");
+            hp[1] = hp[0];
             return true;
         }
         

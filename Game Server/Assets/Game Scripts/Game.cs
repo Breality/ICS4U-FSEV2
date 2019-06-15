@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
 
     private Dictionary<string, Player> players = new Dictionary<string, Player> { };
     public Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
+    private List<Player> deadPlayers = new List<Player> { };
 
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
@@ -62,6 +63,7 @@ public class Game : MonoBehaviour
         // give murderer stolen loot
         Debug.Log("There seems to be a murder");
         murderer.Kill(murdered);
+        deadPlayers.Add(murdered);
         updatePlayer[murderer] = true; // they will update to more gold next time they ask
         updatePlayer[murdered] = true; // they will lost gold, still need to find a way to reset character
     }
