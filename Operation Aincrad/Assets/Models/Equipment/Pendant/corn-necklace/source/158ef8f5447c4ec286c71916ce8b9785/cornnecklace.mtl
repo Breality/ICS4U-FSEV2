@@ -1,0 +1,57 @@
+newmtl sheaf
+d 1
+Ns 0.98
+Ni 0
+Ka 0.137255 0.0666667 0
+Kd 0.494118 0.356863 0
+Ks 0.694118 0.709804 0.721569
+Km 0.000787402
+map_Bump /Maps/another necklace_sheaf_b.jpg
+
+newmtl ring2
+d 1
+Ns 0.98
+Ni 0
+Ka 0.137255 0.0666667 0
+Kd 0.494118 0.356863 0
+Ks 0.694118 0.709804 0.721569
+Km 0.0001
+
+newmtl strip
+d 1
+Ns 0.98
+Ni 0
+Ka 0.054902 0.054902 0.054902
+Kd 0 0.266667 0.431373
+Ks 1 1 1
+Km 0.000787402
+map_Bump /Maps/another necklace_strip_b.jpg
+
+newmtl Material
+d 1
+Ns 0.98
+Ni 0
+Ka 0.137255 0.0666667 0
+Kd 0.494118 0.356863 0
+Ks 0.694118 0.709804 0.721569
+Km 0.0001
+
+newmtl leaf
+d 1
+Ns 0.98
+Ni 0
+Ka 0.137255 0.0666667 0
+Kd 0.494118 0.356863 0
+Ks 0.694118 0.709804 0.721569
+Km 0
+map_Bump /Maps/another necklace_leaf_b.jpg
+
+newmtl chain
+d 1
+Ns 0.95
+Ni 0
+Ka 0 0 0
+Kd 0.647059 0.556863 0
+Ks 0.976471 0.886275 0.00784314
+Km 0.01
+
