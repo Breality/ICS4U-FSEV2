@@ -20,7 +20,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField]
     private float playerMovSpeed = 0.2f;
     [SerializeField]
-    private GameObject cam;
+    private GameObject cam,root;
     
     void Start()
     {
@@ -72,17 +72,12 @@ public class PlayerMovement : NetworkBehaviour
 
         //Moves the player and updates their rotation
         this.transform.Rotate(0, rot_y*rotation_Speed, 0);
-        this.transform.GetComponent<Rigidbody>().position += this.transform.right * playerMovSpeed*vx;
-        this.transform.GetComponent<Rigidbody>().position += this.transform.forward * playerMovSpeed * vy;
+        this.transform.GetComponent<Rigidbody>().position += root.transform.right * playerMovSpeed*vx;
+        this.transform.GetComponent<Rigidbody>().position += root.transform.forward * playerMovSpeed * vy;
         
         //Set the animations for the player
         charAnim.SetFloat("Vx", vx);
         charAnim.SetFloat("Vy", vy);
-
-
-        
-
-
 
 
     }

@@ -68033,6 +68033,7 @@ MonoBehaviour:
   rotation_Speed: 1
   playerMovSpeed: 0.2
   cam: {fileID: 3234879551320560688}
+  root: {fileID: 1634001259026163331}
 --- !u!114 &7638702965854887738
 MonoBehaviour:
   m_ObjectHideFlags: 0
