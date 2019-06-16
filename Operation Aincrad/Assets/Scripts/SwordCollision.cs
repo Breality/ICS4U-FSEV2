@@ -11,7 +11,7 @@ public class SwordCollision : MonoBehaviour
     { 
         foreach (ContactPoint cp in collision.contacts)
         {
-            if (cp.thisCollider.name.Contains("Hull") && (cp.thisCollider.transform.root!=this.transform.root))//SwordHit && Not Hit Self
+            if (cp.thisCollider.name.Contains("Hull") && (collision.collider.transform.parent!=this.transform.root))//SwordHit && Not Hit Self
             {
                 int handed = cp.thisCollider.transform.parent.parent.name == "Swords Left" ? 0 : 1;
 

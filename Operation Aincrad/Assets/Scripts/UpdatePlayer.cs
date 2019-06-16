@@ -20,6 +20,11 @@ public class UpdatePlayer : NetworkBehaviour
         {
             GetActiveEquip(equip);
         }
+        foreach(Transform t in curActive)
+        {
+            Debug.Log(t);
+        }
+        Debug.Log(curActive);
 
     }
     private void GetActiveEquip(Transform EquipHolder)
@@ -34,22 +39,11 @@ public class UpdatePlayer : NetworkBehaviour
         }
         curActive.Add(null);
     }
-    [Command]
-    public void CmdUpdatePlayer(List<Transform> curAct)
-    {
-        SetEquipAct(curAct);
-        RpcUpdatePlayer(curAct);
-    }
-    [ClientRpc]
-    public void RpcUpdatePlayer(List<Transform> curAct)
-    {
-        SetEquipAct(curAct);
-    }
     public void SetEquipAct(List<Transform> curAct)
     {
-        for(int curEquipIndex = 0; curEquipIndex<possEquip.Count; curEquipIndex++)
+        for (int curEquipIndex = 0; curEquipIndex < possEquip.Count; curEquipIndex++)
         {
-            foreach(Transform weapon in possEquip[curEquipIndex])
+            foreach (Transform weapon in possEquip[curEquipIndex])
             {
                 if (weapon == curAct[curEquipIndex])
                 {
@@ -62,4 +56,16 @@ public class UpdatePlayer : NetworkBehaviour
             }
         }
     }
+    [Command]
+    public void CmdUpdatePlayer(List<Transform> curAct)
+    {
+        SetEquipAct(curAct);
+        RpcUpdatePlayer(curAct);
+    }
+    [ClientRpc]
+    public void RpcUpdatePlayer(List<Transform> curAct)
+    {
+        SetEquipAct(curAct);
+    }
+
 }
