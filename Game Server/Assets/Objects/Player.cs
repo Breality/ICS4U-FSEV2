@@ -189,9 +189,9 @@ public class Player
     // deals with health regen, poison effects, whatever
     public void UpdateOne() 
     {
-        hp[1] = Mathf.Min(hp[0], hp[1] + hp[0] / 100);
-        mana[1] = Mathf.Min(mana[0], mana[1] + mana[0] / 100);
-        stamina[1] = Mathf.Min(stamina[0], stamina[1] + stamina[0] / 100);
+        //hp[1] = Mathf.Min(hp[0], hp[1] + hp[0] / 100);
+        mana[1] = Mathf.Min(mana[0], mana[1] + (int)(mana[0] * 0.025f));
+        stamina[1] = Mathf.Min(stamina[0], stamina[1] + (int)(stamina[0] * 0.025f));
 
         foreach (Condition effect in currentConditions)
         {
