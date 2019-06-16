@@ -21,6 +21,10 @@ public class UpdatePlayer : NetworkBehaviour
             curEquip[i] = null;
         }
     }
+    public void OnJoinGame()
+    {
+        CmdFindUpdateAll();
+    }
     public void UpdateEquip()
     {
        Debug.Log("Called");
@@ -71,6 +75,19 @@ public class UpdatePlayer : NetworkBehaviour
     public void RpcUpdatePlayer(string[] curAct)
     {
         SetEquipAct(curAct);
+    }
+    [Command]
+    public void CmdFindUpdateAll()
+    {
+        RpcUpdateLocal();
+    }
+    [ClientRpc]
+    public void RpcUpdateLocal()
+    {
+        if (isLocalPlayer)
+        {
+            UpdateEquip();
+        }
     }
 
 }
