@@ -24,6 +24,7 @@ public class InitShop : MonoBehaviour
         InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
+        handlerMan.character = this.transform.gameObject;
         inCen.MoneyText = moneyText;
         inCen.WeaponsL = WeaponsLeft;
         inCen.WeaponsR = WeaponsRight;
