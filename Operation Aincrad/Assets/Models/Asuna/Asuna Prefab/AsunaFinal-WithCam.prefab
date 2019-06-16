@@ -67886,7 +67886,7 @@ GameObject:
   - component: {fileID: 7326881679263471964}
   m_Layer: 0
   m_Name: AsunaFinal-WithCam
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67973,8 +67973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 115f4ae8b1bb08b4c877924724ddb91f
-  m_SceneId: 0
+  m_AssetId: 
+  m_SceneId: 127940689
 --- !u!114 &799176593073920707
 MonoBehaviour:
   m_ObjectHideFlags: 0
