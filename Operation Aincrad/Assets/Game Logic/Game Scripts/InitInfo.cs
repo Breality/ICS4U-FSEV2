@@ -5,12 +5,7 @@ using TMPro;
 using Mirror;
 public class InitInfo : NetworkBehaviour
 {
-    [SerializeField]
-    private GameObject WeaponsLeft, WeaponsRight;
-    [SerializeField]
-    private TMP_Text nameText;
-    [SerializeField]
-    private TextMesh moneyText;
+
 
 
     private InfoCenter inCen;
@@ -22,14 +17,6 @@ public class InitInfo : NetworkBehaviour
     {
         upHandler = this.GetComponent<UpdatePlayer>();
         inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
-        inCen.MoneyText = moneyText;
-        inCen.WeaponsL = WeaponsLeft;
-        inCen.WeaponsR = WeaponsRight;
-        inCen.NameText = nameText;
-
-
-        JoyStickListen jsL = this.GetComponent<JoyStickListen>();
-        jsL.sellers = GameObject.Find("Sellers");
 
         handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
 

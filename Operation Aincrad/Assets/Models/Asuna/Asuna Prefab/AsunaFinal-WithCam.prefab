@@ -67880,8 +67880,8 @@ GameObject:
   - component: {fileID: 4959574752541995677}
   - component: {fileID: 2706603351223138900}
   - component: {fileID: 7638702965854887738}
-  - component: {fileID: 2340729468831233221}
   - component: {fileID: 4073191330818375317}
+  - component: {fileID: 2340729468831233221}
   - component: {fileID: 6708854917279008158}
   - component: {fileID: 7326881679263471964}
   m_Layer: 0
@@ -68050,23 +68050,6 @@ MonoBehaviour:
   mainMenu: {fileID: 3234879551496615783}
   weaponsSeller: {fileID: 3234879551049713687}
   menuReveal: {fileID: 3234879552754758479}
---- !u!114 &2340729468831233221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7638702965854887741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb1a550b1720df94fb1cc34c459b5fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncInterval: 0.1
-  WeaponsLeft: {fileID: 7247064677719252098}
-  WeaponsRight: {fileID: 2427940962866857286}
-  nameText: {fileID: 3234879552291588003}
-  moneyText: {fileID: 3234879551322917035}
 --- !u!114 &4073191330818375317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68084,6 +68067,23 @@ MonoBehaviour:
   mFill: {fileID: 3234879551163425247}
   sFill: {fileID: 3234879551653401978}
   hText: {fileID: 3234879552941725908}
+  WeaponsLeft: {fileID: 7247064677719252098}
+  WeaponsRight: {fileID: 2427940962866857286}
+  nameText: {fileID: 3234879552291588003}
+  moneyText: {fileID: 3234879551322917035}
+--- !u!114 &2340729468831233221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638702965854887741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1a550b1720df94fb1cc34c459b5fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.1
 --- !u!114 &6708854917279008158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119809,6 +119809,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: fdf39c9b5cec9d84084147925054df35,
+        type: 3}
+      propertyPath: m_Name
+      value: Egyptian Necklace
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fdf39c9b5cec9d84084147925054df35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fdf39c9b5cec9d84084147925054df35,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -119879,16 +119889,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: fdf39c9b5cec9d84084147925054df35,
-        type: 3}
-      propertyPath: m_Name
-      value: Egyptian Necklace
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: fdf39c9b5cec9d84084147925054df35,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdf39c9b5cec9d84084147925054df35, type: 3}
 --- !u!4 &5136981857189964548 stripped
@@ -119904,6 +119904,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d7071f2a9e3b0f14f91ec831a13b1d60,
+        type: 3}
+      propertyPath: m_Name
+      value: Sapphire Pendant
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d7071f2a9e3b0f14f91ec831a13b1d60,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d7071f2a9e3b0f14f91ec831a13b1d60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -119973,16 +119983,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d7071f2a9e3b0f14f91ec831a13b1d60,
-        type: 3}
-      propertyPath: m_Name
-      value: Sapphire Pendant
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d7071f2a9e3b0f14f91ec831a13b1d60,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7071f2a9e3b0f14f91ec831a13b1d60, type: 3}
@@ -120094,6 +120094,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: eb2c6e464fedbf94db72ae962f1ed5ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Panther Necklace
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: eb2c6e464fedbf94db72ae962f1ed5ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: eb2c6e464fedbf94db72ae962f1ed5ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120164,16 +120174,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.8
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: eb2c6e464fedbf94db72ae962f1ed5ae,
-        type: 3}
-      propertyPath: m_Name
-      value: Panther Necklace
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: eb2c6e464fedbf94db72ae962f1ed5ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2c6e464fedbf94db72ae962f1ed5ae, type: 3}
 --- !u!4 &6547658580067401053 stripped
@@ -120189,6 +120189,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3234879552276224838}
     m_Modifications:
+    - target: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Name
+      value: Spinning Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31900024
@@ -120244,30 +120268,6 @@ PrefabInstance:
     - target: {fileID: 400020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.09999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Name
-      value: Spinning Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 100020, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100022, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100024, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100026, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100038, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100036, guid: 56a3eae89ee905b4ca6bb013219c6362, type: 3}
       propertyPath: m_Layer
@@ -120350,6 +120350,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: d31119a1808a23d408b80b3e628f5486,
+        type: 3}
+      propertyPath: m_Name
+      value: Angel Pendant
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d31119a1808a23d408b80b3e628f5486,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d31119a1808a23d408b80b3e628f5486,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120420,16 +120430,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.005
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d31119a1808a23d408b80b3e628f5486,
-        type: 3}
-      propertyPath: m_Name
-      value: Angel Pendant
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: d31119a1808a23d408b80b3e628f5486,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d31119a1808a23d408b80b3e628f5486, type: 3}
 --- !u!4 &7687880147867608350 stripped
@@ -120445,6 +120445,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064679582081239}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
+        type: 3}
+      propertyPath: m_Name
+      value: Mining Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120510,16 +120520,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
-        type: 3}
-      propertyPath: m_Name
-      value: Mining Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c, type: 3}
 --- !u!4 &8580574417719985443 stripped
@@ -120535,6 +120535,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678864519810}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
+        type: 3}
+      propertyPath: m_Name
+      value: Mining Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120605,16 +120615,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
-        type: 3}
-      propertyPath: m_Name
-      value: Mining Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28bf3bb4ba7bbd41a6c2e2953543c6c, type: 3}
 --- !u!4 &24177504474865913 stripped
@@ -120630,6 +120630,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 3d7360458410b8547978404c8a028dcb,
+        type: 3}
+      propertyPath: m_Name
+      value: Millenium Pendant
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3d7360458410b8547978404c8a028dcb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3d7360458410b8547978404c8a028dcb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120699,16 +120709,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 3d7360458410b8547978404c8a028dcb,
-        type: 3}
-      propertyPath: m_Name
-      value: Millenium Pendant
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 3d7360458410b8547978404c8a028dcb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d7360458410b8547978404c8a028dcb, type: 3}
@@ -120820,6 +120820,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: c5eb893b9bbe03c408f150c8d091dd3d,
+        type: 3}
+      propertyPath: m_Name
+      value: Black Dress
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c5eb893b9bbe03c408f150c8d091dd3d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c5eb893b9bbe03c408f150c8d091dd3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120890,16 +120900,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c5eb893b9bbe03c408f150c8d091dd3d,
-        type: 3}
-      propertyPath: m_Name
-      value: Black Dress
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c5eb893b9bbe03c408f150c8d091dd3d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5eb893b9bbe03c408f150c8d091dd3d, type: 3}
 --- !u!4 &2443213943348195589 stripped
@@ -120915,6 +120915,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678864519810}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
+        type: 3}
+      propertyPath: m_Name
+      value: Army Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dbc1b2a4a795b354aa40692d143ab999,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120975,16 +120985,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
-        type: 3}
-      propertyPath: m_Name
-      value: Army Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc1b2a4a795b354aa40692d143ab999, type: 3}
 --- !u!4 &2443213943373504449 stripped
@@ -121000,6 +121000,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064679582081239}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
+        type: 3}
+      propertyPath: m_Name
+      value: White Shoes
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a057cc0db5d0a79479bdc8f3bd33773b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121070,16 +121080,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
-        type: 3}
-      propertyPath: m_Name
-      value: White Shoes
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a057cc0db5d0a79479bdc8f3bd33773b, type: 3}
 --- !u!4 &2443213943427042292 stripped
@@ -121095,6 +121095,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064679582081239}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
+        type: 3}
+      propertyPath: m_Name
+      value: Army Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dbc1b2a4a795b354aa40692d143ab999,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121150,16 +121160,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 193.14099
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
-        type: 3}
-      propertyPath: m_Name
-      value: Army Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dbc1b2a4a795b354aa40692d143ab999,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc1b2a4a795b354aa40692d143ab999, type: 3}
 --- !u!4 &2443213943693235523 stripped
@@ -121175,6 +121175,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5872999655713658251}
     m_Modifications:
+    - target: {fileID: 1906011066985719565, guid: 39a73dfebc1153d44ade3a2de262be62,
+        type: 3}
+      propertyPath: m_Name
+      value: Loki Helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906011066985719565, guid: 39a73dfebc1153d44ade3a2de262be62,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3182034133361841438, guid: 39a73dfebc1153d44ade3a2de262be62,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121245,16 +121255,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5000019
       objectReference: {fileID: 0}
-    - target: {fileID: 1906011066985719565, guid: 39a73dfebc1153d44ade3a2de262be62,
-        type: 3}
-      propertyPath: m_Name
-      value: Loki Helmet
-      objectReference: {fileID: 0}
-    - target: {fileID: 1906011066985719565, guid: 39a73dfebc1153d44ade3a2de262be62,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39a73dfebc1153d44ade3a2de262be62, type: 3}
 --- !u!4 &5240613003640621499 stripped
@@ -121270,6 +121270,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 4a15d5fa0a6465c4da56b4541e045a21,
+        type: 3}
+      propertyPath: m_Name
+      value: Purple Dress
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4a15d5fa0a6465c4da56b4541e045a21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4a15d5fa0a6465c4da56b4541e045a21,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121340,16 +121350,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 4a15d5fa0a6465c4da56b4541e045a21,
-        type: 3}
-      propertyPath: m_Name
-      value: Purple Dress
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 4a15d5fa0a6465c4da56b4541e045a21,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a15d5fa0a6465c4da56b4541e045a21, type: 3}
 --- !u!4 &2443213943976315061 stripped
@@ -121365,6 +121365,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5872999655713658251}
     m_Modifications:
+    - target: {fileID: 7728939243819229253, guid: e5ae7a1f73206cc4d91b395997b3aa33,
+        type: 3}
+      propertyPath: m_Name
+      value: Sorcery Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728939243819229253, guid: e5ae7a1f73206cc4d91b395997b3aa33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6708653231922025046, guid: e5ae7a1f73206cc4d91b395997b3aa33,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121435,16 +121445,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 14.000018
       objectReference: {fileID: 0}
-    - target: {fileID: 7728939243819229253, guid: e5ae7a1f73206cc4d91b395997b3aa33,
-        type: 3}
-      propertyPath: m_Name
-      value: Sorcery Hat
-      objectReference: {fileID: 0}
-    - target: {fileID: 7728939243819229253, guid: e5ae7a1f73206cc4d91b395997b3aa33,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5ae7a1f73206cc4d91b395997b3aa33, type: 3}
 --- !u!4 &4146498590433862214 stripped
@@ -121460,6 +121460,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064679582081239}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
+        type: 3}
+      propertyPath: m_Name
+      value: High Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121530,16 +121540,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.18000036
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
-        type: 3}
-      propertyPath: m_Name
-      value: High Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d, type: 3}
 --- !u!4 &2443213944200101267 stripped
@@ -121555,6 +121555,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5872999655713658251}
     m_Modifications:
+    - target: {fileID: 5823906321015676418, guid: f050f86e8874a3f4fbe776507a2f997a,
+        type: 3}
+      propertyPath: m_Name
+      value: Aviator's Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823906321015676418, guid: f050f86e8874a3f4fbe776507a2f997a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7388702924317944849, guid: f050f86e8874a3f4fbe776507a2f997a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -121624,16 +121634,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0012000008
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823906321015676418, guid: f050f86e8874a3f4fbe776507a2f997a,
-        type: 3}
-      propertyPath: m_Name
-      value: Aviator's Hat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823906321015676418, guid: f050f86e8874a3f4fbe776507a2f997a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f050f86e8874a3f4fbe776507a2f997a, type: 3}
@@ -121935,6 +121935,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5872999655713658251}
     m_Modifications:
+    - target: {fileID: 7327842081101240251, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
+        type: 3}
+      propertyPath: m_Name
+      value: Viking Helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7327842081101240251, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6046892104194729384, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122005,16 +122015,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.500002
       objectReference: {fileID: 0}
-    - target: {fileID: 7327842081101240251, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
-        type: 3}
-      propertyPath: m_Name
-      value: Viking Helmet
-      objectReference: {fileID: 0}
-    - target: {fileID: 7327842081101240251, guid: a4d398b4fb55b2e4a8a6ac1b060829e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d398b4fb55b2e4a8a6ac1b060829e6, type: 3}
 --- !u!4 &3997048820021443227 stripped
@@ -122030,6 +122030,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678864519810}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
+        type: 3}
+      propertyPath: m_Name
+      value: Converse
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6a0c3a71fe30da84d93164b63bda3924,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122100,16 +122110,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.5000014
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
-        type: 3}
-      propertyPath: m_Name
-      value: Converse
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0c3a71fe30da84d93164b63bda3924, type: 3}
 --- !u!4 &2443213944487323533 stripped
@@ -122125,6 +122125,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678864519810}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
+        type: 3}
+      propertyPath: m_Name
+      value: White Shoes
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a057cc0db5d0a79479bdc8f3bd33773b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122195,16 +122205,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
-        type: 3}
-      propertyPath: m_Name
-      value: White Shoes
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: a057cc0db5d0a79479bdc8f3bd33773b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a057cc0db5d0a79479bdc8f3bd33773b, type: 3}
 --- !u!4 &2443213944541310895 stripped
@@ -122220,6 +122220,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5872999655713658251}
     m_Modifications:
+    - target: {fileID: 8136204608719555328, guid: 001e472c2f67f7141bc8b55a6c9258c3,
+        type: 3}
+      propertyPath: m_Name
+      value: Flower Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136204608719555328, guid: 001e472c2f67f7141bc8b55a6c9258c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5094348684090865939, guid: 001e472c2f67f7141bc8b55a6c9258c3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122289,16 +122299,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.15000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 8136204608719555328, guid: 001e472c2f67f7141bc8b55a6c9258c3,
-        type: 3}
-      propertyPath: m_Name
-      value: Flower Hat
-      objectReference: {fileID: 0}
-    - target: {fileID: 8136204608719555328, guid: 001e472c2f67f7141bc8b55a6c9258c3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001e472c2f67f7141bc8b55a6c9258c3, type: 3}
@@ -122410,6 +122410,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: bff3f162b9db3154dbdf9e9f8e21016d,
+        type: 3}
+      propertyPath: m_Name
+      value: Red Jacket
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bff3f162b9db3154dbdf9e9f8e21016d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bff3f162b9db3154dbdf9e9f8e21016d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122480,16 +122490,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: bff3f162b9db3154dbdf9e9f8e21016d,
-        type: 3}
-      propertyPath: m_Name
-      value: Red Jacket
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: bff3f162b9db3154dbdf9e9f8e21016d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bff3f162b9db3154dbdf9e9f8e21016d, type: 3}
 --- !u!4 &2443213944750340563 stripped
@@ -122505,6 +122505,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 85ae8ed6650ef4748a9839d2bb452449,
+        type: 3}
+      propertyPath: m_Name
+      value: White Dress
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 85ae8ed6650ef4748a9839d2bb452449,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 85ae8ed6650ef4748a9839d2bb452449,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122575,16 +122585,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 85ae8ed6650ef4748a9839d2bb452449,
-        type: 3}
-      propertyPath: m_Name
-      value: White Dress
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 85ae8ed6650ef4748a9839d2bb452449,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ae8ed6650ef4748a9839d2bb452449, type: 3}
 --- !u!4 &2443213944825265573 stripped
@@ -122600,6 +122600,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678864519810}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
+        type: 3}
+      propertyPath: m_Name
+      value: High Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122670,16 +122680,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.18
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
-        type: 3}
-      propertyPath: m_Name
-      value: High Boots
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e9ef0c05814aa4ba0f7434d5b0ae2d, type: 3}
 --- !u!4 &2443213945060656938 stripped
@@ -122695,6 +122695,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 52ec37e30c613c548a8d6921fc25b273,
+        type: 3}
+      propertyPath: m_Name
+      value: Knight Armour
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 52ec37e30c613c548a8d6921fc25b273,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 52ec37e30c613c548a8d6921fc25b273,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122765,16 +122775,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4.5
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 52ec37e30c613c548a8d6921fc25b273,
-        type: 3}
-      propertyPath: m_Name
-      value: Knight Armour
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 52ec37e30c613c548a8d6921fc25b273,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ec37e30c613c548a8d6921fc25b273, type: 3}
 --- !u!4 &2443213945079035078 stripped
@@ -122790,6 +122790,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064679582081239}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
+        type: 3}
+      propertyPath: m_Name
+      value: Converse
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6a0c3a71fe30da84d93164b63bda3924,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122860,16 +122870,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.5
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
-        type: 3}
-      propertyPath: m_Name
-      value: Converse
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6a0c3a71fe30da84d93164b63bda3924,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a0c3a71fe30da84d93164b63bda3924, type: 3}
 --- !u!4 &2443213945161038683 stripped
@@ -122885,6 +122885,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 6f9913cda0504424995a3f8803e007b3,
+        type: 3}
+      propertyPath: m_Name
+      value: Aqua Dress
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6f9913cda0504424995a3f8803e007b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6f9913cda0504424995a3f8803e007b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122955,16 +122965,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6f9913cda0504424995a3f8803e007b3,
-        type: 3}
-      propertyPath: m_Name
-      value: Aqua Dress
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 6f9913cda0504424995a3f8803e007b3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9913cda0504424995a3f8803e007b3, type: 3}
 --- !u!4 &2443213945222421359 stripped
@@ -122980,6 +122980,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247064678368970800}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 18178de67a1c11e4295214101ff79add,
+        type: 3}
+      propertyPath: m_Name
+      value: Red Dress
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 18178de67a1c11e4295214101ff79add,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 18178de67a1c11e4295214101ff79add,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123050,16 +123060,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 18178de67a1c11e4295214101ff79add,
-        type: 3}
-      propertyPath: m_Name
-      value: Red Dress
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 18178de67a1c11e4295214101ff79add,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18178de67a1c11e4295214101ff79add, type: 3}
 --- !u!4 &2443213945206388245 stripped
@@ -123075,6 +123075,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050789309394371579}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: e69c616aac22c704c9f691fdf45cc768,
+        type: 3}
+      propertyPath: m_Name
+      value: Pirate Pendant
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e69c616aac22c704c9f691fdf45cc768,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e69c616aac22c704c9f691fdf45cc768,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -123144,16 +123154,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05000001
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: e69c616aac22c704c9f691fdf45cc768,
-        type: 3}
-      propertyPath: m_Name
-      value: Pirate Pendant
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: e69c616aac22c704c9f691fdf45cc768,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69c616aac22c704c9f691fdf45cc768, type: 3}
