@@ -143,7 +143,7 @@ public class Equipment : DisplayObject
         Title = main.Find("Title").gameObject.GetComponent<TMP_Text>();
         Template = main.Find("Fake Equip").Find("Template Image").gameObject;
         weaponSpecs = main.Find("Weapon Display").gameObject;
-        upHandler = camera.GetComponent<UpdatePlayer>();
+        upHandler = camera.transform.parent.GetComponent<UpdatePlayer>();
         Debug.Log("ready for activate");
 }
 }
