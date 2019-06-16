@@ -61,7 +61,6 @@ public class UDPClient : MonoBehaviour
                 }
             }
         }
-        yield return 0;
     }
 
     UdpClient client;
@@ -86,7 +85,7 @@ public class UDPClient : MonoBehaviour
 
     public void PlayerHit(string hitName, int weaponUsed)
     {
-        StartCoroutine(SendUDP(new string[] { token, "Player Hit", hitName, weaponUsed.ToString() }, false));
+        SendUDP(new string[] { token, "Player Hit", hitName, weaponUsed.ToString() }, false);
     }
 
     public void StartAsking() // continously asks the server for new info every .25 seconds
