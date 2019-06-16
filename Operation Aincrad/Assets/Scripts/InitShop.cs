@@ -13,13 +13,27 @@ public class InitShop : MonoBehaviour
     private Image hFill, mFill, sFill;
     [SerializeField]
     private TMP_Text hText;
-    
+    [SerializeField]
+    private GameObject WeaponsLeft, WeaponsRight;
+    [SerializeField]
+    private TMP_Text nameText;
+    [SerializeField]
+    private TextMesh moneyText;
+
     void Start()
     {
         Debug.Log(3);
         InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
+        inCen.MoneyText = moneyText;
+        inCen.WeaponsL = WeaponsLeft;
+        inCen.WeaponsR = WeaponsRight;
+        inCen.NameText = nameText;
+
+
+        JoyStickListen jsL = this.GetComponent<JoyStickListen>();
+        jsL.sellers = GameObject.Find("Sellers");
 
         this.GetComponent<SwordCollision>().udpHandler = UDP;
 
