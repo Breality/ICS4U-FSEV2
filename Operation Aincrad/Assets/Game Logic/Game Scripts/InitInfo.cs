@@ -39,8 +39,8 @@ public class InitInfo : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            userName = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
-            CmdSendName(userName);
+            string cur_user = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+            CmdSendName(cur_user);
         }
     }
     private void Update()
@@ -50,7 +50,6 @@ public class InitInfo : NetworkBehaviour
     [Command]
     void CmdSendName(string user)
     {
-        userName = user;
         this.transform.parent.name = user;
     }
 
