@@ -26,6 +26,7 @@ public class HTTPClient : MonoBehaviour
     // ------------ Variables ------------
     public InfoCenter infoCenter; 
     public UDPClient UDP;
+    public GameObject character;
 
     // input fields for the user to insert information
     public TMP_InputField Username;
@@ -61,6 +62,8 @@ public class HTTPClient : MonoBehaviour
             StartCoroutine(Upload(request, Username.text, Password.text)); // start a seperate thread to upload this form as an http request
         }
     }
+
+    
 
     // This function handle sign in and register
     IEnumerator Upload(string request, string username, string password)
@@ -193,6 +196,8 @@ public class HTTPClient : MonoBehaviour
                 if (response.Equals("DEAD"))
                 {
                     Debug.Log("YOU HAVE DIED");
+                    Vector3 newPos = new Vector3(UnityEngine.Random.Range(350f, 700f), 200, UnityEngine.Random.Range(300f, 700f));
+                    character.transform.position = newPos;
                 }
                 else
                 {
