@@ -135,7 +135,7 @@ public class Weapon : Equipment
             int staminaCost = (attackSkill == null) ? stamina : stamina + attackSkill.staminaCost;
             int manaCost = (attackSkill == null) ? mana : mana + attackSkill.manaCost;
 
-            if (!(attackSkill != null && charge < attackSkill.chargeNeeded) && owner.AttackCost(staminaCost, manaCost)) // Charge, stamina and mana needed
+            if (!(attackSkill != null && charge < attackSkill.chargeNeeded) && owner.Cost(staminaCost, manaCost)) // Charge, stamina and mana needed
             {
                 attackEnd = (attackSkill == null) ? Time.time + attackLength : Time.time + attackLength + attackSkill.duration;
 

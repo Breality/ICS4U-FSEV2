@@ -177,7 +177,7 @@ public class Game : MonoBehaviour
             {
                 player.Value.UpdateOne();
             }
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
         }
     }
 }
