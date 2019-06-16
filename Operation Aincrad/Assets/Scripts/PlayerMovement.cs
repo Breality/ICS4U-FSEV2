@@ -33,6 +33,7 @@ public class PlayerMovement : NetworkBehaviour
         //If the new spawned object is not local (someone else on multiplayer), these scrips are useless
         if (!isLocalPlayer)
         {
+            Destroy(this.GetComponent<InitInfo>());
             Destroy(this.GetComponent<InitShop>());
             //Destroy these scripts so they don't interfere with the current player playing
             Destroy(this.GetComponent<SwordCollision>());
