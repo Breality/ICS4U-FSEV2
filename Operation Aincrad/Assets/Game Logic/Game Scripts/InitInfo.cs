@@ -40,6 +40,8 @@ public class InitInfo : NetworkBehaviour
         if (isLocalPlayer)
         {
             string cur_user = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
+            Debug.Log(cur_user);
+            userName = cur_user;
             CmdSendName(cur_user);
         }
     }
