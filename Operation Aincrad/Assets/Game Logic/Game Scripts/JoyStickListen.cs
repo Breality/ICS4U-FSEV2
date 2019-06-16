@@ -11,19 +11,25 @@ public class JoyStickListen : MonoBehaviour
 
     // UI references 
     public GameObject mainMenu;
-    public GameObject weaponsSeller;
+    public GameObject weaponSeller;
+    public GameObject helmetSeller;
+    public GameObject armourSeller;
+    public GameObject bootSeller;
+    public GameObject pendantSeller;
+
     public GameObject menuReveal;
 
     // private variables
-    private static Dictionary<string, int> UIindexs = new Dictionary<string, int> {  { "Weapon Seller", 1 } }; // put whatever npc they are and which UI index they point to
-    private string[] namesShown = new string[] {null,  "Weapons" };
+    private static Dictionary<string, int> UIindexs = new Dictionary<string, int> {  { "Weapon Seller", 1 },
+    { "Helmet Seller", 2 }, { "Armour Seller", 3 }, { "Boot Seller", 4 }, { "Pendant Seller", 5 }}; // put whatever npc they are and which UI index they point to
+    private string[] namesShown = new string[] {null,  "Weapons", "Helmets", "Armour", "Boots", "Pendants" };
     private GameObject[] UIs;
     private int menuHover = 0;
     private float lastUsed = 0; // debounce
 
     private void Start() // setting init variables
     {
-        UIs = new GameObject[] { mainMenu, weaponsSeller }; // in the order that menuHover UIindexs in
+        UIs = new GameObject[] { mainMenu, weaponSeller, helmetSeller, armourSeller, bootSeller, pendantSeller }; // in the order that menuHover UIindexs in
     }
     
     void Update() // checking for input and changing menus
