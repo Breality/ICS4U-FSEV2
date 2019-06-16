@@ -239,13 +239,12 @@ public class Player
         return null;
     }
 
-    public bool Cost(int stamina=0, int mana=0, int gold=0)
+    public bool AttackCost(int stamina=0, int mana=0)
     {
-        if (this.mana[1] >= mana && this.stamina[1] >= stamina && this.gold >= gold)
+        if (this.mana[1] >= mana && this.stamina[1] >= stamina)
         {
             this.mana[1] -= mana;
             this.stamina[1] -= stamina;
-            this.gold -= gold;
             return true;
         }
         return false;

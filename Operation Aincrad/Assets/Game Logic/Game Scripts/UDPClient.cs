@@ -26,7 +26,7 @@ public class UDPClient : MonoBehaviour
         return converted_string;
     }
 
-    private void SendUDP(string[] parameters, bool askResponse)
+    private IEnumerator SendUDP(string[] parameters, bool askResponse)
     {
         string message = Encode_XML(parameters, typeof(string[]));
         byte[] buffer = Encoding.ASCII.GetBytes(message);
@@ -61,18 +61,24 @@ public class UDPClient : MonoBehaviour
                 }
             }
         }
-
     }
 
     UdpClient client;
     IPEndPoint ep = new IPEndPoint(IPAddress.Parse("209.182.232.50"), 3005);
     private string token;
     
+    private IEnumerator HandleMessage()
+    {
+        Coroutine messageSent = StartCoroutine(SendUDP(new string[] { token, "Stat Update"}, true));
+        yield return new WaitForSeconds(1.5f);
+        StopCoroutine(messageSent);
+    }
+
     private IEnumerator EternalThread()
     {
         while (true) // ask for any updates
         {
-            SendUDP(new string[] { token, "Stat Update" }, true);
+            StartCoroutine(HandleMessage());
             yield return new WaitForSeconds(0.25f);
         }
     }
