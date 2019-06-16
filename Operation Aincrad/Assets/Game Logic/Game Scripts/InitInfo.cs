@@ -15,10 +15,12 @@ public class InitInfo : NetworkBehaviour
 
     private InfoCenter inCen;
     private HTTPClient handlerMan;
+    private UpdatePlayer upHandler;
     [SyncVar]
     string userName = "";
     void Awake()
     {
+        upHandler = this.GetComponent<UpdatePlayer>();
         inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         inCen.MoneyText = moneyText;
         inCen.WeaponsL = WeaponsLeft;
@@ -43,6 +45,7 @@ public class InitInfo : NetworkBehaviour
             Debug.Log(cur_user);
             userName = cur_user;
             CmdSendName(cur_user);
+            upHandler.UpdateEquip();
         }
     }
     private void Update()

@@ -20,7 +20,7 @@ public class Equipment : DisplayObject
 
     private string[] options = new string[] { "Weapons", "Helmets", "Pendants" , "Armour", "Boots" };
     private int view = 0;
-
+    private UpdatePlayer upHandler;
     // ------------- Functions for equipment -------------
     private void ReloadMenu()
     {
@@ -128,6 +128,7 @@ public class Equipment : DisplayObject
 
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  "Weapon"}, {"equipment name", selectedItem} });
+                upHandler.UpdateEquip();
                 Debug.Log("Request sent?");
 
             }
@@ -142,7 +143,7 @@ public class Equipment : DisplayObject
         Title = main.Find("Title").gameObject.GetComponent<TMP_Text>();
         Template = main.Find("Fake Equip").Find("Template Image").gameObject;
         weaponSpecs = main.Find("Weapon Display").gameObject;
-
+        upHandler = camera.GetComponent<UpdatePlayer>();
         Debug.Log("ready for activate");
 }
 }
