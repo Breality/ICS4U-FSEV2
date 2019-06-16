@@ -8,10 +8,10 @@ public class SwordCollision : MonoBehaviour
     private List<Transform> cur_collisions = new List<Transform>();
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
-    { 
+    {
         foreach (ContactPoint cp in collision.contacts)
         {
-            if (cp.thisCollider.name.Contains("Hull") && (cp.thisCollider.transform.root!=this.transform.root))//SwordHit && Not Hit Self
+            if (cp.thisCollider.name.Contains("Hull") && (collision.collider.transform.parent != this.transform.root))//SwordHit && Not Hit Self
             {
                 int handed = cp.thisCollider.transform.parent.parent.name == "Swords Left" ? 0 : 1;
 
@@ -23,16 +23,16 @@ public class SwordCollision : MonoBehaviour
 
                     break;
                 }
-                
+
 
 
             }
         }
-        
+
     }
     private void OnCollisionExit(Collision collision)
     {
-        
+
     }
     private bool isHittable(Transform objectHit)
     {
@@ -40,7 +40,7 @@ public class SwordCollision : MonoBehaviour
         {
             return false;
         }
-        else if(objectHit.name.Contains("Hull"))//object hit was sword
+        else if (objectHit.name.Contains("Hull"))//object hit was sword
         {
             return false;
         }
