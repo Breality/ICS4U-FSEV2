@@ -18,9 +18,8 @@ public class InitInfo : NetworkBehaviour
     private UpdatePlayer upHandler;
     [SyncVar]
     string userName = "";
-    void Start()
+    void Awake()
     {
-        Debug.Log(2);
         upHandler = this.GetComponent<UpdatePlayer>();
         inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         inCen.MoneyText = moneyText;
@@ -34,6 +33,12 @@ public class InitInfo : NetworkBehaviour
 
         handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
 
+        //NetworkServer.Spawn(this.gameObject)
+
+
+    }
+    private void Start()
+    {
         if (isLocalPlayer)
         {
             string cur_user = inCen.LogIn(handlerMan.GetLoadedD(), handlerMan.GetLoadedEquip());
