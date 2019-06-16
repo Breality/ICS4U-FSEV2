@@ -34,7 +34,7 @@ public class InitInfo : NetworkBehaviour
             CmdSendName(cur_user);
             
         }
-        upHandler.UpdateEquip();
+        upHandler.OnJoinGame();
     }
     private void Update()
     {
