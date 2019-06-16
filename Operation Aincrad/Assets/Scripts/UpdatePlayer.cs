@@ -8,19 +8,20 @@ public class UpdatePlayer : NetworkBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private Transform SwordL, SwordR, Armor, BootL, BootR, Pendants, Helmets;
-    private Transform[] curActive, possEquip;
+    private Transform[] possEquip;
+    private string[] curEquip;
     private void Start()
     {
         possEquip = new Transform[7] { SwordL, SwordR, Armor, BootL, BootR, Pendants, Helmets };
-        curActive = new Transform[7];
+        curEquip = new string[7];
         ClearCA();
       
     }
     private void ClearCA()
     {
-        for(int i = 0; i<curActive.Length; i++)
+        for(int i = 0; i<curEquip.Length; i++)
         {
-            curActive[i] = null;
+            curEquip[i] = null;
         }
     }
     public void UpdateEquip()
@@ -30,11 +31,7 @@ public class UpdatePlayer : NetworkBehaviour
         {
             GetActiveEquip(possEquip[curEquipInd], curEquipInd);
         }
-        foreach(Transform t in curActive)
-        {
-            Debug.Log(t);
-        }
-        CmdUpdatePlayer(curActive);
+        CmdUpdatePlayer(curEquip);
 
     }
     private void GetActiveEquip(Transform EquipHolder, int curEquipInd)
@@ -43,18 +40,18 @@ public class UpdatePlayer : NetworkBehaviour
         {
             if (child.gameObject.activeSelf)
             {
-                curActive[curEquipInd] = child;
+                curEquip[curEquipInd] = child.name;
                 return;
             }
         }
     }
-    public void SetEquipAct(Transform[] curAct)
+    public void SetEquipAct(string[] curAct)
     {
         for (int curEquipIndex = 0; curEquipIndex < possEquip.Length; curEquipIndex++)
         {
             foreach (Transform weapon in possEquip[curEquipIndex])
             {
-                if (weapon == curAct[curEquipIndex])
+                if (weapon.name == curAct[curEquipIndex])
                 {
                     weapon.gameObject.SetActive(true);
                 }
@@ -66,13 +63,13 @@ public class UpdatePlayer : NetworkBehaviour
         }
     }
     [Command]
-    public void CmdUpdatePlayer(Transform[] curAct)
+    public void CmdUpdatePlayer(string[] curAct)
     {
         SetEquipAct(curAct);
         RpcUpdatePlayer(curAct);
     }
     [ClientRpc]
-    public void RpcUpdatePlayer(Transform[] curAct)
+    public void RpcUpdatePlayer(string[] curAct)
     {
         SetEquipAct(curAct);
     }
