@@ -117,7 +117,6 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         Debug.Log(maxHp + " " + maxMana + " " + maxStamina);
     }
 
-
     // ----------- Loading data --------------------
     private void Load(DBPlayer player)
     {

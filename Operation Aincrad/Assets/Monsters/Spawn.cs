@@ -23,7 +23,7 @@ public class Spawn : MonoBehaviour
         {
             monsters.Add(child.gameObject);
         }
-
+        /*
         if(level == 0)
         {
             //Copy and instantiate new monster
@@ -33,10 +33,16 @@ public class Spawn : MonoBehaviour
                 m.transform.position = new Vector3(i, 0, 0);
                 m.SetActive(true);
             }
-            
-            
+        }*/
+    }
 
-
+    public void loadM(Vector3 position,int num, int type)
+    {
+        for(int i = 0; i < num; i++)
+        {
+            GameObject m = Instantiate(monsters[type], parent);
+            m.transform.position = position + new Vector3(Random.Range(0,5),0,Random.Range(0,5));
+            m.SetActive(true);
         }
     }
 
