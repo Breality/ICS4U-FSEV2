@@ -61,6 +61,8 @@ public class UDPClient : MonoBehaviour
                 }
             }
         }
+
+        yield return 0;
     }
 
     UdpClient client;
