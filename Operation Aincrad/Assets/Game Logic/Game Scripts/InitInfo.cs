@@ -32,6 +32,7 @@ public class InitInfo : NetworkBehaviour
             Debug.Log(cur_user);
             userName = cur_user;
             CmdSendName(cur_user);
+            upHandler.UpdateEquip();
 
         }
     }
