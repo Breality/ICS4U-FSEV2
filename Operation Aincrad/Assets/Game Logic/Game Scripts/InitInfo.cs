@@ -36,6 +36,10 @@ public class InitInfo : NetworkBehaviour
 
         }
     }
+    private void Update()
+    {
+        this.transform.parent.name = userName;
+    }
     [Command]
     void CmdSendName(string user)
     {
