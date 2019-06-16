@@ -7,7 +7,7 @@ public class AnimateKinect : NetworkBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform upperBodyRoot;
     private const int NUM_UPPERBODYROOT = 18;
-    private List<string> EquipmentTypes = new List<string>() { "Swords Right", "Swords Left", "Hats", "Armor", "Right Foot", "Left Foot" };
+    private List<string> EquipmentTypes = new List<string>() { "Swords Right", "Swords Left", "Armor", "Boots Right", "Boots Left", "Pendants","Helmets"};
     public void Update()
     {
         if (isLocalPlayer)
