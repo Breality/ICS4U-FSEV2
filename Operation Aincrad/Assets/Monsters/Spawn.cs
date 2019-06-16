@@ -34,14 +34,17 @@ public class Spawn : MonoBehaviour
                 m.SetActive(true);
             }
         }*/
+        loadM(new Vector3(486, 10, 586), 3, 1);
     }
 
     public void loadM(Vector3 position,int num, int type)
     {
         for(int i = 0; i < num; i++)
         {
-            GameObject m = Instantiate(monsters[type], parent);
+            //GameObject m = Instantiate(monsters[type], parent);
+            GameObject m = Instantiate(monsters[type]);
             m.transform.position = position + new Vector3(Random.Range(0,5),0,Random.Range(0,5));
+            //m.transform.position += new Vector3(Random.Range(0, 5), 0, Random.Range(0, 5));
             m.SetActive(true);
         }
     }

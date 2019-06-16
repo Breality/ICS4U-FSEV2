@@ -55,7 +55,6 @@ public class Monster : MonoBehaviour
 
     public void chase(List<Vector3> positions)
     {
-
         //Gets the player that's closest to them
         float distance = 99999;
         Vector3 position = this.transform.position;
@@ -76,7 +75,6 @@ public class Monster : MonoBehaviour
                 charAnim.SetFloat("velocity", 1);
                 transform.LookAt(position);
                 transform.position += transform.forward * speed * Time.deltaTime;
-
             }
             //If the monster is in attacking range, play the attack animation
             else if (minAttackDist >= Vector3.Distance(position, this.transform.position))
@@ -89,9 +87,15 @@ public class Monster : MonoBehaviour
         {
             charAnim.SetFloat("velocity", 0);
         }
-
     }
     
+    public void isHit(float damage)
+    {
+        HP -= damage;
+        Debug.Log("Monster has taken damage!");
+    }
+
+
     //When a monster collides with the player, take damage
     private void OnCollisionExit(Collision collision)
     {
@@ -119,6 +123,14 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        List<Vector3> positions = new List<Vector3>();
+        foreach(GameObject p in players)
+        {
+            positions.Add(p.transform.position);
+        }
+        chase(positions);
+
         //Makes sure the monster is facing horizontally
         Vector3 rot = transform.localEulerAngles;
         rot.x = 0;
@@ -130,8 +142,8 @@ public class Monster : MonoBehaviour
         {
             Debug.Log("Shouldn't be during attack");
             chase(test);
-
         }
+
         if(isDead && charAnim.GetCurrentAnimatorStateInfo(0).IsName("Done"))
         {
             Destroy(gameObject);
