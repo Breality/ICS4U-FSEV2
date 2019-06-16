@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
 
     private Dictionary<string, Player> players = new Dictionary<string, Player> { };
     public Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
-    private List<Player> deadPlayers = new List<Player> { };
+    public List<Player> deadPlayers = new List<Player> { };
 
     private List<Monster> monsters = new List<Monster> { };
     private List<NPC> npcs = new List<NPC> { };
