@@ -149,7 +149,6 @@ public class HTTPClient : MonoBehaviour
                 {
                     Debug.Log(e.ToString());
                 }
-                
             }
             else
             {
@@ -191,16 +190,16 @@ public class HTTPClient : MonoBehaviour
             // figure out what to do next or what to ping
             if (parameters["request"].Equals("stats")) // we asked the server for our stats because they told us to in UDP
             {
-                try
+                if (response == "DEAD")
+                {
+                    Debug.Log("DEAD");
+                }
+                else
                 {
                     XmlSerializer serilize_object = new XmlSerializer(typeof(DBPlayer));
                     StringReader open_string = new StringReader(response);
                     DBPlayer newStats = (DBPlayer)serilize_object.Deserialize(open_string);
                     infoCenter.NewStats(newStats);
-                }
-                catch(Exception e) // this will error when the request comes back but the server didn't send us the info, probably because they've already been logged out
-                {
-                    Debug.Log(e.ToString());
                 }
             }
             else

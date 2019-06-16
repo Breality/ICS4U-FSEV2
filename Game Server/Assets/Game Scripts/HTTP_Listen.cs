@@ -144,10 +144,19 @@ public class HTTP_Listen : MonoBehaviour
 
         // asking for stats because the game told them to
         else if (data["request"].Equals("stats")){ // overall max stats
-            game.updatePlayer[playerDB[data["token"]]] = false;
-            DBPlayer fakeDB = new DBPlayer(playerDB[data["token"]], "unimportant hash");
+            Player player = playerDB[data["token"]];
+            DBPlayer fakeDB = new DBPlayer(player, "unimportant hash");
             string xmlString = Encode_XML(fakeDB, typeof(DBPlayer));
-            ConstructResponse(context, xmlString);
+
+            if (game.deadPlayers.Contains(player)){
+                ConstructResponse(context, "DEAD");
+            }
+            else
+            {
+                game.updatePlayer[player] = false;
+                ConstructResponse(context, xmlString);
+            }
+            
         }
 
         else // they did not match any of the criteria
