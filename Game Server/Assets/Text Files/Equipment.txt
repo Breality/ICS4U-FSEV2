@@ -23,6 +23,14 @@ High Boots: Uncommon,Boots, 5, 0, 1, 0, 0, 0, 0, 0, 1
 White Shoes: Common,Boots, 5, 0, 1, 0, 0, 0, 0, 0, 1
 Converse: Rare,Boots, 5, 0, 3, 0, 0, 0, 0, 0, 1
 Army Boots: Uncommon,Boots, 5, 0, 5, 5, 1, 0.01, 0, 0, 5
+Mining Boots: Uncommon,Boots, 2, 0, 2, 2, 0, 0, 0, 0, 1
+Military Shoes: Uncommon,Boots, 10, 0, 8, 5, 1, 0.04, 0, 0, 7
+Sapphire Pendant: Super Rare,Pendants, 20, 40, 10, 0, 0, 0, 10, 0.15, 6
+Egyptian Necklace: Rare,Pendants, 10, 30, 7, 0, 0, 0, 8, 0.10, 3
+Millenium Pendant: Rare,Pendants, 15, 20, 6, 0, 0, 0, 7, 0.07, 2
+Angel Pendant: Uncommon,Pendants, 16, 11, 5, 0, 0, 0, 5, 0.05, 2
+Pirate Pendant: Common,Pendants, 7, 11, 7, 0, 0, 0, 6, 0.03, 2
+Panther Pendant: Uncommon,Pendants, 13, 10, 15, 0, 0, 0, 6, 0.02, 7
 
 - Weapon Name: Rarity, attack, pierce, range, mana, stamina, type (0 = left handed, 1 = right handed, 2 = both), attack cooldown, charge bonus, attack duration, every skill it can use seperated by comma 
 Rusty Sword: Common, 10, 0, 1, 0, 10, 1,1.5,  0.05, 1, End
