@@ -16,6 +16,7 @@ public class InitShop : MonoBehaviour
     
     void Start()
     {
+        Debug.Log(3);
         InfoCenter inCen = GameObject.Find("InfoCenter").GetComponent<InfoCenter>();
         HTTPClient handlerMan = GameObject.Find("HTTP Handler").GetComponent<HTTPClient>();
         UDPClient UDP = GameObject.Find("UDP Handler").GetComponent<UDPClient>();
