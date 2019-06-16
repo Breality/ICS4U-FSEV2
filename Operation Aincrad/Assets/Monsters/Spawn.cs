@@ -34,7 +34,7 @@ public class Spawn : MonoBehaviour
                 m.SetActive(true);
             }
         }*/
-        loadM(new Vector3(486, 10, 586), 3, 1);
+        loadM(new Vector3(486, 20, 586), 3, 1);
     }
 
     public void loadM(Vector3 position,int num, int type)
