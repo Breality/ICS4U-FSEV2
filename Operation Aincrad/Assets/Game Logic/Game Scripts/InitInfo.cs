@@ -34,10 +34,13 @@ public class InitInfo : NetworkBehaviour
             CmdSendName(cur_user);
             
         }
-        upHandler.OnJoinGame();
     }
     private void Update()
     {
+        if (isLocalPlayer)
+        {
+            upHandler.UpdateEquip();
+        }
         this.transform.parent.name = userName;
     }
     [Command]
