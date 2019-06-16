@@ -9,13 +9,10 @@ public class UpdatePlayer : NetworkBehaviour
     [SerializeField]
     private Transform SwordL, SwordR, Armor, BootL, BootR, Pendants, Helmets;
     private Transform[] possEquip;
-    private string[] curEquip;
-    private void Start()
+    private string[] curEquip = new string[7];
+    private void Awake()
     {
-        possEquip = new Transform[7] { SwordL, SwordR, Armor, BootL, BootR, Pendants, Helmets };
-        curEquip = new string[7];
-        ClearCA();
-      
+        possEquip = new Transform[7] { SwordL, SwordR, Armor, BootL, BootR, Pendants, Helmets };      
     }
     private void ClearCA()
     {
@@ -26,10 +23,12 @@ public class UpdatePlayer : NetworkBehaviour
     }
     public void UpdateEquip()
     {
+       Debug.Log("Called");
        ClearCA();
        for(int curEquipInd = 0; curEquipInd<possEquip.Length; curEquipInd++)
         {
             GetActiveEquip(possEquip[curEquipInd], curEquipInd);
+            Debug.Log(curEquipInd + " " + curEquip[curEquipInd]);
         }
         CmdUpdatePlayer(curEquip);
 
