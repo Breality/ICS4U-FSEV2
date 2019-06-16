@@ -190,9 +190,9 @@ public class HTTPClient : MonoBehaviour
             // figure out what to do next or what to ping
             if (parameters["request"].Equals("stats")) // we asked the server for our stats because they told us to in UDP
             {
-                if (response == "DEAD")
+                if (response.Equals("DEAD"))
                 {
-                    Debug.Log("DEAD");
+                    Debug.Log("YOU HAVE DIED");
                 }
                 else
                 {

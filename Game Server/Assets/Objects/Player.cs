@@ -155,7 +155,6 @@ public class Player
         if (hp[1] <= 0)
         {
             Debug.Log("Yes, I just died");
-            hp[1] = hp[0];
             return true;
         }
         
@@ -359,6 +358,7 @@ public class Player
 
         int chunkLost = Math.Min((int) (gold * 0.1), 150); // lose 10% of your gold but not more than 150
         gold -= chunkLost;
+        hp[1] = hp[0];
         return chunkLost;
     }
 }

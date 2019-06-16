@@ -149,6 +149,7 @@ public class HTTP_Listen : MonoBehaviour
             string xmlString = Encode_XML(fakeDB, typeof(DBPlayer));
 
             if (game.deadPlayers.Contains(player)){
+                game.deadPlayers.Remove(player);
                 ConstructResponse(context, "DEAD");
             }
             else
