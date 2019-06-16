@@ -13,6 +13,7 @@ public class UDPClient : MonoBehaviour
 {
     public InfoCenter Info;
     public HTTPClient HTTP;
+    public UpdatePlayer UP;
 
     public static string Encode_XML(object obj, Type required_type)
     { // Given an object that can be serilized and the type it is
@@ -54,6 +55,9 @@ public class UDPClient : MonoBehaviour
                 if (newStats[3] == 1) // something about their player changed, reload data from server
                 {
                     HTTP.AskServer(new Dictionary<string, string> { { "request" , "stats" } });
+                }else if (newStats[4] == 1)
+                {
+                    UP.UpdateEquip();
                 }
             }
         }

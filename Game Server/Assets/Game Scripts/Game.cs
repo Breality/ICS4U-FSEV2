@@ -13,6 +13,8 @@ public class Game : MonoBehaviour
     public TextAsset conditionList;
 
     private Dictionary<string, Player> players = new Dictionary<string, Player> { };
+    private Dictionary<Player, bool> updateEquip = new Dictionary<Player, bool> { };
+
     public Dictionary<Player, bool> updatePlayer = new Dictionary<Player, bool> { };
     public List<Player> deadPlayers = new List<Player> { };
 
@@ -28,7 +30,16 @@ public class Game : MonoBehaviour
     };
 
     // -------------- Player decisions sent by HTTP --------------
-    public void PlayerEnter(Player player, string token) { players[token] = player; updatePlayer[player] = false;  Debug.Log("Player added to server"); }
+    public void PlayerEnter(Player player, string token) {
+        players[token] = player;
+        updatePlayer[player] = false;
+        Debug.Log("Player added to server");
+
+        foreach (KeyValuePair<string, Player> plr in players) // telling everyone to show their equips
+        {
+            updateEquip[plr.Value] = true;
+        }
+    }
 
     public void PlayerLeave(string token) { players.Remove(token); }
 
@@ -48,11 +59,11 @@ public class Game : MonoBehaviour
         Player player = players[token];
         if (player == null)
         {
-            return new int[] { -1, -1, -1, -1 };
+            return new int[] { -1, -1, -1, -1, -1 };
         }
         
         int[] battleStats = player.GetStats();
-        int[] returnData = new int[4] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0 };
+        int[] returnData = new int[5] {battleStats[0], battleStats[1], battleStats[2], updatePlayer[player] ? 1 : 0, updateEquip[player] ? 1 : 0 };
         
         return returnData;
     }
