@@ -32,9 +32,12 @@ public class InitInfo : NetworkBehaviour
             Debug.Log(cur_user);
             userName = cur_user;
             CmdSendName(cur_user);
-            upHandler.UpdateEquip();
 
         }
+    }
+    private void Update()
+    {
+        this.transform.parent.name = userName;
     }
     [Command]
     void CmdSendName(string user)
