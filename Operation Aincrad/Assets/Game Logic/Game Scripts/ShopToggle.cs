@@ -12,8 +12,8 @@ using System;
  * Mr. McKenzie
  * Anish Aggarwal, Noor Nasri, Zhehai Zhang
  * June 14th, 2019
- * Shop Toggle Script
- * Description: Deals with the shop UI among the list of commands in the UI
+ * Shop Toggle Class
+ * Description: Deals with the shop UI inside the menu UI
  */
 
 public class ShopToggle : MonoBehaviour
@@ -31,6 +31,7 @@ public class ShopToggle : MonoBehaviour
     private bool canBuy = true; // debounce for when they dont have enough money and buy again
     private GameObject selected = null;
 
+    //Shows the cost of items
     private void Display(Image orig, string name)
     {
         image.sprite = orig.sprite;
@@ -44,6 +45,7 @@ public class ShopToggle : MonoBehaviour
         if (isDisplayed != null && canBuy)
         {
             canBuy = false;
+            //If they have enough gold to purchase
             bool success = info.gold >= info.goldShop[isDisplayed];
             if (success)
             {
@@ -59,7 +61,8 @@ public class ShopToggle : MonoBehaviour
         }
     }
 
-    // ------------- connecting the menu and the raycasting -------------
+    // ------------- connecting the menu and the raycasting ------------- Similar to MenuToggle
+    //When option isn't selected
     private void UnHover(GameObject item)
     {
         if (item.name.Equals("Purchase"))
@@ -73,7 +76,7 @@ public class ShopToggle : MonoBehaviour
         }
     }
 
-    //Once the raycast is over the item, show to the user that it's being hovered over by changing colours of the buttons and panels
+    //Shows UI response when ray is hovered over it
     private void Hover(GameObject item)
     {
         if (item.name.Equals("Purchase"))
@@ -89,7 +92,7 @@ public class ShopToggle : MonoBehaviour
     }
     
 
-    //Detect selection of the menu
+    //Detect selection of options in the shop
     private void Click(GameObject item)
     {
         Debug.Log("Clicked on " + item.name);
@@ -123,12 +126,14 @@ public class ShopToggle : MonoBehaviour
     private RaycastHit[] rHandCol, lHandCol;
     void Start()
     {
+        //Created the right and left line renderers
         rightLine = rightL.transform.GetComponent<LineRenderer>();
         leftLine = leftL.transform.GetComponent<LineRenderer>();
         initLine(rightLine);
         initLine(leftLine);
     }
 
+    //Decides how the lines will be drawn
     void initLine(LineRenderer line)
     {
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
@@ -137,6 +142,7 @@ public class ShopToggle : MonoBehaviour
         line.material.color = Color.cyan;
     }
 
+    //This draws the ray onto the screen
     public void DrawRay()
     {
         var interactionSourceStates = InteractionManager.GetCurrentReading();
@@ -147,6 +153,7 @@ public class ShopToggle : MonoBehaviour
             if (sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
             {
                 Debug.Log(interactState.source.handedness);
+                //Right Controller
                 if (interactState.source.handedness == InteractionSourceHandedness.Right)
                 {
                     Debug.DrawRay(lHand.position, sourceGripRot);
@@ -154,6 +161,7 @@ public class ShopToggle : MonoBehaviour
                     DrawRay(rHand.position, sourceGripRot, interactState.source.handedness);
 
                 }
+                //Left Controller
                 if (interactState.source.handedness == InteractionSourceHandedness.Left)
                 {
                     Debug.DrawRay(lHand.position, sourceGripRot);
@@ -165,15 +173,20 @@ public class ShopToggle : MonoBehaviour
 
     void Update()
     {
+        //Simply draws the ray onto the screen
         DrawRay();
         if (lHover != null) { UnHover(lHover); } // remove hover at start of frame and refind what is being hovered on 
         if (rHover != null) { UnHover(rHover); }
 
+        //Gets all of the colliders the ray hit
         RaycastHit[] collided = GetColliders("right");
+        //Checks if the right controller hit the button
         rHover = CheckCollided(collided);
         collided = GetColliders("left");
+        //Checks if the left controller hit the button
         lHover = CheckCollided(collided);
 
+        //If a controller button gets pressed, check if the raycast hit one of the buttons
         if (Input.GetButton("L_Trigger") && lHover != null)
         {
             Click(lHover);
@@ -185,8 +198,10 @@ public class ShopToggle : MonoBehaviour
 
     }
 
+    //Detects if the ray hit anything (colliders on the buttons)
     private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
     {
+        //Right controller
         if (handedness == InteractionSourceHandedness.Right)
         {
             rightLine.SetPosition(0, pos);
@@ -195,6 +210,7 @@ public class ShopToggle : MonoBehaviour
             Ray ray = new Ray(pos, forw);
             rHandCol = Physics.RaycastAll(ray, Mathf.Infinity);
         }
+        //Left controller
         if (handedness == InteractionSourceHandedness.Left)
         {
             leftLine.SetPosition(0, pos);
@@ -205,7 +221,7 @@ public class ShopToggle : MonoBehaviour
         }
     }
 
-
+    //Returns all objects that are colliding with the ray
     public RaycastHit[] GetColliders(string hand)
     {
         if (hand == "right")
@@ -218,6 +234,7 @@ public class ShopToggle : MonoBehaviour
         }
     }
 
+    //Checks if it collided with an actual button
     GameObject CheckCollided(RaycastHit[] collisions)
     {
         foreach (RaycastHit collide in collisions)

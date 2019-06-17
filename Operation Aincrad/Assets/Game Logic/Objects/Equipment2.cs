@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Equipment2 Class
+ * Description:
+ * This class handles the equipment stats and effects from a text file
+ */
+
 public class Equipment2
 {
+    //Shouldn't be able to be edited
     public readonly string name;
     public readonly string rarity;
 
+    //Initalize the stats for equipment
     public Equipment2(string name, string info)
     {
         this.name = name;
@@ -21,25 +32,16 @@ public class Item : Equipment2
     public readonly int bonusHp;
     public readonly int bonusMana;
     public readonly int bonusStamina;
-    //public readonly string usageType; // "Cast on self", "Field effect", "Castable on other players"
-    //public readonly Condition[] effects; // temp speed, long term heal, etc.
 
     public Item(string name, string info) : base(name, info)
     {
-        string[] items = info.Split(','); // Rarity, hp, mana, stamina, use type, every condition it activates when used on a player
+        // Stat for an equipment: Rarity, hp, mana, stamina, resist, magic bonus, magic multiplier, attack bonus, attack multiplier
+        string[] items = info.Split(','); 
 
+        //Set the first few stats
         bonusHp = int.Parse(items[1]);
         bonusMana = int.Parse(items[2]);
         bonusStamina = int.Parse(items[3]);
-
-        /*usageType = items[4];
-
-        effects = new Condition[items.Length - 6];
-        for (int i = 5; i < items.Length - 1; i++) // loop through all the skill names and add them
-        {
-            effects[i - 5] = new Condition(owner, owner, items[i]);
-        }
-        */
     }
 }
 
@@ -50,12 +52,14 @@ public class Clothing : Equipment2
     public readonly int bonusMana;
     public readonly int bonusStamina;
 
+    //Other stats
     public readonly float resist;
     public readonly float[] attackPower = new float[] { 0, 1 }; // {bonus, multiplier}
     public readonly float[] magicPower = new float[] { 0, 1 }; // {bonus, multiplier}
 
     public readonly int bonusSpeed;
 
+    //Parses text that describes all the stats
     public Clothing(string name, string info) : base(name, info)
     {
         string[] items = info.Split(','); // Rarity, hp, mana, stamina, resist, attack Bonus, attack multiplier, magic bonus, magic multiplier, speed
@@ -70,6 +74,7 @@ public class Clothing : Equipment2
     }
 }
 
+//Weapons have different effects than the other equipment
 public class Weapon : Equipment2
 {
     // Weapon variables that are specific to the weapon name
@@ -106,12 +111,7 @@ public class Weapon : Equipment2
         cooldown = float.Parse(items[7]);
         chargeEffect = float.Parse(items[8]);
         attackLength = float.Parse(items[9]);
-        /*
-        for (int i = 10; i < items.Length - 1; i++) // loop through all the skill names and add them
-        {
-            skills[items[i]] = new Attack(items[i]);
-        }
-        */
+        
     }
     
 }
