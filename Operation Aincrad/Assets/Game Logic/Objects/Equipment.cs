@@ -5,6 +5,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * Equipment Class
+ * Description:
+ * This class handles the equipment toggling
+ */
+
 public class Equipment : DisplayObject
 {
     // ------------- Variables -------------
@@ -13,21 +22,22 @@ public class Equipment : DisplayObject
     public GameObject Arrows;
     public GameObject Equipments;
     public GameObject Template;
-    
     public TMP_Text Title;
-
     public GameObject weaponSpecs;
     public GameObject clothingSpecs;
-
     private string[] options = new string[] { "Weapons", "Helmets", "Pendants" , "Armour", "Boots" };
     private int view = 0;
     private UpdatePlayer upHandler;
+
     // ------------- Functions for equipment -------------
+    //Resetting the menu for every time you open it up
     private void ReloadMenu()
     {
         Title.text = options[view];
+        //Removes the current option
         foreach (Transform child in Equipments.transform) { UnityEngine.Object.Destroy(child.gameObject); }
         
+        //Shows the items you own
         List<string> itemsOwned;
         if (view == 0) // weapons
         {
@@ -43,19 +53,20 @@ public class Equipment : DisplayObject
             GameObject newItem = UnityEngine.Object.Instantiate(Template);
             newItem.name = item;
 
-            // new positions
+            // New Positions
             newItem.transform.parent = Equipments.transform;
             newItem.transform.rotation = Template.transform.rotation;
             newItem.transform.localScale = new Vector3(0.002f, 0.004f, 1);
             newItem.transform.localPosition = new Vector3(0.35f * (i % 3 - 1), (i >= 3) ? -0.35f : 0.35f, Template.transform.localPosition.z);
 
-            // show product
+            // Show product
             Sprite image = Resources.Load<Sprite>("Equipment Images/" + options[view] + " Dealer/" + item);
             newItem.GetComponent<Image>().sprite = image;
             newItem.SetActive(true);
             i++;
         }
 
+        //Shows the stats of the item
         weaponSpecs.SetActive(view == 0);
         clothingSpecs.SetActive(!(view == 0));
     }
@@ -70,12 +81,14 @@ public class Equipment : DisplayObject
     }
 
     string selectedItem = null;
+
+    //Should show the item on the primary screen on the right
     public new void Hover(GameObject item)
     {
         Debug.Log("We have recieved the hover request on " + item.name);
         // show new item and stats
         if (item.transform.parent.name == "Equipments") {
-            // display the new hovered item's info
+            // Display the new hovered item's info
             try
             {
                 selectedItem = item.name;
@@ -83,7 +96,7 @@ public class Equipment : DisplayObject
                 specs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
                 specs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
 
-                // displaying the item specs
+                // Displaying the item specs
                 if (view == 0) // weapons
                 {
                     Weapon weapon = Info.weapons[item.name];
@@ -92,7 +105,7 @@ public class Equipment : DisplayObject
                     specs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
                     specs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
                 }
-                else
+                else // Other equipment like armour, boots, etc
                 {
                     Debug.Log("Hovering on clothing");
                     Clothing clothing = Info.clothing[options[view]][item.name];
@@ -104,24 +117,23 @@ public class Equipment : DisplayObject
                     specs.transform.Find("Magic").GetComponent<TMP_Text>().text = "MP: + " + clothing.magicPower[0] + " (x" + clothing.magicPower[1] + ")";
                     specs.transform.Find("Speed").GetComponent<TMP_Text>().text = "Speed: +" + clothing.bonusSpeed;
                 }
-
-                Debug.Log("hover complete");
             }
             catch(Exception e)
             {
                 Debug.Log(e.ToString());
             }
-            
         }
     }
 
+    //Unhovers, which doesn't give it any effect
     public new void UnHover(GameObject item)
     {
 
     }
 
-    private float lastClick = 0; // debounce system
+    private float lastClick = 0; // Debounce system
 
+    //Equipping an equipment
     public new void Clicked(GameObject item)
     {
         Debug.Log(selectedItem + " has been clicked, time to switcharoo!");
@@ -132,26 +144,44 @@ public class Equipment : DisplayObject
         {
             view = (view + int.Parse(item.name) + options.Length)% options.Length;
             ReloadMenu();
-        }else if (selectedItem != null) // they want to equip new item
+
+        }
+
+        else if (selectedItem != null) // They want to equip new item (they have nothing equipped right now)
         {
-            if (view == 0) // changing weapons
+            if (view == 0) // Changing weapons
             {
                 Weapon newWeapon = Info.weapons[selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
                 Debug.Log(newWeapon);
-                if (newWeapon.weaponType == 0) { // left hand
+                if (newWeapon.weaponType == 0) { // Left hand
+                    //If there is already a weapon, then remove that weapon
                     if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
+                    if (Info.equipped[5] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
+                    //Add the new equipped weapon
                     Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
                     Info.equipped[4] = selectedItem;
                 } 
-                else if (newWeapon.weaponType == 1) { // right hand
+                else if (newWeapon.weaponType == 1) { // Right hand
+                    //If there is already a weapon, then remove that weapon
                     if (Info.equipped[5] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
+                    if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
+                    //Add the new equipped weapon
                     Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
                     Info.equipped[5] = selectedItem;
+
                 } 
-                else if (newWeapon.weaponType == 2)
+                else if (newWeapon.weaponType == 2) // Both hands
                 {
-                    Debug.Log("Not sure what to do here");
+                    //If there is already a weapon, then remove that weapon
+                    if (Info.equipped[5] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
+                    if (Info.equipped[4] != "None") { Info.WeaponsL.transform.Find(Info.equipped[4]).gameObject.SetActive(false); }
+                    //Add the new equipped weapon
+                    Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[5] = selectedItem;
+                    Info.WeaponsL.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[4] = selectedItem;
                 }
+
 
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  "Weapon"}, {"equipment name", selectedItem} });
