@@ -101,7 +101,11 @@ public class Monster : MonoBehaviour
     //When a monster collides with the player, take damage
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Take 0.001 damage!");
+        if(collision.gameObject.tag == "Player")
+        {
+            HP -= 10;
+        }
+        Debug.Log("Take  damage!");
     }
 
     //Once the monster's health reaches 0, die
@@ -150,6 +154,10 @@ public class Monster : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Monster destroyed");
+        }
+        if (HP < 0)
+        {
+            die();
         }
 
     }
