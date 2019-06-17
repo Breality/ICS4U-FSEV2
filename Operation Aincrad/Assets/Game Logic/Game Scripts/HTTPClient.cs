@@ -2,7 +2,7 @@
  * Mr. McKenzie
  * Anish Aggarwal, Noor Nasri, Zhehai Zhang
  * June 14th, 2019
- * Menu Toggle Class
+ * HTTP Client Class
  * Description:
  * This class handles the HTTP requests sent by the client. The server listens to these requests for anything regarding account data. 
  */
