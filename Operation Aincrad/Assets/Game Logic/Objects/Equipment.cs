@@ -150,12 +150,14 @@ public class Equipment : DisplayObject
                 int correspondingIndex = (new Dictionary<string, int> { { "Helmets", 0 },
                     {"Armour", 1 }, { "Boots", 2 }, { "Pendants", 3 } })[options[view]];
 
-                if (Info.equipped[correspondingIndex] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
-                Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
-                Info.equipped[correspondingIndex] = selectedItem;
+                if (Info.equipped[correspondingIndex] != "None") {
+                    // unequip
+                }
+                // equip
 
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  "clothing"}, {"equipment name", selectedItem} });
+                Info.equipped[correspondingIndex] = selectedItem;
                 upHandler.UpdateEquip();
             }
         }
