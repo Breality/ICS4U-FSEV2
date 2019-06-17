@@ -69,22 +69,33 @@ public class Equipment : DisplayObject
     public new void Hover(GameObject item)
     {
         // show new item and stats
-        if (item.transform.parent.name == "Equipments" && view > 0) // equipment
-        {
-            
-        } else if(item.transform.parent.name == "Equipments") // weapons
-        {
+        if (item.transform.parent.name == "Equipments") {
             // display the new hovered item's info
             selectedItem = item.name;
-            weaponSpecs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
-            weaponSpecs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
+            GameObject specs = view == 0 ? weaponSpecs : clothingSpecs;
+            specs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
+            specs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
             
-            // displaying the weapon specs
-            Weapon weapon = Info.weapons[item.name];
-            weaponSpecs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + weapon.attack;
-            weaponSpecs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + weapon.pierce;
-            weaponSpecs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
-            weaponSpecs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
+            // displaying the item specs
+            if (view == 0) // weapons
+            {
+                Weapon weapon = Info.weapons[item.name];
+                specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + weapon.attack;
+                specs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + weapon.pierce;
+                specs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
+                specs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
+            }
+            else
+            {
+                Clothing clothing = Info.clothing[options[view]][item.name];
+                specs.transform.Find("Health").GetComponent<TMP_Text>().text = "HP: +" + clothing.bonusHp;
+                specs.transform.Find("Mana").GetComponent<TMP_Text>().text = "Mana: +" + clothing.bonusMana;
+                specs.transform.Find("Stamina").GetComponent<TMP_Text>().text = "Stamina: +" + clothing.bonusStamina;
+
+                specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "AP: + " + clothing.attackPower[0] + " (x" +clothing.attackPower[1]+")";
+                specs.transform.Find("Magic").GetComponent<TMP_Text>().text = "MP: + " + clothing.magicPower[0] + " (x" + clothing.magicPower[1] + ")";
+                specs.transform.Find("Speed").GetComponent<TMP_Text>().text = "Speed: +" + clothing.bonusSpeed;
+            }
         }
     }
 
@@ -132,6 +143,21 @@ public class Equipment : DisplayObject
                 Debug.Log("Request sent?");
 
             }
+            else
+            {
+                Clothing newClothing = Info.clothing[options[view]][selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
+                Debug.Log(newClothing);
+                int correspondingIndex = (new Dictionary<string, int> { { "Helmets", 0 },
+                    {"Armour", 1 }, { "Boots", 2 }, { "Pendants", 3 } })[options[view]];
+
+                if (Info.equipped[correspondingIndex] != "None") { Info.WeaponsR.transform.Find(Info.equipped[5]).gameObject.SetActive(false); }
+                Info.WeaponsR.transform.Find(selectedItem).gameObject.SetActive(true);
+                Info.equipped[correspondingIndex] = selectedItem;
+
+                HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
+                    {"equipment type",  "clothing"}, {"equipment name", selectedItem} });
+                upHandler.UpdateEquip();
+            }
         }
     }
 
@@ -143,6 +169,7 @@ public class Equipment : DisplayObject
         Title = main.Find("Title").gameObject.GetComponent<TMP_Text>();
         Template = main.Find("Fake Equip").Find("Template Image").gameObject;
         weaponSpecs = main.Find("Weapon Display").gameObject;
+        clothingSpecs = main.Find("Clothing Display").gameObject;
         upHandler = camera.transform.parent.GetComponent<UpdatePlayer>();
         Debug.Log("ready for activate");
 }
