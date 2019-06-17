@@ -193,14 +193,15 @@ public class HTTPClient : MonoBehaviour
             // figure out what to do next or what to ping
             if (parameters["request"].Equals("stats")) // we asked the server for our stats because they told us to in UDP
             {
-                if (response.Equals("DEAD"))
+                if (response.Equals("DEAD")) // the player has died
                 {
-                    Debug.Log("YOU HAVE DIED");
+                    // respawn the local character at a random position
                     Vector3 newPos = new Vector3(UnityEngine.Random.Range(350f, 700f), 200, UnityEngine.Random.Range(300f, 700f));
                     character.transform.position = newPos;
                 }
                 else
                 {
+                    // send the new data to the infocenter so that they can load in the new data
                     XmlSerializer serilize_object = new XmlSerializer(typeof(DBPlayer));
                     StringReader open_string = new StringReader(response);
                     DBPlayer newStats = (DBPlayer)serilize_object.Deserialize(open_string);
@@ -214,16 +215,18 @@ public class HTTPClient : MonoBehaviour
         }
     }
 
-    public void AskServer(Dictionary<string, string> parameters)
+    public void AskServer(Dictionary<string, string> parameters) // public function for other classes to send HTTP requests to the server
     {
         StartCoroutine(SendMessage(parameters));
     }
 
-    void OnApplicationQuit()
+    void OnApplicationQuit() // tell the server to logout when unity is getting closed
     {
         AskServer(new Dictionary<string, string> { { "request", "logout"} });
     }
-    public DBPlayer GetLoadedD()
+
+    // public getters
+    public DBPlayer GetLoadedD() 
     {
         return loadedData;
     }
