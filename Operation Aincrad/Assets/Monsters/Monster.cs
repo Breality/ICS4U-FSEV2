@@ -66,12 +66,17 @@ public class Monster : MonoBehaviour
                 position = p;
             }
         }
-
+        if(distance == 9999)
+        {
+            charAnim.SetFloat("velocity", 0);
+        }
+        //Debug.Log(distance);
         if (distance < 40)
         {
             //Move the monster to the player position
             if (minAttackDist < Vector3.Distance(position, this.transform.position))
             {
+                Debug.Log("Running");
                 charAnim.SetFloat("velocity", 1);
                 transform.LookAt(position);
                 transform.position += transform.forward * speed * Time.deltaTime;
@@ -83,10 +88,7 @@ public class Monster : MonoBehaviour
                 attack();
             }
         }
-        else
-        {
-            charAnim.SetFloat("velocity", 0);
-        }
+        
     }
     
     public void isHit(float damage)

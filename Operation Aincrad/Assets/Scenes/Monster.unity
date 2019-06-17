@@ -307,10 +307,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asuna
       objectReference: {fileID: 0}
+    - target: {fileID: 1049515794535030621, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -17.8
       objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
@@ -320,7 +325,7 @@ PrefabInstance:
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.4
       objectReference: {fileID: 0}
     - target: {fileID: 4092638280527048014, guid: 9023c9c9a7c28bb4aa602cb933b38cc6,
         type: 3}
@@ -520,6 +525,11 @@ PrefabInstance:
     - target: {fileID: 797787797212064122, guid: 182d67eac1f31ae4d9190241f5063f20,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8661445524386353524, guid: 182d67eac1f31ae4d9190241f5063f20,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
