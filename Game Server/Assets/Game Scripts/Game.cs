@@ -25,8 +25,16 @@ public class Game : MonoBehaviour
     public Dictionary<string, Dictionary<string, string>> skills = new Dictionary<string, Dictionary<string, string>> { };
     public Dictionary<string, Dictionary<string, string>> conditions = new Dictionary<string, Dictionary<string, string>> { };
 
-    public Dictionary<string, int> goldShop = new Dictionary<string, int> {
-        {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 }, {"Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 }
+    public Dictionary<string, int> goldShop = new Dictionary<string, int> { // the cost of everything
+        {"Ancient Sword", 50 }, {"Orochimaru", 25 }, {"Ogre Sword", 10 }, {"Silver Rapier", 40 }, {"Sword of the Abyss", 50 }, {"Templar Sword", 50 },
+        { "Curved Sword", 75 }, {"Dark Sword", 75 }, {"Dothraki Sword", 50 }, {"Elucidator", 100 }, {"Long Sword", 150 }, {"Shark Staff", 200 },
+        { "High Boots"  , 125}, {"White Shoes",30 }, {"Converse"      , 45 }, {"Army Boots", 55  }, {"Mining Boots",20 }, {"Military Shoes", 60 },
+        { "Aviator's Hat",30 },{"Flower Hat" , 35  },
+        { "Loki Helmet" , 100}, {"Soldier Helmet", 20 }, {"Sorcerer Helmet", 60 }, {"Spartan Helmet", 45 }, {"Templar Helmet", 45 },
+        { "Top Hat" , 35 }, {"Viking Helmet", 45} , {"Knight Armour", 50 }, {"Aqua Dress", 40}, {"Black Dress", 45},
+        {"Purple Dress", 35}, {"Red Dress", 60}, {"White Dress", 65}, {"Red Jacket", 25},
+        {"Sapphire Pendant", 100 }, {"Egyptian Necklace", 40}, {"Millenium Pendant", 35}, {"Angel Pendant", 20}, {"Pirate Pendant", 15},
+        { "Panther Necklace", 20}
     };
 
     // -------------- Player decisions sent by HTTP --------------
