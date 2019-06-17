@@ -7,20 +7,21 @@ using Mirror;
  * Anish Aggarwal, Noor Nasri, Zhehai Zhang
  * June 14th, 2019
  * PlayerMovement
- * Description: Takes in joystick movement so the character can move
+ * Description: Takes in joystick movement so the character can move. Also deletes unnecessary scripts that will cause conflicts.
  */
 public class PlayerMovement : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    private Animator charAnim;
-    private float vx, vy,rot_y;
-    private const float deadZone = 0.5f;
+    private Animator charAnim;//used to get animator to set animations based off certain movements of player
+    private float vx, vy,rot_y;//variable used to set user movement
+    private const float deadZone = 0.5f;//used to make sure user wants to move and not some problem with joystick precision
+    //floats used to set speeds of movements used as multipliers
     [SerializeField]
     private float rotation_Speed = 1f;
     [SerializeField]
     private float playerMovSpeed = 0.2f;
+
     [SerializeField]
-    private GameObject cam,root;
+    private GameObject cam,root;//cam must be destroyed on new players so that the client is only looking through his character. The root is used as the center piece of movement.
     
     void Start()
     {
@@ -45,11 +46,10 @@ public class PlayerMovement : NetworkBehaviour
                 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-        if (!isLocalPlayer)
+        if (!isLocalPlayer)//movement on local player should not update other player positions nor animations
             return;
 
         //Gets the joystick input

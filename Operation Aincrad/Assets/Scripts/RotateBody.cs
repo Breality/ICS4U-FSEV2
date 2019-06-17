@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * RotateBody.cs
+ * Description: Updates player rotation based off camera rotation. (Less Shakiness)
+ */
 public class RotateBody : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     Transform cam;
-    // Update is called once per frame
-    void LateUpdate()
+    void LateUpdate()//used late update to bypass animations
     {
-        Vector3 rot = this.transform.localEulerAngles;
-        rot.y = cam.localEulerAngles.y;
-        this.transform.localEulerAngles = rot;
+        Vector3 rot = this.transform.localEulerAngles;//get rotation of this object
+        rot.y = cam.localEulerAngles.y;//set it to be the same as the camera rotation
+        this.transform.localEulerAngles = rot;//apply rotation
     }
 }
