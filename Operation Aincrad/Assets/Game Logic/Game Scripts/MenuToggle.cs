@@ -165,6 +165,7 @@ public class MenuToggle : MonoBehaviour
 
     private void Hover(GameObject item)
     {
+        Debug.Log("Hover");
         if (item.transform.IsChildOf(MenuOptions.transform)) // the 4 menus
         {
             Image image = item.GetComponent<Image>();
@@ -174,6 +175,7 @@ public class MenuToggle : MonoBehaviour
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 255, 236, 111);
         }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
         {
+            Debug.Log("Letting them know of hover");
             ScriptReferences[CurrentDisplay].Hover(item);
         }
 

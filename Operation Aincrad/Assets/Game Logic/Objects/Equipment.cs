@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class Equipment : DisplayObject
     private void ReloadMenu()
     {
         Title.text = options[view];
-        foreach (Transform child in Equipments.transform) { Object.Destroy(child.gameObject); }
+        foreach (Transform child in Equipments.transform) { UnityEngine.Object.Destroy(child.gameObject); }
         
         List<string> itemsOwned;
         if (view == 0) // weapons
@@ -54,6 +55,9 @@ public class Equipment : DisplayObject
             newItem.SetActive(true);
             i++;
         }
+
+        weaponSpecs.SetActive(view == 0);
+        clothingSpecs.SetActive(!(view == 0));
     }
     
 
@@ -68,34 +72,46 @@ public class Equipment : DisplayObject
     string selectedItem = null;
     public new void Hover(GameObject item)
     {
+        Debug.Log("We have recieved the hover request on " + item.name);
         // show new item and stats
         if (item.transform.parent.name == "Equipments") {
             // display the new hovered item's info
-            selectedItem = item.name;
-            GameObject specs = view == 0 ? weaponSpecs : clothingSpecs;
-            specs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
-            specs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
-            
-            // displaying the item specs
-            if (view == 0) // weapons
+            try
             {
-                Weapon weapon = Info.weapons[item.name];
-                specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + weapon.attack;
-                specs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + weapon.pierce;
-                specs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
-                specs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
-            }
-            else
-            {
-                Clothing clothing = Info.clothing[options[view]][item.name];
-                specs.transform.Find("Health").GetComponent<TMP_Text>().text = "HP: +" + clothing.bonusHp;
-                specs.transform.Find("Mana").GetComponent<TMP_Text>().text = "Mana: +" + clothing.bonusMana;
-                specs.transform.Find("Stamina").GetComponent<TMP_Text>().text = "Stamina: +" + clothing.bonusStamina;
+                selectedItem = item.name;
+                GameObject specs = view == 0 ? weaponSpecs : clothingSpecs;
+                specs.transform.Find("Selected Name").GetComponent<TMP_Text>().text = item.name;
+                specs.transform.Find("Selected Image").GetComponent<Image>().sprite = item.GetComponent<Image>().sprite;
 
-                specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "AP: + " + clothing.attackPower[0] + " (x" +clothing.attackPower[1]+")";
-                specs.transform.Find("Magic").GetComponent<TMP_Text>().text = "MP: + " + clothing.magicPower[0] + " (x" + clothing.magicPower[1] + ")";
-                specs.transform.Find("Speed").GetComponent<TMP_Text>().text = "Speed: +" + clothing.bonusSpeed;
+                // displaying the item specs
+                if (view == 0) // weapons
+                {
+                    Weapon weapon = Info.weapons[item.name];
+                    specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "Attack: " + weapon.attack;
+                    specs.transform.Find("Pierce").GetComponent<TMP_Text>().text = "Pierce: " + weapon.pierce;
+                    specs.transform.Find("Range").GetComponent<TMP_Text>().text = "Range: " + weapon.range;
+                    specs.transform.Find("Hand Positioning").GetComponent<TMP_Text>().text = new string[] { "Left Handed", "Right Handed", "Dual Weild" }[weapon.weaponType];
+                }
+                else
+                {
+                    Debug.Log("Hovering on clothing");
+                    Clothing clothing = Info.clothing[options[view]][item.name];
+                    specs.transform.Find("Health").GetComponent<TMP_Text>().text = "HP: +" + clothing.bonusHp;
+                    specs.transform.Find("Mana").GetComponent<TMP_Text>().text = "Mana: +" + clothing.bonusMana;
+                    specs.transform.Find("Stamina").GetComponent<TMP_Text>().text = "Stamina: +" + clothing.bonusStamina;
+
+                    specs.transform.Find("Attack").GetComponent<TMP_Text>().text = "AP: + " + clothing.attackPower[0] + " (x" + clothing.attackPower[1] + ")";
+                    specs.transform.Find("Magic").GetComponent<TMP_Text>().text = "MP: + " + clothing.magicPower[0] + " (x" + clothing.magicPower[1] + ")";
+                    specs.transform.Find("Speed").GetComponent<TMP_Text>().text = "Speed: +" + clothing.bonusSpeed;
+                }
+
+                Debug.Log("hover complete");
             }
+            catch(Exception e)
+            {
+                Debug.Log(e.ToString());
+            }
+            
         }
     }
 

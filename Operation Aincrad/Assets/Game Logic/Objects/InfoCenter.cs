@@ -151,6 +151,12 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
         // putting on their correct equipment
         equipped = player.equipped;
+        Helmets.transform.Find(equipped[0]).gameObject.SetActive(true);
+        Armour.transform.Find(equipped[1]).gameObject.SetActive(true);
+        BootsLeft.transform.Find(equipped[2]).gameObject.SetActive(true);
+        BootsRight.transform.Find(equipped[2]).gameObject.SetActive(true);
+        Pendants.transform.Find(equipped[3]).gameObject.SetActive(true);
+
         if (equipped[4] != "None") { WeaponsL.transform.Find(equipped[4]).gameObject.SetActive(true); }
         if (equipped[5] != "None") { WeaponsR.transform.Find(equipped[5]).gameObject.SetActive(true); }
 
@@ -173,6 +179,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
 
     public string LogIn(DBPlayer player, Dictionary<string, Dictionary<string, string>> equipments) // logging in
     {
+        Debug.Log("DB Player logging in");
         // equipment info from the server's text file
         equipmentConstructor = equipments;
         username = player.username;
@@ -180,6 +187,7 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
         Debug.Log(NameText);
         Load(player);
 
+        Debug.Log(username);
         return username;
     }
 
