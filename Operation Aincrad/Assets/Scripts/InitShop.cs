@@ -14,7 +14,7 @@ public class InitShop : MonoBehaviour
     [SerializeField]
     private TMP_Text hText;
     [SerializeField]
-    private GameObject WeaponsLeft, WeaponsRight;
+    private GameObject WeaponsLeft, WeaponsRight, bLeft, bRight, Hats, Necklaces, Arnament;
     [SerializeField]
     private TMP_Text nameText;
     [SerializeField]
@@ -30,7 +30,11 @@ public class InitShop : MonoBehaviour
         inCen.WeaponsL = WeaponsLeft;
         inCen.WeaponsR = WeaponsRight;
         inCen.NameText = nameText;
-
+        inCen.BootsLeft = bLeft;
+        inCen.BootsRight = bRight;
+        inCen.Helmets = Hats;
+        inCen.Armour = Arnament;
+        inCen.Pendants = Necklaces;
 
         JoyStickListen jsL = this.GetComponent<JoyStickListen>();
         jsL.sellers = GameObject.Find("Sellers");
