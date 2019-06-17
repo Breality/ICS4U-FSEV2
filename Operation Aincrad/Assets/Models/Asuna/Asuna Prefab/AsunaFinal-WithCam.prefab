@@ -45045,7 +45045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4168108336999137997}
   m_Layer: 0
-  m_Name: Default Boot
+  m_Name: Default Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61650,7 +61650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1574892932224981063}
   m_Layer: 0
-  m_Name: Default Boot
+  m_Name: Default Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
