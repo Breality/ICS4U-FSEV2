@@ -182,13 +182,15 @@ public class Equipment : DisplayObject
                     Info.equipped[4] = selectedItem;
                 }
 
-
+                //Sends information that items have been equipped
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  "Weapon"}, {"equipment name", selectedItem} });
                 upHandler.UpdateEquip();
                 Debug.Log("Request sent?");
 
             }
+
+            //Equips other equipment
             else
             {
                 Clothing newClothing = Info.clothing[options[view]][selectedItem]; // { "Default Helmet", "Default Armour", "Default Boots", "Default Pendant", "Rusty Sword", "None" };
@@ -196,33 +198,48 @@ public class Equipment : DisplayObject
                 int correspondingIndex = (new Dictionary<string, int> { { "Helmets", 0 },
                     {"Armour", 1 }, { "Boots", 2 }, { "Pendants", 3 } })[options[view]];
                 
+                //Helmets
                 if (correspondingIndex == 0)
                 {
+                    //Removes current helmet
                     if (Info.equipped[correspondingIndex] != "Default Helmet") { Info.Helmets.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
+                    //Equips selected helmet
                     Info.Helmets.transform.Find(selectedItem).gameObject.SetActive(true);
                 }
+
+                //Armour
                 else if (correspondingIndex == 1)
                 {
+                    //Removes current armour
                     if (Info.equipped[correspondingIndex] != "Default Armour") { Info.Armour.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
+                    //Equips selected armour
                     Info.Armour.transform.Find(selectedItem).gameObject.SetActive(true);
                 }
+
+                //Boots
                 else if (correspondingIndex == 2)
                 {
+                    //Removes current boots
                     //equip left and right
                     if (Info.equipped[correspondingIndex] != "Default Boots") {
                         Info.BootsLeft.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false);
                         Info.BootsRight.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false);
                     }
+                    //Equips selected boots
                     Info.BootsLeft.transform.Find(selectedItem).gameObject.SetActive(true);
                     Info.BootsRight.transform.Find(selectedItem).gameObject.SetActive(true);
                 }
+
+                //Pendants
                 else if (correspondingIndex == 3)
                 {
+                    //Removes current pendant
                     if (Info.equipped[correspondingIndex] != "Default Pendant") { Info.Pendants.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
+                    //Equips selected pendant
                     Info.Pendants.transform.Find(selectedItem).gameObject.SetActive(true);
                 }
 
-
+                //Sends information that items have been equipped
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  options[view]}, {"equipment name", selectedItem} });
                 Info.equipped[correspondingIndex] = selectedItem;
@@ -231,6 +248,7 @@ public class Equipment : DisplayObject
         }
     }
 
+    //Acceses all of the game objects (which display the equipment info
     public Equipment(GameObject camera)
     {
         main = camera.transform.Find("Activated UI").transform.Find("Display").transform.Find("Equipment");

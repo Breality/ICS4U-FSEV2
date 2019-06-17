@@ -53,11 +53,12 @@ public class MenuToggle : MonoBehaviour
     private Dictionary<string, Equipment> ScriptReferences = new Dictionary<string, Equipment> { };
 
     
-    //Shows the correct menu options
+    //Either shows the correct menu options or removes them
     private void ButtonMode(Transform button, bool mode)
     {
         if (mode)
         {
+            //Change colour to show its selected
             button.GetComponent<Image>().color = new Color32(0, 245, 255, 137);
             for (int i = 0; i < buttons[cur].Length; i++) // make all the texts
             {
@@ -81,8 +82,10 @@ public class MenuToggle : MonoBehaviour
 
             }
         }
+        //Remove the options
         else
         {
+            //Change colour of button back to unselected
             button.GetComponent<Image>().color = new Color32(255, 255, 255, 121);
             foreach (Transform child in extensions) { Destroy(child.gameObject); }
 
@@ -94,7 +97,7 @@ public class MenuToggle : MonoBehaviour
         }
     }
 
-    //Scrolls through through animations
+    //Animates the buttons moving - it's on a separate thread to not stall the main loop
     public IEnumerator Toggle(string menuName) 
     {
         int dir = Array.IndexOf(order, menuName) - cur; 
@@ -113,11 +116,11 @@ public class MenuToggle : MonoBehaviour
 
             ButtonMode(MenuOptions.transform.Find(oldName), false); // unmark button and remove old menu
 
-            // translate buttons
+            // Translate buttons
             float startTime = Time.realtimeSinceStartup;
             while (Time.realtimeSinceStartup < startTime + transitionTime)
             {
-                // this changes the object's local position based on the camera
+                // This changes the object's local position based on the camera
                 MenuOptions.transform.localPosition = new Vector3(MenuOptions.transform.localPosition.x,
                     startPos + translation * (Time.realtimeSinceStartup - startTime) / transitionTime - startingoffset,
                     MenuOptions.transform.localPosition.z);
@@ -125,8 +128,8 @@ public class MenuToggle : MonoBehaviour
             }
             MenuOptions.transform.localPosition = new Vector3(MenuOptions.transform.localPosition.x, startPos + translation - startingoffset, MenuOptions.transform.localPosition.z);
 
-            ButtonMode(MenuOptions.transform.Find(newName), true); // show new menu
-            inTranslation = false; // allow translation again
+            ButtonMode(MenuOptions.transform.Find(newName), true); // Show new menu
+            inTranslation = false; // Allow translation again after animation has finished
         }
         yield return null;
 
@@ -145,24 +148,26 @@ public class MenuToggle : MonoBehaviour
         isOpen = value;
     }
     
-    // ------------- connecting the menu and the raycasting -------------
+    // ------------- Connecting the menu and the raycasting -------------
+    //When option isn't selected
     private void UnHover(GameObject item)
     {
         Transform par = item.transform.parent;
 
-        if (item.transform.IsChildOf(MenuOptions.transform)) // the 4 menus
+        if (item.transform.IsChildOf(MenuOptions.transform)) // The 4 menu options
         {
             Image image = item.GetComponent<Image>();
             image.color = new Color32(Convert.ToByte(image.color.r*255), Convert.ToByte(image.color.g*255), Convert.ToByte(image.color.b*255), 121);
-        }else if (item.transform.IsChildOf(extensions)) // the buttons we create
+        }else if (item.transform.IsChildOf(extensions)) // The buttons we create
         {
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 0, 0, 111);
-        }else if (par != null && ButtonParents.Contains(par.gameObject)) // specific display script should know about this
+        }else if (par != null && ButtonParents.Contains(par.gameObject)) 
         {
             ScriptReferences[CurrentDisplay].UnHover(item);
         }
     }
 
+    //Shows UI response when ray is hovered over it
     private void Hover(GameObject item)
     {
         Debug.Log("Hover");
@@ -173,7 +178,7 @@ public class MenuToggle : MonoBehaviour
         }else if (item.transform.IsChildOf(extensions)) // the buttons we create
         {
             item.transform.Find("Panel").GetComponent<Image>().color = new Color32(0, 255, 236, 111);
-        }else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
+        }else if (ButtonParents.Contains(item.transform.parent.gameObject)) 
         {
             Debug.Log("Letting them know of hover");
             ScriptReferences[CurrentDisplay].Hover(item);
@@ -187,7 +192,7 @@ public class MenuToggle : MonoBehaviour
     private void Click(GameObject item)
     {
         Debug.Log("Clicked on " + item.name);
-        if (item.transform.IsChildOf(MenuOptions.transform)) // the 4 menus
+        if (item.transform.IsChildOf(MenuOptions.transform)) // 4 Menu options
         {
             StartCoroutine(Toggle(item.name));
             
@@ -200,7 +205,7 @@ public class MenuToggle : MonoBehaviour
             foreach (Transform child in extensions) { Destroy(child.gameObject); } // remove the options and display what is wanted
             Debug.Log(ButtonParents.Count);
         }
-        else if (ButtonParents.Contains(item.transform.parent.gameObject)) // specific display script should know about this
+        else if (ButtonParents.Contains(item.transform.parent.gameObject)) 
         {
             Debug.Log("Calling their clicked function");
             ScriptReferences[CurrentDisplay].Clicked(item);
@@ -208,7 +213,7 @@ public class MenuToggle : MonoBehaviour
     }
 
     float lastswitch = 0;
-    public void SwitchActive() // this function should actually be in another one just detecting when they open the menu, which starts the raycasts too
+    public void SwitchActive() // Detects if they open a menu and starts raycasting
     {
         if (Time.realtimeSinceStartup - lastswitch > 1)
         {
@@ -244,6 +249,7 @@ public class MenuToggle : MonoBehaviour
         Debug.Log("Stuff started");
     }
 
+    //Decides how the lines will be drawn
     void initLine(LineRenderer line)
     {
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
@@ -252,7 +258,7 @@ public class MenuToggle : MonoBehaviour
         line.material.color = Color.cyan;
     }
 
-    //This draws the ray onto the screen and detects any possible collisions
+    //This draws the ray onto the screen
     public void DrawRay()
     {
         var interactionSourceStates = InteractionManager.GetCurrentReading();
@@ -260,9 +266,11 @@ public class MenuToggle : MonoBehaviour
         {
             var sourcePose = interactState.sourcePose;
             Vector3 sourceGripRot;
+            
             if (sourcePose.TryGetForward(out sourceGripRot, InteractionSourceNode.Pointer))
             {
                 Debug.Log(interactState.source.handedness);
+                //Right Controller
                 if (interactState.source.handedness == InteractionSourceHandedness.Right)
                 {
                     Debug.DrawRay(lHand.position, sourceGripRot);
@@ -270,6 +278,7 @@ public class MenuToggle : MonoBehaviour
                     DrawRay(rHand.position, sourceGripRot, interactState.source.handedness);
 
                 }
+                //Left Controller
                 if (interactState.source.handedness == InteractionSourceHandedness.Left)
                 {
                     Debug.DrawRay(lHand.position, sourceGripRot);
@@ -281,15 +290,20 @@ public class MenuToggle : MonoBehaviour
 
     void Update()
     {
+        //Simply draws the ray onto the screen
         DrawRay();
         if (lHover != null) { UnHover(lHover); } // remove hover at start of frame and refind what is being hovered on 
         if (rHover != null) { UnHover(rHover); }
 
+        //Gets all of the colliders the ray hit
         RaycastHit[] collided = GetColliders("right");
+        //Checks if the right controller hit the button
         rHover = CheckCollided(collided);
         collided = GetColliders("left");
+        //Checks if the left controller hit the button
         lHover = CheckCollided(collided);
 
+        //If a controller button gets pressed, check if the raycast hit one of the buttons
         if (Input.GetButton("L_Trigger") && lHover != null)
         {
             Click(lHover);
@@ -301,9 +315,10 @@ public class MenuToggle : MonoBehaviour
         
     }
 
-    //The actual ray detection
+    //Detects if the ray hit anything (colliders on the buttons)
     private void DrawRay(Vector3 pos, Vector3 forw, InteractionSourceHandedness handedness)
     {
+        //Right controller
         if (handedness == InteractionSourceHandedness.Right)
         {
             rightLine.SetPosition(0, pos);
@@ -312,6 +327,7 @@ public class MenuToggle : MonoBehaviour
             Ray ray = new Ray(pos, forw);
             rHandCol = Physics.RaycastAll(ray, Mathf.Infinity);
         }
+        //Left controller
         if (handedness == InteractionSourceHandedness.Left)
         {
             Debug.Log(leftLine);
@@ -337,6 +353,7 @@ public class MenuToggle : MonoBehaviour
         }
     }
 
+    //Checks if it collided with an actual button
     GameObject CheckCollided(RaycastHit[] collisions)
     {
         foreach (RaycastHit collide in collisions)

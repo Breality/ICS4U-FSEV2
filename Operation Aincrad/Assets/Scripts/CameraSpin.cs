@@ -5,15 +5,15 @@ using UnityEngine;
  * Mr. McKenzie
  * Anish Aggarwal, Noor Nasri, Zhehai Zhang
  * June 14th, 2019
- * Camera Spin
+ * CameraSpin.cs
  * Description: Rotates the camera so it looks around the map - for the intro screen
  */
 public class CameraSpin : MonoBehaviour
 {
     
-    IEnumerator spin()
+    IEnumerator spin()//new thread that runs along other codes
     {
-        while (true)
+        while (true)//Will continue rotating forever until login cam is disabled via login/register
         {
             //Rotates the camera
             transform.Rotate(new Vector3(0, 0.15f, 0));
