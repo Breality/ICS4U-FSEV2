@@ -149,45 +149,36 @@ public class Equipment : DisplayObject
                 Debug.Log(newClothing);
                 int correspondingIndex = (new Dictionary<string, int> { { "Helmets", 0 },
                     {"Armour", 1 }, { "Boots", 2 }, { "Pendants", 3 } })[options[view]];
-
-                if (Info.equipped[correspondingIndex] != "None") {
-                    // unequip
-                }
-                // equip
-                //Helmets
-                if (view == 0)
+                
+                if (correspondingIndex == 0)
                 {
-                    if (Info.equipped[0] != "Default Helmet") { Info.Helmets.transform.Find(Info.equipped[0]).gameObject.SetActive(false); }
+                    if (Info.equipped[correspondingIndex] != "Default Helmet") { Info.Helmets.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
                     Info.Helmets.transform.Find(selectedItem).gameObject.SetActive(true);
-                    Info.equipped[0] = selectedItem;
                 }
-                else if (view == 1)
+                else if (correspondingIndex == 1)
                 {
-                    if (Info.equipped[1] != "Default Armour") { Info.Armour.transform.Find(Info.equipped[1]).gameObject.SetActive(false); }
+                    if (Info.equipped[correspondingIndex] != "Default Armour") { Info.Armour.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
                     Info.Armour.transform.Find(selectedItem).gameObject.SetActive(true);
-                    Info.equipped[1] = selectedItem;
                 }
-                else if (view == 2)
+                else if (correspondingIndex == 2)
                 {
                     //equip left and right
-                    if (Info.equipped[2] != "Default Boots") {
-                        Info.BootsLeft.transform.Find(Info.equipped[2]).gameObject.SetActive(false);
-                        Info.BootsRight.transform.Find(Info.equipped[2]).gameObject.SetActive(false);
+                    if (Info.equipped[correspondingIndex] != "Default Boots") {
+                        Info.BootsLeft.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false);
+                        Info.BootsRight.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false);
                     }
                     Info.BootsLeft.transform.Find(selectedItem).gameObject.SetActive(true);
                     Info.BootsRight.transform.Find(selectedItem).gameObject.SetActive(true);
-                    Info.equipped[1] = selectedItem;
                 }
-                else if (view == 3)
+                else if (correspondingIndex == 3)
                 {
-                    if (Info.equipped[3] != "Default Pendant") { Info.Pendants.transform.Find(Info.equipped[3]).gameObject.SetActive(false); }
+                    if (Info.equipped[correspondingIndex] != "Default Pendant") { Info.Pendants.transform.Find(Info.equipped[correspondingIndex]).gameObject.SetActive(false); }
                     Info.Pendants.transform.Find(selectedItem).gameObject.SetActive(true);
-                    Info.equipped[3] = selectedItem;
                 }
 
 
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
-                    {"equipment type",  "clothing"}, {"equipment name", selectedItem} });
+                    {"equipment type",  options[view]}, {"equipment name", selectedItem} });
                 Info.equipped[correspondingIndex] = selectedItem;
                 upHandler.UpdateEquip();
             }
