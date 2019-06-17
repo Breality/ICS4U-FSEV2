@@ -25,8 +25,6 @@ public class SwordCollision : MonoBehaviour
                     break;
                 }
 
-
-
             }
         }
 

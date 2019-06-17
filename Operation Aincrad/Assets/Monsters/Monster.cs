@@ -10,15 +10,14 @@ using UnityEngine;
  */
 public class Monster : MonoBehaviour
 {
-    public string type;
     // Start is called before the first frame update
     private Animator charAnim;
+    public string type;
     private List<Vector3> test = new List<Vector3>();
     private float minAttackDist = 0.8f;
     private bool isDead = false;
     private float speed = 2f;
     public float HP = 100f;
-
 
     void Start()
     {
@@ -46,13 +45,9 @@ public class Monster : MonoBehaviour
             speed = 3f;
             HP = 200f;
         }
-
-
-
     }
 
     //Chases the player
-
     public void chase(List<Vector3> positions)
     {
         //Gets the player that's closest to them
@@ -121,9 +116,6 @@ public class Monster : MonoBehaviour
     public void attack()
     {
         charAnim.SetTrigger("Attack");
-
-        
-
     }
 
     // Update is called once per frame

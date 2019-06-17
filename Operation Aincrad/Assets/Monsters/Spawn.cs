@@ -19,39 +19,28 @@ public class Spawn : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(9,9); // Makes sure monsters don't collide with themselves
 
+        //Loads all types of monsters
         foreach (Transform child in parent)
         {
             monsters.Add(child.gameObject);
         }
-        /*
-        if(level == 0)
-        {
-            //Copy and instantiate new monster
-            for(int i = 0; i< 2; i++)
-            {
-                GameObject m = Instantiate(monsters[i], parent);
-                m.transform.position = new Vector3(i, 0, 0);
-                m.SetActive(true);
-            }
-        }*/
         
+        //Spawns the monsters
         loadM(new Vector3(486, 20, 586), 1, 1);
         loadM(new Vector3(486, 20, 586), 1, 0);
         loadM(new Vector3(486, 20, 586), 1, 2);
-        
-        //loadM(new Vector3(0, 0, 0), 1, 1);
-        //loadM(new Vector3(0, 0, 0), 1, 0);
-        //loadM(new Vector3(0, 0), 1, 2);
+
     }
 
+    //Spawns a type of monster num times in a position
     public void loadM(Vector3 position,int num, int type)
     {
         for(int i = 0; i < num; i++)
         {
             //GameObject m = Instantiate(monsters[type], parent);
             GameObject m = Instantiate(monsters[type]);
+            //Makes sure that the monsters aren't overlapping
             m.transform.position = position + new Vector3(Random.Range(0,5),0,Random.Range(0,5));
-            //m.transform.position += new Vector3(Random.Range(0, 5), 0, Random.Range(0, 5));
             m.SetActive(true);
         }
     }
