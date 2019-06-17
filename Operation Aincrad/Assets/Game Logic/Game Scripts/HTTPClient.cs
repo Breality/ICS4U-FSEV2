@@ -61,9 +61,7 @@ public class HTTPClient : MonoBehaviour
             debounce = false;
             StartCoroutine(Upload(request, Username.text, Password.text)); // start a seperate thread to upload this form as an http request
         }
-    }
-
-    
+    }    
 
     // This function handle sign in and register
     IEnumerator Upload(string request, string username, string password)
@@ -117,17 +115,17 @@ public class HTTPClient : MonoBehaviour
                     Debug.Log(equipVals);
                     Debug.Log(DataString);
 
-                    //  parsing through the xml textx
+                    // parsing through the xml texts and turning it into the corresponding formats
                     XmlSerializer serilize_object = new XmlSerializer(typeof(string[][]));
                     StringReader open_string = new StringReader(equipKeys);
-                    string[][] loadedKeys = (string[][])serilize_object.Deserialize(open_string);
+                    string[][] loadedKeys = (string[][])serilize_object.Deserialize(open_string); // the keys for the dictionary constructor for the equipment data
 
                     open_string = new StringReader(equipVals);
-                    string[][] loadedVals = (string[][])serilize_object.Deserialize(open_string);
+                    string[][] loadedVals = (string[][])serilize_object.Deserialize(open_string); // the value for the dictionary constructor for the equipment data
 
                     serilize_object = new XmlSerializer(typeof(DBPlayer));
                     open_string = new StringReader(DataString);
-                    loadedData = (DBPlayer)serilize_object.Deserialize(open_string);
+                    loadedData = (DBPlayer)serilize_object.Deserialize(open_string); // the player's data 
 
                     // reformating the dictionary 
                     loadedEquip = new Dictionary<string, Dictionary<string, string>> {
@@ -136,6 +134,7 @@ public class HTTPClient : MonoBehaviour
                         {"Clothing", new Dictionary<string, string> { } },
                     };
 
+                    // putting the parsed data into the dictionary
                     for (int a=0; a<3; a++)
                     {
                         for (int i = 0; i < loadedKeys[a].Length; i++)
@@ -144,7 +143,7 @@ public class HTTPClient : MonoBehaviour
                         }
                     }
 
-                    // calling the functions 
+                    // calling the functions that take place after a player gets logged in
                     UDP.SetToken(token);
                     netManager.StartClient();
                 }
@@ -155,11 +154,12 @@ public class HTTPClient : MonoBehaviour
             }
             else
             {
-                // let them know of the issue
-                Warning.text = response;
-                Warning.transform.gameObject.SetActive(true);
-                debounce = true;
-                yield return new WaitForSeconds(3.5f);
+                // Login works but was not succesful, let them know of the issue
+                Warning.text = response; // set the text
+                Warning.transform.gameObject.SetActive(true); // make them display the text
+                debounce = true; // allow them to click another button
+
+                yield return new WaitForSeconds(3.5f); // wait before removing the warning text
                 if (Warning.text.Equals(response))
                 {
                     Warning.transform.gameObject.SetActive(false);
@@ -168,7 +168,7 @@ public class HTTPClient : MonoBehaviour
         }
     }
     
-    private IEnumerator SendMessage(Dictionary<string, string> parameters)
+    private IEnumerator SendMessage(Dictionary<string, string> parameters) // sends an http post to the server with the parameters as a WWWform
     {
         // filling out the form appropriately
         WWWForm form = new WWWForm();
@@ -180,7 +180,7 @@ public class HTTPClient : MonoBehaviour
 
         // sending the server the form
         UnityWebRequest www = UnityWebRequest.Post("http://209.182.232.50:1234/", form);
-        yield return www.SendWebRequest();
+        yield return www.SendWebRequest(); // wait for a response
 
         if (www.isNetworkError || www.isHttpError)
         {
