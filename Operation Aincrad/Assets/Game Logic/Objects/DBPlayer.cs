@@ -1,9 +1,20 @@
-﻿using System;
+﻿/* ICS4U-01
+ * Mr. McKenzie
+ * Anish Aggarwal, Noor Nasri, Zhehai Zhang
+ * June 14th, 2019
+ * DBPlayer class
+ * Description:
+ * This class is used to send player's saved data accross networks. It uses primative types to allow encoding and is sent as an xml
+ */
+
+ // imports that the class uses on the server end
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// make the class serializable in order for it to hide in xml
 [Serializable]
 public class DBPlayer
 {
@@ -36,6 +47,7 @@ public class DBPlayer
     // constructor for xml (is never used)
     public DBPlayer()
     {
+        // sets default values
         username = "not set";
         hash = "not set";
 
