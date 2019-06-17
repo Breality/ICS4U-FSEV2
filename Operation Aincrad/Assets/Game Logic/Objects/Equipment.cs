@@ -154,6 +154,37 @@ public class Equipment : DisplayObject
                     // unequip
                 }
                 // equip
+                //Helmets
+                if (view == 0)
+                {
+                    if (Info.equipped[0] != "Default Helmet") { Info.Helmets.transform.Find(Info.equipped[0]).gameObject.SetActive(false); }
+                    Info.Helmets.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[0] = selectedItem;
+                }
+                else if (view == 1)
+                {
+                    if (Info.equipped[1] != "Default Armour") { Info.Armour.transform.Find(Info.equipped[1]).gameObject.SetActive(false); }
+                    Info.Armour.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[1] = selectedItem;
+                }
+                else if (view == 2)
+                {
+                    //equip left and right
+                    if (Info.equipped[2] != "Default Boots") {
+                        Info.BootsLeft.transform.Find(Info.equipped[2]).gameObject.SetActive(false);
+                        Info.BootsRight.transform.Find(Info.equipped[2]).gameObject.SetActive(false);
+                    }
+                    Info.BootsLeft.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.BootsRight.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[1] = selectedItem;
+                }
+                else if (view == 3)
+                {
+                    if (Info.equipped[3] != "Default Pendant") { Info.Pendants.transform.Find(Info.equipped[3]).gameObject.SetActive(false); }
+                    Info.Pendants.transform.Find(selectedItem).gameObject.SetActive(true);
+                    Info.equipped[3] = selectedItem;
+                }
+
 
                 HTTP.AskServer(new Dictionary<string, string> { {"request",  "equip" },
                     {"equipment type",  "clothing"}, {"equipment name", selectedItem} });

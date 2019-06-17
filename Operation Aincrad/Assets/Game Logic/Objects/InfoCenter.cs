@@ -11,6 +11,11 @@ public class InfoCenter : MonoBehaviour // local data held to make life easier, 
     public TMP_Text NameText;
     public GameObject WeaponsL;
     public GameObject WeaponsR;
+    public GameObject Helmets;
+    public GameObject Pendants;
+    public GameObject BootsLeft;
+    public GameObject BootsRight;
+    public GameObject Armour;
 
     // universal info
     public Dictionary<string, int> goldShop = new Dictionary<string, int> { // the cost of everything
